@@ -1,0 +1,910 @@
+/* ============================================================
+   CSS BASICS
+   ============================================================ */
+
+
+/* ============================================================
+   1. INTRODUCTION TO CSS
+   ============================================================ */
+
+/*
+CSS stands for Cascading Style Sheets.
+
+CSS is a stylesheet language used to control the appearance,
+layout, and presentation of HTML elements on a webpage.
+
+HTML -> Structure of the webpage
+CSS  -> Design and appearance
+JS   -> Behaviour and functionality
+
+Example:
+
+HTML:
+<h1>Hello World</h1>
+
+CSS:
+h1 {
+    color: blue;
+}
+
+The CSS changes the appearance of the HTML heading.
+*/
+
+
+/* ============================================================
+   2. WHAT IS CSS?
+   ============================================================ */
+
+/*
+CSS is used to style HTML elements.
+
+CSS can control:
+
+- Colors
+- Fonts
+- Text size
+- Spacing
+- Borders
+- Backgrounds
+- Width and height
+- Positioning
+- Layout
+- Animations
+- Responsive design
+
+CSS can be written in three ways:
+
+1. Inline CSS
+2. Internal CSS
+3. External CSS
+
+Example of CSS:
+
+h1 {
+    color: red;
+    font-size: 30px;
+}
+*/
+
+
+/* ============================================================
+   3. WHY CSS IS USED
+   ============================================================ */
+
+/*
+CSS is used to separate the content/structure of a webpage
+from its presentation/design.
+
+Main uses of CSS:
+
+1. Styling HTML elements
+2. Changing colors and fonts
+3. Creating layouts
+4. Adding spacing
+5. Creating responsive webpages
+6. Adding animations and transitions
+7. Making websites visually attractive
+8. Maintaining consistent design
+9. Reusing styles across multiple webpages
+
+Example:
+
+p {
+    color: darkblue;
+    font-size: 18px;
+}
+*/
+
+
+/* ============================================================
+   4. ADVANTAGES OF CSS
+   ============================================================ */
+
+/*
+Advantages of CSS:
+
+1. Separation of Content and Design
+   - HTML handles structure.
+   - CSS handles presentation.
+
+2. Reusability
+   - One CSS file can style multiple HTML pages.
+
+3. Consistency
+   - Same styles can be applied throughout a website.
+
+4. Easy Maintenance
+   - Changing one CSS rule can update many elements.
+
+5. Faster Loading
+   - External CSS files can be cached by browsers.
+
+6. Responsive Design
+   - CSS allows webpages to adapt to different screen sizes.
+
+7. Better Appearance
+   - CSS provides colors, layouts, animations, shadows, etc.
+
+8. Less Repeated Code
+   - The same styling does not need to be written repeatedly.
+
+Example:
+
+Instead of writing:
+
+<h1 style="color: blue;">Heading 1</h1>
+<h1 style="color: blue;">Heading 2</h1>
+
+We can use:
+
+h1 {
+    color: blue;
+}
+*/
+
+
+/* ============================================================
+   5. CSS SYNTAX
+   ============================================================ */
+
+/*
+Basic CSS syntax:
+
+selector {
+    property: value;
+}
+
+Example:
+
+p {
+    color: blue;
+    font-size: 18px;
+}
+
+Here:
+
+p          -> Selector
+color      -> Property
+blue       -> Value
+font-size  -> Property
+18px       -> Value
+
+The property and value together form a declaration.
+
+Each declaration ends with a semicolon (;).
+*/
+
+
+/* Example */
+
+h1 {
+    color: blue;
+    font-size: 32px;
+}
+
+
+/* ============================================================
+   6. CSS RULES
+   ============================================================ */
+
+/*
+A CSS rule consists of:
+
+1. Selector
+2. Declaration block
+
+Example:
+
+h1 {
+    color: red;
+    text-align: center;
+}
+
+h1
+   -> Selector
+
+{
+    color: red;
+    text-align: center;
+}
+   -> Declaration Block
+
+color: red;
+   -> Declaration
+
+text-align: center;
+   -> Declaration
+*/
+
+
+/* Multiple CSS rules */
+
+h1 {
+    color: purple;
+}
+
+p {
+    color: gray;
+}
+
+button {
+    background-color: black;
+    color: white;
+}
+
+
+/* ============================================================
+   7. SELECTORS AND DECLARATIONS
+   ============================================================ */
+
+/*
+SELECTOR:
+
+A selector identifies the HTML element that CSS should style.
+
+Example:
+
+p {
+    color: green;
+}
+
+'p' is the selector.
+
+
+DECLARATION:
+
+A declaration specifies what style should be applied.
+
+Example:
+
+color: green;
+
+Here:
+
+color -> Property
+green -> Value
+
+
+Multiple declarations can be used:
+
+p {
+    color: green;
+    font-size: 18px;
+    text-align: center;
+}
+*/
+
+
+/* Common selectors */
+
+p {
+    color: blue;
+}
+
+/*
+Element selector:
+Targets all <p> elements.
+*/
+
+
+.title {
+    color: red;
+}
+
+/*
+Class selector:
+Targets elements with class="title".
+*/
+
+
+#heading {
+    color: green;
+}
+
+/*
+ID selector:
+Targets the element with id="heading".
+*/
+
+
+/* ============================================================
+   8. PROPERTIES AND VALUES
+   ============================================================ */
+
+/*
+A CSS property defines what aspect of an element
+we want to change.
+
+A CSS value defines how that property should be changed.
+
+Syntax:
+
+property: value;
+
+
+Example:
+
+color: red;
+
+color -> Property
+red   -> Value
+*/
+
+
+/* More examples */
+
+h2 {
+    color: blue;
+    font-size: 30px;
+    background-color: yellow;
+    text-align: center;
+}
+
+/*
+Properties:
+- color
+- font-size
+- background-color
+- text-align
+
+Values:
+- blue
+- 30px
+- yellow
+- center
+*/
+
+
+/* ============================================================
+   9. COMMENTS IN CSS
+   ============================================================ */
+
+/*
+CSS comments are written using:
+
+/* comment */
+
+/*
+Comments are ignored by the browser.
+
+They are used to:
+
+- Explain code
+- Organize CSS
+- Add notes
+- Temporarily disable CSS code
+- Make code easier to understand
+
+
+Example:
+
+This is a CSS comment.
+*/
+
+
+/*
+h1 {
+    color: red;
+}
+*/
+
+/*
+The above CSS is commented out and will not be applied.
+*/
+
+
+/* ============================================================
+   10. CSS CASCADE
+   ============================================================ */
+
+/*
+The word "Cascading" in CSS means that when multiple CSS
+rules apply to the same element, the browser determines
+which rule should be applied based on factors such as:
+
+1. Importance
+2. Origin
+3. Cascade layers
+4. Specificity
+5. Source order
+
+
+Example:
+
+p {
+    color: red;
+}
+
+p {
+    color: blue;
+}
+
+Both rules target <p>.
+
+Since both have the same specificity and importance,
+the later rule wins.
+
+Therefore:
+
+color: blue;
+*/
+
+
+/* Example */
+
+p {
+    color: red;
+}
+
+p {
+    color: blue;
+}
+
+
+/*
+The final color of the paragraph will be blue.
+
+This is because the second rule appears later.
+*/
+
+
+/* ============================================================
+   11. CSS INHERITANCE
+   ============================================================ */
+
+/*
+Inheritance means that some CSS properties applied to a
+parent element are automatically inherited by its children.
+
+Example:
+
+div {
+    color: blue;
+}
+
+The text inside the div's child elements may also become blue
+because 'color' is an inheritable property.
+
+
+HTML example:
+
+<div>
+    Parent
+    <p>Child</p>
+</div>
+
+CSS:
+
+div {
+    color: blue;
+}
+
+The paragraph can inherit the blue text color.
+*/
+
+
+/* Example */
+
+.parent {
+    color: blue;
+}
+
+
+/*
+Some commonly inherited properties:
+
+- color
+- font-family
+- font-size
+- font-style
+- font-weight
+- line-height
+- text-align
+
+Many layout properties such as width, height, margin,
+padding, and border are generally NOT inherited automatically.
+*/
+
+
+/*
+The inherit keyword can be used explicitly:
+
+.child {
+    color: inherit;
+}
+
+This tells the child to use the parent's value.
+*/
+
+
+/* ============================================================
+   12. CSS SPECIFICITY
+   ============================================================ */
+
+/*
+Specificity determines which CSS selector has higher priority
+when multiple selectors target the same element.
+
+General specificity order:
+
+Inline styles
+      >
+ID selectors
+      >
+Class / Attribute / Pseudo-class selectors
+      >
+Element / Pseudo-element selectors
+      >
+Universal selector
+
+
+Example:
+
+p {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+
+#para {
+    color: red;
+}
+
+If the same paragraph has:
+
+id="para"
+class="text"
+
+Then the ID selector has higher specificity.
+
+Therefore:
+
+color: red;
+*/
+
+
+/* Example */
+
+p {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+
+#special {
+    color: red;
+}
+
+
+/*
+Specificity can be represented approximately as:
+
+Inline      -> 1000
+ID          -> 100
+Class       -> 10
+Element     -> 1
+
+Example:
+
+#box .text p
+
+ID       = 1
+Class    = 1
+Element  = 1
+
+Specificity = 111
+*/
+
+
+/* ============================================================
+   13. CSS PRECEDENCE
+   ============================================================ */
+
+/*
+Precedence determines which CSS rule wins when multiple
+rules apply to the same element.
+
+Important factors include:
+
+1. !important
+2. Specificity
+3. Source order
+
+
+Example:
+
+p {
+    color: red;
+}
+
+p {
+    color: blue;
+}
+
+Both selectors have the same specificity.
+
+The later rule wins:
+
+color: blue;
+*/
+
+
+/* Specificity example */
+
+p {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+
+#message {
+    color: red;
+}
+
+
+/*
+If the same element has:
+
+id="message"
+class="text"
+
+The ID selector has higher specificity,
+so red will be applied.
+*/
+
+
+/*
+!important can override normal declarations:
+
+p {
+    color: red !important;
+}
+
+However, avoid unnecessary use of !important because
+it makes CSS harder to maintain and override.
+*/
+
+
+/* ============================================================
+   14. BROWSER DEFAULT STYLES
+   ============================================================ */
+
+/*
+Browsers automatically provide default styles to HTML elements.
+
+For example:
+
+<h1> usually has:
+- Large font size
+- Bold text
+- Margins
+
+<p> usually has:
+- Block display
+- Default margins
+
+<ul> usually has:
+- Bullets
+- Padding
+
+<a> usually has:
+- Blue text
+- Underline
+
+
+These styles are called User Agent Stylesheets or
+Browser Default Styles.
+*/
+
+
+/*
+Example:
+
+A browser may automatically apply margins to headings.
+
+We can override the default style:
+
+h1 {
+    margin: 0;
+    font-size: 30px;
+}
+*/
+
+
+/* ============================================================
+   COMMON CSS RESET
+   ============================================================ */
+
+/*
+A basic CSS reset can be used to remove some common
+browser default spacing.
+
+Example:
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+This removes default margin and padding from elements
+and makes sizing easier to control.
+*/
+
+
+/* ============================================================
+   QUICK REVISION
+   ============================================================ */
+
+/*
+CSS
+-> Cascading Style Sheets
+-> Used to style and design HTML webpages.
+
+
+CSS SYNTAX:
+
+selector {
+    property: value;
+}
+
+
+SELECTOR
+-> Identifies the HTML element to style.
+
+
+PROPERTY
+-> Defines what to change.
+
+
+VALUE
+-> Defines how the property should be changed.
+
+
+DECLARATION
+-> Property + Value
+
+Example:
+
+color: red;
+
+
+CSS RULE
+-> Selector + Declaration Block
+
+
+CASCADE
+-> Determines which CSS rule is applied when multiple
+   rules affect the same element.
+
+
+INHERITANCE
+-> Child elements can inherit certain properties
+   from their parent elements.
+
+
+SPECIFICITY
+-> Determines the priority of competing selectors.
+
+
+PRECEDENCE
+-> Determines which applicable CSS rule wins based on
+   importance, specificity, and source order.
+
+
+BROWSER DEFAULT STYLES
+-> Styles automatically provided by the browser.
+*/
+
+
+/* ============================================================
+   QUESTIONS
+   ============================================================ */
+
+/*
+Q1. What is CSS?
+Q2. What are the advantages of CSS?
+Q3. Explain CSS syntax with an example.
+Q4. What is a CSS selector?
+Q5. What is a declaration in CSS?
+Q6. What is the difference between a property and a value?
+Q7. What is the CSS cascade?
+Q8. What is CSS inheritance?
+Q9. What is CSS specificity?
+Q10. Explain CSS precedence.
+Q11. What are browser default styles?
+Q12. What is the difference between cascade and specificity?
+Q13. What is the use of !important?
+Q14. What are CSS comments?
+Q15. What is a CSS rule?
+*/
+
+
+/* ============================================================
+   Q1. APPLY DIFFERENT STYLES TO AN HTML ELEMENT
+   ============================================================ */
+
+/*
+HTML:
+
+<h1 id="main-heading" class="heading">
+    Welcome to CSS
+</h1>
+
+CSS:
+*/
+
+h1 {
+    color: blue;
+}
+
+.heading {
+    color: green;
+}
+
+#main-heading {
+    color: red;
+}
+
+/*
+Answer:
+
+The heading will be RED because the ID selector has
+higher specificity than the class and element selectors.
+*/
+
+
+/* ============================================================
+   Q2. DEMONSTRATE INHERITANCE
+   ============================================================ */
+
+/*
+HTML:
+
+<div class="parent">
+    Parent
+    <p>Child paragraph</p>
+</div>
+
+CSS:
+*/
+
+.parent {
+    color: purple;
+}
+
+/*
+The paragraph inherits the color from its parent because
+color is an inheritable property.
+*/
+
+
+/* ============================================================
+   Q3. OVERRIDE BROWSER DEFAULT STYLES
+   ============================================================ */
+
+/*
+HTML:
+
+<h1>My Website</h1>
+<p>This is a paragraph.</p>
+
+CSS:
+*/
+
+h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+p {
+    margin: 0;
+    font-size: 18px;
+}
+

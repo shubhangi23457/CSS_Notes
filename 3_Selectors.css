@@ -1,0 +1,1508 @@
+/* ============================================================
+   CSS SELECTORS
+   ============================================================ */
+
+/*
+CSS SELECTORS
+
+A CSS selector is used to select HTML elements that we
+want to style.
+
+Basic syntax:
+
+selector {
+    property: value;
+}
+
+Example:
+
+p {
+    color: blue;
+}
+
+Here:
+
+p       -> Selector
+color   -> Property
+blue    -> Value
+*/
+
+
+/* ============================================================
+   1. UNIVERSAL SELECTOR (*)
+   ============================================================ */
+
+/*
+The universal selector (*) selects ALL HTML elements.
+
+Syntax:
+
+* {
+    property: value;
+}
+
+Example:
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+This applies the styles to every element on the page.
+
+Commonly used for basic CSS resets.
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+
+/*
+Example:
+
+* {
+    font-family: Arial, sans-serif;
+}
+*/
+
+
+/* ============================================================
+   2. ELEMENT / TYPE SELECTOR
+   ============================================================ */
+
+/*
+The element selector selects all elements of a particular
+HTML tag.
+
+Syntax:
+
+element {
+    property: value;
+}
+
+Example:
+
+p {
+    color: blue;
+}
+
+This selects every <p> element.
+
+Other examples:
+
+h1 {
+    color: red;
+}
+
+button {
+    background-color: black;
+}
+
+a {
+    text-decoration: none;
+}
+*/
+
+
+/* ============================================================
+   3. CLASS SELECTOR (.class)
+   ============================================================ */
+
+/*
+The class selector selects HTML elements based on their
+class attribute.
+
+Syntax:
+
+.className {
+    property: value;
+}
+
+HTML:
+
+<p class="text">Hello</p>
+
+CSS:
+
+.text {
+    color: blue;
+}
+
+
+A class can be used on multiple elements.
+
+HTML:
+
+<p class="highlight">One</p>
+<p class="highlight">Two</p>
+<h2 class="highlight">Three</h2>
+
+CSS:
+
+.highlight {
+    color: red;
+}
+
+
+Class selectors are commonly used for reusable styles.
+*/
+
+
+/* ============================================================
+   4. ID SELECTOR (#id)
+   ============================================================ */
+
+/*
+The ID selector selects an element based on its id attribute.
+
+Syntax:
+
+#idName {
+    property: value;
+}
+
+HTML:
+
+<h1 id="main-heading">Welcome</h1>
+
+CSS:
+
+#main-heading {
+    color: blue;
+}
+
+
+An ID should generally be unique within a webpage.
+
+Example:
+
+#header {
+    background-color: black;
+}
+
+
+ID selectors have higher specificity than class and
+element selectors.
+*/
+
+
+/* ============================================================
+   5. GROUPING SELECTOR
+   ============================================================ */
+
+/*
+The grouping selector allows multiple selectors to share
+the same CSS rules.
+
+Selectors are separated using commas.
+
+Example:
+
+h1,
+h2,
+h3 {
+    color: blue;
+}
+
+This applies the same color to h1, h2 and h3.
+
+Without grouping:
+
+h1 {
+    color: blue;
+}
+
+h2 {
+    color: blue;
+}
+
+h3 {
+    color: blue;
+}
+
+Grouping reduces repeated CSS.
+*/
+
+
+h1,
+h2,
+h3 {
+    font-family: Arial, sans-serif;
+}
+
+
+/* ============================================================
+   6. ATTRIBUTE SELECTOR
+   ============================================================ */
+
+/*
+Attribute selectors select elements based on their attributes.
+
+Basic syntax:
+
+[attribute] {
+    property: value;
+}
+
+
+Example:
+
+<input type="text">
+<input type="password">
+<input type="email">
+
+CSS:
+
+input[type="text"] {
+    border: 2px solid blue;
+}
+
+This selects only input elements whose type is "text".
+*/
+
+
+/*
+COMMON ATTRIBUTE SELECTORS:
+
+1. [attribute]
+   Selects elements that have the attribute.
+
+2. [attribute="value"]
+   Selects elements with an exact attribute value.
+
+3. [attribute~="value"]
+   Selects elements containing a specific word.
+
+4. [attribute|="value"]
+   Selects elements whose value is exactly the given value
+   or starts with it followed by a hyphen.
+
+5. [attribute^="value"]
+   Selects elements whose attribute value starts with
+   the specified value.
+
+6. [attribute$="value"]
+   Selects elements whose attribute value ends with
+   the specified value.
+
+7. [attribute*="value"]
+   Selects elements whose attribute value contains
+   the specified value.
+*/
+
+
+/* Attribute exists */
+
+[title] {
+    border: 1px solid black;
+}
+
+
+/* Exact value */
+
+input[type="email"] {
+    background-color: lightyellow;
+}
+
+
+/* Starts with */
+
+a[href^="https"] {
+    color: green;
+}
+
+
+/* Ends with */
+
+a[href$=".pdf"] {
+    color: red;
+}
+
+
+/* Contains */
+
+a[href*="google"] {
+    font-weight: bold;
+}
+
+
+/* ============================================================
+   7. DESCENDANT SELECTOR
+   ============================================================ */
+
+/*
+The descendant selector selects elements that are inside
+another element, at any nesting level.
+
+Syntax:
+
+ancestor descendant {
+    property: value;
+}
+
+
+Example:
+
+div p {
+    color: blue;
+}
+
+This selects all <p> elements that are inside a <div>.
+
+HTML:
+
+<div>
+    <p>Paragraph 1</p>
+
+    <section>
+        <p>Paragraph 2</p>
+    </section>
+</div>
+
+Both paragraphs are selected.
+
+
+The elements do NOT need to be direct children.
+*/
+
+
+div p {
+    color: blue;
+}
+
+
+/* ============================================================
+   8. CHILD SELECTOR (>)
+   ============================================================ */
+
+/*
+The child selector selects only direct children.
+
+Syntax:
+
+parent > child {
+    property: value;
+}
+
+
+Example:
+
+div > p {
+    color: red;
+}
+
+This selects only <p> elements that are direct children
+of a <div>.
+
+HTML:
+
+<div>
+
+    <p>Direct child</p>
+
+    <section>
+        <p>Nested paragraph</p>
+    </section>
+
+</div>
+
+Only "Direct child" is selected.
+*/
+
+
+/* ============================================================
+   DESCENDANT VS CHILD
+   ============================================================ */
+
+/*
+DESCENDANT:
+
+div p
+
+Selects p elements at ANY level inside div.
+
+
+CHILD:
+
+div > p
+
+Selects p elements that are DIRECT children of div.
+*/
+
+
+/* ============================================================
+   9. ADJACENT SIBLING SELECTOR (+)
+   ============================================================ */
+
+/*
+The adjacent sibling selector selects the element that
+comes immediately after another element.
+
+Syntax:
+
+element1 + element2 {
+    property: value;
+}
+
+
+Example:
+
+h1 + p {
+    color: red;
+}
+
+This selects the first <p> immediately following an <h1>.
+
+HTML:
+
+<h1>Heading</h1>
+<p>This paragraph is selected.</p>
+
+<p>This paragraph is not selected.</p>
+*/
+
+
+/* ============================================================
+   10. GENERAL SIBLING SELECTOR (~)
+   ============================================================ */
+
+/*
+The general sibling selector selects all matching siblings
+that appear AFTER a specified element.
+
+Syntax:
+
+element1 ~ element2 {
+    property: value;
+}
+
+
+Example:
+
+h1 ~ p {
+    color: green;
+}
+
+This selects all <p> elements that are siblings of h1
+and appear after h1.
+
+HTML:
+
+<h1>Heading</h1>
+
+<p>Paragraph 1</p>
+<p>Paragraph 2</p>
+<div>Something</div>
+<p>Paragraph 3</p>
+
+All three paragraphs can be selected.
+*/
+
+
+/* ============================================================
+   11. PSEUDO-CLASS SELECTOR
+   ============================================================ */
+
+/*
+A pseudo-class selects an element based on a special state
+or condition.
+
+Pseudo-classes begin with a single colon (:).
+
+Syntax:
+
+selector:pseudo-class {
+    property: value;
+}
+
+
+Example:
+
+button:hover {
+    background-color: blue;
+}
+
+The style is applied when the mouse pointer is over
+the button.
+*/
+
+
+/*
+COMMON PSEUDO-CLASSES:
+
+:hover
+:active
+:focus
+:visited
+:link
+:first-child
+:last-child
+:nth-child()
+:first-of-type
+:last-of-type
+:not()
+:checked
+:disabled
+:enabled
+:required
+:valid
+:invalid
+:empty
+:target
+*/
+
+
+/* Hover */
+
+button:hover {
+    background-color: blue;
+    color: white;
+}
+
+
+/* Focus */
+
+input:focus {
+    border: 2px solid blue;
+}
+
+
+/* First child */
+
+li:first-child {
+    font-weight: bold;
+}
+
+
+/* Last child */
+
+li:last-child {
+    color: red;
+}
+
+
+/* Every second child */
+
+li:nth-child(2) {
+    color: green;
+}
+
+
+/* ============================================================
+   12. PSEUDO-ELEMENT SELECTOR
+   ============================================================ */
+
+/*
+Pseudo-elements allow us to style a specific part of
+an element.
+
+Pseudo-elements generally use double colons (::).
+
+Syntax:
+
+selector::pseudo-element {
+    property: value;
+}
+
+
+Common pseudo-elements:
+
+::before
+::after
+::first-letter
+::first-line
+::selection
+::placeholder
+::marker
+*/
+
+
+/* First letter */
+
+p::first-letter {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+/* First line */
+
+p::first-line {
+    color: blue;
+}
+
+
+/* Selected text */
+
+::selection {
+    background-color: yellow;
+}
+
+
+/* Placeholder */
+
+input::placeholder {
+    color: gray;
+}
+
+
+/* List marker */
+
+li::marker {
+    color: red;
+}
+
+
+/* Before */
+
+.box::before {
+    content: "★ ";
+}
+
+
+/* After */
+
+.box::after {
+    content: " ✓";
+}
+
+
+/*
+IMPORTANT:
+
+Pseudo-class:
+    :
+
+Example:
+    button:hover
+
+
+Pseudo-element:
+    ::
+
+Example:
+    p::first-letter
+*/
+
+
+/* ============================================================
+   13. MULTIPLE SELECTORS
+   ============================================================ */
+
+/*
+Multiple selectors can be used together to apply the same
+style to multiple elements.
+
+Example:
+
+h1,
+h2,
+p {
+    color: blue;
+}
+
+
+This means:
+
+h1 -> blue
+h2 -> blue
+p  -> blue
+*/
+
+
+/*
+Multiple classes can also be applied to one HTML element.
+
+HTML:
+
+<button class="btn primary">
+    Submit
+</button>
+
+CSS:
+
+.btn {
+    padding: 10px;
+}
+
+.primary {
+    background-color: blue;
+}
+
+
+The button receives styles from BOTH classes.
+*/
+
+
+/* ============================================================
+   14. COMBINING SELECTORS
+   ============================================================ */
+
+/*
+Combining selectors allows us to target elements more
+precisely.
+
+There are several important combinations.
+
+
+1. ELEMENT + CLASS
+
+p.highlight {
+    color: red;
+}
+
+Selects only <p> elements having class="highlight".
+
+
+2. ELEMENT + ID
+
+p#special {
+    color: blue;
+}
+
+Selects only the <p> element with id="special".
+
+
+3. DESCENDANT
+
+div p {
+    color: green;
+}
+
+Selects p elements anywhere inside div.
+
+
+4. CHILD
+
+div > p {
+    color: red;
+}
+
+Selects direct p children of div.
+
+
+5. ADJACENT SIBLING
+
+h1 + p {
+    color: blue;
+}
+
+Selects p immediately after h1.
+
+
+6. GENERAL SIBLING
+
+h1 ~ p {
+    color: green;
+}
+
+Selects all matching p siblings after h1.
+*/
+
+
+/* Element + Class */
+
+p.highlight {
+    background-color: yellow;
+}
+
+
+/* Element + ID */
+
+p#special {
+    font-weight: bold;
+}
+
+
+/* Class + Pseudo-class */
+
+.button:hover {
+    transform: scale(1.05);
+}
+
+
+/* Class + Pseudo-element */
+
+.card::before {
+    content: "Card: ";
+}
+
+
+/* ============================================================
+   15. SELECTOR SPECIFICITY
+   ============================================================ */
+
+/*
+Specificity determines which selector has greater priority
+when multiple CSS rules target the same element.
+
+
+GENERAL SPECIFICITY ORDER:
+
+1. Inline styles
+2. ID selectors
+3. Class, attribute and pseudo-class selectors
+4. Element and pseudo-element selectors
+5. Universal selector
+
+
+Approximate specificity values:
+
+Inline       = 1000
+ID           = 100
+Class        = 10
+Attribute    = 10
+Pseudo-class = 10
+Element      = 1
+Pseudo-element = 1
+Universal    = 0
+*/
+
+
+/* ============================================================
+   SPECIFICITY EXAMPLE
+   ============================================================ */
+
+p {
+    color: blue;
+}
+
+
+/*
+Specificity:
+
+Element = 1
+*/
+
+
+.text {
+    color: green;
+}
+
+
+/*
+Specificity:
+
+Class = 10
+*/
+
+
+#message {
+    color: red;
+}
+
+
+/*
+Specificity:
+
+ID = 100
+
+Therefore:
+
+#message > .text > p
+
+The ID selector has the highest specificity.
+*/
+
+
+/* ============================================================
+   COMBINED SPECIFICITY
+   ============================================================ */
+
+/*
+Example:
+
+div p {
+    color: blue;
+}
+
+Specificity:
+
+div = 1
+p   = 1
+
+Total = 2
+*/
+
+
+.container p {
+    color: green;
+}
+
+
+/*
+Specificity:
+
+.container = 10
+p           = 1
+
+Total = 11
+*/
+
+
+#container p {
+    color: red;
+}
+
+
+/*
+Specificity:
+
+#container = 100
+p           = 1
+
+Total = 101
+*/
+
+
+/*
+Therefore:
+
+#container p
+     >
+.container p
+     >
+div p
+*/
+
+
+/* ============================================================
+   SPECIFICITY CALCULATION
+   ============================================================ */
+
+/*
+Example:
+
+#main .box p
+
+
+ID:
+#main
+= 100
+
+
+Class:
+.box
+= 10
+
+
+Element:
+p
+= 1
+
+
+Total:
+
+100 + 10 + 1 = 111
+*/
+
+
+/*
+Another example:
+
+div.container p.highlight
+
+
+Element:
+div = 1
+p   = 1
+
+Classes:
+.container = 10
+.highlight = 10
+
+Total:
+
+1 + 10 + 1 + 10 = 22
+*/
+
+
+/* ============================================================
+   IMPORTANT SPECIFICITY RULES
+   ============================================================ */
+
+/*
+1. ID selectors have greater specificity than classes.
+
+2. Classes have greater specificity than elements.
+
+3. More specific selectors usually override less specific
+   selectors.
+
+4. If specificity is equal, the later rule usually wins.
+
+5. Inline styles normally have higher priority than normal
+   stylesheet rules.
+
+6. !important changes the normal priority system and should
+   be used sparingly.
+
+7. Specificity is not simply based on the number of selectors.
+
+Example:
+
+#box {
+    color: red;
+}
+
+div div div div div div div div div div {
+    color: blue;
+}
+
+The ID selector still has greater specificity.
+*/
+
+
+/* ============================================================
+   16. SELECTOR COMBINATORS QUICK REFERENCE
+   ============================================================ */
+
+/*
+--------------------------------------------------------------
+SYMBOL       NAME                  EXAMPLE
+--------------------------------------------------------------
+
+space        Descendant            div p
+
+>            Child                 div > p
+
++            Adjacent sibling      h1 + p
+
+~            General sibling       h1 ~ p
+
+,            Grouping              h1, h2, p
+
+--------------------------------------------------------------
+
+
+DESCENDANT:
+
+div p
+-> p anywhere inside div
+
+
+CHILD:
+
+div > p
+-> p directly inside div
+
+
+ADJACENT SIBLING:
+
+h1 + p
+-> first p immediately after h1
+
+
+GENERAL SIBLING:
+
+h1 ~ p
+-> all p siblings after h1
+*/
+
+
+/* ============================================================
+   17. SELECTOR QUICK REFERENCE
+   ============================================================ */
+
+/*
+--------------------------------------------------------------
+SELECTOR                  EXAMPLE
+--------------------------------------------------------------
+
+Universal                 *
+
+Element                   p
+
+Class                     .box
+
+ID                        #header
+
+Grouping                  h1, p
+
+Attribute                input[type="text"]
+
+Descendant                div p
+
+Child                     div > p
+
+Adjacent Sibling          h1 + p
+
+General Sibling           h1 ~ p
+
+Pseudo-class              a:hover
+
+Pseudo-element            p::first-letter
+
+--------------------------------------------------------------
+*/
+
+
+/* ============================================================
+   18. COMPLETE SELECTOR EXAMPLE
+   ============================================================ */
+
+/*
+HTML:
+
+<div class="container">
+
+    <h1 id="title">CSS Selectors</h1>
+
+    <p class="text">Paragraph 1</p>
+    <p class="text">Paragraph 2</p>
+
+    <section>
+        <p>Nested paragraph</p>
+    </section>
+
+    <button class="btn">Click Me</button>
+
+</div>
+
+
+CSS:
+*/
+
+
+/* Universal Selector */
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* Element Selector */
+
+p {
+    font-size: 18px;
+}
+
+
+/* Class Selector */
+
+.text {
+    color: blue;
+}
+
+
+/* ID Selector */
+
+#title {
+    color: purple;
+}
+
+
+/* Descendant Selector */
+
+.container p {
+    margin-bottom: 10px;
+}
+
+
+/* Child Selector */
+
+.container > p {
+    font-weight: bold;
+}
+
+
+/* Adjacent Sibling */
+
+h1 + p {
+    text-decoration: underline;
+}
+
+
+/* General Sibling */
+
+h1 ~ p {
+    color: green;
+}
+
+
+/* Pseudo-class */
+
+.btn:hover {
+    background-color: black;
+    color: white;
+}
+
+
+/* Pseudo-element */
+
+.text::first-letter {
+    font-size: 25px;
+}
+
+
+/* Attribute Selector */
+
+input[type="text"] {
+    border: 1px solid blue;
+}
+
+
+/* ============================================================
+   19. QUESTIONS
+   ============================================================ */
+
+/*
+Q1. What is a CSS selector?
+
+Q2. What is the universal selector?
+
+Q3. What is an element selector?
+
+Q4. What is a class selector?
+
+Q5. What is an ID selector?
+
+Q6. What is a grouping selector?
+
+Q7. What are attribute selectors?
+
+Q8. What is the difference between descendant and child
+    selectors?
+
+Q9. What is the difference between + and ~ selectors?
+
+Q10. What is a pseudo-class?
+
+Q11. What is a pseudo-element?
+
+Q12. What is the difference between pseudo-classes and
+     pseudo-elements?
+
+Q13. What is selector specificity?
+
+Q14. Explain the specificity order of CSS selectors.
+
+Q15. Calculate the specificity of:
+     #header .title p
+
+Q16. Calculate the specificity of:
+     div.container p
+
+Q17. What is the difference between:
+     div p
+     and
+     div > p
+
+Q18. What is the difference between:
+     h1 + p
+     and
+     h1 ~ p
+
+Q19. How can multiple selectors share the same CSS rule?
+
+Q20. What are selector combinators?
+*/
+
+
+/* ============================================================
+   20. PRACTICE QUESTIONS
+   ============================================================ */
+
+/*
+Q1. Select all paragraphs and make their text blue.
+
+SOLUTION:
+*/
+
+p {
+    color: blue;
+}
+
+
+/*
+Q2. Select all elements with the class "box".
+
+SOLUTION:
+*/
+
+.box {
+    border: 1px solid black;
+}
+
+
+/*
+Q3. Select the element with ID "header".
+
+SOLUTION:
+*/
+
+#header {
+    background-color: black;
+}
+
+
+/*
+Q4. Select all paragraphs directly inside a div.
+
+SOLUTION:
+*/
+
+div > p {
+    color: red;
+}
+
+
+/*
+Q5. Select all paragraphs inside a div at any level.
+
+SOLUTION:
+*/
+
+div p {
+    color: green;
+}
+
+
+/*
+Q6. Select the paragraph immediately following an h1.
+
+SOLUTION:
+*/
+
+h1 + p {
+    color: purple;
+}
+
+
+/*
+Q7. Select all paragraphs appearing after an h1
+   that are siblings.
+
+SOLUTION:
+*/
+
+h1 ~ p {
+    color: orange;
+}
+
+
+/*
+Q8. Select all text input fields.
+
+SOLUTION:
+*/
+
+input[type="text"] {
+    border: 2px solid blue;
+}
+
+
+/*
+Q9. Change the button color when the mouse is over it.
+
+SOLUTION:
+*/
+
+button:hover {
+    background-color: blue;
+    color: white;
+}
+
+
+/*
+Q10. Make the first letter of every paragraph larger.
+
+SOLUTION:
+*/
+
+p::first-letter {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+/* ============================================================
+   FINAL REVISION
+   ============================================================ */
+
+/*
+CSS SELECTORS
+
+* 
+-> Selects all elements.
+
+
+element
+-> Selects all elements of a specific HTML type.
+
+
+.class
+-> Selects elements with a specific class.
+
+
+#id
+-> Selects an element with a specific ID.
+
+
+selector1, selector2
+-> Groups multiple selectors.
+
+
+[attribute]
+-> Selects elements containing an attribute.
+
+
+[attribute="value"]
+-> Selects elements with a specific attribute value.
+
+
+ancestor descendant
+-> Selects descendants at any level.
+
+
+parent > child
+-> Selects direct children.
+
+
+element1 + element2
+-> Selects the immediately following sibling.
+
+
+element1 ~ element2
+-> Selects all matching following siblings.
+
+
+:pseudo-class
+-> Selects an element based on a state or condition.
+
+
+::pseudo-element
+-> Styles a specific part of an element.
+
+
+SPECIFICITY:
+
+Inline
+   >
+ID
+   >
+Class / Attribute / Pseudo-class
+   >
+Element / Pseudo-element
+   >
+Universal
+
+
+IMPORTANT SYMBOLS:
+
+*   -> Universal
+.   -> Class
+#   -> ID
+,   -> Grouping
+>   -> Child
++   -> Adjacent sibling
+~   -> General sibling
+:   -> Pseudo-class
+::  -> Pseudo-element
+
+
+===============================================================
+END OF CSS SELECTORS
+===============================================================
+*/

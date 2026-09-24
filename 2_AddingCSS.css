@@ -1,0 +1,924 @@
+/* ============================================================
+   WAYS TO ADD CSS
+   ============================================================ */
+
+
+/* ============================================================
+   1. INTRODUCTION
+   ============================================================ */
+
+/*
+CSS can be added to an HTML document in different ways.
+
+The main methods are:
+
+1. Inline CSS
+2. Internal CSS
+3. External CSS
+
+There is also an @import method for importing one
+CSS file into another CSS file.
+
+
+GENERAL PREFERENCE:
+
+External CSS
+    ↓
+Internal CSS
+    ↓
+Inline CSS
+
+External CSS is generally preferred for larger websites
+because it keeps HTML and CSS separate and makes the code
+easier to maintain.
+*/
+
+
+/* ============================================================
+   2. INLINE CSS
+   ============================================================ */
+
+/*
+Inline CSS is written directly inside the HTML element
+using the 'style' attribute.
+
+Syntax:
+
+<tag style="property: value;">
+    Content
+</tag>
+
+
+Example:
+
+<h1 style="color: blue;">
+    Hello World
+</h1>
+
+Another example:
+
+<p style="color: red; font-size: 20px;">
+    This is a paragraph.
+</p>
+
+
+Advantages:
+
+- Quick to apply
+- Useful for testing
+- Useful for very specific individual styling
+
+
+Disadvantages:
+
+- Repeats CSS code
+- Difficult to maintain
+- Mixes HTML and CSS
+- Not suitable for large websites
+- Cannot be easily reused
+
+
+IMPORTANT:
+
+Inline CSS generally has higher specificity than
+normal internal and external CSS rules.
+*/
+
+
+/*
+HTML EXAMPLE:
+
+<h1 style="color: blue; text-align: center;">
+    Welcome
+</h1>
+
+<p style="font-size: 18px;">
+    This is a paragraph.
+</p>
+*/
+
+
+/* ============================================================
+   3. INTERNAL CSS
+   ============================================================ */
+
+/*
+Internal CSS is written inside a <style> element
+within the <head> section of an HTML document.
+
+Syntax:
+
+<head>
+
+    <style>
+
+        selector {
+            property: value;
+        }
+
+    </style>
+
+</head>
+
+
+Example:
+
+<head>
+    <style>
+
+        h1 {
+            color: blue;
+            text-align: center;
+        }
+
+        p {
+            color: gray;
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+
+
+Advantages:
+
+- Useful for styling a single webpage
+- Keeps CSS separate from individual HTML elements
+- Easy to manage for small webpages
+
+
+Disadvantages:
+
+- CSS cannot be easily reused across multiple HTML pages
+- HTML file becomes larger
+- Not ideal for large websites
+
+
+IMPORTANT:
+
+Internal CSS must be written inside:
+
+<style>
+    ...
+</style>
+*/
+
+
+/* ============================================================
+   4. EXTERNAL CSS
+   ============================================================ */
+
+/*
+External CSS is written in a separate .css file.
+
+Example file structure:
+
+project/
+│
+├── index.html
+└── style.css
+
+
+The CSS is written inside style.css:
+
+h1 {
+    color: blue;
+}
+
+p {
+    font-size: 18px;
+}
+
+
+Then style.css is connected to HTML using:
+
+<link rel="stylesheet" href="style.css">
+
+
+Advantages:
+
+- CSS can be reused across multiple webpages
+- Keeps HTML and CSS separate
+- Easier to maintain
+- Makes code cleaner
+- Suitable for large websites
+- Browser can cache the CSS file
+
+
+Example:
+
+HTML:
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+External CSS file:
+
+style.css
+
+h1 {
+    color: blue;
+}
+
+p {
+    color: gray;
+}
+*/
+
+
+/* ============================================================
+   5. LINKING EXTERNAL STYLESHEETS
+   ============================================================ */
+
+/*
+An external stylesheet is linked using the <link> element.
+
+Syntax:
+
+<link rel="stylesheet" href="style.css">
+
+
+Important attributes:
+
+rel="stylesheet"
+-> Specifies that the linked file is a stylesheet.
+
+href="style.css"
+-> Specifies the location/path of the CSS file.
+
+
+Example:
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+If the CSS file is inside a folder:
+
+<head>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+If the CSS file is one folder above:
+
+<head>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+
+The path in href must correctly point to the CSS file.
+*/
+
+
+/* ============================================================
+   6. @IMPORT
+   ============================================================ */
+
+/*
+The @import rule is used to import another CSS stylesheet
+into a CSS file.
+
+Syntax:
+
+@import url("style.css");
+
+
+Example:
+
+main.css
+
+@import url("buttons.css");
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+
+Another example:
+
+@import url("reset.css");
+
+@import url("theme.css");
+
+body {
+    margin: 0;
+}
+
+
+IMPORTANT:
+
+@import rules should generally be placed at the beginning
+of a CSS file before normal CSS rules.
+*/
+
+
+/*
+IMPORTING A GOOGLE FONT:
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+
+However, for performance and maintainability, using a
+<link> in HTML is often preferred when importing external
+resources such as web fonts.
+*/
+
+
+/*
+ADVANTAGES OF @import:
+
+- Allows CSS files to be divided into multiple files
+- Useful for organizing CSS
+- Can import external stylesheets
+
+
+DISADVANTAGES:
+
+- Can introduce additional loading dependencies
+- Can make CSS loading less efficient if overused
+- Makes dependency structure less obvious
+- Generally less preferred than linking stylesheets
+  directly in HTML
+*/
+
+
+/* ============================================================
+   7. MULTIPLE STYLESHEETS
+   ============================================================ */
+
+/*
+A webpage can use multiple CSS files.
+
+Example:
+
+project/
+│
+├── index.html
+│
+└── css/
+    ├── reset.css
+    ├── layout.css
+    ├── buttons.css
+    └── responsive.css
+
+
+HTML:
+
+<head>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+
+Each file can have a specific responsibility.
+
+reset.css
+-> Resets default browser styles.
+
+layout.css
+-> Controls page layout.
+
+buttons.css
+-> Contains button styles.
+
+responsive.css
+-> Contains responsive styles.
+
+
+IMPORTANT:
+
+The order of stylesheets matters.
+
+If two files contain conflicting rules with the
+same specificity, the rule from the stylesheet loaded
+later generally wins.
+*/
+
+
+/* Example */
+
+/*
+First stylesheet:
+
+theme.css
+
+p {
+    color: blue;
+}
+
+
+Second stylesheet:
+
+custom.css
+
+p {
+    color: red;
+}
+
+
+HTML:
+
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="custom.css">
+
+
+The paragraph will be RED because custom.css is loaded later
+and both selectors have the same specificity.
+*/
+
+
+/* ============================================================
+   8. CSS FILE STRUCTURE
+   ============================================================ */
+
+/*
+A well-organized CSS project makes the code easier
+to understand and maintain.
+
+Small project:
+
+project/
+│
+├── index.html
+└── style.css
+
+
+Medium project:
+
+project/
+│
+├── index.html
+├── about.html
+├── contact.html
+│
+└── css/
+    ├── style.css
+    ├── responsive.css
+    └── animations.css
+
+
+Larger project:
+
+project/
+│
+├── index.html
+│
+├── css/
+│   ├── base.css
+│   ├── layout.css
+│   ├── components.css
+│   ├── utilities.css
+│   └── responsive.css
+│
+├── images/
+│
+└── js/
+*/
+
+
+/*
+COMMON CSS FILE RESPONSIBILITIES:
+
+base.css
+-> Basic styles
+-> Body
+-> Typography
+-> Global styles
+
+
+layout.css
+-> Header
+-> Navigation
+-> Main content
+-> Footer
+-> Page layout
+
+
+components.css
+-> Buttons
+-> Cards
+-> Forms
+-> Modals
+-> Navigation components
+
+
+utilities.css
+-> Small reusable helper classes
+
+
+responsive.css
+-> Media queries
+-> Mobile/tablet/desktop adjustments
+*/
+
+
+/* ============================================================
+   9. BEST PRACTICES FOR ADDING CSS
+   ============================================================ */
+
+/*
+1. Prefer External CSS
+
+Use external stylesheets for most projects.
+
+Example:
+
+<link rel="stylesheet" href="style.css">
+
+
+2. Avoid Excessive Inline CSS
+
+Instead of:
+
+<p style="color: red;">Hello</p>
+
+Prefer:
+
+<p class="error">Hello</p>
+
+.error {
+    color: red;
+}
+
+
+3. Use Meaningful Class Names
+
+Good:
+
+.product-card
+.login-button
+.navigation
+
+Avoid unclear names such as:
+
+.x1
+.box123
+.redthing
+
+
+4. Keep CSS Organized
+
+Group related styles together.
+
+Example:
+
+/* Header */
+/* Navigation */
+/* Main Content */
+/* Footer */
+
+
+/*
+5. Use Consistent Formatting
+
+Example:
+
+.card {
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid black;
+}
+
+
+6. Avoid Unnecessary Repetition
+
+Instead of:
+
+.heading1 {
+    color: blue;
+}
+
+.heading2 {
+    color: blue;
+}
+
+.heading3 {
+    color: blue;
+}
+
+Use:
+
+.heading1,
+.heading2,
+.heading3 {
+    color: blue;
+}
+
+
+7. Reuse CSS Classes
+
+Create reusable classes for common styles.
+
+Example:
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+
+8. Avoid Excessive !important
+
+Avoid:
+
+color: red !important;
+
+unless there is a specific reason to override
+the normal cascade.
+
+
+9. Use Comments for Organization
+
+Example:
+
+/* =========================
+   HEADER
+   ========================= */
+
+
+/*
+10. Use Relative Paths Correctly
+
+Example:
+
+<link rel="stylesheet" href="css/style.css">
+
+
+11. Keep CSS and HTML Separate
+
+Prefer:
+
+HTML -> Structure
+CSS  -> Presentation
+JavaScript -> Behaviour
+
+
+12. Use Responsive Design
+
+Use media queries when the layout needs to adapt
+to different screen sizes.
+
+Example:
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 100%;
+    }
+
+}
+
+
+13. Remove Unused CSS
+
+Unused CSS increases file size and makes the stylesheet
+harder to maintain.
+
+
+14. Use Consistent Naming
+
+Example:
+
+.product-card
+.product-card-title
+.product-card-image
+.product-card-price
+
+
+15. Load Stylesheets Properly
+
+Use <link rel="stylesheet"> for external stylesheets
+rather than unnecessarily using @import.
+*/
+
+
+/* ============================================================
+   10. COMPARISON OF CSS METHODS
+   ============================================================ */
+
+/*
+---------------------------------------------------------------
+METHOD       LOCATION              REUSABILITY   BEST FOR
+---------------------------------------------------------------
+Inline       style attribute       Low           Quick/specific
+Internal     <style> in HTML       Medium        Single page
+External     .css file             High          Websites
+@import      CSS file              High          CSS imports
+---------------------------------------------------------------
+
+
+INLINE CSS
+Example:
+
+<h1 style="color: red;">Hello</h1>
+
+
+INTERNAL CSS
+Example:
+
+<style>
+    h1 {
+        color: red;
+    }
+</style>
+
+
+EXTERNAL CSS
+Example:
+
+<link rel="stylesheet" href="style.css">
+
+
+@IMPORT
+Example:
+
+@import url("theme.css");
+*/
+
+
+/* ============================================================
+   11. COMPLETE EXAMPLE
+   ============================================================ */
+
+/*
+PROJECT STRUCTURE:
+
+project/
+│
+├── index.html
+│
+└── css/
+    └── style.css
+
+
+INDEX.HTML:
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Example</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <h1>Welcome to CSS</h1>
+
+    <p>This page uses an external stylesheet.</p>
+
+    <button>Click Me</button>
+
+</body>
+
+</html>
+
+
+STYLE.CSS:
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    color: blue;
+}
+
+p {
+    color: gray;
+}
+
+button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+}
+*/
+
+
+/* ============================================================
+   12. QUESTIONS
+   ============================================================ */
+
+/*
+Q1. What are the different ways to add CSS to HTML?
+
+Q2. What is Inline CSS?
+
+Q3. What is Internal CSS?
+
+Q4. What is External CSS?
+
+Q5. Which method of adding CSS is generally preferred
+    for large websites and why?
+
+Q6. How do you link an external CSS file to HTML?
+
+Q7. What is the purpose of rel="stylesheet"?
+
+Q8. What is the purpose of the href attribute?
+
+Q9. What is @import in CSS?
+
+Q10. What is the difference between <link> and @import?
+
+Q11. Can a webpage use multiple CSS files?
+
+Q12. Why does the order of multiple stylesheets matter?
+
+Q13. How should a CSS project be organized?
+
+Q14. What are some best practices for writing CSS?
+
+Q15. Why should excessive inline CSS be avoided?
+
+Q16. Why should excessive use of !important be avoided?
+*/
+
+
+/* ============================================================
+   QUICK REVISION
+   ============================================================ */
+
+/*
+INLINE CSS
+-> Written inside the HTML style attribute.
+-> Useful for individual/specific styles.
+-> Low reusability.
+
+
+INTERNAL CSS
+-> Written inside <style> in HTML.
+-> Useful for a single webpage.
+-> Medium reusability.
+
+
+EXTERNAL CSS
+-> Written in a separate .css file.
+-> Connected using <link>.
+-> Highly reusable.
+-> Generally preferred for larger projects.
+
+
+LINKING:
+
+<link rel="stylesheet" href="style.css">
+
+
+@IMPORT:
+
+@import url("style.css");
+
+
+MULTIPLE STYLESHEETS
+-> A webpage can use multiple CSS files.
+-> The order can affect which rule wins when rules
+   otherwise have equal priority.
+
+
+CSS FILE STRUCTURE
+-> Organize CSS into logical files such as:
+   base.css
+   layout.css
+   components.css
+   responsive.css
+
+
+BEST PRACTICES
+-> Prefer external CSS
+-> Avoid excessive inline styles
+-> Use meaningful class names
+-> Keep CSS organized
+-> Reuse styles
+-> Avoid unnecessary !important
+-> Use comments
+-> Use responsive design
+-> Remove unused CSS
+-> Keep HTML and CSS separate
+*/
+
+
+/* ============================================================
+   END OF WAYS TO ADD CSS
+   ============================================================ */

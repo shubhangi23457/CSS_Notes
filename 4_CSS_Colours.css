@@ -1,0 +1,681 @@
+/*
+===========================================================
+                    CSS COLORS
+===========================================================
+
+CSS provides different ways to define and use colors.
+
+Colors can be used for:
+- Text
+- Backgrounds
+- Borders
+- Shadows
+- Gradients
+- Other visual effects
+
+-----------------------------------------------------------
+1. COLOR NAMES
+-----------------------------------------------------------
+
+CSS provides predefined color names.
+
+Examples:
+red
+blue
+green
+yellow
+black
+white
+orange
+purple
+pink
+gray
+
+Syntax:
+
+selector {
+    property: color-name;
+}
+
+Example:
+*/
+
+h1 {
+    color: red;
+}
+
+p {
+    color: blue;
+}
+
+div {
+    background-color: yellow;
+}
+
+
+/*
+-----------------------------------------------------------
+2. HEXADECIMAL COLORS
+-----------------------------------------------------------
+
+Hexadecimal colors use the # symbol followed by 6
+hexadecimal characters.
+
+Format:
+
+#RRGGBB
+
+RR = Red
+GG = Green
+BB = Blue
+
+Each value ranges from 00 to FF.
+
+Examples:
+
+#FF0000 = Red
+#00FF00 = Green
+#0000FF = Blue
+#000000 = Black
+#FFFFFF = White
+
+Example:
+*/
+
+.heading {
+    color: #ff0000;
+}
+
+.box {
+    background-color: #00ff00;
+}
+
+.text {
+    color: #0000ff;
+}
+
+
+/*
+-----------------------------------------------------------
+3. SHORT HEX COLOR
+-----------------------------------------------------------
+
+A 6-digit hexadecimal color can sometimes be shortened
+to 3 digits.
+
+Example:
+
+#FF0000 → #F00
+#00FF00 → #0F0
+#0000FF → #00F
+#FFFFFF → #FFF
+#000000 → #000
+
+Each digit is repeated.
+
+#ABC = #AABBCC
+
+Example:
+*/
+
+h2 {
+    color: #f00;
+}
+
+
+/*
+-----------------------------------------------------------
+4. RGB COLORS
+-----------------------------------------------------------
+
+RGB stands for:
+
+R = Red
+G = Green
+B = Blue
+
+Each value ranges from 0 to 255.
+
+Syntax:
+
+rgb(red, green, blue)
+
+Examples:
+
+rgb(255, 0, 0)       = Red
+rgb(0, 255, 0)       = Green
+rgb(0, 0, 255)       = Blue
+rgb(0, 0, 0)         = Black
+rgb(255, 255, 255)   = White
+
+Example:
+*/
+
+.rgb-red {
+    color: rgb(255, 0, 0);
+}
+
+.rgb-blue {
+    color: rgb(0, 0, 255);
+}
+
+
+/*
+-----------------------------------------------------------
+5. RGBA COLORS
+-----------------------------------------------------------
+
+RGBA stands for:
+
+R = Red
+G = Green
+B = Blue
+A = Alpha
+
+Alpha controls transparency.
+
+Alpha value:
+0   = Completely transparent
+1   = Completely opaque
+
+Syntax:
+
+rgba(red, green, blue, alpha)
+
+Example:
+*/
+
+.transparent-red {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+
+/*
+-----------------------------------------------------------
+6. HSL COLORS
+-----------------------------------------------------------
+
+HSL stands for:
+
+H = Hue
+S = Saturation
+L = Lightness
+
+Syntax:
+
+hsl(hue, saturation, lightness)
+
+Hue:
+Represents the color on the color wheel.
+
+Saturation:
+Represents the intensity of the color.
+
+Lightness:
+Represents how light or dark the color is.
+
+Examples:
+*/
+
+.hsl-red {
+    color: hsl(0, 100%, 50%);
+}
+
+.hsl-green {
+    color: hsl(120, 100%, 50%);
+}
+
+.hsl-blue {
+    color: hsl(240, 100%, 50%);
+}
+
+
+/*
+-----------------------------------------------------------
+7. HSLA COLORS
+-----------------------------------------------------------
+
+HSLA adds Alpha to HSL.
+
+Syntax:
+
+hsla(hue, saturation, lightness, alpha)
+
+Example:
+*/
+
+.hsla-color {
+    background-color: hsla(200, 100%, 50%, 0.5);
+}
+
+
+/*
+-----------------------------------------------------------
+8. CURRENTCOLOR
+-----------------------------------------------------------
+
+currentColor represents the current value of the
+element's color property.
+
+It is useful when the same color needs to be reused.
+
+Example:
+*/
+
+.current-color {
+    color: purple;
+    border: 2px solid currentColor;
+}
+
+
+/*
+-----------------------------------------------------------
+9. TRANSPARENT
+-----------------------------------------------------------
+
+The transparent keyword represents a fully transparent
+color.
+
+It is commonly used for backgrounds and borders.
+
+Example:
+*/
+
+.transparent-box {
+    background-color: transparent;
+    border: 2px solid transparent;
+}
+
+
+/*
+-----------------------------------------------------------
+10. COLOR OPACITY
+-----------------------------------------------------------
+
+Opacity controls the transparency of an entire element.
+
+Range:
+
+0   = Completely transparent
+1   = Completely visible
+
+Example:
+*/
+
+.opacity-box {
+    opacity: 0.5;
+}
+
+
+/*
+IMPORTANT:
+
+opacity affects the entire element, including its
+children.
+
+For example:
+
+.parent {
+    opacity: 0.5;
+}
+
+The text and other children inside the parent also
+become transparent.
+
+
+-----------------------------------------------------------
+11. TEXT COLOR
+-----------------------------------------------------------
+
+The color property changes the color of text.
+
+Syntax:
+
+selector {
+    color: value;
+}
+
+Example:
+*/
+
+.text-red {
+    color: red;
+}
+
+.text-hex {
+    color: #3498db;
+}
+
+.text-rgb {
+    color: rgb(52, 152, 219);
+}
+
+
+/*
+-----------------------------------------------------------
+12. BACKGROUND COLOR
+-----------------------------------------------------------
+
+The background-color property sets the background color
+of an element.
+
+Example:
+*/
+
+.background {
+    background-color: lightblue;
+}
+
+
+/*
+-----------------------------------------------------------
+13. BORDER COLOR
+-----------------------------------------------------------
+
+The border-color property changes the color of a border.
+
+Example:
+*/
+
+.border-color {
+    border: 3px solid black;
+    border-color: red;
+}
+
+
+/*
+-----------------------------------------------------------
+14. DIFFERENT COLOR FORMATS
+-----------------------------------------------------------
+
+The same color can be represented in different formats.
+
+Example: RED
+
+Color Name:
+red
+
+HEX:
+#FF0000
+
+RGB:
+rgb(255, 0, 0)
+
+RGBA:
+rgba(255, 0, 0, 1)
+
+HSL:
+hsl(0, 100%, 50%)
+
+HSLA:
+hsla(0, 100%, 50%, 1)
+
+
+-----------------------------------------------------------
+15. COLOR WITH TRANSPARENCY
+-----------------------------------------------------------
+
+HEX:
+#FF000080
+
+RGB:
+rgb(255, 0, 0)
+
+RGBA:
+rgba(255, 0, 0, 0.5)
+
+HSL:
+hsl(0, 100%, 50%)
+
+Modern CSS can also use:
+
+rgb(255 0 0 / 50%)
+
+hsl(0 100% 50% / 50%)
+
+
+-----------------------------------------------------------
+16. COLOR COMPARISON
+-----------------------------------------------------------
+
+Color Names:
+- Easy to remember
+- Limited predefined choices
+
+HEX:
+- Very commonly used
+- Compact
+- Good for fixed colors
+
+RGB:
+- Uses red, green and blue values
+- Easy to understand programmatically
+
+RGBA:
+- RGB + transparency
+- Useful for transparent colors
+
+HSL:
+- Uses hue, saturation and lightness
+- Easier to adjust color appearance
+
+HSLA:
+- HSL + transparency
+
+
+-----------------------------------------------------------
+17. PRACTICAL EXAMPLE
+-----------------------------------------------------------
+*/
+
+.card {
+    color: #222222;
+    background-color: #f5f5f5;
+    border: 2px solid rgb(52, 152, 219);
+}
+
+.card-title {
+    color: hsl(210, 80%, 40%);
+}
+
+.card-button {
+    background-color: rgba(52, 152, 219, 0.8);
+    color: white;
+}
+
+
+/*
+===========================================================
+                    QUICK REVISION
+===========================================================
+
+1. Color Name
+   color: red;
+
+2. HEX
+   color: #ff0000;
+
+3. RGB
+   color: rgb(255, 0, 0);
+
+4. RGBA
+   color: rgba(255, 0, 0, 0.5);
+
+5. HSL
+   color: hsl(0, 100%, 50%);
+
+6. HSLA
+   color: hsla(0, 100%, 50%, 0.5);
+
+7. Current Color
+   border-color: currentColor;
+
+8. Transparent
+   background-color: transparent;
+
+9. Opacity
+   opacity: 0.5;
+
+10. Text Color
+    color: blue;
+
+11. Background Color
+    background-color: yellow;
+
+12. Border Color
+    border-color: red;
+
+
+/*
+===========================================================
+                    QUESTIONS
+===========================================================
+
+Q1. What is the purpose of colors in CSS?
+
+Q2. What is the difference between HEX and RGB?
+
+Q3. What is RGBA?
+
+Q4. What does the alpha value represent?
+
+Q5. What does HSL stand for?
+
+Q6. What is the difference between RGB and HSL?
+
+Q7. What is currentColor?
+
+Q8. What is the difference between opacity and RGBA?
+
+Q9. Write CSS to make text red using:
+    a) Color name
+    b) HEX
+    c) RGB
+
+Q10. Write CSS for a box with:
+    - Blue background
+    - White text
+    - Red border
+
+
+===========================================================
+                    SOLUTIONS
+===========================================================
+
+Q1.
+CSS colors are used to change the appearance of text,
+backgrounds, borders and other visual elements.
+
+
+Q2.
+HEX represents colors using hexadecimal values such as
+#FF0000.
+
+RGB represents colors using Red, Green and Blue values
+from 0 to 255.
+
+
+Q3.
+RGBA stands for Red, Green, Blue and Alpha.
+It allows a color to have transparency.
+
+
+Q4.
+The alpha value controls transparency.
+
+0 = Fully transparent
+1 = Fully opaque
+
+
+Q5.
+HSL stands for:
+
+H = Hue
+S = Saturation
+L = Lightness
+
+
+Q6.
+RGB defines a color using Red, Green and Blue values.
+
+HSL defines a color using Hue, Saturation and Lightness.
+
+
+Q7.
+currentColor represents the current value of the
+element's color property.
+
+
+Q8.
+RGBA controls transparency of a specific color.
+
+opacity affects the entire element, including its
+children.
+
+
+Q9.
+*/
+
+.question9-name {
+    color: red;
+}
+
+.question9-hex {
+    color: #ff0000;
+}
+
+.question9-rgb {
+    color: rgb(255, 0, 0);
+}
+
+
+/*
+Q10.
+*/
+
+.question10 {
+    background-color: blue;
+    color: white;
+    border: 2px solid red;
+}
+
+
+/*
+===========================================================
+                 PRACTICE QUESTION
+===========================================================
+
+Create a card with:
+
+- Light gray background
+- Dark blue heading
+- Black paragraph text
+- Green border
+- Button with semi-transparent blue background
+- White button text
+*/
+
+.practice-card {
+    background-color: #eeeeee;
+    border: 2px solid green;
+}
+
+.practice-card h2 {
+    color: #003366;
+}
+
+.practice-card p {
+    color: black;
+}
+
+.practice-card button {
+    background-color: rgba(0, 0, 255, 0.7);
+    color: white;
+}
+
+
+/*
+===========================================================
+                       END
+===========================================================
+*/

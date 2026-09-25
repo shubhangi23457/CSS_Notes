@@ -1,0 +1,1120 @@
+/*
+===========================================================
+                     CSS UNITS
+===========================================================
+
+CSS units are used to define the size of elements,
+spacing, fonts, widths, heights, margins, padding, etc.
+
+Example:
+
+width: 200px;
+font-size: 2rem;
+margin: 10%;
+height: 50vh;
+
+CSS units are mainly divided into:
+
+1. Absolute Units
+2. Relative Units
+3. Viewport Units
+
+
+===========================================================
+1. ABSOLUTE UNITS
+===========================================================
+
+Absolute units represent fixed physical or screen-based
+measurements.
+
+Common absolute units:
+
+px  = pixels
+pt  = points
+cm  = centimeters
+mm  = millimeters
+in  = inches
+
+Absolute units generally do not change based on the
+parent element or viewport size.
+
+
+-----------------------------------------------------------
+2. px - PIXELS
+-----------------------------------------------------------
+
+px stands for pixel.
+
+It is one of the most commonly used CSS units.
+
+Example:
+*/
+
+.box-px {
+    width: 200px;
+    height: 100px;
+    padding: 20px;
+    font-size: 16px;
+}
+
+
+/*
+Advantages:
+- Easy to understand
+- Precise control
+- Commonly used for borders, icons and fixed dimensions
+
+Example:
+*/
+
+.border-px {
+    border: 2px solid black;
+}
+
+
+/*
+-----------------------------------------------------------
+3. pt - POINTS
+-----------------------------------------------------------
+
+pt stands for points.
+
+1 point = 1/72 of an inch.
+
+It is commonly associated with typography and print
+styles.
+
+Example:
+*/
+
+.text-pt {
+    font-size: 12pt;
+}
+
+
+/*
+-----------------------------------------------------------
+4. cm - CENTIMETERS
+-----------------------------------------------------------
+
+cm represents centimeters.
+
+It is mainly useful for print-related layouts.
+
+Example:
+*/
+
+.print-cm {
+    width: 10cm;
+}
+
+
+/*
+-----------------------------------------------------------
+5. mm - MILLIMETERS
+-----------------------------------------------------------
+
+mm represents millimeters.
+
+1 cm = 10 mm
+
+Example:
+*/
+
+.print-mm {
+    width: 50mm;
+}
+
+
+/*
+-----------------------------------------------------------
+6. in - INCHES
+-----------------------------------------------------------
+
+in represents inches.
+
+1 inch = 2.54 cm
+
+Example:
+*/
+
+.print-inch {
+    width: 2in;
+}
+
+
+/*
+===========================================================
+                    RELATIVE UNITS
+===========================================================
+
+Relative units are calculated relative to another value,
+such as:
+
+- Parent element
+- Root element
+- Font size
+- Viewport
+- Character size
+
+Common relative units:
+
+%
+em
+rem
+vw
+vh
+vmin
+vmax
+ch
+ex
+
+
+-----------------------------------------------------------
+7. % - PERCENTAGE
+-----------------------------------------------------------
+
+Percentage values are usually relative to the size of
+another element or property.
+
+Example:
+*/
+
+.parent {
+    width: 500px;
+}
+
+.child {
+    width: 50%;
+}
+
+
+/*
+The child will generally have a width equal to 50% of
+its containing block.
+
+Percentage can also be used for other properties.
+
+Example:
+*/
+
+.percent-box {
+    width: 80%;
+    margin: 10%;
+}
+
+
+/*
+-----------------------------------------------------------
+8. em
+-----------------------------------------------------------
+
+em is relative to the font size of the element's
+context.
+
+For font-size, em is based on the inherited/parent
+font size.
+
+For many other properties, em is based on the element's
+own computed font size.
+
+Example:
+*/
+
+.parent-em {
+    font-size: 20px;
+}
+
+.child-em {
+    font-size: 1.5em;
+}
+
+
+/*
+If the relevant font size is 20px:
+
+1.5em = 30px
+
+
+Example:
+*/
+
+.em-box {
+    font-size: 20px;
+    padding: 1em;
+}
+
+
+/*
+1em of the element's font size = 20px
+So padding becomes 20px.
+
+
+IMPORTANT:
+
+Nested em values can compound.
+
+Example:
+*/
+
+.em-parent {
+    font-size: 20px;
+}
+
+.em-child {
+    font-size: 1.5em;
+}
+
+.em-grandchild {
+    font-size: 1.5em;
+}
+
+
+/*
+Because em depends on context, deeply nested em values
+can become difficult to manage.
+
+
+-----------------------------------------------------------
+9. rem
+-----------------------------------------------------------
+
+rem stands for "root em".
+
+It is relative to the font size of the root element,
+normally <html>.
+
+Default browser root font size is commonly 16px.
+
+Example:
+*/
+
+.rem-text {
+    font-size: 2rem;
+}
+
+
+/*
+If the root font size is 16px:
+
+2rem = 32px
+
+
+We can change the root font size:
+
+html {
+    font-size: 20px;
+}
+
+Then:
+
+2rem = 40px
+
+
+rem is commonly used for:
+- Font sizes
+- Spacing
+- Padding
+- Margins
+- Consistent scaling
+
+
+-----------------------------------------------------------
+10. em VS rem
+-----------------------------------------------------------
+
+em:
+- Relative to contextual font size
+- Can compound when nested
+
+rem:
+- Relative to root font size
+- More predictable
+
+Example:
+*/
+
+.em-example {
+    font-size: 1.5em;
+}
+
+.rem-example {
+    font-size: 1.5rem;
+}
+
+
+/*
+-----------------------------------------------------------
+11. vw - VIEWPORT WIDTH
+-----------------------------------------------------------
+
+vw stands for viewport width.
+
+1vw = 1% of the viewport's width.
+
+Example:
+*/
+
+.viewport-width {
+    width: 50vw;
+}
+
+
+/*
+If viewport width = 1000px:
+
+50vw = 500px
+
+
+Useful for:
+- Responsive widths
+- Large headings
+- Full-width sections
+
+
+Example:
+*/
+
+.full-width {
+    width: 100vw;
+}
+
+
+/*
+-----------------------------------------------------------
+12. vh - VIEWPORT HEIGHT
+-----------------------------------------------------------
+
+vh stands for viewport height.
+
+1vh = 1% of the viewport's height.
+
+Example:
+*/
+
+.viewport-height {
+    height: 50vh;
+}
+
+
+/*
+If viewport height = 800px:
+
+50vh = 400px
+
+
+Common example:
+*/
+
+.hero {
+    min-height: 100vh;
+}
+
+
+/*
+This makes the hero section at least as tall as the
+viewport.
+
+
+-----------------------------------------------------------
+13. vmin
+-----------------------------------------------------------
+
+vmin represents 1% of the smaller dimension of the
+viewport.
+
+It compares:
+
+- Viewport width
+- Viewport height
+
+and uses the smaller value.
+
+Example:
+*/
+
+.vmin-box {
+    width: 50vmin;
+}
+
+
+/*
+If:
+
+Viewport width  = 1200px
+Viewport height = 800px
+
+The smaller dimension is 800px.
+
+Therefore:
+
+1vmin = 8px
+50vmin = 400px
+
+
+-----------------------------------------------------------
+14. vmax
+-----------------------------------------------------------
+
+vmax represents 1% of the larger dimension of the
+viewport.
+
+Example:
+*/
+
+.vmax-box {
+    width: 50vmax;
+}
+
+
+/*
+If:
+
+Viewport width  = 1200px
+Viewport height = 800px
+
+The larger dimension is 1200px.
+
+Therefore:
+
+1vmax = 12px
+50vmax = 600px
+
+
+-----------------------------------------------------------
+15. ch
+-----------------------------------------------------------
+
+ch is based on the width of the "0" character in the
+element's font.
+
+It is commonly useful for controlling text width.
+
+Example:
+*/
+
+.text-container {
+    width: 60ch;
+}
+
+
+/*
+A common use is limiting paragraphs to a readable
+line length.
+
+Example:
+*/
+
+.readable-text {
+    max-width: 65ch;
+}
+
+
+/*
+-----------------------------------------------------------
+16. ex
+-----------------------------------------------------------
+
+ex is relative to the x-height of the current font.
+
+The x-height is approximately the height of the lowercase
+letter "x" in that font.
+
+Example:
+*/
+
+.ex-example {
+    font-size: 2ex;
+}
+
+
+/*
+ex is less commonly used than em and rem because its
+actual size depends on the font being used.
+
+
+===========================================================
+                 VIEWPORT UNITS
+===========================================================
+
+Viewport units are relative to the size of the browser
+viewport.
+
+Common viewport units:
+
+vw
+vh
+vmin
+vmax
+
+-----------------------------------------------------------
+17. vw
+-----------------------------------------------------------
+
+1vw = 1% of viewport width
+
+Example:
+*/
+
+.viewport-width-example {
+    width: 80vw;
+}
+
+
+/*
+-----------------------------------------------------------
+18. vh
+-----------------------------------------------------------
+
+1vh = 1% of viewport height
+
+Example:
+*/
+
+.viewport-height-example {
+    height: 80vh;
+}
+
+
+/*
+-----------------------------------------------------------
+19. vmin
+-----------------------------------------------------------
+
+1vmin = 1% of the smaller viewport dimension.
+
+Example:
+*/
+
+.square-vmin {
+    width: 50vmin;
+    height: 50vmin;
+}
+
+
+/*
+-----------------------------------------------------------
+20. vmax
+-----------------------------------------------------------
+
+1vmax = 1% of the larger viewport dimension.
+
+Example:
+*/
+
+.square-vmax {
+    width: 50vmax;
+    height: 50vmax;
+}
+
+
+/*
+===========================================================
+             ABSOLUTE VS RELATIVE UNITS
+===========================================================
+
+ABSOLUTE UNITS:
+
+px
+pt
+cm
+mm
+in
+
+Characteristics:
+- Generally fixed measurements
+- Useful when precise dimensions are needed
+- Print layouts may use physical units
+
+
+RELATIVE UNITS:
+
+%
+em
+rem
+vw
+vh
+vmin
+vmax
+ch
+ex
+
+Characteristics:
+- Adapt according to context
+- Useful for responsive design
+- Better for flexible layouts
+
+
+===========================================================
+                CHOOSING APPROPRIATE UNITS
+===========================================================
+
+Different units are suitable for different situations.
+
+
+1. px
+-----------------------------------------------------------
+
+Use px when:
+- You need precise control
+- Creating borders
+- Setting small fixed dimensions
+- Working with icons or fine details
+
+Example:
+*/
+
+button {
+    border: 1px solid black;
+    padding: 10px 20px;
+}
+
+
+/*
+2. %
+-----------------------------------------------------------
+
+Use % when:
+- Size should depend on the parent
+- Creating flexible widths
+
+Example:
+*/
+
+.container {
+    width: 80%;
+}
+
+
+/*
+3. em
+-----------------------------------------------------------
+
+Use em when:
+- Size should scale with an element's font size
+- Creating component-level spacing
+
+Example:
+*/
+
+.button {
+    font-size: 16px;
+    padding: 0.75em 1.5em;
+}
+
+
+/*
+4. rem
+-----------------------------------------------------------
+
+Use rem when:
+- Creating consistent font sizes
+- Creating scalable spacing
+- Building a predictable design system
+
+Example:
+*/
+
+.heading {
+    font-size: 2rem;
+}
+
+.section {
+    padding: 3rem;
+}
+
+
+/*
+5. vw / vh
+-----------------------------------------------------------
+
+Use vw and vh when:
+- Working relative to the viewport
+- Creating full-screen sections
+- Creating viewport-based layouts
+
+Example:
+*/
+
+.hero-section {
+    width: 100vw;
+    min-height: 100vh;
+}
+
+
+/*
+6. vmin / vmax
+-----------------------------------------------------------
+
+Use vmin and vmax when:
+- You need sizing based on the smaller/larger viewport
+  dimension
+- Creating responsive square or proportional designs
+
+Example:
+*/
+
+.responsive-square {
+    width: 50vmin;
+    height: 50vmin;
+}
+
+
+/*
+7. ch
+-----------------------------------------------------------
+
+Use ch when:
+- Controlling the width of text
+- Creating readable text blocks
+
+Example:
+*/
+
+.article {
+    max-width: 65ch;
+}
+
+
+/*
+8. ex
+-----------------------------------------------------------
+
+Use ex when:
+- You specifically need sizing based on font x-height
+
+It is less commonly used in everyday layouts.
+
+
+===========================================================
+                  COMMON CSS UNIT EXAMPLES
+===========================================================
+
+Fixed width:
+*/
+
+.fixed {
+    width: 300px;
+}
+
+
+/*
+Percentage width:
+*/
+
+.percentage {
+    width: 80%;
+}
+
+
+/*
+Root-based font size:
+*/
+
+.root-size {
+    font-size: 1.5rem;
+}
+
+
+/*
+Viewport width:
+*/
+
+.viewport-width {
+    width: 50vw;
+}
+
+
+/*
+Viewport height:
+*/
+
+.viewport-height {
+    height: 50vh;
+}
+
+
+/*
+Text-based width:
+*/
+
+.text-width {
+    max-width: 60ch;
+}
+
+
+/*
+===========================================================
+                 RESPONSIVE EXAMPLE
+===========================================================
+*/
+
+.responsive-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.responsive-container h1 {
+    font-size: 2rem;
+}
+
+.responsive-container p {
+    max-width: 65ch;
+    font-size: 1rem;
+}
+
+
+/*
+===========================================================
+                  QUICK REVISION
+===========================================================
+
+ABSOLUTE UNITS:
+
+px  → Pixels
+pt  → Points
+cm  → Centimeters
+mm  → Millimeters
+in  → Inches
+
+
+RELATIVE UNITS:
+
+%    → Relative percentage
+em   → Relative to contextual font size
+rem  → Relative to root font size
+vw   → 1% of viewport width
+vh   → 1% of viewport height
+vmin → 1% of smaller viewport dimension
+vmax → 1% of larger viewport dimension
+ch   → Width of "0" character
+ex   → Font x-height
+
+
+VIEWPORT UNITS:
+
+vw
+vh
+vmin
+vmax
+
+
+COMMONLY USED:
+
+px  → Borders and precise small dimensions
+%   → Parent-relative layouts
+em  → Component-relative sizing
+rem → Consistent scalable sizing
+vw  → Viewport width
+vh  → Viewport height
+ch  → Text width
+
+
+===========================================================
+                     QUESTIONS
+===========================================================
+
+Q1. What are CSS units?
+
+Q2. What are absolute units?
+
+Q3. Name five absolute CSS units.
+
+Q4. What is px?
+
+Q5. What is pt?
+
+Q6. What is the difference between cm and mm?
+
+Q7. What are relative units?
+
+Q8. What is the difference between em and rem?
+
+Q9. What does vw represent?
+
+Q10. What does vh represent?
+
+Q11. What is vmin?
+
+Q12. What is vmax?
+
+Q13. What is the purpose of ch?
+
+Q14. What is ex?
+
+Q15. Which units are considered viewport units?
+
+Q16. Which unit is commonly used for scalable font sizes
+     based on the root font size?
+
+Q17. Which unit is useful for controlling readable text
+     width?
+
+Q18. Write CSS for a section that is 100% of the viewport
+     height.
+
+Q19. Write CSS for a container that is 80% of its parent.
+
+Q20. Write CSS for a heading using rem.
+
+
+===========================================================
+                     SOLUTIONS
+===========================================================
+
+Q1.
+CSS units define measurements used for properties such as
+width, height, margin, padding and font-size.
+
+
+Q2.
+Absolute units represent fixed measurements and generally
+do not depend on the size of the parent or viewport.
+
+
+Q3.
+Five absolute units are:
+
+px, pt, cm, mm, in
+
+
+Q4.
+px stands for pixel and is commonly used for precise
+screen-based measurements.
+
+
+Q5.
+pt stands for point.
+
+1pt = 1/72 inch.
+
+
+Q6.
+cm represents centimeters.
+
+mm represents millimeters.
+
+1cm = 10mm.
+
+
+Q7.
+Relative units depend on another value such as the parent
+element, root font size, font size or viewport.
+
+
+Q8.
+em depends on contextual font sizing.
+
+rem depends on the root element's font size.
+
+
+Q9.
+vw means viewport width.
+
+1vw = 1% of the viewport width.
+
+
+Q10.
+vh means viewport height.
+
+1vh = 1% of the viewport height.
+
+
+Q11.
+vmin represents 1% of the smaller viewport dimension.
+
+
+Q12.
+vmax represents 1% of the larger viewport dimension.
+
+
+Q13.
+ch is based on the width of the "0" character and is
+commonly useful for controlling text width.
+
+
+Q14.
+ex is based on the x-height of the current font.
+
+
+Q15.
+Viewport units are:
+
+vw
+vh
+vmin
+vmax
+
+
+Q16.
+rem
+
+
+Q17.
+ch
+
+
+Q18.
+*/
+
+.full-screen {
+    height: 100vh;
+}
+
+
+/*
+Q19.
+*/
+
+.container-80 {
+    width: 80%;
+}
+
+
+/*
+Q20.
+*/
+
+.heading-rem {
+    font-size: 2rem;
+}
+
+
+/*
+===========================================================
+                 PRACTICE QUESTION
+===========================================================
+
+Create a responsive card with:
+
+- Width: 80% of its parent
+- Maximum width: 500px
+- Padding: 2rem
+- Heading: 2rem
+- Paragraph: maximum 60 characters wide
+- Minimum height: 50vh
+*/
+
+.practice-card {
+    width: 80%;
+    max-width: 500px;
+    min-height: 50vh;
+    padding: 2rem;
+}
+
+.practice-card h2 {
+    font-size: 2rem;
+}
+
+.practice-card p {
+    max-width: 60ch;
+}
+
+
+/*
+===========================================================
+                       END
+===========================================================
+*/

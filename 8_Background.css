@@ -1,0 +1,1436 @@
+/*
+===========================================================
+                   CSS BACKGROUNDS
+===========================================================
+
+CSS background properties are used to control the
+background appearance of HTML elements.
+
+Topics covered:
+
+1. Background Color
+2. Background Image
+3. Background Repeat
+4. Background Position
+5. Background Size
+6. background-attachment
+7. Background Origin
+8. Background Clip
+9. Multiple Background Images
+10. Background Shorthand
+11. Linear Gradients
+12. Radial Gradients
+13. Conic Gradients
+
+
+===========================================================
+1. BACKGROUND COLOR
+===========================================================
+
+The background-color property sets the background color
+of an element.
+
+Syntax:
+
+selector {
+    background-color: value;
+}
+
+Example:
+*/
+
+.box {
+    background-color: lightblue;
+}
+
+
+/*
+Colors can be specified using:
+
+- Color names
+- HEX
+- RGB
+- RGBA
+- HSL
+- HSLA
+
+Example:
+*/
+
+.color-box {
+    background-color: #3498db;
+}
+
+
+/*
+Transparent background:
+*/
+
+.transparent-background {
+    background-color: transparent;
+}
+
+
+/*
+===========================================================
+2. BACKGROUND IMAGE
+===========================================================
+
+The background-image property places an image behind the
+content of an element.
+
+Syntax:
+
+background-image: url("image.jpg");
+
+Example:
+*/
+
+.hero {
+    background-image: url("images/background.jpg");
+}
+
+
+/*
+The image path can be:
+
+Relative:
+*/
+
+.relative-image {
+    background-image: url("images/bg.jpg");
+}
+
+
+/*
+Absolute URL:
+*/
+
+.external-image {
+    background-image: url("https://example.com/image.jpg");
+}
+
+
+/*
+A background image can be combined with a background color.
+
+Example:
+*/
+
+.image-with-color {
+    background-color: #222;
+    background-image: url("images/bg.jpg");
+}
+
+
+/*
+The background color can appear behind the image if the
+image has transparent areas or cannot be displayed.
+
+
+===========================================================
+3. BACKGROUND REPEAT
+===========================================================
+
+By default, a background image may repeat to fill the
+available area.
+
+The background-repeat property controls this behavior.
+
+Common values:
+
+repeat
+repeat-x
+repeat-y
+no-repeat
+space
+round
+
+
+-----------------------------------------------------------
+REPEAT
+-----------------------------------------------------------
+*/
+
+.repeat {
+    background-image: url("images/pattern.png");
+    background-repeat: repeat;
+}
+
+
+/*
+-----------------------------------------------------------
+NO-REPEAT
+-----------------------------------------------------------
+*/
+
+.no-repeat {
+    background-image: url("images/image.jpg");
+    background-repeat: no-repeat;
+}
+
+
+/*
+-----------------------------------------------------------
+REPEAT-X
+-----------------------------------------------------------
+
+Repeats horizontally.
+
+*/
+
+.repeat-x {
+    background-image: url("images/pattern.png");
+    background-repeat: repeat-x;
+}
+
+
+/*
+-----------------------------------------------------------
+REPEAT-Y
+-----------------------------------------------------------
+
+Repeats vertically.
+*/
+
+.repeat-y {
+    background-image: url("images/pattern.png");
+    background-repeat: repeat-y;
+}
+
+
+/*
+-----------------------------------------------------------
+SPACE
+-----------------------------------------------------------
+
+Repeats the image with equal space between repeated
+images.
+
+*/
+
+.repeat-space {
+    background-image: url("images/pattern.png");
+    background-repeat: space;
+}
+
+
+/*
+-----------------------------------------------------------
+ROUND
+-----------------------------------------------------------
+
+Repeats the image while scaling it so that a whole number
+of images fit.
+
+*/
+
+.repeat-round {
+    background-image: url("images/pattern.png");
+    background-repeat: round;
+}
+
+
+/*
+===========================================================
+4. BACKGROUND POSITION
+===========================================================
+
+background-position controls where the background image
+is placed.
+
+Common values:
+
+left
+center
+right
+top
+bottom
+
+Example:
+*/
+
+.position-center {
+    background-image: url("images/bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+/*
+Examples:
+*/
+
+.position-top {
+    background-position: top;
+}
+
+.position-bottom {
+    background-position: bottom;
+}
+
+.position-left {
+    background-position: left;
+}
+
+.position-right {
+    background-position: right;
+
+
+/*
+Center horizontally and vertically:
+*/
+
+.position-center-center {
+    background-position: center center;
+}
+
+
+/*
+-----------------------------------------------------------
+PERCENTAGE POSITION
+-----------------------------------------------------------
+
+Example:
+*/
+
+.position-percentage {
+    background-position: 50% 50%;
+}
+
+
+/*
+50% 50% means the center of the image is aligned with
+the center of the element.
+
+
+-----------------------------------------------------------
+LENGTH POSITION
+-----------------------------------------------------------
+
+Example:
+*/
+
+.position-length {
+    background-position: 20px 30px;
+}
+
+
+/*
+20px = horizontal position
+30px = vertical position
+
+
+===========================================================
+5. BACKGROUND SIZE
+===========================================================
+
+background-size controls the size of the background image.
+
+Common values:
+
+auto
+cover
+contain
+
+It can also use lengths and percentages.
+
+
+-----------------------------------------------------------
+AUTO
+-----------------------------------------------------------
+*/
+
+.size-auto {
+    background-image: url("images/bg.jpg");
+    background-size: auto;
+}
+
+
+/*
+-----------------------------------------------------------
+COVER
+-----------------------------------------------------------
+
+cover scales the image so that the entire element is
+covered.
+
+Some parts of the image may be cropped.
+
+*/
+
+.cover {
+    background-image: url("images/bg.jpg");
+    background-size: cover;
+}
+
+
+/*
+Commonly used for:
+
+- Hero sections
+- Banners
+- Full-screen backgrounds
+
+
+-----------------------------------------------------------
+CONTAIN
+-----------------------------------------------------------
+
+contain scales the image so that the entire image fits
+inside the element.
+
+Empty space may remain around the image.
+
+*/
+
+.contain {
+    background-image: url("images/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+/*
+-----------------------------------------------------------
+CUSTOM SIZE
+-----------------------------------------------------------
+*/
+
+.custom-size {
+    background-image: url("images/bg.jpg");
+    background-size: 300px 200px;
+}
+
+
+/*
+Percentage:
+
+*/
+
+.percentage-size {
+    background-size: 100% 100%;
+}
+
+
+/*
+===========================================================
+6. BACKGROUND-ATTACHMENT
+===========================================================
+
+background-attachment controls whether the background
+image scrolls with the element/page or remains fixed.
+
+Common values:
+
+scroll
+fixed
+local
+
+
+-----------------------------------------------------------
+SCROLL
+-----------------------------------------------------------
+
+The background scrolls with the element's content.
+
+*/
+
+.scroll-background {
+    background-image: url("images/bg.jpg");
+    background-attachment: scroll;
+}
+
+
+/*
+-----------------------------------------------------------
+FIXED
+-----------------------------------------------------------
+
+The background is fixed relative to the viewport.
+
+*/
+
+.fixed-background {
+    background-image: url("images/bg.jpg");
+    background-attachment: fixed;
+}
+
+
+/*
+Useful for creating a fixed/parallax-like background effect.
+
+Note:
+Actual behavior of fixed backgrounds can vary on some
+mobile browsers.
+
+
+-----------------------------------------------------------
+LOCAL
+-----------------------------------------------------------
+
+The background scrolls with the element's content.
+
+This is especially relevant for scrollable elements.
+
+*/
+
+.local-background {
+    overflow: auto;
+    background-image: url("images/bg.jpg");
+    background-attachment: local;
+}
+
+
+/*
+===========================================================
+7. BACKGROUND ORIGIN
+===========================================================
+
+background-origin specifies the area relative to which the
+background image is positioned.
+
+Possible values:
+
+border-box
+padding-box
+content-box
+
+
+-----------------------------------------------------------
+BORDER-BOX
+-----------------------------------------------------------
+
+Background positioning area includes the border.
+
+*/
+
+.origin-border {
+    border: 10px solid black;
+    padding: 20px;
+    background-image: url("images/bg.jpg");
+    background-origin: border-box;
+}
+
+
+/*
+-----------------------------------------------------------
+PADDING-BOX
+-----------------------------------------------------------
+
+Background positioning area includes the padding but not
+the border.
+
+This is the default.
+
+*/
+
+.origin-padding {
+    padding: 20px;
+    background-image: url("images/bg.jpg");
+    background-origin: padding-box;
+}
+
+
+/*
+-----------------------------------------------------------
+CONTENT-BOX
+-----------------------------------------------------------
+
+Background positioning area is limited to the content box.
+
+*/
+
+.origin-content {
+    padding: 20px;
+    background-image: url("images/bg.jpg");
+    background-origin: content-box;
+}
+
+
+/*
+===========================================================
+8. BACKGROUND CLIP
+===========================================================
+
+background-clip controls the area where the background is
+painted.
+
+Common values:
+
+border-box
+padding-box
+content-box
+text
+
+
+-----------------------------------------------------------
+BORDER-BOX
+-----------------------------------------------------------
+
+Background is painted underneath the border.
+
+*/
+
+.clip-border {
+    border: 10px solid black;
+    background-color: lightblue;
+    background-clip: border-box;
+}
+
+
+/*
+-----------------------------------------------------------
+PADDING-BOX
+-----------------------------------------------------------
+
+Background is painted through the padding area but not
+the border.
+
+*/
+
+.clip-padding {
+    border: 10px solid black;
+    padding: 20px;
+    background-color: lightblue;
+    background-clip: padding-box;
+}
+
+
+/*
+-----------------------------------------------------------
+CONTENT-BOX
+-----------------------------------------------------------
+
+Background is painted only in the content area.
+
+*/
+
+.clip-content {
+    padding: 20px;
+    background-color: lightblue;
+    background-clip: content-box;
+}
+
+
+/*
+-----------------------------------------------------------
+TEXT
+-----------------------------------------------------------
+
+The background is clipped to the text.
+
+Often combined with transparent text.
+
+*/
+
+.gradient-text {
+    background: linear-gradient(
+        90deg,
+        red,
+        blue
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+
+/*
+===========================================================
+9. MULTIPLE BACKGROUND IMAGES
+===========================================================
+
+CSS allows multiple background images on the same element.
+
+Images are separated by commas.
+
+Example:
+*/
+
+.multiple-backgrounds {
+    background-image:
+        url("images/top.png"),
+        url("images/background.jpg");
+}
+
+
+/*
+The first image is painted above the second image.
+
+
+-----------------------------------------------------------
+MULTIPLE BACKGROUNDS WITH POSITIONS
+-----------------------------------------------------------
+*/
+
+.multiple-backgrounds-position {
+    background-image:
+        url("images/icon.png"),
+        url("images/background.jpg");
+
+    background-position:
+        top right,
+        center;
+
+    background-repeat:
+        no-repeat,
+        no-repeat;
+}
+
+
+/*
+-----------------------------------------------------------
+MULTIPLE BACKGROUNDS WITH DIFFERENT SIZES
+-----------------------------------------------------------
+*/
+
+.multiple-backgrounds-size {
+    background-image:
+        url("images/logo.png"),
+        url("images/bg.jpg");
+
+    background-position:
+        top center,
+        center;
+
+    background-repeat:
+        no-repeat,
+        no-repeat;
+
+    background-size:
+        100px,
+        cover;
+}
+
+
+/*
+===========================================================
+10. BACKGROUND SHORTHAND
+===========================================================
+
+The background property is a shorthand for multiple
+background properties.
+
+It can combine:
+
+background-color
+background-image
+background-repeat
+background-position
+background-size
+background-attachment
+background-origin
+background-clip
+
+
+Example:
+*/
+
+.shorthand-background {
+    background:
+        lightblue
+        url("images/bg.jpg")
+        no-repeat
+        center / cover
+        fixed;
+}
+
+
+/*
+IMPORTANT:
+
+When background-size is included in shorthand, it is
+written after background-position and separated by /.
+
+Example:
+
+background:
+    center / cover
+    url("image.jpg")
+    no-repeat;
+
+
+-----------------------------------------------------------
+SIMPLE SHORTHAND
+-----------------------------------------------------------
+*/
+
+.simple-background {
+    background: #222 url("images/bg.jpg") no-repeat center;
+}
+
+
+/*
+===========================================================
+11. LINEAR GRADIENTS
+===========================================================
+
+A linear gradient creates a smooth transition between
+colors along a straight line.
+
+Syntax:
+
+linear-gradient(direction, color1, color2, ...)
+
+Example:
+*/
+
+.linear-gradient {
+    background: linear-gradient(red, blue);
+}
+
+
+/*
+The default direction is top to bottom.
+
+
+-----------------------------------------------------------
+LEFT TO RIGHT
+-----------------------------------------------------------
+*/
+
+.linear-right {
+    background: linear-gradient(
+        to right,
+        red,
+        blue
+    );
+}
+
+
+/*
+-----------------------------------------------------------
+TOP TO BOTTOM
+-----------------------------------------------------------
+*/
+
+.linear-down {
+    background: linear-gradient(
+        to bottom,
+        yellow,
+        green
+    );
+}
+
+
+/*
+-----------------------------------------------------------
+DIAGONAL GRADIENT
+-----------------------------------------------------------
+*/
+
+.linear-diagonal {
+    background: linear-gradient(
+        to bottom right,
+        purple,
+        orange
+    );
+}
+
+
+/*
+-----------------------------------------------------------
+DEGREE VALUES
+-----------------------------------------------------------
+
+0deg points upward.
+
+90deg points to the right.
+
+Example:
+*/
+
+.linear-degree {
+    background: linear-gradient(
+        90deg,
+        red,
+        yellow,
+        green
+    );
+}
+
+
+/*
+-----------------------------------------------------------
+MULTIPLE COLORS
+-----------------------------------------------------------
+*/
+
+.linear-multiple {
+    background: linear-gradient(
+        to right,
+        red,
+        orange,
+        yellow,
+        green,
+        blue
+    );
+}
+
+
+/*
+-----------------------------------------------------------
+COLOR STOPS
+-----------------------------------------------------------
+
+You can control where colors appear.
+
+*/
+
+.linear-stops {
+    background: linear-gradient(
+        to right,
+        red 0%,
+        yellow 50%,
+        blue 100%
+    );
+}
+
+
+/*
+===========================================================
+12. RADIAL GRADIENTS
+===========================================================
+
+A radial gradient spreads outward from a central point.
+
+Syntax:
+
+radial-gradient(shape, color1, color2, ...)
+
+Example:
+*/
+
+.radial-gradient {
+    background: radial-gradient(
+        red,
+        blue
+    );
+}
+
+
+/*
+The default shape is generally an ellipse.
+
+
+-----------------------------------------------------------
+CIRCLE
+-----------------------------------------------------------
+*/
+
+.radial-circle {
+    background: radial-gradient(
+        circle,
+        red,
+        blue
+    );
+}
+
+
+/*
+-----------------------------------------------------------
+ELLIPSE
+-----------------------------------------------------------
+*/
+
+.radial-ellipse {
+    background: radial-gradient(
+        ellipse,
+        yellow,
+        green
+    );
+}
+
+
+/*
+-----------------------------------------------------------
+RADIAL COLOR STOPS
+-----------------------------------------------------------
+*/
+
+.radial-stops {
+    background: radial-gradient(
+        circle,
+        white 10%,
+        blue 50%,
+        black 100%
+    );
+}
+
+
+/*
+-----------------------------------------------------------
+RADIAL POSITION
+-----------------------------------------------------------*/
+
+.radial-position {
+    background: radial-gradient(
+        circle at top left,
+        red,
+        blue
+    );
+}
+
+
+/*
+===========================================================
+13. CONIC GRADIENTS
+===========================================================
+
+A conic gradient creates color transitions around a center
+point, similar to a color wheel.
+
+Syntax:
+
+conic-gradient(color1, color2, ...)
+
+Example:
+*/
+
+.conic-gradient {
+    background: conic-gradient(
+        red,
+        yellow,
+        green,
+        blue,
+        red
+    );
+}
+
+
+/*
+-----------------------------------------------------------
+CONIC GRADIENT WITH DEGREES
+-----------------------------------------------------------
+*/
+
+.conic-degree {
+    background: conic-gradient(
+        red 0deg,
+        yellow 90deg,
+        green 180deg,
+        blue 270deg,
+        red 360deg
+    );
+}
+
+
+/*
+-----------------------------------------------------------
+CONIC GRADIENT POSITION
+-----------------------------------------------------------
+*/
+
+.conic-position {
+    background: conic-gradient(
+        from 90deg at center,
+        red,
+        blue,
+        green
+    );
+}
+
+
+/*
+===========================================================
+             GRADIENT COMPARISON
+===========================================================
+
+LINEAR GRADIENT
+----------------
+Color transition follows a straight line.
+
+Example:
+
+linear-gradient(to right, red, blue)
+
+
+RADIAL GRADIENT
+----------------
+Color transition spreads outward from a center.
+
+Example:
+
+radial-gradient(circle, red, blue)
+
+
+CONIC GRADIENT
+----------------
+Color transition rotates around a center.
+
+Example:
+
+conic-gradient(red, blue, green)
+
+
+===========================================================
+             PRACTICAL HERO SECTION
+===========================================================
+*/
+
+.hero-section {
+    min-height: 100vh;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("images/hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: white;
+}
+
+
+/*
+The gradient is placed before the image so that it appears
+on top of the image as an overlay.
+
+
+===========================================================
+             PRACTICAL GRADIENT BUTTON
+===========================================================
+*/
+
+.gradient-button {
+    background: linear-gradient(
+        to right,
+        #6a11cb,
+        #2575fc
+    );
+
+    color: white;
+    border: none;
+    padding: 12px 24px;
+}
+
+
+/*
+===========================================================
+                BACKGROUND SUMMARY
+===========================================================
+
+background-color
+    Sets the background color.
+
+background-image
+    Adds a background image.
+
+background-repeat
+    Controls image repetition.
+
+background-position
+    Controls image position.
+
+background-size
+    Controls image size.
+
+background-attachment
+    Controls background scrolling behavior.
+
+background-origin
+    Defines the positioning area of the background image.
+
+background-clip
+    Defines where the background is painted.
+
+background
+    Shorthand for multiple background properties.
+
+
+GRADIENTS:
+
+linear-gradient()
+    Straight-line color transition.
+
+radial-gradient()
+    Circular/elliptical color transition from a center.
+
+conic-gradient()
+    Rotational color transition around a center.
+
+
+===========================================================
+                    QUESTIONS
+===========================================================
+
+Q1. What is the purpose of background-color?
+
+Q2. Which property is used to add a background image?
+
+Q3. What is the default behavior of background-repeat?
+
+Q4. What is the difference between repeat-x and repeat-y?
+
+Q5. What does background-position control?
+
+Q6. What is the difference between background-size:
+    cover and contain?
+
+Q7. What does background-attachment control?
+
+Q8. Name the three values of background-origin.
+
+Q9. What is the difference between background-origin and
+    background-clip?
+
+Q10. What is the purpose of multiple backgrounds?
+
+Q11. What is background shorthand?
+
+Q12. What is a linear gradient?
+
+Q13. What is a radial gradient?
+
+Q14. What is a conic gradient?
+
+Q15. Write CSS for a background image that:
+     - Does not repeat
+     - Is centered
+     - Covers the entire element
+
+Q16. Write CSS for a left-to-right gradient from red
+     to blue.
+
+Q17. Write CSS for a circular radial gradient.
+
+Q18. Write CSS for a full-screen hero background.
+
+Q19. Write CSS using two background images.
+
+Q20. What is background-clip: text used for?
+
+
+===========================================================
+                    SOLUTIONS
+===========================================================
+
+Q1.
+background-color sets the background color of an element.
+
+
+Q2.
+background-image
+
+
+Q3.
+The default value is generally:
+
+background-repeat: repeat;
+
+
+Q4.
+repeat-x repeats the background horizontally.
+
+repeat-y repeats the background vertically.
+
+
+Q5.
+background-position controls the location of the
+background image within the element.
+
+
+Q6.
+cover:
+    Covers the entire element. Parts of the image may be
+    cropped.
+
+contain:
+    Shows the entire image. Empty space may remain.
+
+
+Q7.
+background-attachment controls whether the background
+scrolls with the element/page or remains fixed.
+
+
+Q8.
+The main values are:
+
+border-box
+padding-box
+content-box
+
+
+Q9.
+background-origin controls the area used for positioning
+the background image.
+
+background-clip controls the area where the background is
+painted.
+
+
+Q10.
+Multiple backgrounds allow more than one background image
+to be applied to the same element.
+
+
+Q11.
+background is a shorthand property used to set several
+background properties at once.
+
+
+Q12.
+A linear gradient creates a color transition along a
+straight line.
+
+
+Q13.
+A radial gradient creates a color transition outward from
+a central point.
+
+
+Q14.
+A conic gradient creates a color transition around a
+central point.
+
+
+Q15.
+*/
+
+.answer-background {
+    background-image: url("images/bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+
+/*
+Q16.
+*/
+
+.answer-linear {
+    background: linear-gradient(
+        to right,
+        red,
+        blue
+    );
+}
+
+
+/*
+Q17.
+*/
+
+.answer-radial {
+    background: radial-gradient(
+        circle,
+        red,
+        blue
+    );
+}
+
+
+/*
+Q18.
+*/
+
+.answer-hero {
+    min-height: 100vh;
+    background-image: url("images/hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/*
+Q19.
+*/
+
+.answer-multiple {
+    background-image:
+        url("images/logo.png"),
+        url("images/background.jpg");
+
+    background-position:
+        top center,
+        center;
+
+    background-repeat:
+        no-repeat,
+        no-repeat;
+
+    background-size:
+        100px,
+        cover;
+}
+
+
+/*
+Q20.
+background-clip: text clips the background to the shape
+of the text. It is commonly used to create gradient text.
+
+
+===========================================================
+                 PRACTICE QUESTION
+===========================================================
+
+Create a hero section with:
+
+- A background image
+- A dark gradient overlay
+- Image covering the entire section
+- Image centered
+- No image repetition
+- Minimum height of 100vh
+*/
+
+.practice-hero {
+    min-height: 100vh;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)
+        ),
+        url("images/hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/*
+===========================================================
+                 PRACTICE QUESTION 2
+===========================================================
+
+Create a card with a radial gradient background and
+a button with a linear gradient background.
+*/
+
+.practice-card {
+    background: radial-gradient(
+        circle,
+        white,
+        lightblue
+    );
+}
+
+.practice-card button {
+    background: linear-gradient(
+        to right,
+        blue,
+        purple
+    );
+
+    color: white;
+    border: none;
+}
+
+
+/*
+===========================================================
+                       END
+===========================================================
+*/

@@ -1,0 +1,1195 @@
+/*
+===========================================================
+                     CSS FONTS
+===========================================================
+
+CSS font properties are used to control the appearance,
+size, style, weight and type of text.
+
+Important CSS Font topics:
+
+1. Font Family
+2. Generic Font Families
+3. Web-Safe Fonts
+4. Font Size
+5. Font Weight
+6. Font Style
+7. Font Variant
+8. Font Stretch
+9. Shorthand Font Property
+10. Web Fonts
+11. Google Fonts
+12. @font-face
+13. Font Fallbacks
+
+
+===========================================================
+1. FONT FAMILY
+===========================================================
+
+The font-family property specifies which font should be
+used for text.
+
+Syntax:
+
+selector {
+    font-family: font-name;
+}
+
+Example:
+*/
+
+body {
+    font-family: Arial;
+}
+
+
+/*
+Multiple fonts can be specified.
+
+The browser tries to use the fonts from left to right.
+
+Example:
+*/
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/*
+If Arial is unavailable:
+    ↓
+The browser tries Helvetica.
+
+If Helvetica is unavailable:
+    ↓
+The browser uses sans-serif.
+
+
+===========================================================
+2. GENERIC FONT FAMILIES
+===========================================================
+
+Generic font families are categories of fonts.
+
+Common generic families:
+
+1. serif
+2. sans-serif
+3. monospace
+4. cursive
+5. fantasy
+6. system-ui
+7. ui-serif
+8. ui-sans-serif
+9. ui-monospace
+10. ui-rounded
+
+
+-----------------------------------------------------------
+SERIF
+-----------------------------------------------------------
+
+Serif fonts have small decorative strokes at the ends
+of characters.
+
+Example:
+*/
+
+.serif-text {
+    font-family: Georgia, serif;
+}
+
+
+/*
+Common serif fonts:
+
+Times New Roman
+Georgia
+Garamond
+
+
+-----------------------------------------------------------
+SANS-SERIF
+-----------------------------------------------------------
+
+Sans-serif fonts do not have decorative strokes.
+
+Example:
+*/
+
+.sans-serif-text {
+    font-family: Arial, sans-serif;
+}
+
+
+/*
+Common sans-serif fonts:
+
+Arial
+Helvetica
+Verdana
+Tahoma
+
+
+-----------------------------------------------------------
+MONOSPACE
+-----------------------------------------------------------
+
+In monospace fonts, every character generally occupies
+the same amount of horizontal space.
+
+Commonly used for:
+
+- Code
+- Terminal output
+- Programming examples
+
+Example:
+*/
+
+.code-text {
+    font-family: "Courier New", monospace;
+}
+
+
+/*
+-----------------------------------------------------------
+CURSIVE
+-----------------------------------------------------------
+
+Cursive fonts imitate handwriting.
+
+Example:
+*/
+
+.cursive-text {
+    font-family: cursive;
+}
+
+
+/*
+-----------------------------------------------------------
+FANTASY
+-----------------------------------------------------------
+
+Fantasy fonts are decorative or artistic fonts.
+
+Example:
+*/
+
+.fantasy-text {
+    font-family: fantasy;
+}
+
+
+/*
+-----------------------------------------------------------
+SYSTEM-UI
+-----------------------------------------------------------
+
+system-ui uses the operating system's interface font.
+
+Example:
+*/
+
+.system-text {
+    font-family: system-ui, sans-serif;
+}
+
+
+/*
+===========================================================
+3. WEB-SAFE FONTS
+===========================================================
+
+Web-safe fonts are fonts that are commonly available
+across many operating systems and devices.
+
+Examples:
+
+Arial
+Helvetica
+Verdana
+Tahoma
+Georgia
+"Times New Roman"
+"Courier New"
+
+Example:
+*/
+
+.web-safe {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/*
+A fallback should still be provided even when using a
+web-safe font.
+
+
+===========================================================
+4. FONT SIZE
+===========================================================
+
+The font-size property controls the size of text.
+
+Example:
+*/
+
+.small-text {
+    font-size: 12px;
+}
+
+.medium-text {
+    font-size: 16px;
+}
+
+.large-text {
+    font-size: 32px;
+}
+
+
+/*
+Font size can use different units.
+
+Examples:
+
+px
+em
+rem
+%
+vw
+etc.
+
+Example:
+*/
+
+.responsive-heading {
+    font-size: 2rem;
+}
+
+
+/*
+-----------------------------------------------------------
+KEYWORD VALUES
+-----------------------------------------------------------
+
+CSS also provides keyword values.
+
+Examples:
+
+small
+medium
+large
+x-large
+xx-large
+etc.
+
+Example:
+*/
+
+.keyword-size {
+    font-size: large;
+}
+
+
+/*
+-----------------------------------------------------------
+RELATIVE KEYWORDS
+-----------------------------------------------------------
+
+smaller
+larger
+
+Example:
+*/
+
+.smaller-text {
+    font-size: smaller;
+}
+
+.larger-text {
+    font-size: larger;
+}
+
+
+/*
+===========================================================
+5. FONT WEIGHT
+===========================================================
+
+The font-weight property controls how thick or bold text
+appears.
+
+Common values:
+
+normal
+bold
+lighter
+bolder
+
+Numeric values:
+
+100
+200
+300
+400
+500
+600
+700
+800
+900
+
+Example:
+*/
+
+.normal-weight {
+    font-weight: normal;
+}
+
+.bold-weight {
+    font-weight: bold;
+}
+
+.numeric-weight {
+    font-weight: 700;
+}
+
+
+/*
+Generally:
+
+400 = normal
+700 = bold
+
+The exact appearance depends on whether the chosen font
+provides that weight. Browsers may use an available
+fallback weight if the requested one is unavailable.
+
+
+Example:
+*/
+
+.light-text {
+    font-weight: 300;
+}
+
+.medium-text {
+    font-weight: 500;
+}
+
+.extra-bold {
+    font-weight: 800;
+}
+
+
+/*
+===========================================================
+6. FONT STYLE
+===========================================================
+
+The font-style property controls whether text is normal,
+italic or oblique.
+
+Common values:
+
+normal
+italic
+oblique
+
+Example:
+*/
+
+.normal-style {
+    font-style: normal;
+}
+
+.italic-style {
+    font-style: italic;
+}
+
+.oblique-style {
+    font-style: oblique;
+}
+
+
+/*
+-----------------------------------------------------------
+ITALIC VS OBLIQUE
+-----------------------------------------------------------
+
+italic:
+    Uses an italic typeface or italic font face when
+    available.
+
+oblique:
+    Uses a slanted version of the font.
+
+
+===========================================================
+7. FONT VARIANT
+===========================================================
+
+The font-variant property controls alternate forms of
+text.
+
+A commonly used value is:
+
+small-caps
+
+Example:
+*/
+
+.small-caps {
+    font-variant: small-caps;
+}
+
+
+/*
+small-caps displays lowercase letters in a small capital
+style.
+
+Example:
+
+Normal:
+Hello World
+
+Small Caps:
+HELLO WORLD
+
+The exact appearance depends on the font.
+
+
+-----------------------------------------------------------
+FONT-VARIANT-CAPS
+-----------------------------------------------------------
+
+Modern CSS also provides more detailed control through
+font-variant-caps.
+
+Example:
+*/
+
+.caps-example {
+    font-variant-caps: small-caps;
+}
+
+
+/*
+Other possible values include:
+
+all-small-caps
+petite-caps
+all-petite-caps
+unicase
+titling-caps
+
+Support and font availability can affect the result.
+
+
+===========================================================
+8. FONT STRETCH
+===========================================================
+
+The font-stretch property controls how wide or narrow
+the characters appear.
+
+Common values:
+
+ultra-condensed
+extra-condensed
+condensed
+semi-condensed
+normal
+semi-expanded
+expanded
+extra-expanded
+ultra-expanded
+
+Example:
+*/
+
+.normal-stretch {
+    font-stretch: normal;
+}
+
+.condensed-text {
+    font-stretch: condensed;
+}
+
+.expanded-text {
+    font-stretch: expanded;
+}
+
+
+/*
+IMPORTANT:
+
+font-stretch works properly when the selected font provides
+appropriate width variants.
+
+It does not simply transform every font horizontally in
+the same way.
+
+
+===========================================================
+9. SHORTHAND FONT PROPERTY
+===========================================================
+
+The font property is a shorthand for several font-related
+properties.
+
+It can combine:
+
+font-style
+font-variant
+font-weight
+font-stretch
+font-size
+line-height
+font-family
+
+Basic syntax:
+
+font:
+    [style]
+    [variant]
+    [weight]
+    [stretch]
+    size
+    [/line-height]
+    family;
+
+
+Example:
+*/
+
+.shorthand-font {
+    font: italic small-caps bold 20px/1.5 Arial, sans-serif;
+}
+
+
+/*
+The above combines:
+
+font-style: italic;
+font-variant: small-caps;
+font-weight: bold;
+font-size: 20px;
+line-height: 1.5;
+font-family: Arial, sans-serif;
+
+
+-----------------------------------------------------------
+SIMPLE FONT SHORTHAND
+-----------------------------------------------------------
+
+At minimum, font-size and font-family are required.
+
+Example:
+*/
+
+.simple-font {
+    font: 20px Arial, sans-serif;
+}
+
+
+/*
+-----------------------------------------------------------
+IMPORTANT
+-----------------------------------------------------------
+
+When using the font shorthand, omitted font properties can
+be reset to their initial values.
+
+Therefore, use the shorthand carefully.
+
+
+===========================================================
+10. WEB FONTS
+===========================================================
+
+Web fonts are fonts that can be loaded by a website so
+users can see the intended typography even if the font is
+not installed on their device.
+
+Common approaches:
+
+1. Google Fonts
+2. @font-face
+3. Other hosted font services
+
+
+Advantages:
+
+- More design choices
+- Consistent typography
+- Better branding
+- Can use custom fonts
+
+
+===========================================================
+11. GOOGLE FONTS
+===========================================================
+
+Google Fonts provides many freely available fonts that
+can be loaded into a webpage.
+
+One common method is using a <link> element in HTML.
+
+Example HTML:
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+>
+
+Then use the font in CSS:
+
+*/
+
+.google-font {
+    font-family: "Poppins", sans-serif;
+}
+
+
+/*
+Another method is using @import in CSS.
+
+Example:
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+Then:
+*/
+
+.google-font-import {
+    font-family: "Poppins", sans-serif;
+}
+
+
+/*
+For real projects, loading fonts through HTML <link> is
+often preferred over CSS @import because @import can delay
+stylesheet/font loading.
+
+
+===========================================================
+12. @FONT-FACE
+===========================================================
+
+@font-face allows developers to define and load a custom
+font.
+
+Basic syntax:
+
+@font-face {
+    font-family: "MyFont";
+    src: url("font-file.woff2") format("woff2");
+}
+
+
+Example:
+*/
+
+@font-face {
+    font-family: "MyCustomFont";
+    src: url("fonts/MyCustomFont.woff2") format("woff2");
+}
+
+.custom-font {
+    font-family: "MyCustomFont", sans-serif;
+}
+
+
+/*
+-----------------------------------------------------------
+FONT WEIGHT WITH @FONT-FACE
+-----------------------------------------------------------
+
+Different font files can represent different weights.
+
+Example:
+*/
+
+@font-face {
+    font-family: "MyFont";
+    src: url("fonts/MyFont-Regular.woff2") format("woff2");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "MyFont";
+    src: url("fonts/MyFont-Bold.woff2") format("woff2");
+    font-weight: 700;
+}
+
+.custom-heading {
+    font-family: "MyFont", sans-serif;
+    font-weight: 700;
+}
+
+
+/*
+-----------------------------------------------------------
+FONT STYLE WITH @FONT-FACE
+-----------------------------------------------------------
+
+You can also specify the style.
+
+Example:
+*/
+
+@font-face {
+    font-family: "MyFont";
+    src: url("fonts/MyFont-Italic.woff2") format("woff2");
+    font-style: italic;
+}
+
+
+/*
+-----------------------------------------------------------
+COMMON FONT FORMATS
+-----------------------------------------------------------
+
+WOFF2
+    Modern and widely preferred for web fonts.
+
+WOFF
+    Older web font format with broad support.
+
+TTF
+    TrueType Font.
+
+OTF
+    OpenType Font.
+
+For modern websites, WOFF2 is generally preferred.
+
+
+===========================================================
+13. FONT FALLBACKS
+===========================================================
+
+A font fallback is an alternative font used when the
+preferred font cannot be loaded or is unavailable.
+
+Example:
+*/
+
+body {
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+
+/*
+Browser tries:
+
+1. Poppins
+2. Arial
+3. sans-serif
+
+
+The final generic family acts as a safety net.
+
+
+-----------------------------------------------------------
+MULTIPLE FALLBACKS
+-----------------------------------------------------------
+*/
+
+.heading {
+    font-family:
+        "My Custom Font",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+}
+
+
+/*
+-----------------------------------------------------------
+WHY USE FALLBACKS?
+-----------------------------------------------------------
+
+Fallbacks help when:
+
+- Font fails to load
+- Font is unavailable
+- Network connection fails
+- Browser/device does not support the font
+- Font loading is blocked
+
+
+===========================================================
+              FONT STACK EXAMPLES
+===========================================================
+*/
+
+.font-stack-1 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.font-stack-2 {
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.font-stack-3 {
+    font-family: "Courier New", Courier, monospace;
+}
+
+.font-stack-4 {
+    font-family: system-ui, sans-serif;
+
+
+/*
+===========================================================
+              COMPLETE FONT EXAMPLE
+===========================================================
+*/
+
+.complete-font-example {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    font-style: normal;
+    font-variant: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+}
+
+
+/*
+===========================================================
+               PRACTICAL WEBSITE EXAMPLE
+===========================================================
+*/
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2rem;
+    font-weight: 700;
+    font-style: normal;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+
+/*
+===========================================================
+                  FONT PROPERTY SUMMARY
+===========================================================
+
+font-family
+    Specifies the typeface.
+
+font-size
+    Controls text size.
+
+font-weight
+    Controls text thickness.
+
+font-style
+    Controls normal, italic or oblique style.
+
+font-variant
+    Controls alternate font forms such as small caps.
+
+font-stretch
+    Controls the width variant of a font.
+
+font
+    Shorthand for multiple font properties.
+
+@font-face
+    Loads and defines custom web fonts.
+
+
+===========================================================
+             GENERIC FONT FAMILY SUMMARY
+===========================================================
+
+serif
+    Fonts with decorative strokes.
+
+sans-serif
+    Fonts without decorative strokes.
+
+monospace
+    Characters generally have equal width.
+
+cursive
+    Handwriting-style fonts.
+
+fantasy
+    Decorative fonts.
+
+system-ui
+    Uses the system interface font.
+
+
+===========================================================
+                    QUESTIONS
+===========================================================
+
+Q1. What is the purpose of font-family?
+
+Q2. What are generic font families?
+
+Q3. Name five generic font families.
+
+Q4. What are web-safe fonts?
+
+Q5. What is the purpose of font-size?
+
+Q6. What is font-weight?
+
+Q7. What is the difference between font-style: italic
+    and font-style: oblique?
+
+Q8. What does font-variant: small-caps do?
+
+Q9. What is font-stretch?
+
+Q10. What properties can be included in the font shorthand?
+
+Q11. What are web fonts?
+
+Q12. What is Google Fonts?
+
+Q13. What is @font-face?
+
+Q14. Why are font fallbacks important?
+
+Q15. Write a font stack using:
+     - Poppins
+     - Arial
+     - sans-serif
+
+Q16. Write CSS for:
+     - 24px font size
+     - Bold text
+     - Arial font
+
+Q17. Write CSS to make text italic.
+
+Q18. Write CSS to create small caps.
+
+Q19. Write a complete font shorthand example.
+
+Q20. Write an @font-face rule for a custom WOFF2 font.
+
+
+===========================================================
+                    SOLUTIONS
+===========================================================
+
+Q1.
+font-family specifies the typeface used to display text.
+
+
+Q2.
+Generic font families are broad categories of fonts that
+allow the browser to choose an appropriate font.
+
+
+Q3.
+Examples:
+
+serif
+sans-serif
+monospace
+cursive
+fantasy
+
+
+Q4.
+Web-safe fonts are fonts commonly available across many
+devices and operating systems.
+
+
+Q5.
+font-size controls the size of text.
+
+
+Q6.
+font-weight controls the thickness or boldness of text.
+
+
+Q7.
+italic generally uses an italic font face when available.
+
+oblique uses a slanted version of the font.
+
+
+Q8.
+It displays text using a small-capital style.
+
+
+Q9.
+font-stretch controls the width variant of a font, from
+condensed to expanded, when supported by the font.
+
+
+Q10.
+The font shorthand can include:
+
+font-style
+font-variant
+font-weight
+font-stretch
+font-size
+line-height
+font-family
+
+
+Q11.
+Web fonts are fonts loaded by a website instead of relying
+only on fonts installed on the user's device.
+
+
+Q12.
+Google Fonts is a service providing many web fonts that
+can be loaded into websites.
+
+
+Q13.
+@font-face allows developers to define a custom font and
+specify the font file that the browser should load.
+
+
+Q14.
+Fallbacks provide alternative fonts if the preferred font
+is unavailable or cannot be loaded.
+
+
+Q15.
+*/
+
+.font-stack-answer {
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+
+/*
+Q16.
+*/
+
+.font-answer {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+/*
+Q17.
+*/
+
+.italic-answer {
+    font-style: italic;
+}
+
+
+/*
+Q18.
+*/
+
+.small-caps-answer {
+    font-variant: small-caps;
+}
+
+
+/*
+Q19.
+*/
+
+.shorthand-answer {
+    font: italic bold 20px/1.5 Arial, sans-serif;
+}
+
+
+/*
+Q20.
+*/
+
+@font-face {
+    font-family: "MyWebFont";
+    src: url("fonts/MyWebFont.woff2") format("woff2");
+}
+
+
+/*
+===========================================================
+                 PRACTICE QUESTION
+===========================================================
+
+Create a website typography style with:
+
+- Arial as the primary font
+- Helvetica as the fallback
+- sans-serif as the generic fallback
+- Heading size of 32px
+- Heading weight of 700
+- Paragraph size of 16px
+- Paragraph line-height of 1.6
+- Heading in uppercase
+*/
+
+.practice-body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.practice-body h1 {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.practice-body p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/*
+===========================================================
+                 PRACTICE QUESTION 2
+===========================================================
+
+Use @font-face to load a custom font named "MyFont"
+from:
+
+fonts/MyFont.woff2
+
+Then use it for a heading with a fallback of
+sans-serif.
+*/
+
+@font-face {
+    font-family: "MyFont";
+    src: url("fonts/MyFont.woff2") format("woff2");
+}
+
+.practice-heading {
+    font-family: "MyFont", sans-serif;
+}
+
+
+/*
+===========================================================
+                       END
+===========================================================
+*/

@@ -1,0 +1,1369 @@
+/*
+===========================================================
+                      CSS TEXT
+===========================================================
+
+CSS provides many properties for controlling the
+appearance, alignment, spacing and behavior of text.
+
+Important CSS Text properties:
+
+1. Text Color
+2. Text Alignment
+3. Text Decoration
+4. Text Transformation
+5. Text Indentation
+6. Letter Spacing
+7. Word Spacing
+8. Line Height
+9. Text Shadow
+10. Text Overflow
+11. White Space
+12. Word Breaking
+13. Word Wrapping
+14. Writing Direction
+15. Vertical Alignment
+
+
+===========================================================
+1. TEXT COLOR
+===========================================================
+
+The color property is used to change the color of text.
+
+Syntax:
+
+selector {
+    color: value;
+}
+
+Example:
+*/
+
+h1 {
+    color: blue;
+}
+
+p {
+    color: #333333;
+}
+
+.highlight {
+    color: rgb(255, 0, 0);
+}
+
+
+/*
+Color values can be:
+
+- Color names
+- HEX
+- RGB
+- RGBA
+- HSL
+- HSLA
+
+
+===========================================================
+2. TEXT ALIGNMENT
+===========================================================
+
+The text-align property controls the horizontal alignment
+of text.
+
+Common values:
+
+left
+right
+center
+justify
+start
+end
+
+Example:
+*/
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.justify {
+    text-align: justify;
+}
+
+
+/*
+text-align: justify;
+
+distributes text so that the lines generally fill the
+available width.
+
+
+Example:
+*/
+
+.heading {
+    text-align: center;
+}
+
+.paragraph {
+    text-align: justify;
+}
+
+
+/*
+-----------------------------------------------------------
+TEXT-ALIGN START AND END
+-----------------------------------------------------------
+
+start and end are useful for different writing directions.
+
+start = beginning of the text direction
+end   = end of the text direction
+
+Example:
+*/
+
+.start-text {
+    text-align: start;
+}
+
+.end-text {
+    text-align: end;
+}
+
+
+/*
+===========================================================
+3. TEXT DECORATION
+===========================================================
+
+The text-decoration property adds or removes decorations
+from text.
+
+Common decorations:
+
+underline
+overline
+line-through
+none
+
+Example:
+*/
+
+.underline {
+    text-decoration: underline;
+}
+
+.overline {
+    text-decoration: overline;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+.no-decoration {
+    text-decoration: none;
+}
+
+
+/*
+-----------------------------------------------------------
+TEXT DECORATION LINE
+-----------------------------------------------------------
+
+text-decoration-line specifies the type of decoration.
+
+Example:
+*/
+
+.decoration-line {
+    text-decoration-line: underline;
+}
+
+
+/*
+-----------------------------------------------------------
+TEXT DECORATION COLOR
+-----------------------------------------------------------
+
+text-decoration-color changes the color of the
+decoration.
+
+Example:
+*/
+
+.colored-decoration {
+    text-decoration-line: underline;
+    text-decoration-color: red;
+}
+
+
+/*
+-----------------------------------------------------------
+TEXT DECORATION STYLE
+-----------------------------------------------------------
+
+Possible values include:
+
+solid
+double
+dotted
+dashed
+wavy
+
+Example:
+*/
+
+.wavy-text {
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: red;
+}
+
+
+/*
+-----------------------------------------------------------
+TEXT DECORATION THICKNESS
+-----------------------------------------------------------
+
+Controls the thickness of the decoration.
+
+Example:
+*/
+
+.thick-decoration {
+    text-decoration-line: underline;
+    text-decoration-thickness: 3px;
+}
+
+
+/*
+The shorthand can combine these properties.
+
+Example:
+*/
+
+.shorthand-decoration {
+    text-decoration: underline red wavy 2px;
+}
+
+
+/*
+===========================================================
+4. TEXT TRANSFORMATION
+===========================================================
+
+The text-transform property changes the capitalization
+of text.
+
+Common values:
+
+none
+uppercase
+lowercase
+capitalize
+
+Example:
+*/
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.normal-case {
+    text-transform: none;
+}
+
+
+/*
+Example:
+
+HTML:
+<h2>hello world</h2>
+
+CSS:
+*/
+
+.title {
+    text-transform: uppercase;
+}
+
+
+/*
+The displayed result becomes:
+
+HELLO WORLD
+
+
+===========================================================
+5. TEXT INDENTATION
+===========================================================
+
+The text-indent property specifies the indentation of
+the first line of a text block.
+
+Example:
+*/
+
+.indented {
+    text-indent: 40px;
+}
+
+
+/*
+Only the first line is indented.
+
+Negative values can also be used.
+
+Example:
+*/
+
+.negative-indent {
+    text-indent: -20px;
+}
+
+
+/*
+Percentage values can also be used.
+
+Example:
+*/
+
+.percentage-indent {
+    text-indent: 10%;
+}
+
+
+/*
+===========================================================
+6. LETTER SPACING
+===========================================================
+
+The letter-spacing property controls the amount of space
+between characters.
+
+Example:
+*/
+
+.normal-spacing {
+    letter-spacing: normal;
+}
+
+.spaced-text {
+    letter-spacing: 3px;
+}
+
+
+/*
+Negative values reduce the space between characters.
+
+Example:
+*/
+
+.tight-text {
+    letter-spacing: -1px;
+}
+
+
+/*
+Common use:
+
+*/
+
+.logo {
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+
+/*
+===========================================================
+7. WORD SPACING
+===========================================================
+
+The word-spacing property controls the space between words.
+
+Example:
+*/
+
+.normal-word-spacing {
+    word-spacing: normal;
+}
+
+.wide-word-spacing {
+    word-spacing: 10px;
+}
+
+
+/*
+Negative values can reduce the spacing.
+
+Example:
+*/
+
+.tight-word-spacing {
+    word-spacing: -2px;
+}
+
+
+/*
+===========================================================
+8. LINE HEIGHT
+===========================================================
+
+The line-height property controls the vertical space
+between lines of text.
+
+Example:
+*/
+
+.normal-line {
+    line-height: normal;
+}
+
+.spaced-lines {
+    line-height: 1.8;
+}
+
+.fixed-line-height {
+    line-height: 30px;
+}
+
+
+/*
+Unitless values are commonly preferred because they scale
+with the font size.
+
+Example:
+*/
+
+.readable-text {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/*
+If font-size = 16px
+
+line-height: 1.6
+
+approximately gives:
+
+16 × 1.6 = 25.6px
+
+
+-----------------------------------------------------------
+LINE HEIGHT AND HEADINGS
+-----------------------------------------------------------
+*/
+
+h1 {
+    line-height: 1.2;
+}
+
+p {
+    line-height: 1.6;
+}
+
+
+/*
+===========================================================
+9. TEXT SHADOW
+===========================================================
+
+The text-shadow property adds a shadow behind text.
+
+Syntax:
+
+text-shadow:
+    horizontal-offset
+    vertical-offset
+    blur-radius
+    color;
+
+Example:
+*/
+
+.shadow {
+    text-shadow: 2px 2px 4px gray;
+}
+
+
+/*
+Explanation:
+
+2px = horizontal offset
+2px = vertical offset
+4px = blur radius
+gray = shadow color
+
+
+-----------------------------------------------------------
+TEXT SHADOW WITHOUT BLUR
+-----------------------------------------------------------
+*/
+
+.simple-shadow {
+    text-shadow: 2px 2px black;
+}
+
+
+/*
+-----------------------------------------------------------
+NEGATIVE OFFSET
+-----------------------------------------------------------
+*/
+
+.left-shadow {
+    text-shadow: -2px 2px 3px gray;
+}
+
+
+/*
+-----------------------------------------------------------
+MULTIPLE TEXT SHADOWS
+-----------------------------------------------------------
+
+Multiple shadows can be separated using commas.
+
+Example:
+*/
+
+.multiple-shadow {
+    text-shadow:
+        2px 2px 3px gray,
+        -2px -2px 3px lightgray;
+}
+
+
+/*
+===========================================================
+10. TEXT OVERFLOW
+===========================================================
+
+The text-overflow property controls how overflowing text
+is displayed when it cannot fit inside its container.
+
+Common values:
+
+clip
+ellipsis
+
+Example:
+*/
+
+.overflow-clip {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+
+/*
+-----------------------------------------------------------
+ELLIPSIS
+-----------------------------------------------------------
+
+ellipsis displays "..." when text is clipped.
+
+Example:
+*/
+
+.ellipsis {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/*
+IMPORTANT:
+
+text-overflow usually works together with:
+
+overflow: hidden;
+
+and
+
+white-space: nowrap;
+
+Example:
+*/
+
+.truncated-text {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/*
+===========================================================
+11. WHITE SPACE
+===========================================================
+
+The white-space property controls how spaces, tabs and
+line breaks inside text are handled.
+
+Common values:
+
+normal
+nowrap
+pre
+pre-wrap
+pre-line
+break-spaces
+
+
+-----------------------------------------------------------
+NORMAL
+-----------------------------------------------------------
+
+Normal text wrapping is allowed.
+
+Extra spaces and line breaks are generally collapsed.
+
+Example:
+*/
+
+.normal-white-space {
+    white-space: normal;
+}
+
+
+/*
+-----------------------------------------------------------
+NOWRAP
+-----------------------------------------------------------
+
+Text does not automatically wrap to the next line.
+
+Example:
+*/
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+
+/*
+-----------------------------------------------------------
+PRE
+-----------------------------------------------------------
+
+Preserves spaces and line breaks.
+
+Text does not automatically wrap.
+
+Example:
+*/
+
+.pre-text {
+    white-space: pre;
+}
+
+
+/*
+-----------------------------------------------------------
+PRE-WRAP
+-----------------------------------------------------------
+
+Preserves spaces and line breaks while allowing wrapping.
+
+Example:
+*/
+
+.pre-wrap {
+    white-space: pre-wrap;
+}
+
+
+/*
+-----------------------------------------------------------
+PRE-LINE
+-----------------------------------------------------------
+
+Preserves line breaks but collapses extra spaces.
+
+Example:
+*/
+
+.pre-line {
+    white-space: pre-line;
+}
+
+
+/*
+===========================================================
+12. WORD BREAKING
+===========================================================
+
+The word-break property controls how words can be broken
+when they reach the edge of a container.
+
+Common values:
+
+normal
+break-all
+keep-all
+break-word (commonly encountered, but not a standard
+             word-break value in all contexts)
+
+
+-----------------------------------------------------------
+NORMAL
+-----------------------------------------------------------
+*/
+
+.normal-break {
+    word-break: normal;
+}
+
+
+/*
+-----------------------------------------------------------
+BREAK-ALL
+-----------------------------------------------------------
+
+Allows text to break between almost any characters.
+
+Useful for preventing very long strings from overflowing.
+
+Example:
+*/
+
+.break-all {
+    word-break: break-all;
+}
+
+
+/*
+-----------------------------------------------------------
+KEEP-ALL
+-----------------------------------------------------------
+
+Prevents normal word breaking in some writing systems.
+
+Example:
+*/
+
+.keep-all {
+    word-break: keep-all;
+}
+
+
+/*
+-----------------------------------------------------------
+OVERFLOW-WRAP
+-----------------------------------------------------------
+
+overflow-wrap controls whether long words or strings can
+be broken if they would otherwise overflow the container.
+
+Example:
+*/
+
+.safe-text {
+    overflow-wrap: break-word;
+}
+
+
+/*
+Modern recommended option:
+
+*/
+
+.safe-text-modern {
+    overflow-wrap: anywhere;
+}
+
+
+/*
+===========================================================
+13. WORD WRAPPING
+===========================================================
+
+The overflow-wrap property controls whether a long word
+or unbroken string can be broken to prevent overflow.
+
+Example:
+*/
+
+.wrap-word {
+    overflow-wrap: break-word;
+}
+
+
+/*
+-----------------------------------------------------------
+ANYWHERE
+-----------------------------------------------------------
+
+The anywhere value allows breaking at an arbitrary point
+if necessary.
+
+Example:
+*/
+
+.wrap-anywhere {
+    overflow-wrap: anywhere;
+}
+
+
+/*
+Difference:
+
+word-break:
+    Controls how words themselves may be broken.
+
+overflow-wrap:
+    Mainly prevents long unbroken content from overflowing.
+
+
+===========================================================
+14. WRITING DIRECTION
+===========================================================
+
+The direction property controls the direction in which
+text flows.
+
+Common values:
+
+ltr = Left To Right
+rtl = Right To Left
+
+Example:
+*/
+
+.left-to-right {
+    direction: ltr;
+}
+
+.right-to-left {
+    direction: rtl;
+}
+
+
+/*
+English normally uses:
+
+direction: ltr;
+
+Languages such as Arabic and Hebrew commonly use:
+
+direction: rtl;
+
+
+-----------------------------------------------------------
+UNICODE-BIDI
+-----------------------------------------------------------
+
+unicode-bidi works with direction to control the
+bidirectional behavior of text.
+
+Example:
+*/
+
+.bidi-example {
+    direction: rtl;
+    unicode-bidi: embed;
+}
+
+
+/*
+In most normal web pages, setting direction is sufficient
+and unicode-bidi is only needed for specific bidirectional
+text situations.
+
+
+===========================================================
+15. VERTICAL ALIGNMENT
+===========================================================
+
+The vertical-align property controls the vertical
+alignment of inline-level or table-cell elements.
+
+Common values:
+
+baseline
+middle
+top
+bottom
+text-top
+text-bottom
+sub
+super
+
+Example:
+*/
+
+.baseline {
+    vertical-align: baseline;
+}
+
+.middle {
+    vertical-align: middle;
+}
+
+.top {
+    vertical-align: top;
+}
+
+.bottom {
+    vertical-align: bottom;
+}
+
+
+/*
+-----------------------------------------------------------
+MIDDLE
+-----------------------------------------------------------
+
+Often used to vertically align inline elements relative
+to surrounding text.
+
+Example:
+*/
+
+.icon {
+    vertical-align: middle;
+}
+
+
+/*
+-----------------------------------------------------------
+SUB
+-----------------------------------------------------------
+
+Aligns an element like subscript.
+
+Example:
+*/
+
+.subscript {
+    vertical-align: sub;
+}
+
+
+/*
+-----------------------------------------------------------
+SUPER
+-----------------------------------------------------------
+
+Aligns an element like superscript.
+
+Example:
+*/
+
+.superscript {
+    vertical-align: super;
+}
+
+
+/*
+-----------------------------------------------------------
+TABLE CELLS
+-----------------------------------------------------------
+
+vertical-align is also commonly used with table cells.
+
+Example:
+*/
+
+td {
+    vertical-align: middle;
+}
+
+
+/*
+IMPORTANT:
+
+vertical-align is NOT the general-purpose method for
+vertically centering a block element.
+
+For modern block layouts, Flexbox or Grid is usually
+used for vertical centering.
+
+
+===========================================================
+             PRACTICAL TEXT EXAMPLE
+===========================================================
+*/
+
+.text-card {
+    width: 400px;
+    color: #333;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.text-card h2 {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: underline;
+}
+
+.text-card p {
+    text-indent: 30px;
+    word-spacing: 3px;
+}
+
+
+/*
+===========================================================
+              TEXT OVERFLOW PRACTICAL EXAMPLE
+===========================================================
+*/
+
+.product-name {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/*
+===========================================================
+              LONG URL / TEXT EXAMPLE
+===========================================================
+*/
+
+.long-content {
+    width: 250px;
+    overflow-wrap: anywhere;
+}
+
+
+/*
+===========================================================
+                 TEXT PROPERTY SUMMARY
+===========================================================
+
+color
+    Changes text color.
+
+text-align
+    Aligns text horizontally.
+
+text-decoration
+    Adds or removes text decoration.
+
+text-transform
+    Changes text capitalization.
+
+text-indent
+    Indents the first line.
+
+letter-spacing
+    Controls spacing between characters.
+
+word-spacing
+    Controls spacing between words.
+
+line-height
+    Controls spacing between lines.
+
+text-shadow
+    Adds a shadow to text.
+
+text-overflow
+    Controls how overflowing text is displayed.
+
+white-space
+    Controls spaces, line breaks and wrapping.
+
+word-break
+    Controls where words can break.
+
+overflow-wrap
+    Allows long words/strings to wrap when necessary.
+
+direction
+    Controls text direction.
+
+vertical-align
+    Controls vertical alignment of inline/table-cell
+    elements.
+
+
+===========================================================
+                    QUESTIONS
+===========================================================
+
+Q1. Which CSS property changes the color of text?
+
+Q2. What is the difference between text-align and
+    vertical-align?
+
+Q3. Name four values of text-align.
+
+Q4. Which property is used to underline text?
+
+Q5. How do you remove the default underline from a link?
+
+Q6. What does text-transform: uppercase do?
+
+Q7. What is the purpose of text-indent?
+
+Q8. What is the difference between letter-spacing and
+    word-spacing?
+
+Q9. What does line-height control?
+
+Q10. Write the syntax of text-shadow.
+
+Q11. What is the purpose of text-overflow?
+
+Q12. Which three properties are commonly used together
+     to create an ellipsis effect?
+
+Q13. What is the difference between white-space: nowrap
+     and white-space: normal?
+
+Q14. What does word-break: break-all do?
+
+Q15. What is overflow-wrap used for?
+
+Q16. What is the difference between ltr and rtl?
+
+Q17. What is vertical-align used for?
+
+Q18. Write CSS to:
+     - Center text
+     - Make it uppercase
+     - Add letter spacing
+
+Q19. Write CSS to create an ellipsis for a long title.
+
+Q20. Write CSS to create readable paragraph text.
+
+
+===========================================================
+                    SOLUTIONS
+===========================================================
+
+Q1.
+The color property changes the color of text.
+
+
+Q2.
+text-align controls horizontal text alignment.
+
+vertical-align controls vertical alignment of inline,
+inline-block or table-cell elements.
+
+
+Q3.
+Four common values:
+
+left
+right
+center
+justify
+
+
+Q4.
+text-decoration
+
+
+Q5.
+Use:
+
+text-decoration: none;
+
+
+Q6.
+It converts the displayed text to uppercase.
+
+Example:
+
+text-transform: uppercase;
+
+
+Q7.
+text-indent controls the indentation of the first line
+of a text block.
+
+
+Q8.
+letter-spacing controls the space between characters.
+
+word-spacing controls the space between words.
+
+
+Q9.
+line-height controls the vertical space between lines
+of text.
+
+
+Q10.
+Syntax:
+
+text-shadow: horizontal vertical blur color;
+
+
+Example:
+*/
+
+.shadow-answer {
+    text-shadow: 2px 2px 4px gray;
+}
+
+
+/*
+Q11.
+text-overflow controls how text that exceeds the available
+space is displayed.
+
+
+Q12.
+The common combination is:
+
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+
+
+Q13.
+normal:
+    Text can wrap normally.
+
+nowrap:
+    Text remains on one line and does not automatically
+    wrap.
+
+
+Q14.
+word-break: break-all allows text to break between
+characters when necessary.
+
+
+Q15.
+overflow-wrap prevents long words or unbroken strings from
+overflowing their container.
+
+
+Q16.
+ltr means Left To Right.
+
+rtl means Right To Left.
+
+
+Q17.
+vertical-align controls the vertical alignment of
+inline-level or table-cell elements.
+
+
+Q18.
+*/
+
+.center-uppercase {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+/*
+Q19.
+*/
+
+.ellipsis-answer {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/*
+Q20.
+*/
+
+.readable-paragraph {
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.2px;
+    word-spacing: 2px;
+}
+
+
+/*
+===========================================================
+                  PRACTICE QUESTION
+===========================================================
+
+Create a product description with:
+
+- Dark gray text
+- Justified alignment
+- 1.6 line height
+- First line indented by 30px
+- 2px word spacing
+- Long words should wrap
+*/
+
+.product-description {
+    color: #333;
+    text-align: justify;
+    line-height: 1.6;
+    text-indent: 30px;
+    word-spacing: 2px;
+    overflow-wrap: break-word;
+}
+
+
+/*
+===========================================================
+                PRACTICE QUESTION 2
+===========================================================
+
+Create a heading with:
+
+- Center alignment
+- Uppercase text
+- 3px letter spacing
+- Underline
+- Red underline
+- 2px text shadow
+*/
+
+.practice-heading {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-decoration-line: underline;
+    text-decoration-color: red;
+    text-shadow: 2px 2px 2px gray;
+}
+
+
+/*
+===========================================================
+                       END
+===========================================================
+*/

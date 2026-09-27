@@ -1,0 +1,917 @@
+# /*
+
+```
+                CSS BORDERS
+```
+
+========================================================
+
+Topics Covered:
+
+1. CSS Borders
+2. Border Width
+3. Border Style
+4. Border Color
+5. Border Radius
+6. Individual Borders
+7. Border Shorthand
+8. Rounded Borders
+9. Border Images
+10. border-image-source
+11. border-image-slice
+12. border-image-width
+13. border-image-repeat
+14. Outline
+15. Outline Width
+16. Outline Style
+17. Outline Color
+18. Outline Offset
+    */
+
+# /*
+
+1. CSS BORDERS
+   ========================================================
+
+A border is a line around an HTML element.
+
+Borders can be used to:
+
+* Separate elements
+* Highlight content
+* Create cards and boxes
+* Design buttons
+* Create decorative layouts
+
+Basic syntax:
+
+selector {
+border: width style color;
+}
+*/
+
+.box {
+border: 2px solid black;
+}
+
+# /*
+
+2. BORDER WIDTH
+   ========================================================
+
+border-width controls the thickness of the border.
+
+Common values:
+
+* thin
+* medium
+* thick
+* Custom values such as 1px, 5px, 10px
+
+Example:
+*/
+
+.border-width-example {
+border-style: solid;
+border-width: 5px;
+}
+
+/*
+Four different values can be used:
+
+border-width: top right bottom left;
+
+Example:
+*/
+
+.border-width-four {
+border-style: solid;
+border-width: 2px 4px 6px 8px;
+}
+
+/*
+The values work clockwise:
+
+Top    = 2px
+Right  = 4px
+Bottom = 6px
+Left   = 8px
+*/
+
+# /*
+
+3. BORDER STYLE
+   ========================================================
+
+border-style specifies the appearance of the border.
+
+Common values:
+
+solid
+dashed
+dotted
+double
+groove
+ridge
+inset
+outset
+none
+hidden
+*/
+
+.solid-border {
+border: 3px solid black;
+}
+
+.dashed-border {
+border: 3px dashed black;
+}
+
+.dotted-border {
+border: 3px dotted black;
+}
+
+.double-border {
+border: 5px double black;
+}
+
+.groove-border {
+border: 5px groove gray;
+}
+
+.ridge-border {
+border: 5px ridge gray;
+}
+
+.inset-border {
+border: 5px inset gray;
+}
+
+.outset-border {
+border: 5px outset gray;
+}
+
+.no-border {
+border: none;
+}
+
+# /*
+
+4. BORDER COLOR
+   ========================================================
+
+border-color sets the color of the border.
+
+It can use:
+
+* Color names
+* HEX
+* RGB
+* HSL
+  */
+
+.border-color-example {
+border-style: solid;
+border-width: 3px;
+border-color: blue;
+}
+
+.hex-border {
+border: 3px solid #ff0000;
+}
+
+.rgb-border {
+border: 3px solid rgb(0, 128, 0);
+}
+
+.hsl-border {
+border: 3px solid hsl(240, 100%, 50%);
+}
+
+/*
+Different colors can be given to each side:
+
+border-color: top right bottom left;
+*/
+
+.multi-color-border {
+border-style: solid;
+border-width: 4px;
+border-color: red blue green orange;
+}
+
+# /*
+
+5. BORDER RADIUS
+   ========================================================
+
+border-radius is used to create rounded corners.
+
+Syntax:
+
+border-radius: value;
+*/
+
+.rounded-box {
+border: 3px solid black;
+border-radius: 15px;
+}
+
+/*
+Higher values create more rounded corners.
+*/
+
+.more-rounded {
+border: 3px solid blue;
+border-radius: 30px;
+}
+
+/*
+Percentage values can also be used.
+*/
+
+.percentage-radius {
+border: 3px solid green;
+border-radius: 50%;
+}
+
+# /*
+
+6. INDIVIDUAL BORDERS
+   ========================================================
+
+Each side of an element can have its own border.
+
+Properties:
+
+border-top
+border-right
+border-bottom
+border-left
+*/
+
+.individual-border {
+border-top: 4px solid red;
+border-right: 4px dashed blue;
+border-bottom: 4px dotted green;
+border-left: 4px double orange;
+}
+
+/*
+Individual border properties can also be separated
+into width, style and color.
+
+Example:
+*/
+
+.individual-border-properties {
+border-top-width: 5px;
+border-top-style: solid;
+border-top-color: red;
+
+```
+border-right-width: 3px;
+border-right-style: dashed;
+border-right-color: blue;
+```
+
+}
+
+# /*
+
+7. BORDER SHORTHAND
+   ========================================================
+
+Instead of writing:
+
+border-width
+border-style
+border-color
+
+We can use:
+
+border: width style color;
+*/
+
+.shorthand-border {
+border: 3px solid black;
+}
+
+/*
+Examples:
+*/
+
+.example-one {
+border: 2px solid red;
+}
+
+.example-two {
+border: 5px dashed blue;
+}
+
+.example-three {
+border: 4px dotted green;
+}
+
+# /*
+
+8. ROUNDED BORDERS
+   ========================================================
+
+Rounded borders are created using border-radius.
+
+Examples:
+*/
+
+.rounded-small {
+border: 2px solid black;
+border-radius: 5px;
+}
+
+.rounded-medium {
+border: 2px solid black;
+border-radius: 15px;
+}
+
+.rounded-large {
+border: 2px solid black;
+border-radius: 30px;
+}
+
+/*
+A pill-shaped element can be created using a large
+border-radius.
+*/
+
+.pill {
+border: 2px solid black;
+border-radius: 999px;
+padding: 10px 25px;
+}
+
+/*
+A circle can be created when the element has equal
+width and height and border-radius is 50%.
+*/
+
+.circle {
+width: 100px;
+height: 100px;
+border: 3px solid black;
+border-radius: 50%;
+}
+
+# /*
+
+9. BORDER IMAGES
+   ========================================================
+
+border-image allows an image or gradient to be used
+as a border.
+
+It works with several properties:
+
+border-image-source
+border-image-slice
+border-image-width
+border-image-repeat
+
+Usually border-image is used together with a normal
+border declaration.
+*/
+
+# /*
+
+10. border-image-source
+    ========================================================
+
+Specifies the image or gradient used as the border.
+
+Example:
+*/
+
+.border-image-source-example {
+border: 20px solid transparent;
+
+```
+border-image-source: url("border.png");
+```
+
+}
+
+/*
+A gradient can also be used as a border image.
+*/
+
+.gradient-border {
+border: 10px solid transparent;
+
+```
+border-image-source: linear-gradient(
+    red,
+    blue
+);
+```
+
+}
+
+# /*
+
+11. border-image-slice
+    ========================================================
+
+border-image-slice defines how the source image is
+divided into sections.
+
+The source image is divided into:
+
+* Four corners
+* Four edges
+* Center
+
+Example:
+*/
+
+.border-image-slice-example {
+border: 20px solid transparent;
+
+```
+border-image-source: url("border.png");
+border-image-slice: 30;
+```
+
+}
+
+/*
+The keyword "fill" can be used to include the center
+of the source image.
+*/
+
+.border-image-fill {
+border: 20px solid transparent;
+
+```
+border-image-source: url("border.png");
+border-image-slice: 30 fill;
+```
+
+}
+
+# /*
+
+12. border-image-width
+    ========================================================
+
+Controls the width of the border image.
+
+It is different from border-width.
+
+Example:
+*/
+
+.border-image-width-example {
+border: 10px solid transparent;
+
+```
+border-image-source: url("border.png");
+border-image-slice: 30;
+border-image-width: 15px;
+```
+
+}
+
+# /*
+
+13. border-image-repeat
+    ========================================================
+
+Controls how the border image is repeated around
+the element.
+
+Common values:
+
+stretch
+repeat
+round
+space
+*/
+
+.border-image-repeat-stretch {
+border: 15px solid transparent;
+
+```
+border-image-source: url("border.png");
+border-image-slice: 30;
+border-image-repeat: stretch;
+```
+
+}
+
+.border-image-repeat {
+border: 15px solid transparent;
+
+```
+border-image-source: url("border.png");
+border-image-slice: 30;
+border-image-repeat: repeat;
+```
+
+}
+
+.border-image-round {
+border: 15px solid transparent;
+
+```
+border-image-source: url("border.png");
+border-image-slice: 30;
+border-image-repeat: round;
+```
+
+}
+
+# /*
+
+# BORDER IMAGE SHORTHAND
+
+The shorthand property is:
+
+border-image:
+source
+slice
+width
+repeat;
+
+Example:
+*/
+
+.border-image-shorthand {
+border: 20px solid transparent;
+
+```
+border-image:
+    url("border.png")
+    30
+    / 15px
+    round;
+```
+
+}
+
+# /*
+
+14. OUTLINE
+    ========================================================
+
+An outline is a line drawn around an element.
+
+Important difference:
+
+BORDER:
+
+* Takes up space in the element's box.
+
+OUTLINE:
+
+* Does not take up layout space.
+* Is drawn outside the border.
+
+Outline is commonly used for:
+
+* Focus indicators
+* Accessibility
+* Highlighting elements
+  */
+
+.outline-example {
+border: 2px solid black;
+outline: 3px solid red;
+}
+
+# /*
+
+15. OUTLINE WIDTH
+    ========================================================
+
+outline-width controls the thickness of the outline.
+
+Values:
+
+* thin
+* medium
+* thick
+* Custom values
+  */
+
+.outline-width-example {
+outline-style: solid;
+outline-width: 5px;
+}
+
+# /*
+
+16. OUTLINE STYLE
+    ========================================================
+
+outline-style controls the appearance of the outline.
+
+Common values:
+
+solid
+dashed
+dotted
+double
+groove
+ridge
+inset
+outset
+none
+*/
+
+.outline-solid {
+outline: 3px solid black;
+}
+
+.outline-dashed {
+outline: 3px dashed red;
+}
+
+.outline-dotted {
+outline: 3px dotted blue;
+}
+
+.outline-double {
+outline: 5px double green;
+}
+
+# /*
+
+17. OUTLINE COLOR
+    ========================================================
+
+outline-color specifies the outline color.
+*/
+
+.outline-color-example {
+outline-style: solid;
+outline-width: 4px;
+outline-color: purple;
+}
+
+# /*
+
+18. OUTLINE OFFSET
+    ========================================================
+
+outline-offset controls the distance between the
+element's border edge and its outline.
+
+Positive value:
+Moves the outline away from the element.
+
+Negative value:
+Moves the outline closer to / over the border area.
+*/
+
+.outline-offset-example {
+border: 3px solid black;
+outline: 3px solid red;
+outline-offset: 8px;
+}
+
+# /*
+
+# OUTLINE SHORTHAND
+
+Syntax:
+
+outline: width style color;
+*/
+
+.outline-shorthand {
+outline: 3px solid blue;
+}
+
+# /*
+
+# PRACTICAL EXAMPLE
+
+A simple card using:
+
+* Border
+* Border radius
+* Outline
+* Outline offset
+  */
+
+.card {
+width: 300px;
+padding: 20px;
+
+```
+border: 2px solid #333;
+border-radius: 15px;
+
+outline: 2px solid #777;
+outline-offset: 5px;
+```
+
+}
+
+# /*
+
+# PRACTICAL BUTTON
+
+*/
+
+.button {
+padding: 10px 25px;
+
+```
+border: 2px solid blue;
+border-radius: 25px;
+
+background-color: white;
+```
+
+}
+
+# /*
+
+# QUICK REVISION
+
+border
+-> Complete border shorthand
+
+border-width
+-> Controls border thickness
+
+border-style
+-> Controls border appearance
+
+border-color
+-> Controls border color
+
+border-radius
+-> Creates rounded corners
+
+border-top
+border-right
+border-bottom
+border-left
+-> Controls individual borders
+
+border-image-source
+-> Image/gradient used for border
+
+border-image-slice
+-> Divides the source image
+
+border-image-width
+-> Controls border image width
+
+border-image-repeat
+-> Controls how border image repeats
+
+outline
+-> Line outside the border
+
+outline-width
+-> Outline thickness
+
+outline-style
+-> Outline appearance
+
+outline-color
+-> Outline color
+
+outline-offset
+-> Space between border and outline
+*/
+
+# /*
+
+# QUESTIONS
+
+Q1. What is a CSS border?
+Q2. What is the difference between border-width and
+border-style?
+Q3. Write CSS to create a 3px solid red border.
+Q4. How do you create rounded corners?
+Q5. How can you apply different borders to each side?
+Q6. What is border shorthand?
+Q7. What is border-image?
+Q8. What does border-image-slice do?
+Q9. What is the difference between border and outline?
+Q10. What does outline-offset do?
+*/
+
+# /*
+
+# SOLUTIONS
+
+Q1.
+A border is a line around an HTML element.
+
+Q2.
+border-width controls thickness.
+border-style controls appearance.
+
+Q3.
+*/
+
+.question-three {
+border: 3px solid red;
+}
+
+/*
+Q4.
+Use border-radius.
+*/
+
+.question-four {
+border-radius: 15px;
+}
+
+/*
+Q5.
+Use:
+border-top
+border-right
+border-bottom
+border-left
+*/
+
+.question-five {
+border-top: 2px solid red;
+border-right: 2px solid blue;
+border-bottom: 2px solid green;
+border-left: 2px solid orange;
+}
+
+/*
+Q6.
+Border shorthand combines width, style and color.
+
+Example:
+*/
+
+.question-six {
+border: 3px solid black;
+}
+
+/*
+Q7.
+border-image allows an image or gradient to be used
+as a border.
+
+Q8.
+border-image-slice determines how the source image
+is divided into border sections.
+
+Q9.
+
+Border:
+
+* Part of the box's border
+* Takes up space in the box model
+
+Outline:
+
+* Drawn outside the border
+* Does not take up layout space
+
+Q10.
+outline-offset controls the distance between the
+border and the outline.
+*/
+
+# /*
+
+# PRACTICE
+
+1. Create a box with a 5px solid green border.
+
+2. Create a box with:
+   Top    -> red
+   Right  -> blue
+   Bottom -> green
+   Left   -> yellow
+
+3. Create a button with rounded corners.
+
+4. Create a circular element using border-radius.
+
+5. Create a box with a 3px black border and a
+   2px red outline.
+
+6. Move the outline 10px away from the element.
+
+7. Create a card with a rounded border and padding.
+
+8. Create a gradient border using border-image-source.
+   */
+ /*
+
+# END OF CSS BORDERS
+
+*/

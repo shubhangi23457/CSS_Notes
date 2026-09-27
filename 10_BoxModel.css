@@ -1,0 +1,1011 @@
+# /*
+
+```
+                CSS BOX MODEL
+```
+
+========================================================
+
+Topics Covered:
+
+1. Introduction to Box Model
+2. Content
+3. Padding
+4. Border
+5. Margin
+6. Width
+7. Height
+8. box-sizing
+9. content-box
+10. border-box
+11. Minimum Width
+12. Maximum Width
+13. Minimum Height
+14. Maximum Height
+15. Box Model Calculation
+16. Margin Collapse
+    */
+
+# /*
+
+1. INTRODUCTION TO BOX MODEL
+   ========================================================
+
+Every HTML element is treated as a rectangular box
+by CSS.
+
+The CSS Box Model consists of four main areas:
+
+1. Content
+2. Padding
+3. Border
+4. Margin
+
+Diagram:
+
+```
+    MARGIN
++-------------+
+|   BORDER    |
+| +---------+ |
+| | PADDING | |
+| | +-----+ | |
+| | |CONTENT| | |
+| | +-----+ | |
+| +---------+ |
++-------------+
+```
+
+The order from inside to outside is:
+
+Content
+↓
+Padding
+↓
+Border
+↓
+Margin
+*/
+
+# /*
+
+2. CONTENT
+   ========================================================
+
+Content is the actual area inside an element.
+
+It can contain:
+
+* Text
+* Images
+* Other HTML elements
+* Videos
+* Forms
+* Other content
+
+Example:
+*/
+
+.content-box-example {
+width: 300px;
+height: 100px;
+}
+
+/*
+The width and height normally describe the content
+area when box-sizing is content-box.
+*/
+
+# /*
+
+3. PADDING
+   ========================================================
+
+Padding is the space between the content and the border.
+
+Syntax:
+
+padding: value;
+
+Example:
+*/
+
+.padding-example {
+padding: 20px;
+}
+
+/*
+Padding can be specified for individual sides.
+*/
+
+.padding-individual {
+padding-top: 10px;
+padding-right: 20px;
+padding-bottom: 30px;
+padding-left: 40px;
+}
+
+/*
+Padding shorthand:
+
+One value:
+padding: 20px;
+
+All four sides = 20px
+
+Two values:
+padding: 10px 20px;
+
+Top/Bottom = 10px
+Left/Right = 20px
+
+Three values:
+padding: 10px 20px 30px;
+
+Top = 10px
+Left/Right = 20px
+Bottom = 30px
+
+Four values:
+padding: 10px 20px 30px 40px;
+
+Top = 10px
+Right = 20px
+Bottom = 30px
+Left = 40px
+*/
+
+.padding-one {
+padding: 20px;
+}
+
+.padding-two {
+padding: 10px 20px;
+}
+
+.padding-three {
+padding: 10px 20px 30px;
+}
+
+.padding-four {
+padding: 10px 20px 30px 40px;
+}
+
+# /*
+
+4. BORDER
+   ========================================================
+
+Border is the line surrounding the padding and content.
+
+Example:
+*/
+
+.border-example {
+border: 5px solid black;
+}
+
+/*
+The border has three main components:
+
+border-width
+border-style
+border-color
+*/
+
+.border-components {
+border-width: 3px;
+border-style: solid;
+border-color: blue;
+}
+
+# /*
+
+5. MARGIN
+   ========================================================
+
+Margin is the space outside the border.
+
+It creates space between elements.
+
+Example:
+*/
+
+.margin-example {
+margin: 20px;
+}
+
+/*
+Individual margins:
+*/
+
+.margin-individual {
+margin-top: 10px;
+margin-right: 20px;
+margin-bottom: 30px;
+margin-left: 40px;
+}
+
+/*
+Margin shorthand works like padding:
+
+One value:
+margin: 20px;
+
+Two values:
+margin: 10px 20px;
+
+Three values:
+margin: 10px 20px 30px;
+
+Four values:
+margin: 10px 20px 30px 40px;
+*/
+
+/*
+Auto margin can be used to center a block element
+horizontally when it has a definite width.
+*/
+
+.center-box {
+width: 300px;
+margin: 0 auto;
+}
+
+# /*
+
+6. WIDTH
+   ========================================================
+
+The width property controls the width of an element.
+
+With the default content-box sizing, width refers to
+the content area.
+
+Example:
+*/
+
+.width-example {
+width: 300px;
+}
+
+/*
+Width can use different units:
+
+px
+%
+em
+rem
+vw
+etc.
+*/
+
+.width-units {
+width: 50%;
+}
+
+# /*
+
+7. HEIGHT
+   ========================================================
+
+The height property controls the height of an element.
+
+Example:
+*/
+
+.height-example {
+height: 200px;
+}
+
+/*
+Height can also use different units.
+*/
+
+.height-percentage {
+height: 50vh;
+}
+
+/*
+Important:
+Percentage height depends on the height of the containing
+block being properly defined.
+
+For many layouts, min-height or viewport units may be
+more practical.
+*/
+
+# /*
+
+8. box-sizing
+   ========================================================
+
+box-sizing controls how the width and height of an
+element are calculated.
+
+Main values:
+
+1. content-box
+2. border-box
+
+Default value:
+
+box-sizing: content-box;
+*/
+
+# /*
+
+9. content-box
+   ========================================================
+
+content-box is the default box-sizing value.
+
+With content-box:
+
+Specified width = content width
+
+Specified height = content height
+
+Actual total width includes:
+
+content width
+
+* left padding
+* right padding
+* left border
+* right border
+
+Example:
+*/
+
+.content-box {
+box-sizing: content-box;
+
+```
+width: 300px;
+padding: 20px;
+border: 5px solid black;
+```
+
+}
+
+/*
+Total width:
+
+300
+
+* 20 + 20 padding
+* 5 + 5 border
+  = 350px
+  */
+
+# /*
+
+10. border-box
+    ========================================================
+
+With border-box:
+
+Specified width includes:
+
+Content
+
+* Padding
+* Border
+
+Example:
+*/
+
+.border-box {
+box-sizing: border-box;
+
+```
+width: 300px;
+padding: 20px;
+border: 5px solid black;
+```
+
+}
+
+/*
+Total width = 300px
+
+The content area becomes smaller to accommodate
+padding and border.
+*/
+
+/*
+A common CSS practice is to use border-box for all
+elements.
+
+Example:
+
+* {
+  box-sizing: border-box;
+  }
+
+This makes width and height calculations easier.
+*/
+
+# /*
+
+11. MINIMUM WIDTH
+    ========================================================
+
+min-width specifies the smallest width an element
+can have.
+
+The element will not become smaller than this value.
+
+Example:
+*/
+
+.minimum-width {
+min-width: 200px;
+}
+
+/*
+Useful for responsive layouts where an element should
+not become too narrow.
+*/
+
+# /*
+
+12. MAXIMUM WIDTH
+    ========================================================
+
+max-width specifies the largest width an element
+can have.
+
+Example:
+*/
+
+.maximum-width {
+max-width: 600px;
+}
+
+/*
+Common responsive image example:
+
+img {
+max-width: 100%;
+height: auto;
+}
+
+This prevents images from becoming wider than their
+container.
+*/
+
+.responsive-image {
+max-width: 100%;
+height: auto;
+}
+
+# /*
+
+13. MINIMUM HEIGHT
+    ========================================================
+
+min-height specifies the minimum height of an element.
+
+Example:
+*/
+
+.minimum-height {
+min-height: 200px;
+}
+
+/*
+The element can become taller if its content requires
+more space.
+*/
+
+# /*
+
+14. MAXIMUM HEIGHT
+    ========================================================
+
+max-height specifies the maximum height of an element.
+
+Example:
+*/
+
+.maximum-height {
+max-height: 300px;
+}
+
+/*
+If content becomes larger than the maximum height,
+overflow behavior determines what happens.
+
+Example:
+*/
+
+.maximum-height-scroll {
+max-height: 300px;
+overflow: auto;
+}
+
+# /*
+
+15. BOX MODEL CALCULATION
+    ========================================================
+
+Understanding box model calculations is important.
+
+For content-box:
+
+Total Width =
+content width
+
+* left padding
+* right padding
+* left border
+* right border
+* left margin
+* right margin
+
+Total Height =
+content height
+
+* top padding
+* bottom padding
+* top border
+* bottom border
+* top margin
+* bottom margin
+
+IMPORTANT:
+
+Margin is part of the space occupied by the element
+in the layout, but it is NOT part of the element's
+border box.
+
+The border box consists of:
+
+Content + Padding + Border
+*/
+
+/*
+Example:
+
+width = 300px
+padding-left = 20px
+padding-right = 20px
+border-left = 5px
+border-right = 5px
+margin-left = 10px
+margin-right = 10px
+
+Using content-box:
+
+Border box width:
+300 + 20 + 20 + 5 + 5
+= 350px
+
+Space including margins:
+350 + 10 + 10
+= 370px
+*/
+
+.calculation-example {
+width: 300px;
+padding: 20px;
+border: 5px solid black;
+margin: 10px;
+}
+
+# /*
+
+# BOX MODEL CALCULATION WITH border-box
+
+Suppose:
+
+width = 300px
+padding = 20px
+border = 5px
+
+With:
+
+box-sizing: border-box;
+
+Total border-box width = 300px
+
+Content width:
+
+300 - 40 padding - 10 border
+= 250px
+
+So:
+
+Content = 250px
+Padding = 40px
+Border = 10px
+Total = 300px
+*/
+
+.calculation-border-box {
+box-sizing: border-box;
+
+```
+width: 300px;
+padding: 20px;
+border: 5px solid black;
+```
+
+}
+
+# /*
+
+16. MARGIN COLLAPSE
+    ========================================================
+
+Margin collapse occurs mainly with vertical margins
+of normal block elements.
+
+When two vertical margins meet, they may combine into
+one margin instead of adding together.
+
+Example:
+
+Element A:
+margin-bottom: 30px;
+
+Element B:
+margin-top: 20px;
+
+The resulting vertical separation is generally:
+
+30px
+
+NOT:
+
+30px + 20px = 50px
+
+The larger margin wins in a simple margin-collapse
+case.
+*/
+
+.margin-one {
+margin-bottom: 30px;
+}
+
+.margin-two {
+margin-top: 20px;
+}
+
+/*
+Resulting separation in this simple case:
+
+30px
+*/
+
+/*
+Margin collapse can also occur between a parent and
+its first/last child in certain normal-flow situations.
+
+Margin collapse does NOT generally occur:
+
+* Horizontally
+* Between flex items
+* Between grid items
+  */
+
+# /*
+
+# HOW TO AVOID MARGIN COLLAPSE
+
+Depending on the layout, techniques include:
+
+1. Use padding instead of margins.
+2. Use Flexbox.
+3. Use Grid.
+4. Establish a different formatting context,
+   such as using overflow: auto/hidden where appropriate.
+5. Use borders or other layout structures where needed.
+
+Example using Flexbox:
+*/
+
+.no-collapse-flex {
+display: flex;
+flex-direction: column;
+}
+
+# /*
+
+# COMPLETE BOX MODEL EXAMPLE
+
+*/
+
+.complete-box {
+box-sizing: border-box;
+
+```
+width: 300px;
+min-width: 200px;
+max-width: 500px;
+
+height: 200px;
+min-height: 150px;
+max-height: 300px;
+
+padding: 20px;
+
+border: 5px solid black;
+border-radius: 10px;
+
+margin: 30px auto;
+```
+
+}
+
+# /*
+
+# BOX MODEL QUICK REVISION
+
+CONTENT
+-> Actual content of the element
+
+PADDING
+-> Space between content and border
+
+BORDER
+-> Line surrounding content and padding
+
+MARGIN
+-> Space outside the border
+
+WIDTH
+-> Controls width
+
+HEIGHT
+-> Controls height
+
+box-sizing
+-> Controls how width and height are calculated
+
+content-box
+-> width/height apply to content only
+
+border-box
+-> width/height include padding and border
+
+min-width
+-> Smallest allowed width
+
+max-width
+-> Largest allowed width
+
+min-height
+-> Smallest allowed height
+
+max-height
+-> Largest allowed height
+
+MARGIN COLLAPSE
+-> Certain vertical margins can combine instead
+of adding together
+*/
+
+# /*
+
+# IMPORTANT DIFFERENCE
+
+content-box:
+
+width
+↓
+Content only
+
+border-box:
+
+width
+↓
+Content + Padding + Border
+
+Example:
+
+width: 300px;
+padding: 20px;
+border: 5px solid;
+
+content-box:
+Total width = 350px
+
+border-box:
+Total width = 300px
+*/
+
+# /*
+
+# QUESTIONS
+
+Q1. What is the CSS Box Model?
+
+Q2. What are the four parts of the CSS Box Model?
+
+Q3. What is the difference between padding and margin?
+
+Q4. What does the width property control?
+
+Q5. What does box-sizing do?
+
+Q6. What is the difference between content-box and
+border-box?
+
+Q7. Calculate the total width if:
+
+```
+width = 200px
+padding = 20px on both sides
+border = 5px on both sides
+
+Use content-box.
+```
+
+Q8. What is min-width?
+
+Q9. What is max-width?
+
+Q10. What is margin collapse?
+
+Q11. Does margin collapse normally happen horizontally?
+
+Q12. Write CSS to center a 400px wide block element
+horizontally.
+
+Q13. Write CSS to make an image responsive.
+
+Q14. Write CSS using border-box for an element with
+width 300px, padding 20px and border 5px.
+*/
+
+# /*
+
+# SOLUTIONS
+
+Q1.
+The CSS Box Model describes how every HTML element is
+represented as a rectangular box.
+
+Q2.
+The four parts are:
+
+1. Content
+2. Padding
+3. Border
+4. Margin
+
+Q3.
+
+Padding:
+Space inside the border, around the content.
+
+Margin:
+Space outside the border, between elements.
+
+Q4.
+The width property controls the width of an element.
+With content-box, it normally specifies the content
+width.
+
+Q5.
+box-sizing determines how the declared width and height
+are calculated.
+
+Q6.
+
+content-box:
+The declared width and height apply to the content area.
+Padding and border are added outside it.
+
+border-box:
+The declared width and height include content, padding
+and border.
+
+Q7.
+
+width = 200px
+padding = 20px + 20px
+border = 5px + 5px
+
+Total width:
+
+200 + 20 + 20 + 5 + 5
+= 250px
+
+Q8.
+min-width specifies the smallest width an element can
+have.
+
+Q9.
+max-width specifies the largest width an element can
+have.
+
+Q10.
+Margin collapse occurs when certain vertical margins
+combine into a single margin.
+
+Q11.
+No. Margin collapse is mainly a vertical block-layout
+behavior.
+
+Q12.
+*/
+
+.centered-block {
+width: 400px;
+margin: 0 auto;
+}
+
+/*
+Q13.
+*/
+
+.responsive-img {
+max-width: 100%;
+height: auto;
+}
+
+/*
+Q14.
+*/
+
+.border-box-question {
+box-sizing: border-box;
+width: 300px;
+padding: 20px;
+border: 5px solid black;
+}
+
+# /*
+
+# PRACTICE
+
+1. Create a box with:
+   width: 300px
+   height: 200px
+   padding: 20px
+   border: 5px solid black
+   margin: 30px
+
+2. Calculate its total width using content-box.
+
+3. Change the same box to border-box and calculate
+   the total border-box width.
+
+4. Create a responsive container with:
+   max-width: 800px;
+   margin: auto;
+
+5. Create an element with:
+   min-width: 200px;
+   max-width: 600px;
+
+6. Create an element with:
+   min-height: 150px;
+   max-height: 400px;
+
+7. Explain the difference between:
+   padding: 20px;
+   margin: 20px;
+
+8. Create two block elements and experiment with
+   margin collapse.
+
+9. Create a universal border-box rule:
+
+   * {
+     box-sizing: border-box;
+     }
+
+10. Create a 400px wide element and center it
+    horizontally using margin auto.
+    */
+
+# /*
+
+# END OF CSS BOX MODEL
+
+*/

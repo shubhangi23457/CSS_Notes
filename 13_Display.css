@@ -1,0 +1,938 @@
+# /*
+
+```
+                 CSS DISPLAY
+```
+
+========================================================
+
+Topics Covered:
+
+1. display
+2. block
+3. inline
+4. inline-block
+5. none
+6. flex
+7. grid
+8. table
+9. inline-flex
+10. inline-grid
+11. Visibility vs Display
+12. visibility: hidden
+13. visibility: visible
+    */
+
+# /*
+
+1. display
+   ========================================================
+
+The display property controls how an HTML element
+participates in the layout.
+
+Syntax:
+
+display: value;
+
+Common values:
+
+block
+inline
+inline-block
+none
+flex
+inline-flex
+grid
+inline-grid
+table
+*/
+
+# /*
+
+2. BLOCK
+   ========================================================
+
+display: block;
+
+A block-level element:
+
+* Starts on a new line.
+* Normally takes up the available horizontal space.
+* Can have width and height.
+* Can have margin and padding on all sides.
+
+Common HTML block elements:
+
+<div>
+<p>
+<h1> to <h6>
+<section>
+<header>
+<footer>
+<main>
+*/
+
+.block-example {
+display: block;
+
+```
+width: 300px;
+height: 100px;
+
+margin: 10px;
+padding: 20px;
+
+border: 2px solid black;
+```
+
+}
+
+/*
+Example:
+*/
+
+.block-box {
+display: block;
+width: 200px;
+padding: 20px;
+}
+
+# /*
+
+3. INLINE
+   ========================================================
+
+display: inline;
+
+An inline element:
+
+* Does not normally start on a new line.
+* Flows within surrounding text.
+* Width and height do not apply in the same way as
+  they do to block-level elements.
+* Horizontal padding and margin can affect layout.
+* Vertical spacing behavior is different from block
+  elements.
+
+Common inline HTML elements:
+
+<span>
+<a>
+<strong>
+<em>
+*/
+
+.inline-example {
+display: inline;
+}
+
+/*
+Example:
+*/
+
+.inline-text {
+display: inline;
+
+```
+padding: 5px;
+margin: 5px;
+
+border: 1px solid black;
+```
+
+}
+
+/*
+IMPORTANT:
+
+Do not rely on width and height for ordinary inline
+elements.
+
+If you need width and height while keeping the element
+in the same line, use inline-block.
+*/
+
+# /*
+
+4. INLINE-BLOCK
+   ========================================================
+
+display: inline-block;
+
+It combines characteristics of inline and block.
+
+It:
+
+* Can appear beside other inline/inline-block elements.
+* Allows width and height.
+* Supports padding and margins.
+* Does not automatically start on a new line.
+
+Useful for:
+
+* Buttons
+* Navigation links
+* Small cards
+* Labels
+  */
+
+.inline-block-example {
+display: inline-block;
+
+```
+width: 150px;
+height: 80px;
+
+margin: 10px;
+padding: 15px;
+
+border: 2px solid black;
+```
+
+}
+
+/*
+Example:
+*/
+
+.nav-item {
+display: inline-block;
+padding: 10px 20px;
+}
+
+# /*
+
+5. NONE
+   ========================================================
+
+display: none;
+
+The element is removed from the layout.
+
+It:
+
+* Is not displayed.
+* Does not occupy space.
+* Is not present in the rendered layout.
+
+Example:
+*/
+
+.hidden-display {
+display: none;
+}
+
+/*
+Example:
+
+*/
+
+.hide-menu {
+display: none;
+}
+
+/*
+display: none is commonly used for:
+
+* Dropdown menus
+* Mobile navigation
+* Modals
+* Conditional UI
+* Elements hidden through JavaScript
+  */
+
+# /*
+
+6. FLEX
+   ========================================================
+
+display: flex;
+
+Turns an element into a flex container.
+
+Its direct children become flex items.
+
+Flexbox is mainly used for one-dimensional layouts:
+
+Row
+OR
+Column
+
+Example:
+*/
+
+.flex-container {
+display: flex;
+}
+
+/*
+Common Flexbox properties:
+
+flex-direction
+justify-content
+align-items
+gap
+flex-wrap
+*/
+
+.flex-example {
+display: flex;
+
+```
+flex-direction: row;
+justify-content: center;
+align-items: center;
+
+gap: 20px;
+```
+
+}
+
+/*
+Flexbox example:
+*/
+
+.flex-box {
+display: flex;
+gap: 10px;
+}
+
+# /*
+
+7. GRID
+   ========================================================
+
+display: grid;
+
+Turns an element into a grid container.
+
+Its direct children become grid items.
+
+CSS Grid is mainly used for two-dimensional layouts:
+
+Rows
++
+Columns
+*/
+
+.grid-container {
+display: grid;
+
+```
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+```
+
+}
+
+/*
+Grid example:
+*/
+
+.grid-item {
+padding: 20px;
+border: 1px solid black;
+}
+
+/*
+Complete example:
+*/
+
+.grid-example {
+display: grid;
+
+```
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: auto;
+
+gap: 15px;
+```
+
+}
+
+/*
+Flexbox vs Grid:
+
+FLEXBOX:
+Mainly one-dimensional layout.
+
+GRID:
+Mainly two-dimensional layout.
+*/
+
+# /*
+
+8. TABLE
+   ========================================================
+
+display: table;
+
+Makes an element behave similarly to a table element
+in CSS table layout.
+
+Related display values include:
+
+table
+table-row
+table-cell
+table-header-group
+table-row-group
+table-footer-group
+*/
+
+.table-container {
+display: table;
+}
+
+/*
+Table row:
+*/
+
+.table-row {
+display: table-row;
+}
+
+/*
+Table cell:
+*/
+
+.table-cell {
+display: table-cell;
+padding: 10px;
+}
+
+/*
+For modern page layouts, Flexbox and Grid are generally
+preferred over using table display values.
+
+Actual HTML <table> elements should still be used
+for tabular data.
+*/
+
+# /*
+
+9. INLINE-FLEX
+   ========================================================
+
+display: inline-flex;
+
+Creates a flex container that participates in the
+surrounding inline formatting context.
+
+The element itself behaves like an inline-level box,
+while its children are laid out using Flexbox.
+*/
+
+.inline-flex-example {
+display: inline-flex;
+
+```
+gap: 10px;
+padding: 10px;
+
+border: 1px solid black;
+```
+
+}
+
+/*
+Useful for:
+
+* Buttons with icons
+* Tags
+* Small UI components
+* Inline controls
+  */
+
+.icon-button {
+display: inline-flex;
+
+```
+align-items: center;
+gap: 8px;
+
+padding: 10px 15px;
+```
+
+}
+
+# /*
+
+10. INLINE-GRID
+    ========================================================
+
+display: inline-grid;
+
+Creates a grid container that participates in the
+surrounding inline formatting context.
+
+Its children are laid out using CSS Grid.
+*/
+
+.inline-grid-example {
+display: inline-grid;
+
+```
+grid-template-columns: repeat(2, 100px);
+gap: 10px;
+```
+
+}
+
+/*
+Useful when a grid component should sit alongside
+other inline content.
+*/
+
+# /*
+
+11. VISIBILITY VS DISPLAY
+    ========================================================
+
+display: none
+-> Removes the element from the layout.
+
+visibility: hidden
+-> Hides the element but keeps its layout space.
+
+Example:
+
+display: none;
+Element disappears and its space disappears.
+
+visibility: hidden;
+Element becomes invisible but its space remains.
+*/
+
+/*
+Visual idea:
+
+Original:
+
+[ BOX 1 ] [ BOX 2 ] [ BOX 3 ]
+
+display: none on BOX 2:
+
+[ BOX 1 ] [ BOX 3 ]
+
+visibility: hidden on BOX 2:
+
+[ BOX 1 ] [        ] [ BOX 3 ]
+
+The empty space remains.
+*/
+
+# /*
+
+12. visibility: hidden
+    ========================================================
+
+visibility: hidden;
+
+Makes an element invisible while preserving its
+layout space.
+
+Example:
+*/
+
+.visibility-hidden {
+visibility: hidden;
+}
+
+/*
+The element still participates in layout.
+
+This can be useful when you want an element's space
+to remain reserved.
+*/
+
+# /*
+
+13. visibility: visible
+    ========================================================
+
+visibility: visible;
+
+Makes an element visible.
+
+It is the default visibility value.
+
+Example:
+*/
+
+.visibility-visible {
+visibility: visible;
+}
+
+/*
+It can also be used to show an element after it was
+hidden.
+*/
+
+# /*
+
+# DISPLAY VS VISIBILITY EXAMPLE
+
+*/
+
+.display-none-example {
+display: none;
+}
+
+.visibility-hidden-example {
+visibility: hidden;
+}
+
+.visibility-visible-example {
+visibility: visible;
+}
+
+# /*
+
+# COMPARISON TABLE
+
+## VALUE             BEHAVIOR
+
+block
+New line, width/height supported.
+
+inline
+Stays in line, width/height do not work as for
+block boxes.
+
+inline-block
+Stays in line + supports width/height.
+
+none
+Element is removed from layout.
+
+flex
+Creates a block-level flex container.
+
+inline-flex
+Creates an inline-level flex container.
+
+grid
+Creates a block-level grid container.
+
+inline-grid
+Creates an inline-level grid container.
+
+table
+Makes the element behave like a table box.
+
+visibility: hidden
+Element is invisible but its layout space remains.
+
+visibility: visible
+Element is visible.
+*/
+
+# /*
+
+# BLOCK VS INLINE VS INLINE-BLOCK
+
+BLOCK:
+
+[ BOX ]
+[ BOX ]
+[ BOX ]
+
+Each starts on a new line.
+
+INLINE:
+
+[BOX][BOX][BOX]
+
+Elements can flow within a line.
+
+INLINE-BLOCK:
+
+[ BOX ][ BOX ][ BOX ]
+
+Elements can stay on the same line while supporting
+width and height.
+*/
+
+# /*
+
+# PRACTICAL NAVIGATION
+
+*/
+
+.nav {
+display: flex;
+gap: 20px;
+}
+
+# /*
+
+# PRACTICAL CARD GRID
+
+*/
+
+.card-grid {
+display: grid;
+
+```
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+```
+
+}
+
+# /*
+
+# PRACTICAL INLINE BUTTON
+
+*/
+
+.button {
+display: inline-block;
+
+```
+padding: 10px 20px;
+border: 1px solid black;
+```
+
+}
+
+# /*
+
+# PRACTICAL ICON BUTTON
+
+*/
+
+.icon-button-example {
+display: inline-flex;
+
+```
+align-items: center;
+justify-content: center;
+
+gap: 8px;
+
+padding: 10px 15px;
+```
+
+}
+
+# /*
+
+# PRACTICAL HIDDEN MENU
+
+*/
+
+.hidden-menu {
+display: none;
+}
+
+# /*
+
+# QUICK REVISION
+
+display: block
+-> Block-level box
+
+display: inline
+-> Inline-level box
+
+display: inline-block
+-> Inline-level box with block-like sizing
+
+display: none
+-> Removes element from layout
+
+display: flex
+-> Creates a flex container
+
+display: grid
+-> Creates a grid container
+
+display: table
+-> Creates table-like layout behavior
+
+display: inline-flex
+-> Inline-level flex container
+
+display: inline-grid
+-> Inline-level grid container
+
+visibility: hidden
+-> Hides element but preserves layout space
+
+visibility: visible
+-> Shows element
+*/
+
+# /*
+
+# QUESTIONS
+
+Q1. What is the purpose of the display property?
+
+Q2. What is display: block?
+
+Q3. What is display: inline?
+
+Q4. What is display: inline-block?
+
+Q5. What happens when display: none is used?
+
+Q6. What is the difference between block and inline?
+
+Q7. What is the difference between inline and
+inline-block?
+
+Q8. What is display: flex?
+
+Q9. What is display: grid?
+
+Q10. What is display: inline-flex?
+
+Q11. What is display: inline-grid?
+
+Q12. What is display: table?
+
+Q13. What is the difference between display: none and
+visibility: hidden?
+
+Q14. What is the default value of visibility?
+
+Q15. Create a Flexbox container.
+
+Q16. Create a Grid container with three equal columns.
+*/
+
+# /*
+
+# SOLUTIONS
+
+Q1.
+The display property controls how an element participates
+in the CSS layout.
+
+Q2.
+display: block makes an element behave as a block-level
+box. It normally starts on a new line and supports
+width and height.
+
+Q3.
+display: inline makes an element participate in the
+inline flow.
+
+Q4.
+display: inline-block allows an element to stay in the
+inline flow while supporting width and height.
+
+Q5.
+display: none removes the element from the rendered
+layout and it does not occupy space.
+
+Q6.
+
+block:
+Normally starts on a new line and supports
+width and height.
+
+inline:
+Flows within a line and does not behave like
+a block box for width and height.
+
+Q7.
+
+inline:
+Inline formatting behavior.
+
+inline-block:
+Inline-level placement with block-like sizing.
+
+Q8.
+display: flex creates a Flexbox container.
+
+Q9.
+display: grid creates a CSS Grid container.
+
+Q10.
+display: inline-flex creates an inline-level Flexbox
+container.
+
+Q11.
+display: inline-grid creates an inline-level Grid
+container.
+
+Q12.
+display: table makes an element behave like a table
+box in CSS table layout.
+
+Q13.
+
+display: none:
+Removes the element from layout.
+
+visibility: hidden:
+Hides the element but preserves its layout space.
+
+Q14.
+The default value is:
+
+visibility: visible;
+
+Q15.
+*/
+
+.answer-fifteen {
+display: flex;
+}
+
+/*
+Q16.
+*/
+
+.answer-sixteen {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+}
+
+# /*
+
+# PRACTICE
+
+1. Create a block element with width 300px and height
+   100px.
+
+2. Create three inline elements.
+
+3. Create three inline-block elements, each 150px wide.
+
+4. Hide an element using display: none.
+
+5. Create a Flexbox container with a 20px gap.
+
+6. Create a Grid container with four equal columns.
+
+7. Create an inline-flex button containing an icon
+   and text.
+
+8. Create an inline-grid layout with two columns.
+
+9. Hide an element using visibility: hidden.
+
+10. Create two examples demonstrating the difference
+    between display: none and visibility: hidden.
+
+11. Explain why Flexbox and Grid are preferred for
+    modern page layouts instead of using table layout.
+
+12. Create a navigation bar using display: flex.
+
+13. Create a three-column card layout using display:
+    grid.
+    */
+
+# /*
+
+# END OF CSS DISPLAY
+
+*/

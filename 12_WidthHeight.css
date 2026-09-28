@@ -1,0 +1,929 @@
+# /*
+
+```
+             CSS WIDTH AND HEIGHT
+```
+
+========================================================
+
+Topics Covered:
+
+1. width
+2. height
+3. min-width
+4. max-width
+5. min-height
+6. max-height
+7. auto
+8. Percentage Dimensions
+9. Viewport Dimensions
+10. fit-content
+11. min-content
+12. max-content
+    */
+
+# /*
+
+1. width
+   ========================================================
+
+The width property sets the width of an element.
+
+Syntax:
+
+width: value;
+
+Common units:
+
+* px
+* %
+* em
+* rem
+* vw
+* auto
+* fit-content
+* min-content
+* max-content
+
+Example:
+*/
+
+.width-example {
+width: 300px;
+}
+
+/*
+Width using rem:
+*/
+
+.width-rem {
+width: 20rem;
+}
+
+/*
+Width using percentage:
+*/
+
+.width-percentage {
+width: 50%;
+}
+
+# /*
+
+2. height
+   ========================================================
+
+The height property sets the height of an element.
+
+Syntax:
+
+height: value;
+
+Example:
+*/
+
+.height-example {
+height: 200px;
+}
+
+/*
+Height using viewport units:
+*/
+
+.height-viewport {
+height: 50vh;
+}
+
+/*
+IMPORTANT:
+
+A fixed height can cause content to overflow if the
+content becomes larger than the specified height.
+
+For content-driven layouts, min-height is often safer
+than a fixed height.
+*/
+
+# /*
+
+3. min-width
+   ========================================================
+
+min-width specifies the minimum width an element
+is allowed to have.
+
+The element will not become narrower than this value.
+
+Example:
+*/
+
+.min-width-example {
+min-width: 200px;
+}
+
+/*
+Useful for preventing an element from becoming
+too narrow.
+*/
+
+# /*
+
+4. max-width
+   ========================================================
+
+max-width specifies the maximum width an element
+is allowed to have.
+
+Example:
+*/
+
+.max-width-example {
+max-width: 800px;
+}
+
+/*
+A common responsive container:
+
+*/
+
+.container {
+width: 100%;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+/*
+Responsive image:
+
+*/
+
+.responsive-image {
+max-width: 100%;
+height: auto;
+}
+
+/*
+This prevents an image from becoming wider than
+its containing element.
+*/
+
+# /*
+
+5. min-height
+   ========================================================
+
+min-height specifies the minimum height of an element.
+
+The element can become taller if its content requires
+more space.
+
+Example:
+*/
+
+.min-height-example {
+min-height: 200px;
+}
+
+/*
+This is often useful for cards and sections where
+content size can vary.
+*/
+
+# /*
+
+6. max-height
+   ========================================================
+
+max-height specifies the maximum height an element
+can have.
+
+Example:
+*/
+
+.max-height-example {
+max-height: 400px;
+}
+
+/*
+If content exceeds max-height, the overflow property
+can control what happens.
+
+Example:
+*/
+
+.max-height-scroll {
+max-height: 300px;
+overflow: auto;
+}
+
+# /*
+
+7. auto
+   ========================================================
+
+auto allows the browser to calculate the dimension
+based on the situation and layout rules.
+
+For width, auto is commonly used to let a block-level
+element use the available width subject to its other
+constraints.
+
+Example:
+*/
+
+.auto-width {
+width: auto;
+}
+
+/*
+For height:
+
+height: auto;
+
+The height is generally determined by the content.
+*/
+
+.auto-height {
+height: auto;
+}
+
+/*
+A common example:
+
+*/
+
+.auto-image {
+width: 100%;
+height: auto;
+}
+
+/*
+The image keeps its natural aspect ratio when its
+width is changed.
+*/
+
+/*
+AUTO MARGIN VS AUTO WIDTH
+
+These are different:
+
+width: auto;
+-> Controls the element's width.
+
+margin: auto;
+-> Allows the browser to calculate margins.
+
+Example:
+*/
+
+.auto-example {
+width: 500px;
+margin: 0 auto;
+}
+
+# /*
+
+8. PERCENTAGE DIMENSIONS
+   ========================================================
+
+Percentage dimensions are relative to the relevant
+containing block.
+
+Example:
+
+width: 50%;
+
+The element's width is 50% of its containing block's
+width.
+*/
+
+.parent {
+width: 800px;
+}
+
+.child {
+width: 50%;
+}
+
+/*
+The child width is:
+
+800px × 50%
+= 400px
+*/
+
+/*
+Percentage height is more dependent on the containing
+block's definite height.
+
+Example:
+*/
+
+.height-parent {
+height: 400px;
+}
+
+.height-child {
+height: 50%;
+}
+
+/*
+The child height is 50% of the parent's specified
+height in this example:
+
+400px × 50%
+= 200px
+*/
+
+/*
+IMPORTANT:
+
+If the containing block does not have an appropriate
+definite height, percentage height may not behave as
+expected.
+
+For responsive vertical sizing, viewport units,
+min-height, or content-based sizing may be more useful.
+*/
+
+# /*
+
+9. VIEWPORT DIMENSIONS
+   ========================================================
+
+Viewport units are relative to the browser viewport.
+
+Common viewport units:
+
+vw
+vh
+vmin
+vmax
+*/
+
+/*
+VW - Viewport Width
+
+1vw = 1% of the viewport width.
+
+Example:
+*/
+
+.viewport-width {
+width: 50vw;
+}
+
+/*
+50vw = approximately 50% of the viewport width.
+*/
+
+/*
+VH - Viewport Height
+
+1vh = 1% of the viewport height.
+
+Example:
+*/
+
+.viewport-height {
+height: 50vh;
+}
+
+/*
+50vh = approximately 50% of the viewport height.
+*/
+
+/*
+Vmin
+
+1vmin = 1% of the smaller viewport dimension.
+
+Example:
+*/
+
+.viewport-min {
+width: 50vmin;
+}
+
+/*
+Vmax
+
+1vmax = 1% of the larger viewport dimension.
+
+Example:
+*/
+
+.viewport-max {
+width: 50vmax;
+}
+
+/*
+A common full-screen section:
+
+*/
+
+.full-screen {
+width: 100vw;
+min-height: 100vh;
+}
+
+/*
+NOTE:
+
+100vw represents the viewport width. In some browser
+situations, especially when a vertical scrollbar is
+present, it can cause horizontal overflow.
+
+For ordinary full-width block sections, width: 100%
+is often preferable.
+*/
+
+# /*
+
+10. fit-content
+    ========================================================
+
+fit-content is a content-aware sizing value.
+
+It allows an element to grow based on its content,
+while respecting the available space and any relevant
+maximum constraint.
+
+Example:
+*/
+
+.fit-content-example {
+width: fit-content;
+}
+
+/*
+A common use is for a button or label that should
+closely fit its content.
+*/
+
+.fit-button {
+width: fit-content;
+padding: 10px 20px;
+}
+
+/*
+fit-content can also be used with a limit:
+
+*/
+
+.fit-content-limited {
+width: fit-content(300px);
+}
+
+/*
+The exact final size depends on the available space,
+content, and constraints.
+*/
+
+# /*
+
+11. min-content
+    ========================================================
+
+min-content represents a content-based minimum size.
+
+It tries to make the element as small as possible
+without unnecessary content overflow, according to
+the layout's content-sizing rules.
+
+Example:
+*/
+
+.min-content-example {
+width: min-content;
+}
+
+/*
+Example with text:
+
+*/
+
+.min-content-text {
+width: min-content;
+}
+
+/*
+min-content is particularly useful in Grid and Flexbox
+layouts when controlling how much space content should
+occupy.
+*/
+
+# /*
+
+12. max-content
+    ========================================================
+
+max-content represents a content-based maximum size.
+
+It allows the element to use the space required by
+its content without intentionally wrapping it, subject
+to other layout constraints.
+
+Example:
+*/
+
+.max-content-example {
+width: max-content;
+}
+
+/*
+Example:
+*/
+
+.max-content-text {
+width: max-content;
+}
+
+/*
+Be careful with max-content because long content may
+produce a very wide element and cause overflow if the
+available space is limited.
+*/
+
+# /*
+
+# COMPARISON
+
+width: auto;
+-> Browser determines width based on layout rules.
+
+width: 50%;
+-> 50% of the relevant containing block.
+
+width: 50vw;
+-> 50% of viewport width.
+
+width: fit-content;
+-> Fits content while respecting available space.
+
+width: min-content;
+-> Uses the content's minimum intrinsic size.
+
+width: max-content;
+-> Uses the content's maximum intrinsic size.
+
+min-width:
+-> Lower limit for width.
+
+max-width:
+-> Upper limit for width.
+
+min-height:
+-> Lower limit for height.
+
+max-height:
+-> Upper limit for height.
+*/
+
+# /*
+
+# WIDTH + MIN/MAX WIDTH
+
+When width is combined with min-width and max-width,
+the final used size must respect the minimum and
+maximum constraints.
+
+Example:
+*/
+
+.width-constraints {
+width: 80%;
+min-width: 300px;
+max-width: 900px;
+}
+
+/*
+This means:
+
+Preferred width = 80% of containing block
+
+But:
+Minimum = 300px
+Maximum = 900px
+*/
+
+# /*
+
+# HEIGHT + MIN/MAX HEIGHT
+
+*/
+
+.height-constraints {
+height: 50vh;
+min-height: 300px;
+max-height: 700px;
+}
+
+/*
+The final height is constrained by:
+
+Minimum = 300px
+Maximum = 700px
+Preferred = 50vh
+*/
+
+# /*
+
+# PRACTICAL RESPONSIVE CONTAINER
+
+*/
+
+.responsive-container {
+width: 90%;
+max-width: 1200px;
+min-width: 280px;
+
+```
+margin: 0 auto;
+```
+
+}
+
+# /*
+
+# PRACTICAL HERO SECTION
+
+*/
+
+.hero {
+width: 100%;
+min-height: 70vh;
+padding: 40px;
+}
+
+# /*
+
+# PRACTICAL CARD
+
+*/
+
+.card-width-height {
+width: 100%;
+max-width: 400px;
+
+```
+min-height: 200px;
+
+padding: 20px;
+```
+
+}
+
+# /*
+
+# PRACTICAL CONTENT-BASED BUTTON
+
+*/
+
+.content-button {
+width: fit-content;
+padding: 10px 20px;
+}
+
+# /*
+
+# QUICK REVISION
+
+width
+-> Sets element width
+
+height
+-> Sets element height
+
+min-width
+-> Minimum allowed width
+
+max-width
+-> Maximum allowed width
+
+min-height
+-> Minimum allowed height
+
+max-height
+-> Maximum allowed height
+
+auto
+-> Browser determines size based on layout rules
+
+%
+-> Relative to the relevant containing block
+
+vw
+-> Percentage of viewport width
+
+vh
+-> Percentage of viewport height
+
+vmin
+-> Percentage of smaller viewport dimension
+
+vmax
+-> Percentage of larger viewport dimension
+
+fit-content
+-> Content-aware size that fits within constraints
+
+min-content
+-> Minimum intrinsic content size
+
+max-content
+-> Maximum intrinsic content size
+*/
+
+# /*
+
+# IMPORTANT DIFFERENCES
+
+50%:
+Relative to the relevant containing block.
+
+50vw:
+Relative to the viewport width.
+
+50vh:
+Relative to the viewport height.
+
+fit-content:
+Fits around content while respecting available space.
+
+min-content:
+Shrinks toward the content's minimum intrinsic size.
+
+max-content:
+Expands toward the content's maximum intrinsic size.
+*/
+
+# /*
+
+# QUESTIONS
+
+Q1. What is the purpose of the width property?
+
+Q2. What is the purpose of the height property?
+
+Q3. What is min-width?
+
+Q4. What is max-width?
+
+Q5. What is min-height?
+
+Q6. What is max-height?
+
+Q7. What does width: auto mean?
+
+Q8. What is the difference between 50% and 50vw?
+
+Q9. What is the difference between 50vh and 50vw?
+
+Q10. What does fit-content do?
+
+Q11. What is min-content?
+
+Q12. What is max-content?
+
+Q13. Write CSS for a responsive container that:
+- Uses 90% width
+- Has maximum width of 1200px
+- Is horizontally centered.
+
+Q14. Write CSS for a full-height section.
+
+Q15. Write CSS for an image that can shrink to fit its
+container while maintaining its aspect ratio.
+*/
+
+# /*
+
+# SOLUTIONS
+
+Q1.
+The width property sets the width of an element.
+
+Q2.
+The height property sets the height of an element.
+
+Q3.
+min-width sets the smallest width an element is allowed
+to have.
+
+Q4.
+max-width sets the largest width an element is allowed
+to have.
+
+Q5.
+min-height sets the smallest height an element is
+allowed to have.
+
+Q6.
+max-height sets the largest height an element is
+allowed to have.
+
+Q7.
+width: auto allows the browser to determine the width
+according to the element's layout rules and constraints.
+
+Q8.
+
+50%:
+Usually relative to the relevant containing block.
+
+50vw:
+Relative to 50% of the viewport width.
+
+Q9.
+
+50vh:
+50% of viewport height.
+
+50vw:
+50% of viewport width.
+
+Q10.
+fit-content is a content-aware sizing value that lets
+an element fit its content while respecting available
+space and constraints.
+
+Q11.
+min-content represents a content-based minimum intrinsic
+size.
+
+Q12.
+max-content represents a content-based maximum intrinsic
+size.
+
+Q13.
+*/
+
+.answer-thirteen {
+width: 90%;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+/*
+Q14.
+*/
+
+.answer-fourteen {
+min-height: 100vh;
+}
+
+/*
+Q15.
+*/
+
+.answer-fifteen {
+max-width: 100%;
+height: auto;
+}
+
+# /*
+
+# PRACTICE
+
+1. Create a box with width: 500px.
+
+2. Create a box with height: 300px.
+
+3. Create an element with:
+   width: 80%;
+   min-width: 300px;
+   max-width: 1000px;
+
+4. Create a section that is at least 500px tall.
+
+5. Create a container that can never become wider than
+   1200px.
+
+6. Create a full viewport-height section using vh.
+
+7. Create an element whose width is 50vw.
+
+8. Create a button using fit-content.
+
+9. Create two examples using min-content and max-content.
+
+10. Create a responsive container using:
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+
+11. Explain the difference between:
+    width: 100%;
+    width: 100vw;
+
+12. Create an image using:
+    max-width: 100%;
+    height: auto;
+    */
+
+# /*
+
+# END OF CSS WIDTH AND HEIGHT
+
+*/

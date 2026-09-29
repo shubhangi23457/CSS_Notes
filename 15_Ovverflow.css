@@ -1,0 +1,885 @@
+```css
+/*
+========================================================
+                CSS OVERFLOW
+========================================================
+
+CSS Overflow controls what happens when the content
+inside an element is larger than the element's box.
+
+MAIN TOPICS:
+1. overflow
+2. overflow-x
+3. overflow-y
+4. visible
+5. hidden
+6. scroll
+7. auto
+8. Text Overflow
+9. Scrollable Containers
+10. Clipping Content
+
+========================================================
+1. overflow
+========================================================
+
+The overflow property controls what happens when content
+does not fit inside an element's specified width or height.
+
+SYNTAX:
+    overflow: value;
+
+COMMON VALUES:
+    visible
+    hidden
+    scroll
+    auto
+    clip
+
+EXAMPLE:
+*/
+
+.box {
+    width: 200px;
+    height: 100px;
+    overflow: auto;
+}
+
+/*
+========================================================
+2. overflow-x
+========================================================
+
+Controls overflow in the horizontal direction.
+
+SYNTAX:
+    overflow-x: value;
+
+EXAMPLE:
+*/
+
+.horizontal-box {
+    width: 200px;
+    overflow-x: auto;
+}
+
+/*
+If content is wider than the element, a horizontal
+scrollbar can appear when using auto.
+*/
+
+/*
+========================================================
+3. overflow-y
+========================================================
+
+Controls overflow in the vertical direction.
+
+SYNTAX:
+    overflow-y: value;
+
+EXAMPLE:
+*/
+
+.vertical-box {
+    height: 100px;
+    overflow-y: auto;
+}
+
+/*
+If content is taller than the element, a vertical
+scrollbar can appear when using auto.
+*/
+
+/*
+========================================================
+4. visible
+========================================================
+
+visible is the default overflow behavior in many cases.
+
+The overflowing content is still visible outside
+the element's box.
+
+EXAMPLE:
+*/
+
+.visible-box {
+    width: 150px;
+    height: 50px;
+    overflow: visible;
+}
+
+/*
+RESULT:
+
+The extra content can extend outside the box.
+
+IMPORTANT:
+    visible does NOT clip the overflowing content.
+*/
+
+/*
+========================================================
+5. hidden
+========================================================
+
+hidden clips content that extends outside the box.
+
+No scrolling UI is provided.
+
+EXAMPLE:
+*/
+
+.hidden-box {
+    width: 150px;
+    height: 50px;
+    overflow: hidden;
+}
+
+/*
+RESULT:
+
+Content outside the box is not visible.
+
+COMMON USES:
+    - Hiding overflowing images
+    - Cropping content
+    - Creating clean cards
+    - Preventing unwanted visual overflow
+*/
+
+/*
+========================================================
+6. scroll
+========================================================
+
+scroll creates a scrolling mechanism for the element.
+
+EXAMPLE:
+*/
+
+.scroll-box {
+    width: 200px;
+    height: 100px;
+    overflow: scroll;
+}
+
+/*
+The element can be scrolled when content exceeds
+its available space.
+
+Depending on the browser and operating system,
+scrollbars may remain visible even when they are
+not currently needed.
+*/
+
+/*
+========================================================
+7. auto
+========================================================
+
+auto allows the browser to provide scrolling when
+the content actually overflows.
+
+EXAMPLE:
+*/
+
+.auto-box {
+    width: 200px;
+    height: 100px;
+    overflow: auto;
+}
+
+/*
+If content fits:
+    No scrolling is needed.
+
+If content overflows:
+    A scrolling mechanism can appear.
+
+This is commonly used for responsive containers.
+*/
+
+/*
+========================================================
+OVERFLOW VALUES COMPARISON
+========================================================
+
+visible
+    Content remains visible outside the box.
+
+hidden
+    Overflowing content is clipped.
+
+scroll
+    Provides scrolling regardless of whether overflow
+    currently requires it.
+
+auto
+    Provides scrolling when required.
+
+clip
+    Clips overflowing content without creating a
+    scroll container.
+
+========================================================
+*/
+
+/*
+========================================================
+8. overflow-x AND overflow-y TOGETHER
+========================================================
+
+You can control horizontal and vertical overflow
+independently.
+
+EXAMPLE:
+*/
+
+.container {
+    width: 300px;
+    height: 150px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/*
+This means:
+
+Horizontal overflow:
+    Scrollable
+
+Vertical overflow:
+    Hidden
+*/
+
+/*
+ANOTHER EXAMPLE:
+*/
+
+.container-2 {
+    width: 300px;
+    height: 150px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/*
+This means:
+
+Horizontal:
+    Hidden
+
+Vertical:
+    Scrollable
+*/
+
+/*
+========================================================
+9. OVERFLOW SHORTHAND
+========================================================
+
+One value:
+
+    overflow: auto;
+
+Both X and Y use the same value.
+
+Two values:
+
+    overflow: hidden auto;
+
+First value:
+    overflow-x
+
+Second value:
+    overflow-y
+
+EXAMPLE:
+*/
+
+.example {
+    overflow: hidden auto;
+}
+
+/*
+Equivalent to:
+
+.example {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+*/
+
+/*
+========================================================
+10. TEXT OVERFLOW
+========================================================
+
+text-overflow controls how text is displayed when
+it overflows its container.
+
+COMMON VALUES:
+
+    clip
+    ellipsis
+
+IMPORTANT:
+
+text-overflow by itself does NOT create overflow.
+
+For the classic single-line ellipsis effect, you
+normally use:
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+========================================================
+*/
+
+/*
+========================================================
+11. text-overflow: clip
+========================================================
+
+clip cuts off the overflowing text.
+
+EXAMPLE:
+*/
+
+.text-clip {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+/*
+Example visible result:
+
+This is a very long te...
+               ^
+The text is simply clipped.
+*/
+
+/*
+========================================================
+12. text-overflow: ellipsis
+========================================================
+
+ellipsis displays "..." / an ellipsis character
+when text is clipped.
+
+EXAMPLE:
+*/
+
+.text-ellipsis {
+    width: 200px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*
+Example:
+
+This is a very long text...
+
+The browser displays an ellipsis when the text
+does not fit.
+*/
+
+/*
+IMPORTANT:
+
+The common ellipsis pattern is:
+
+    width
+    +
+    white-space: nowrap
+    +
+    overflow: hidden
+    +
+    text-overflow: ellipsis
+*/
+
+/*
+========================================================
+13. SCROLLABLE CONTAINERS
+========================================================
+
+A scrollable container is an element whose content
+can be scrolled because it is larger than the available
+space.
+
+VERTICAL SCROLL:
+*/
+
+.vertical-scroll {
+    width: 300px;
+    height: 150px;
+    overflow-y: auto;
+}
+
+/*
+HORIZONTAL SCROLL:
+*/
+
+.horizontal-scroll {
+    width: 300px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/*
+BOTH DIRECTIONS:
+*/
+
+.both-scroll {
+    width: 300px;
+    height: 150px;
+    overflow: auto;
+}
+
+/*
+========================================================
+14. SCROLLABLE CONTENT EXAMPLE
+========================================================
+*/
+
+.scroll-container {
+    width: 300px;
+    height: 150px;
+
+    overflow-y: auto;
+
+    border: 2px solid black;
+}
+
+.scroll-container p {
+    margin: 10px;
+}
+
+/*
+If there are many paragraphs, the container can be
+scrolled vertically.
+*/
+
+/*
+========================================================
+15. CLIPPING CONTENT
+========================================================
+
+Clipping means hiding the portion of content that
+extends outside the element's clipping area.
+
+Using:
+
+    overflow: hidden;
+
+is a common way to clip content.
+
+EXAMPLE:
+*/
+
+.clip-box {
+    width: 200px;
+    height: 100px;
+    overflow: hidden;
+}
+
+/*
+Any content outside the box is not displayed.
+*/
+
+/*
+========================================================
+16. overflow: clip
+========================================================
+
+clip clips overflowing content.
+
+EXAMPLE:
+*/
+
+.strict-clip {
+    width: 200px;
+    height: 100px;
+    overflow: clip;
+}
+
+/*
+DIFFERENCE:
+
+hidden:
+    Clips overflow and can still participate in
+    scrolling behavior/programmatic scrolling
+    depending on the element and axis.
+
+clip:
+    Clips overflow and does not create a scroll
+    container.
+
+Use clip when you specifically want clipping
+without scrolling.
+*/
+
+/*
+========================================================
+17. PRACTICAL CARD WITH CLIPPED IMAGE
+========================================================
+*/
+
+.card {
+    width: 300px;
+    height: 200px;
+
+    overflow: hidden;
+
+    border: 2px solid black;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+/*
+The image stays inside the card because the card
+clips anything outside its boundaries.
+*/
+
+/*
+========================================================
+18. PRACTICAL TEXT ELLIPSIS
+========================================================
+*/
+
+.product-name {
+    width: 250px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*
+Useful for:
+
+    Product names
+    Usernames
+    File names
+    Navigation items
+    Table cells
+*/
+
+/*
+========================================================
+19. PRACTICAL SCROLLABLE CODE BOX
+========================================================
+*/
+
+.code-box {
+    width: 500px;
+    height: 200px;
+
+    overflow: auto;
+
+    border: 1px solid black;
+}
+
+/*
+Large content can be viewed by scrolling instead
+of expanding the entire page.
+*/
+
+/*
+========================================================
+20. RESPONSIVE OVERFLOW
+========================================================
+
+Overflow is especially useful for content that may
+become wider than the screen.
+
+EXAMPLE:
+*/
+
+.responsive-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/*
+NOTE:
+
+For a wrapper around a table, overflow-x: auto
+allows the table to scroll horizontally on smaller
+screens.
+
+Typical HTML structure:
+
+<div class="responsive-table">
+    <table>...</table>
+</div>
+*/
+
+/*
+========================================================
+QUICK REVISION
+========================================================
+
+overflow:
+    Controls content that exceeds the box.
+
+overflow-x:
+    Controls horizontal overflow.
+
+overflow-y:
+    Controls vertical overflow.
+
+visible:
+    Overflow remains visible.
+
+hidden:
+    Overflow is clipped.
+
+scroll:
+    Provides scrolling.
+
+auto:
+    Provides scrolling when needed.
+
+clip:
+    Clips overflow without creating a scroll container.
+
+text-overflow:
+    Controls how overflowing text is displayed.
+
+text-overflow: clip:
+    Clips the text.
+
+text-overflow: ellipsis:
+    Shows an ellipsis for clipped text.
+
+Scrollable container:
+    A fixed/limited container whose content can be
+    viewed by scrolling.
+
+Clipping:
+    Hiding content outside the defined clipping area.
+
+========================================================
+IMPORTANT EXAM POINTS
+========================================================
+
+1. overflow controls content that exceeds an element's
+   box.
+
+2. overflow-x controls horizontal overflow.
+
+3. overflow-y controls vertical overflow.
+
+4. visible allows overflowing content to remain visible.
+
+5. hidden clips overflowing content.
+
+6. scroll provides a scrolling mechanism.
+
+7. auto provides scrolling when necessary.
+
+8. text-overflow does not create overflow by itself.
+
+9. Classic single-line ellipsis usually requires:
+
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+
+10. overflow: clip is used when content should be
+    clipped without creating a scroll container.
+
+========================================================
+QUESTIONS
+========================================================
+
+Q1. What is CSS overflow?
+
+Q2. What is the difference between overflow-x and
+    overflow-y?
+
+Q3. Explain visible, hidden, scroll and auto.
+
+Q4. What is the difference between hidden and clip?
+
+Q5. What is text-overflow?
+
+Q6. How do you create an ellipsis for overflowing text?
+
+Q7. How do you create a vertically scrollable container?
+
+Q8. How do you create a horizontally scrollable container?
+
+Q9. What is a scrollable container?
+
+Q10. What is clipping content?
+
+========================================================
+SOLUTIONS
+========================================================
+
+Q1.
+CSS overflow controls what happens when content is
+larger than the available size of an element.
+
+Q2.
+overflow-x controls horizontal overflow.
+
+overflow-y controls vertical overflow.
+
+Q3.
+
+visible:
+    Overflow remains visible.
+
+hidden:
+    Overflow is clipped.
+
+scroll:
+    Provides scrolling.
+
+auto:
+    Provides scrolling when required.
+
+Q4.
+hidden clips overflowing content, while clip clips
+overflow without creating a scroll container.
+
+Q5.
+text-overflow controls how text is displayed when
+it overflows its container.
+
+Q6.
+Use:
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+Q7.
+Use:
+
+    overflow-y: auto;
+
+Q8.
+Use:
+
+    overflow-x: auto;
+
+Q9.
+A scrollable container is an element whose content
+can be viewed by scrolling when it exceeds the available
+space.
+
+Q10.
+Clipping means hiding the part of an element's content
+that extends outside its clipping area.
+
+========================================================
+PRACTICE
+========================================================
+
+1. Create a box of 300px × 100px with hidden overflow.
+
+2. Create a vertical scrollable container.
+
+3. Create a horizontal scrollable container.
+
+4. Create a text element that shows an ellipsis when
+   the text becomes too long.
+
+5. Create a card that clips an oversized image.
+
+6. Create a container where horizontal overflow is
+   scrollable but vertical overflow is hidden.
+
+7. Create a container where vertical overflow is
+   scrollable but horizontal overflow is hidden.
+
+8. Create a responsive table wrapper using overflow-x.
+
+========================================================
+PRACTICE SOLUTIONS
+========================================================
+*/
+
+/* 1. Hidden Overflow */
+.box-1 {
+    width: 300px;
+    height: 100px;
+    overflow: hidden;
+}
+
+/* 2. Vertical Scroll */
+.box-2 {
+    width: 300px;
+    height: 100px;
+    overflow-y: auto;
+}
+
+/* 3. Horizontal Scroll */
+.box-3 {
+    width: 300px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/* 4. Text Ellipsis */
+.box-4 {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 5. Clipped Image */
+.box-5 {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+/* 6. Horizontal Scroll + Vertical Hidden */
+.box-6 {
+    width: 300px;
+    height: 150px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* 7. Vertical Scroll + Horizontal Hidden */
+.box-7 {
+    width: 300px;
+    height: 150px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* 8. Responsive Table Wrapper */
+.box-8 {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/*
+========================================================
+END OF CSS OVERFLOW
+========================================================
+*/
+```

@@ -1,0 +1,1174 @@
+# /*
+
+```
+                CSS POSITIONING
+```
+
+========================================================
+
+Topics Covered:
+
+1. Static Positioning
+2. Relative Positioning
+3. Absolute Positioning
+4. Fixed Positioning
+5. Sticky Positioning
+6. top
+7. right
+8. bottom
+9. left
+10. Positioning Context
+11. Containing Blocks
+12. Overlapping Elements
+13. z-index
+14. Stacking Order
+    */
+
+# /*
+
+1. POSITIONING
+   ========================================================
+
+The CSS position property controls how an element is
+positioned in a document.
+
+Main position values:
+
+static
+relative
+absolute
+fixed
+sticky
+
+Syntax:
+
+position: value;
+
+The four offset properties are:
+
+top
+right
+bottom
+left
+
+These offsets are mainly used with positioned elements.
+*/
+
+# /*
+
+2. STATIC POSITIONING
+   ========================================================
+
+position: static;
+
+Static is the default positioning of elements.
+
+With static positioning:
+
+* Element follows the normal document flow.
+* top, right, bottom and left do not reposition it.
+* z-index does not apply in the usual positioned-element
+  way.
+
+Example:
+*/
+
+.static-box {
+position: static;
+}
+
+/*
+This is equivalent to the default behavior:
+
+*/
+
+.default-position {
+position: static;
+}
+
+# /*
+
+3. RELATIVE POSITIONING
+   ========================================================
+
+position: relative;
+
+A relatively positioned element:
+
+* Remains in the normal document flow.
+* Can be moved using top, right, bottom and left.
+* Its original space is preserved.
+* Can establish a containing block for absolutely
+  positioned descendants.
+
+Example:
+*/
+
+.relative-box {
+position: relative;
+top: 20px;
+left: 30px;
+}
+
+/*
+The element moves visually:
+
+20px downward
+30px to the right
+
+Its original layout space is still reserved.
+*/
+
+/*
+Another example:
+*/
+
+.relative-example {
+position: relative;
+left: 50px;
+}
+
+# /*
+
+4. ABSOLUTE POSITIONING
+   ========================================================
+
+position: absolute;
+
+An absolutely positioned element:
+
+* Is removed from normal document flow.
+* Does not reserve its normal space.
+* Is positioned relative to its containing block.
+* Can use top, right, bottom and left.
+
+Example:
+*/
+
+.absolute-box {
+position: absolute;
+top: 20px;
+left: 30px;
+}
+
+/*
+IMPORTANT:
+
+An absolutely positioned element is normally positioned
+relative to the nearest ancestor that establishes its
+containing block.
+
+A common pattern is:
+
+Parent:
+position: relative;
+
+Child:
+position: absolute;
+*/
+
+.parent {
+position: relative;
+}
+
+.child {
+position: absolute;
+top: 10px;
+right: 10px;
+}
+
+/*
+If no suitable containing block is established by an
+ancestor, the containing block is generally based on
+the initial containing block.
+*/
+
+# /*
+
+5. FIXED POSITIONING
+   ========================================================
+
+position: fixed;
+
+A fixed element is positioned relative to the viewport
+in the common case.
+
+It:
+
+* Is removed from normal document flow.
+* Stays in the same viewport position while scrolling.
+* Can be positioned using top, right, bottom and left.
+
+Example:
+*/
+
+.fixed-box {
+position: fixed;
+
+```
+top: 20px;
+right: 20px;
+```
+
+}
+
+/*
+Common uses:
+
+* Fixed navigation bars
+* Floating buttons
+* Chat buttons
+* Back-to-top buttons
+  */
+
+/*
+Fixed navigation example:
+*/
+
+.fixed-navbar {
+position: fixed;
+
+```
+top: 0;
+left: 0;
+
+width: 100%;
+```
+
+}
+
+/*
+NOTE:
+
+Certain properties on ancestors, such as transform,
+can affect the containing block of fixed-positioned
+descendants. Therefore, "fixed = always relative to
+the viewport" is the common case, not an absolute rule
+for every CSS layout situation.
+*/
+
+# /*
+
+6. STICKY POSITIONING
+   ========================================================
+
+position: sticky;
+
+Sticky positioning behaves like a combination of
+relative and fixed positioning.
+
+The element:
+
+* Initially participates in normal flow.
+* Scrolls normally until it reaches its specified
+  offset.
+* Then sticks within its scrolling/containing area.
+* Requires at least one inset such as top to define
+  the sticking threshold.
+
+Example:
+*/
+
+.sticky-header {
+position: sticky;
+top: 0;
+}
+
+/*
+Common uses:
+
+* Sticky headers
+* Section headings
+* Sidebars
+* Table headings
+  */
+
+/*
+Example:
+*/
+
+.sticky-sidebar {
+position: sticky;
+top: 20px;
+}
+
+/*
+IMPORTANT:
+
+A sticky element is constrained by its containing
+block/scrolling area, so it does not necessarily remain
+stuck for the entire page.
+*/
+
+# /*
+
+7. top
+   ========================================================
+
+The top property specifies an offset from the relevant
+positioning reference edge.
+
+Example:
+*/
+
+.top-example {
+position: relative;
+top: 20px;
+}
+
+/*
+For relative positioning:
+
+top: 20px;
+-> Moves the element 20px downward visually.
+
+For absolute/fixed/sticky positioning, top helps define
+the element's position within its containing/scrolling
+context.
+*/
+
+# /*
+
+8. right
+   ========================================================
+
+The right property specifies a horizontal offset.
+
+Example:
+*/
+
+.right-example {
+position: relative;
+right: 20px;
+}
+
+/*
+For relative positioning:
+
+right: 20px;
+-> Moves the element 20px to the left visually.
+*/
+
+/*
+Absolute positioning example:
+*/
+
+.absolute-right {
+position: absolute;
+right: 20px;
+}
+
+# /*
+
+9. bottom
+   ========================================================
+
+The bottom property specifies a vertical offset.
+
+Example:
+*/
+
+.bottom-example {
+position: relative;
+bottom: 20px;
+}
+
+/*
+For relative positioning:
+
+bottom: 20px;
+-> Moves the element 20px upward visually.
+*/
+
+/*
+Absolute positioning:
+*/
+
+.absolute-bottom {
+position: absolute;
+bottom: 20px;
+}
+
+# /*
+
+10. left
+    ========================================================
+
+The left property specifies a horizontal offset.
+
+Example:
+*/
+
+.left-example {
+position: relative;
+left: 20px;
+}
+
+/*
+For relative positioning:
+
+left: 20px;
+-> Moves the element 20px to the right visually.
+*/
+
+/*
+Absolute positioning:
+*/
+
+.absolute-left {
+position: absolute;
+left: 20px;
+}
+
+# /*
+
+# OFFSET QUICK REFERENCE
+
+top
+-> Controls vertical offset from the top side.
+
+right
+-> Controls horizontal offset from the right side.
+
+bottom
+-> Controls vertical offset from the bottom side.
+
+left
+-> Controls horizontal offset from the left side.
+
+For relative positioning:
+
+top: 20px;
+-> Moves down.
+
+bottom: 20px;
+-> Moves up.
+
+left: 20px;
+-> Moves right.
+
+right: 20px;
+-> Moves left.
+*/
+
+# /*
+
+11. POSITIONING CONTEXT
+    ========================================================
+
+A positioning context determines what an element is
+positioned relative to.
+
+The most common example:
+
+Parent:
+position: relative;
+
+Child:
+position: absolute;
+
+Example:
+*/
+
+.positioning-parent {
+position: relative;
+
+```
+width: 400px;
+height: 250px;
+
+border: 2px solid black;
+```
+
+}
+
+.positioning-child {
+position: absolute;
+
+```
+top: 20px;
+right: 20px;
+```
+
+}
+
+/*
+The child is positioned relative to the parent because
+the parent establishes the relevant containing block.
+*/
+
+# /*
+
+12. CONTAINING BLOCKS
+    ========================================================
+
+A containing block is the reference rectangle used for
+calculating the position and size of certain elements.
+
+For a common absolute-positioning case:
+
+position: relative;
+position: absolute;
+
+The nearest ancestor that establishes the containing
+block becomes the reference.
+
+Example:
+*/
+
+.container {
+position: relative;
+
+```
+width: 500px;
+height: 300px;
+```
+
+}
+
+.absolute-item {
+position: absolute;
+
+```
+top: 0;
+left: 0;
+```
+
+}
+
+/*
+The absolute item is positioned from the container's
+padding box in the common case.
+*/
+
+/*
+For fixed positioning, the viewport/initial containing
+block is the usual reference, unless an ancestor
+establishes a different containing block through
+properties that affect fixed positioning.
+*/
+
+# /*
+
+13. OVERLAPPING ELEMENTS
+    ========================================================
+
+Positioned elements can overlap each other.
+
+Example:
+*/
+
+.overlap-one {
+position: absolute;
+
+```
+top: 20px;
+left: 20px;
+```
+
+}
+
+.overlap-two {
+position: absolute;
+
+```
+top: 50px;
+left: 50px;
+```
+
+}
+
+/*
+The elements may overlap because their positions
+intersect.
+*/
+
+/*
+A common real-world example is placing a badge on
+an image or card.
+*/
+
+.card {
+position: relative;
+}
+
+.badge {
+position: absolute;
+
+```
+top: 10px;
+right: 10px;
+```
+
+}
+
+# /*
+
+14. z-index
+    ========================================================
+
+z-index controls the stacking order of positioned
+elements and certain other elements participating in
+stacking contexts.
+
+A higher z-index generally places an element above a
+lower z-index element when they participate in the same
+stacking context.
+
+Example:
+*/
+
+.box-one {
+position: absolute;
+z-index: 1;
+}
+
+.box-two {
+position: absolute;
+z-index: 2;
+}
+
+/*
+box-two will generally appear above box-one because:
+
+2 > 1
+*/
+
+/*
+Negative z-index values are also possible:
+
+*/
+
+.behind {
+position: relative;
+z-index: -1;
+}
+
+/*
+Use negative z-index carefully because stacking contexts,
+backgrounds, and ancestor relationships can affect the
+result.
+*/
+
+# /*
+
+15. STACKING ORDER
+    ========================================================
+
+When elements overlap, CSS determines which element
+appears on top using stacking rules.
+
+z-index is one part of this system.
+
+A simplified idea:
+
+Higher stacking level
+↓
+Element appears above
+
+Lower stacking level
+↓
+Element appears below
+
+Example:
+*/
+
+.stack-low {
+position: relative;
+z-index: 1;
+}
+
+.stack-high {
+position: relative;
+z-index: 10;
+}
+
+/*
+The element with z-index: 10 will generally appear
+above the element with z-index: 1 when both belong to
+the same stacking context.
+*/
+
+/*
+IMPORTANT:
+
+z-index values are compared within stacking contexts.
+
+An element with z-index: 9999 inside one stacking
+context cannot automatically appear above every element
+outside that stacking context.
+
+Certain properties can create stacking contexts, such as
+some positioned elements with z-index and properties
+such as opacity less than 1 or transform.
+*/
+
+# /*
+
+# POSITION TYPES COMPARISON
+
+STATIC
+-> Normal flow
+-> Default
+-> Offsets do not reposition it
+
+RELATIVE
+-> Remains in normal flow
+-> Can be offset
+-> Original space is preserved
+
+ABSOLUTE
+-> Removed from normal flow
+-> Positioned relative to containing block
+
+FIXED
+-> Removed from normal flow
+-> Usually positioned relative to viewport
+-> Stays fixed while scrolling
+
+STICKY
+-> Starts in normal flow
+-> Becomes stuck at a specified offset while scrolling
+-> Constrained by its containing/scrolling area
+*/
+
+# /*
+
+PRACTICAL EXAMPLE 1
+CARD WITH ABSOLUTE BADGE
+========================
+
+*/
+
+.product-card {
+position: relative;
+
+```
+width: 300px;
+padding: 20px;
+
+border: 1px solid black;
+```
+
+}
+
+.product-badge {
+position: absolute;
+
+```
+top: 10px;
+right: 10px;
+
+padding: 5px 10px;
+
+background-color: black;
+color: white;
+```
+
+}
+
+# /*
+
+PRACTICAL EXAMPLE 2
+FIXED BUTTON
+============
+
+*/
+
+.floating-button {
+position: fixed;
+
+```
+right: 20px;
+bottom: 20px;
+
+padding: 15px;
+```
+
+}
+
+# /*
+
+PRACTICAL EXAMPLE 3
+STICKY HEADER
+=============
+
+*/
+
+.sticky-nav {
+position: sticky;
+
+```
+top: 0;
+
+z-index: 100;
+```
+
+}
+
+# /*
+
+PRACTICAL EXAMPLE 4
+OVERLAPPING BOXES
+=================
+
+*/
+
+.overlap-container {
+position: relative;
+
+```
+width: 400px;
+height: 300px;
+```
+
+}
+
+.box-a {
+position: absolute;
+
+```
+top: 30px;
+left: 30px;
+
+width: 150px;
+height: 150px;
+
+z-index: 1;
+```
+
+}
+
+.box-b {
+position: absolute;
+
+```
+top: 80px;
+left: 80px;
+
+width: 150px;
+height: 150px;
+
+z-index: 2;
+```
+
+}
+
+# /*
+
+# COMMON MISTAKE
+
+Mistake:
+
+.parent {
+width: 400px;
+height: 300px;
+}
+
+.child {
+position: absolute;
+top: 0;
+left: 0;
+}
+
+If the parent does not establish the intended containing
+block, the absolute child may be positioned relative to
+another ancestor or the initial containing block.
+
+Common solution:
+
+*/
+
+.correct-parent {
+position: relative;
+}
+
+# /*
+
+# QUICK REVISION
+
+position: static
+-> Default normal flow
+
+position: relative
+-> Normal flow + offsets
+
+position: absolute
+-> Removed from normal flow
+
+position: fixed
+-> Usually fixed relative to viewport
+
+position: sticky
+-> Sticks during scrolling within its constraints
+
+top
+-> Vertical offset
+
+right
+-> Horizontal offset from right
+
+bottom
+-> Vertical offset from bottom
+
+left
+-> Horizontal offset from left
+
+Containing block
+-> Reference area used for positioning
+
+z-index
+-> Controls stacking level
+
+Stacking order
+-> Determines which overlapping elements appear
+above or below others
+*/
+
+# /*
+
+# QUESTIONS
+
+Q1. What is CSS positioning?
+
+Q2. What is static positioning?
+
+Q3. What is relative positioning?
+
+Q4. What is absolute positioning?
+
+Q5. What is fixed positioning?
+
+Q6. What is sticky positioning?
+
+Q7. What is the purpose of top, right, bottom and left?
+
+Q8. What is a positioning context?
+
+Q9. What is a containing block?
+
+Q10. Why is position: relative commonly used on a
+parent of an absolutely positioned element?
+
+Q11. What happens to an element when position: absolute
+is used?
+
+Q12. What happens to an element when position: fixed
+is used?
+
+Q13. What is z-index?
+
+Q14. What is stacking order?
+
+Q15. What is the difference between relative and
+absolute positioning?
+
+Q16. What is the difference between fixed and sticky?
+
+Q17. Create a card with an absolutely positioned
+badge in its top-right corner.
+
+Q18. Create a fixed button in the bottom-right corner.
+
+Q19. Create a sticky header.
+
+Q20. Create two overlapping boxes using z-index.
+*/
+
+# /*
+
+# SOLUTIONS
+
+Q1.
+CSS positioning controls how elements are positioned
+within a webpage.
+
+Q2.
+Static is the default positioning mode. The element
+remains in normal document flow and top/right/bottom/left
+do not reposition it.
+
+Q3.
+Relative positioning keeps the element in normal flow
+but allows it to be visually moved using offsets.
+
+Q4.
+Absolute positioning removes the element from normal
+flow and positions it relative to its containing block.
+
+Q5.
+Fixed positioning removes the element from normal flow
+and usually positions it relative to the viewport. It
+remains in the same viewport position while scrolling.
+
+Q6.
+Sticky positioning behaves like relative positioning
+until a scroll threshold is reached, after which the
+element sticks within its scrolling/containing area.
+
+Q7.
+They specify offsets used to position an element.
+
+Q8.
+A positioning context determines the reference used
+to position an element.
+
+Q9.
+A containing block is the reference rectangle used
+to calculate the position and size of certain elements.
+
+Q10.
+It establishes a containing block for an absolutely
+positioned child in the common parent-child pattern.
+
+Q11.
+The element is removed from normal document flow and
+positioned relative to its containing block.
+
+Q12.
+The element is removed from normal document flow and
+usually remains positioned relative to the viewport
+during scrolling.
+
+Q13.
+z-index controls stacking order within the relevant
+stacking context.
+
+Q14.
+Stacking order determines which overlapping elements
+appear above or below each other.
+
+Q15.
+
+Relative:
+Remains in normal flow.
+Original space is preserved.
+
+Absolute:
+Removed from normal flow.
+Positioned relative to a containing block.
+
+Q16.
+
+Fixed:
+Usually relative to the viewport and remains fixed
+while scrolling.
+
+Sticky:
+Starts in normal flow and sticks after reaching
+its specified offset while scrolling.
+
+Q17.
+*/
+
+.answer-seventeen-card {
+position: relative;
+
+```
+width: 300px;
+height: 200px;
+
+border: 2px solid black;
+```
+
+}
+
+.answer-seventeen-badge {
+position: absolute;
+
+```
+top: 10px;
+right: 10px;
+```
+
+}
+
+/*
+Q18.
+*/
+
+.answer-eighteen {
+position: fixed;
+
+```
+right: 20px;
+bottom: 20px;
+```
+
+}
+
+/*
+Q19.
+*/
+
+.answer-nineteen {
+position: sticky;
+top: 0;
+}
+
+/*
+Q20.
+*/
+
+.answer-twenty-one {
+position: relative;
+z-index: 1;
+}
+
+.answer-twenty-two {
+position: relative;
+z-index: 2;
+}
+
+# /*
+
+# PRACTICE
+
+1. Create a relative box and move it 20px down and
+   30px right.
+
+2. Create a parent with position: relative and a child
+   with position: absolute.
+
+3. Place the child 10px from the top and 10px from
+   the right of the parent.
+
+4. Create a fixed navigation bar at the top of the
+   viewport.
+
+5. Create a fixed button in the bottom-right corner.
+
+6. Create a sticky heading with top: 0.
+
+7. Create two overlapping boxes.
+
+8. Use z-index to place the second box above the first.
+
+9. Explain why z-index values are compared within
+   stacking contexts.
+
+10. Create a product card with an "SALE" badge in its
+    top-right corner.
+
+11. Create a notification badge positioned over an icon.
+
+12. Explain the difference between:
+
+    position: relative;
+    position: absolute;
+    position: fixed;
+    position: sticky;
+
+13. Experiment with top, right, bottom and left.
+
+14. Create a modal-like box using absolute/fixed
+    positioning and z-index.
+
+15. Create a sticky sidebar with top: 20px.
+    */
+
+# /*
+
+# END OF CSS POSITIONING
+
+*/

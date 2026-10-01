@@ -23,7 +23,6 @@ right side of its containing element.
 Other content can flow around a floated element.
 
 SYNTAX:
-
     float: value;
 
 VALUES:
@@ -490,7 +489,6 @@ to wrap around an element, such as an image.
 
 ========================================================
 */
-
 /*
 ========================================================
 21. FLEXBOX AS A FLOAT ALTERNATIVE

@@ -1,0 +1,1041 @@
+/*
+========================================================
+              CSS FLOAT AND CLEAR
+========================================================
+
+TOPICS:
+1. float
+2. Left Float
+3. Right Float
+4. clear
+5. Clearing Floats
+6. Float Layout
+7. Problems with Floats
+8. Modern Alternatives to Floats
+
+========================================================
+1. float
+========================================================
+
+The float property moves an element to the left or
+right side of its containing element.
+
+Other content can flow around the floated element.
+
+SYNTAX:
+
+    float: value;
+
+COMMON VALUES:
+
+    left
+    right
+    none
+
+DEFAULT:
+
+    float: none;
+
+EXAMPLE:
+*/
+
+.box {
+    float: left;
+}
+
+/*
+========================================================
+2. LEFT FLOAT
+========================================================
+
+float: left;
+
+Moves the element to the left side of its container.
+
+Content that follows the floated element can flow
+around it.
+*/
+
+.left-box {
+    width: 150px;
+    height: 150px;
+
+    float: left;
+
+    margin-right: 20px;
+}
+
+/*
+Example layout:
+
++----------+-----------------------
+|          | Text flows around
+|  LEFT    | the floated element.
+|  FLOAT   | More text...
+|          |
++----------+-----------------------
+
+========================================================
+*/
+
+/*
+========================================================
+3. RIGHT FLOAT
+========================================================
+
+float: right;
+
+Moves the element to the right side of its container.
+
+Other content can flow around its left side.
+*/
+
+.right-box {
+    width: 150px;
+    height: 150px;
+
+    float: right;
+
+    margin-left: 20px;
+}
+
+/*
+Example layout:
+
+-----------------------+----------+
+Text flows around      |          |
+the element...         |  RIGHT   |
+                       |  FLOAT   |
+                       |          |
+-----------------------+----------+
+
+========================================================
+*/
+
+/*
+========================================================
+4. float: none
+========================================================
+
+Removes floating behavior.
+
+It is the default value.
+*/
+
+.normal-box {
+    float: none;
+}
+
+/*
+========================================================
+5. clear
+========================================================
+
+The clear property controls whether an element can
+appear beside floated elements.
+
+SYNTAX:
+
+    clear: value;
+
+COMMON VALUES:
+
+    none
+    left
+    right
+    both
+
+========================================================
+*/
+
+/*
+========================================================
+6. clear: left
+========================================================
+
+Prevents the element from appearing beside
+left-floated elements.
+*/
+
+.clear-left {
+    clear: left;
+}
+
+/*
+========================================================
+7. clear: right
+========================================================
+
+Prevents the element from appearing beside
+right-floated elements.
+*/
+
+.clear-right {
+    clear: right;
+}
+
+/*
+========================================================
+8. clear: both
+========================================================
+
+Prevents the element from appearing beside either
+left- or right-floated elements.
+
+This is the most commonly used clearing value.
+*/
+
+.clear-both {
+    clear: both;
+}
+
+/*
+========================================================
+9. clear: none
+========================================================
+
+The element is allowed to appear beside floated
+elements.
+
+This is the default.
+*/
+
+.clear-none {
+    clear: none;
+}
+
+/*
+========================================================
+10. CLEARING FLOATS
+========================================================
+
+When elements inside a parent are floated, the parent
+may not automatically contain their height in the
+normal flow.
+
+Example:
+
+.parent
+    |
+    +-- child 1 (float: left)
+    |
+    +-- child 2 (float: left)
+
+Both children are removed from normal flow.
+
+The parent can therefore appear to have little or
+no height.
+
+This is commonly called FLOAT COLLAPSE or
+PARENT HEIGHT COLLAPSE.
+
+========================================================
+*/
+
+/*
+========================================================
+11. CLEARING USING AN EXTRA ELEMENT
+========================================================
+
+A traditional method is to add an element after
+the floated elements and apply clear: both.
+*/
+
+.clear-element {
+    clear: both;
+}
+
+/*
+HTML IDEA:
+
+<div class="parent">
+
+    <div class="child"></div>
+    <div class="child"></div>
+
+    <div class="clear-element"></div>
+
+</div>
+
+The clearing element appears below the floats.
+
+However, this adds unnecessary HTML.
+*/
+
+/*
+========================================================
+12. CLEARFIX USING ::after
+========================================================
+
+A common traditional solution is the clearfix.
+
+The ::after pseudo-element creates a clearing
+element automatically.
+*/
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*
+HTML IDEA:
+
+<div class="clearfix">
+
+    <div class="child"></div>
+    <div class="child"></div>
+
+</div>
+
+The parent can contain the floated children.
+
+========================================================
+*/
+
+/*
+========================================================
+13. FLOAT LAYOUT
+========================================================
+
+Before Flexbox and Grid, floats were commonly used
+to create columns and page layouts.
+
+Example:
+*/
+
+.column {
+    width: 30%;
+    float: left;
+    margin-right: 5%;
+}
+
+.column:last-child {
+    margin-right: 0;
+}
+
+/*
+This can create:
+
++-------------+-------------+-------------+
+|   COLUMN 1  |   COLUMN 2  |   COLUMN 3  |
++-------------+-------------+-------------+
+
+All columns are floated to the left.
+
+========================================================
+*/
+
+/*
+========================================================
+14. TWO-COLUMN FLOAT LAYOUT
+========================================================
+*/
+
+.sidebar {
+    width: 30%;
+    float: left;
+}
+
+.main-content {
+    width: 65%;
+    float: right;
+}
+
+/*
+A clearfix may be required on their parent:
+
+*/
+
+.layout::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*
+========================================================
+15. FLOATING IMAGES
+========================================================
+
+One of the most useful uses of float is allowing
+text to wrap around an image.
+
+Example:
+*/
+
+.article-image {
+    width: 200px;
+
+    float: left;
+
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+/*
+Text can flow around the right side of the image.
+
+This is still a valid use of float.
+
+========================================================
+*/
+
+/*
+========================================================
+16. RIGHT-FLOATING IMAGE
+========================================================
+*/
+
+.article-image-right {
+    width: 200px;
+
+    float: right;
+
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+/*
+Text flows around the left side of the image.
+
+========================================================
+*/
+
+/*
+========================================================
+17. PROBLEMS WITH FLOATS
+========================================================
+
+Floats were useful before modern layout systems,
+but they can cause several problems.
+
+COMMON PROBLEMS:
+
+1. Parent height collapse
+2. Clearing is required
+3. Difficult vertical alignment
+4. Unexpected text wrapping
+5. Manual width calculations
+6. Difficult responsive layouts
+7. Complicated spacing
+8. Layout behavior can become difficult to maintain
+
+========================================================
+*/
+
+/*
+========================================================
+18. PARENT HEIGHT COLLAPSE
+========================================================
+
+If all children inside a parent are floated, the
+parent may not automatically expand around them.
+
+Example:
+*/
+
+.float-parent {
+    border: 2px solid black;
+}
+
+.float-child {
+    width: 100px;
+    height: 100px;
+
+    float: left;
+}
+
+/*
+If .float-parent contains only floated children,
+its height may collapse.
+
+A clearfix can be used:
+
+*/
+
+.float-parent::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*
+========================================================
+19. DIFFICULT ALIGNMENT
+========================================================
+
+Floats were not designed for easy vertical or
+horizontal alignment.
+
+For example, centering several floating elements
+can require additional calculations.
+
+Modern Flexbox provides simpler alignment:
+
+*/
+
+.flex-container {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+/*
+========================================================
+20. RESPONSIVE DESIGN PROBLEMS
+========================================================
+
+Float-based layouts often require manual changes
+for smaller screens.
+
+Example:
+*/
+
+.float-column {
+    width: 48%;
+    float: left;
+    margin: 1%;
+}
+
+@media (max-width: 600px) {
+
+    .float-column {
+        width: 100%;
+        float: none;
+        margin: 0;
+    }
+
+}
+
+/*
+Modern Flexbox and Grid can usually handle responsive
+layouts more naturally.
+
+========================================================
+*/
+
+/*
+========================================================
+21. MODERN ALTERNATIVES TO FLOATS
+========================================================
+
+The main modern alternatives are:
+
+1. FLEXBOX
+2. CSS GRID
+
+Use Flexbox for:
+
+    - One-dimensional layouts
+    - Navigation bars
+    - Rows
+    - Columns
+    - Alignment
+    - Spacing
+
+Use Grid for:
+
+    - Two-dimensional layouts
+    - Rows and columns
+    - Page layouts
+    - Card grids
+    - Galleries
+
+Use float mainly when you specifically want
+content to wrap around an element.
+
+========================================================
+*/
+
+/*
+========================================================
+22. FLEXBOX AS A FLOAT ALTERNATIVE
+========================================================
+
+OLD FLOAT METHOD:
+*/
+
+.old-layout {
+    width: 30%;
+    float: left;
+}
+
+/*
+MODERN FLEXBOX METHOD:
+*/
+
+.flex-layout {
+    display: flex;
+
+    gap: 20px;
+}
+
+.flex-item {
+    flex: 1;
+}
+
+/*
+Advantages:
+
+    - No clearfix required
+    - Easy spacing
+    - Easy alignment
+    - Flexible widths
+    - Better responsive behavior
+
+========================================================
+*/
+
+/*
+========================================================
+23. GRID AS A FLOAT ALTERNATIVE
+========================================================
+
+CSS Grid is useful for two-dimensional layouts.
+
+*/
+
+.grid-layout {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+/*
+This creates three equal columns.
+
+Grid is generally much easier to use than floats
+for structured page layouts.
+
+========================================================
+*/
+
+/*
+========================================================
+24. FLOAT VS FLEXBOX
+========================================================
+
+FLOAT:
+
+    float: left;
+
+Purpose:
+    Mainly allows content to flow around an element.
+
+FLEXBOX:
+
+    display: flex;
+
+Purpose:
+    Arranges elements in one dimension.
+
+USE FLOAT FOR:
+
+    Text wrapping around images.
+
+USE FLEXBOX FOR:
+
+    Navigation
+    Buttons
+    Rows
+    Columns
+    Alignment
+    Spacing
+
+========================================================
+*/
+
+/*
+========================================================
+25. FLOAT VS GRID
+========================================================
+
+FLOAT:
+
+    Mainly designed for content wrapping.
+
+GRID:
+
+    Designed for two-dimensional layouts.
+
+USE GRID FOR:
+
+    Page layouts
+    Card grids
+    Galleries
+    Rows + columns
+
+========================================================
+*/
+
+/*
+========================================================
+26. PRACTICAL FLOAT EXAMPLE
+========================================================
+*/
+
+.float-card {
+    border: 2px solid black;
+    padding: 15px;
+}
+
+.float-card img {
+    width: 150px;
+
+    float: left;
+
+    margin-right: 15px;
+    margin-bottom: 10px;
+}
+
+.float-card::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*
+The image floats left.
+
+The text flows around the image.
+
+The clearfix makes sure the parent contains
+the floated image.
+
+========================================================
+*/
+
+/*
+========================================================
+27. PRACTICAL THREE-COLUMN FLOAT LAYOUT
+========================================================
+*/
+
+.float-container {
+    width: 100%;
+}
+
+.float-column {
+    width: 30%;
+
+    float: left;
+
+    margin-right: 5%;
+}
+
+.float-column:last-child {
+    margin-right: 0;
+}
+
+.float-container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*
+========================================================
+28. MODERN FLEXBOX VERSION
+========================================================
+*/
+
+.modern-flex {
+    display: flex;
+
+    gap: 20px;
+}
+
+.modern-flex .item {
+    flex: 1;
+}
+
+/*
+========================================================
+29. MODERN GRID VERSION
+========================================================
+*/
+
+.modern-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+/*
+========================================================
+QUICK REVISION
+========================================================
+
+float:
+    Moves an element left or right.
+
+float: left:
+    Moves the element to the left.
+
+float: right:
+    Moves the element to the right.
+
+float: none:
+    Removes floating.
+
+clear:
+    Controls whether an element can appear beside
+    floated elements.
+
+clear: left:
+    Clears left floats.
+
+clear: right:
+    Clears right floats.
+
+clear: both:
+    Clears both left and right floats.
+
+Clearing floats:
+    Prevents layout problems caused by floated
+    elements.
+
+Float layout:
+    Older technique used for creating columns.
+
+Problems:
+    Height collapse, clearing issues, alignment
+    problems and responsive-layout complexity.
+
+Modern alternatives:
+    Flexbox and CSS Grid.
+
+========================================================
+IMPORTANT EXAM POINTS
+========================================================
+
+1. float moves an element to the left or right.
+
+2. float: left places the element on the left.
+
+3. float: right places the element on the right.
+
+4. clear controls how an element behaves around floats.
+
+5. clear: both clears both left and right floats.
+
+6. Floated children can cause a parent height
+   collapse.
+
+7. The ::after clearfix is a traditional way to
+   contain floated children.
+
+8. Floats are still useful for wrapping text around
+   images.
+
+9. Flexbox is preferred for most one-dimensional
+   layouts.
+
+10. Grid is preferred for most two-dimensional
+    layouts.
+
+========================================================
+QUESTIONS
+========================================================
+
+Q1. What is the float property?
+
+Q2. Explain float: left.
+
+Q3. Explain float: right.
+
+Q4. What is the clear property?
+
+Q5. What is the difference between clear: left,
+    clear: right and clear: both?
+
+Q6. What is clearing a float?
+
+Q7. What is a clearfix?
+
+Q8. What is parent height collapse?
+
+Q9. What are the common problems with floats?
+
+Q10. What are the modern alternatives to floats?
+
+Q11. When should float still be used?
+
+========================================================
+SOLUTIONS
+========================================================
+
+Q1.
+The float property moves an element to the left or
+right and allows surrounding content to flow around it.
+
+Q2.
+float: left moves an element to the left side of
+its containing element.
+
+Q3.
+float: right moves an element to the right side
+of its containing element.
+
+Q4.
+The clear property prevents an element from appearing
+beside floated elements.
+
+Q5.
+
+clear: left
+    Clears left floats.
+
+clear: right
+    Clears right floats.
+
+clear: both
+    Clears both left and right floats.
+
+Q6.
+Clearing a float means making sure that subsequent
+content or the parent layout does not incorrectly
+flow around or collapse because of floated elements.
+
+Q7.
+A clearfix is a technique used to make a parent
+contain its floated children.
+
+Example:
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+Q8.
+Parent height collapse occurs when a parent contains
+only floated children and therefore does not naturally
+expand to their height in normal flow.
+
+Q9.
+Common problems include:
+
+    - Parent height collapse
+    - Unexpected text wrapping
+    - Need for clearing
+    - Difficult alignment
+    - Manual width calculations
+    - Responsive design complexity
+
+Q10.
+The main modern alternatives are:
+
+    - Flexbox
+    - CSS Grid
+
+Q11.
+Float is still useful when content needs to flow
+around an element, especially images.
+
+========================================================
+PRACTICE QUESTIONS
+========================================================
+
+1. Create a 150px × 150px element and float it left.
+
+2. Create an image that floats to the right.
+
+3. Create two columns using float.
+
+4. Create three columns using float.
+
+5. Clear both left and right floats.
+
+6. Create a clearfix using ::after.
+
+7. Create a two-column layout using Flexbox.
+
+8. Create a three-column layout using Grid.
+
+========================================================
+PRACTICE SOLUTIONS
+========================================================
+*/
+
+/* 1. Left Float */
+.practice-left {
+    width: 150px;
+    height: 150px;
+
+    float: left;
+}
+
+/* 2. Right Float */
+.practice-right {
+    width: 150px;
+    height: 150px;
+
+    float: right;
+}
+
+/* 3. Two Columns */
+.practice-column {
+    width: 48%;
+    float: left;
+    margin: 1%;
+}
+
+/* 4. Three Columns */
+.practice-three-column {
+    width: 31%;
+    float: left;
+    margin-right: 3.5%;
+}
+
+.practice-three-column:last-child {
+    margin-right: 0;
+}
+
+/* 5. Clear Both */
+.practice-clear {
+    clear: both;
+}
+
+/* 6. Clearfix */
+.practice-clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* 7. Flexbox Alternative */
+.practice-flex {
+    display: flex;
+    gap: 20px;
+}
+
+.practice-flex > div {
+    flex: 1;
+}
+
+/* 8. Grid Alternative */
+.practice-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+/*
+========================================================
+END OF CSS FLOAT AND CLEAR
+========================================================
+*/

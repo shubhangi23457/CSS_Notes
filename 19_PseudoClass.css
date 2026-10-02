@@ -1,0 +1,1029 @@
+# /*
+
+17. CSS PSEUDO-CLASSES
+    ========================================================
+
+18. WHAT ARE PSEUDO-CLASSES?
+
+---
+
+Pseudo-classes are keywords added to selectors to style
+an element based on its state, position, or condition.
+
+Syntax:
+selector:pseudo-class {
+property: value;
+}
+
+Example:
+button:hover {
+background-color: black;
+}
+
+Pseudo-class uses a SINGLE colon (:).
+
+Pseudo-class examples:
+:hover
+:active
+:focus
+:visited
+:first-child
+:nth-child()
+:checked
+:disabled
+:valid
+:invalid
+
+Pseudo-classes do NOT create new HTML elements.
+They select existing elements based on a condition.
+
+========================================================
+2. :hover
+=========
+
+:hover selects an element when the mouse pointer is
+placed over it.
+
+Syntax:
+selector:hover {
+property: value;
+}
+
+Example:
+*/
+
+button:hover {
+background-color: black;
+color: white;
+}
+
+a:hover {
+text-decoration: underline;
+}
+
+# /*
+
+3. :active
+   ========================================================
+
+:active selects an element while it is being activated.
+
+For a button, this usually happens while the mouse button
+is being pressed.
+
+*/
+
+button:active {
+transform: scale(0.95);
+}
+
+# /*
+
+4. :focus
+   ========================================================
+
+:focus selects an element when it receives focus.
+
+Commonly used with:
+
+* input
+* textarea
+* button
+* links
+
+Focus can happen through keyboard navigation or clicking.
+
+*/
+
+input:focus {
+border: 2px solid blue;
+outline: none;
+}
+
+button:focus {
+outline: 3px solid gray;
+}
+
+# /*
+
+5. :visited
+   ========================================================
+
+:visited selects links that the user has already visited.
+
+*/
+
+a:visited {
+color: purple;
+}
+
+/*
+Browsers restrict some styles that can be applied to
+:visited links for privacy reasons.
+*/
+
+# /*
+
+6. :link
+   ========================================================
+
+:link selects an unvisited link.
+
+*/
+
+a:link {
+color: blue;
+}
+
+/*
+Common link states:
+
+a:link
+a:visited
+a:hover
+a:active
+
+A common order is:
+LVHA
+
+:link
+:visited
+:hover
+:active
+*/
+
+# /*
+
+7. :first-child
+   ========================================================
+
+:first-child selects an element if it is the first child
+of its parent.
+
+HTML example:
+
+<div>
+    <p>First</p>
+    <p>Second</p>
+</div>
+
+*/
+
+p:first-child {
+color: red;
+}
+
+/*
+Only the first <p> is selected if it is actually the
+first child of its parent.
+*/
+
+# /*
+
+8. :last-child
+   ========================================================
+
+:last-child selects an element if it is the last child
+of its parent.
+
+*/
+
+p:last-child {
+color: blue;
+}
+
+# /*
+
+9. :nth-child()
+   ========================================================
+
+:nth-child() selects elements based on their position
+among their siblings.
+
+Examples:
+:nth-child(1)
+:nth-child(2)
+:nth-child(3)
+
+*/
+
+li:nth-child(2) {
+color: red;
+}
+
+li:nth-child(odd) {
+background-color: lightgray;
+}
+
+li:nth-child(even) {
+background-color: lightblue;
+}
+
+/*
+Useful patterns:
+
+:nth-child(2)
+:nth-child(odd)
+:nth-child(even)
+:nth-child(3n)
+:nth-child(3n + 1)
+
+Example:
+*/
+
+li:nth-child(3n) {
+font-weight: bold;
+}
+
+/*
+This selects:
+3rd
+6th
+9th
+12th
+...
+
+Important:
+:nth-child() counts ALL sibling elements, not only
+elements of the same type.
+*/
+
+# /*
+
+10. :nth-of-type()
+    ========================================================
+
+:nth-of-type() selects an element based on its position
+among siblings of the SAME element type.
+
+*/
+
+p:nth-of-type(2) {
+color: green;
+}
+
+/*
+Example HTML:
+
+<div>
+    <h2>Heading</h2>
+    <p>Paragraph 1</p>
+    <span>Text</span>
+    <p>Paragraph 2</p>
+</div>
+
+p:nth-of-type(2)
+
+selects Paragraph 2 because it is the second <p>.
+*/
+
+# /*
+
+11. :first-of-type
+    ========================================================
+
+:first-of-type selects the first sibling of its type.
+
+*/
+
+p:first-of-type {
+color: orange;
+}
+
+# /*
+
+12. :last-of-type
+    ========================================================
+
+:last-of-type selects the last sibling of its type.
+
+*/
+
+p:last-of-type {
+color: purple;
+}
+
+/*
+Difference:
+
+:first-child
+-> first element among ALL siblings
+
+:first-of-type
+-> first element among siblings of the SAME type
+
+Example:
+
+<div>
+    <h2>Title</h2>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+</div>
+
+p:first-child
+-> does NOT select the first paragraph
+
+p:first-of-type
+-> selects the first paragraph
+*/
+
+# /*
+
+13. :not()
+    ========================================================
+
+:not() selects elements that DO NOT match the selector
+inside the parentheses.
+
+*/
+
+button:not(.primary) {
+background-color: gray;
+}
+
+/*
+This selects buttons that do not have class "primary".
+*/
+
+/*
+Another example:
+*/
+
+p:not(.important) {
+color: gray;
+}
+
+# /*
+
+14. :is()
+    ========================================================
+
+:is() allows multiple selectors to be grouped together.
+
+Instead of writing:
+
+*/
+
+h1:hover,
+h2:hover,
+h3:hover {
+color: blue;
+}
+
+/*
+We can write:
+*/
+
+:is(h1, h2, h3):hover {
+color: blue;
+}
+
+/*
+:is() makes selectors shorter and easier to read.
+
+Important:
+:is() takes the specificity of the most specific selector
+inside its argument list.
+*/
+
+# /*
+
+15. :where()
+    ========================================================
+
+:where() also groups multiple selectors.
+
+*/
+
+:where(h1, h2, h3) {
+font-family: Arial, sans-serif;
+}
+
+/*
+Major difference between :is() and :where():
+
+:is()
+-> keeps specificity based on the most specific selector
+in the list.
+
+:where()
+-> always has ZERO specificity.
+
+Because of this, :where() is useful for creating styles
+that are easy to override later.
+*/
+
+/*
+Example:
+*/
+
+:where(.card, .box, .panel) {
+padding: 20px;
+}
+
+# /*
+
+16. :checked
+    ========================================================
+
+:checked selects checked:
+
+* checkbox
+* radio button
+* option in certain form controls
+
+*/
+
+input[type="checkbox"]:checked {
+accent-color: green;
+}
+
+/*
+Example HTML:
+
+<input type="checkbox" id="agree">
+<label for="agree">I Agree</label>
+*/
+
+/*
+We can also style another element based on a checked
+checkbox using the adjacent sibling or general sibling
+selector.
+
+Example:
+*/
+
+input[type="checkbox"]:checked + label {
+font-weight: bold;
+}
+
+# /*
+
+17. :disabled
+    ========================================================
+
+:disabled selects form elements that are disabled.
+
+*/
+
+button:disabled {
+background-color: gray;
+color: white;
+cursor: not-allowed;
+}
+
+# /*
+
+18. :enabled
+    ========================================================
+
+:enabled selects form controls that are currently enabled.
+
+*/
+
+input:enabled {
+background-color: white;
+}
+
+/*
+Useful for distinguishing enabled and disabled controls.
+*/
+
+# /*
+
+19. :required
+    ========================================================
+
+:required selects form elements that have the HTML
+required attribute.
+
+*/
+
+input:required {
+border: 2px solid orange;
+}
+
+/*
+HTML:
+
+<input type="text" required>
+*/
+
+# /*
+
+20. :optional
+    ========================================================
+
+:optional selects form elements that are NOT required.
+
+*/
+
+input:optional {
+background-color: #f5f5f5;
+}
+
+/*
+HTML:
+
+<input type="text">
+
+Since the input does not have required,
+it matches :optional.
+*/
+
+# /*
+
+21. :valid
+    ========================================================
+
+:valid selects a form element whose current value
+satisfies its validation rules.
+
+*/
+
+input:valid {
+border: 2px solid green;
+}
+
+/*
+Example:
+
+<input type="email" required>
+
+A valid email value can match :valid.
+*/
+
+# /*
+
+22. :invalid
+    ========================================================
+
+:invalid selects a form element whose current value
+does not satisfy its validation rules.
+
+*/
+
+input:invalid {
+border: 2px solid red;
+}
+
+/*
+Example:
+
+<input type="email" required>
+
+An empty required field or incorrectly formatted email
+can match :invalid.
+*/
+
+# /*
+
+23. :empty
+    ========================================================
+
+:empty selects an element that has NO children.
+
+Whitespace and comments do not count as element children,
+but text nodes matter.
+
+*/
+
+div:empty {
+display: none;
+}
+
+/*
+Example:
+
+<div></div>
+
+This matches :empty.
+
+But:
+
+<div>Hello</div>
+
+does NOT match :empty because it contains text.
+*/
+
+# /*
+
+24. :target
+    ========================================================
+
+:target selects the element whose ID matches the fragment
+identifier in the URL.
+
+Example URL:
+
+example.com/page.html#about
+
+If the page contains:
+
+<section id="about">
+    ...
+</section>
+
+Then:
+
+#about:target
+
+selects that section.
+*/
+
+section:target {
+background-color: yellow;
+border: 2px solid orange;
+}
+
+/*
+Example HTML:
+
+<a href="#about">Go to About</a>
+
+<section id="about">
+    <h2>About</h2>
+</section>
+
+When the URL contains #about,
+the section becomes the :target.
+*/
+
+# /*
+
+25. PRACTICAL EXAMPLE - NAVIGATION LINKS
+    ========================================================
+    */
+
+.nav a:link {
+color: blue;
+}
+
+.nav a:visited {
+color: purple;
+}
+
+.nav a:hover {
+color: orange;
+}
+
+.nav a:active {
+color: red;
+}
+
+# /*
+
+26. PRACTICAL EXAMPLE - LIST STYLING
+    ========================================================
+    */
+
+.menu li:first-child {
+font-weight: bold;
+}
+
+.menu li:last-child {
+text-decoration: underline;
+}
+
+.menu li:nth-child(even) {
+background-color: #eeeeee;
+}
+
+# /*
+
+27. PRACTICAL EXAMPLE - FORM VALIDATION
+    ========================================================
+    */
+
+form input:required {
+border-left: 4px solid orange;
+}
+
+form input:valid {
+border-color: green;
+}
+
+form input:invalid {
+border-color: red;
+}
+
+form input:disabled {
+background-color: #dddddd;
+}
+
+# /*
+
+28. PRACTICAL EXAMPLE - BUTTON STATES
+    ========================================================
+    */
+
+.btn:hover {
+background-color: black;
+color: white;
+}
+
+.btn:active {
+transform: scale(0.95);
+}
+
+.btn:focus {
+outline: 2px solid blue;
+}
+
+.btn:disabled {
+opacity: 0.5;
+cursor: not-allowed;
+}
+
+# /*
+
+29. PSEUDO-CLASS VS PSEUDO-ELEMENT
+    ========================================================
+
+Pseudo-class:
+Uses :
+Selects an element based on state or condition.
+
+Examples:
+:hover
+:focus
+:first-child
+:checked
+
+Pseudo-element:
+Usually uses ::
+Styles a specific part of an element.
+
+Examples:
+
+Example:
+
+button:hover {
+...
+}
+
+p::first-letter {
+...
+}
+
+========================================================
+30. QUICK REVISION
+==================
+
+:hover
+Mouse pointer is over an element.
+
+:active
+Element is being activated.
+
+:focus
+Element currently has focus.
+
+:visited
+Link has already been visited.
+
+:link
+Unvisited link.
+
+:first-child
+First child among all siblings.
+
+:last-child
+Last child among all siblings.
+
+:nth-child()
+Selects based on sibling position.
+
+:nth-of-type()
+Selects based on position among same-type siblings.
+
+:first-of-type
+First sibling of the same type.
+
+:last-of-type
+Last sibling of the same type.
+
+:not()
+Selects elements that do not match a selector.
+
+:is()
+Groups selectors while retaining specificity behavior.
+
+:where()
+Groups selectors with zero specificity.
+
+:checked
+Checked checkbox/radio/etc.
+
+:disabled
+Disabled form control.
+
+:enabled
+Enabled form control.
+
+:required
+Required form control.
+
+:optional
+Non-required form control.
+
+:valid
+Value satisfies validation rules.
+
+:invalid
+Value does not satisfy validation rules.
+
+:empty
+Element has no child content.
+
+:target
+Element targeted by the URL fragment.
+
+========================================================
+31. IMPORTANT DIFFERENCES
+=========================
+
+:nth-child()
+Counts ALL siblings.
+
+:nth-of-type()
+Counts only siblings of the SAME type.
+
+:first-child
+Must be the first child overall.
+
+:first-of-type
+Must be the first element of its type.
+
+:is()
+Selector grouping with normal specificity behavior.
+
+:where()
+Selector grouping with ZERO specificity.
+
+:not()
+Selects elements that do not match the given selector.
+
+========================================================
+32. QUESTIONS
+=============
+
+Q1. What is a pseudo-class?
+Q2. What is the difference between :hover and :active?
+Q3. What is the difference between :link and :visited?
+Q4. What does :first-child do?
+Q5. What is the difference between :nth-child() and
+:nth-of-type()?
+Q6. What is :not() used for?
+Q7. What is the difference between :is() and :where()?
+Q8. What does :checked select?
+Q9. What is the use of :required and :optional?
+Q10. What is the difference between :valid and :invalid?
+Q11. What does :empty select?
+Q12. What is the purpose of :target?
+
+========================================================
+33. SOLUTIONS
+=============
+
+Q1.
+Pseudo-classes are keywords used with selectors to style
+elements based on their state, position, or condition.
+
+Q2.
+:hover applies when the pointer is over an element.
+:active applies while the element is being activated.
+
+Q3.
+:link selects unvisited links.
+:visited selects visited links.
+
+Q4.
+:first-child selects an element if it is the first child
+of its parent.
+
+Q5.
+:nth-child() counts all siblings.
+:nth-of-type() counts only siblings of the same element type.
+
+Q6.
+:not() selects elements that do not match the selector
+inside its parentheses.
+
+Q7.
+:is() groups selectors and uses the specificity of the
+most specific selector in its list.
+:where() groups selectors but always has zero specificity.
+
+Q8.
+:checked selects checked checkboxes, radio buttons, and
+other applicable checked controls.
+
+Q9.
+:required selects controls with required validation.
+:optional selects controls that are not required.
+
+Q10.
+:valid selects controls whose values satisfy their
+validation rules.
+:invalid selects controls whose values fail validation.
+
+Q11.
+:empty selects an element that has no child content.
+
+Q12.
+:target selects the element whose ID matches the URL
+fragment identifier.
+
+========================================================
+34. PRACTICE QUESTIONS
+======================
+
+1. Make a button turn black when hovered.
+
+2. Make the second item of a list red.
+
+3. Make all even list items have a gray background.
+
+4. Style the first paragraph differently.
+
+5. Style only the last paragraph.
+
+6. Make disabled buttons gray.
+
+7. Make checked checkboxes green.
+
+8. Give required inputs an orange border.
+
+9. Give valid inputs a green border and invalid inputs
+   a red border.
+
+10. Hide empty div elements.
+
+========================================================
+35. PRACTICE SOLUTIONS
+======================
+
+*/
+
+/* 1. Button becomes black on hover */
+button:hover {
+background-color: black;
+color: white;
+}
+
+/* 2. Second list item */
+li:nth-child(2) {
+color: red;
+}
+
+/* 3. Even list items */
+li:nth-child(even) {
+background-color: lightgray;
+}
+
+/* 4. First paragraph */
+p:first-child {
+font-weight: bold;
+}
+
+/* 5. Last paragraph */
+p:last-child {
+text-decoration: underline;
+}
+
+/* 6. Disabled buttons */
+button:disabled {
+background-color: gray;
+color: white;
+}
+
+/* 7. Checked checkboxes */
+input[type="checkbox"]:checked {
+accent-color: green;
+}
+
+/* 8. Required inputs */
+input:required {
+border: 2px solid orange;
+}
+
+/* 9. Valid and invalid inputs */
+input:valid {
+border: 2px solid green;
+}
+
+input:invalid {
+border: 2px solid red;
+}
+
+/* 10. Hide empty divs */
+div:empty {
+display: none;
+}
+
+# /*
+
+# END OF CSS PSEUDO-CLASSES
+
+*/

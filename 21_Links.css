@@ -1,0 +1,980 @@
+# /*
+
+19. CSS LINKS
+    ========================================================
+
+20. STYLING LINKS
+
+---
+
+CSS can be used to control the appearance of hyperlinks.
+
+HTML link:
+
+<a href="https://example.com">Visit Website</a>
+
+CSS can change:
+
+* Color
+* Font
+* Size
+* Background
+* Border
+* Underline
+* Hover effects
+* Active effects
+* Spacing
+* Transitions
+
+Basic example:
+*/
+
+a {
+color: blue;
+font-size: 18px;
+}
+
+# /*
+
+2. LINK STATES
+   ========================================================
+
+There are four commonly used link pseudo-classes:
+
+:link
+Selects an unvisited link.
+
+:visited
+Selects a link that has already been visited.
+
+:hover
+Selects a link when the mouse pointer is over it.
+
+:active
+Selects a link while it is being activated/clicked.
+
+Common order:
+
+LVHA
+
+L -> :link
+V -> :visited
+H -> :hover
+A -> :active
+
+Example:
+*/
+
+a:link {
+color: blue;
+}
+
+a:visited {
+color: purple;
+}
+
+a:hover {
+color: red;
+}
+
+a:active {
+color: orange;
+}
+
+# /*
+
+3. :link
+   ========================================================
+
+:link selects unvisited links.
+
+*/
+
+a:link {
+color: blue;
+text-decoration: none;
+}
+
+/*
+Only links that have not been visited match :link.
+
+========================================================
+4. :visited
+===========
+
+:visited selects links that the user has already visited.
+
+*/
+
+a:visited {
+color: purple;
+}
+
+/*
+Browsers restrict some CSS properties that can be used
+with :visited for privacy reasons.
+
+Commonly visible changes include color-related styling.
+
+========================================================
+5. :hover
+=========
+
+:hover applies when the mouse pointer is placed over
+the link.
+
+*/
+
+a:hover {
+color: red;
+text-decoration: underline;
+}
+
+/*
+Hover effects can also change:
+
+* Background
+* Border
+* Font weight
+* Transform
+* Opacity
+
+========================================================
+6. :active
+==========
+
+:active applies while the link is being activated.
+
+*/
+
+a:active {
+color: orange;
+}
+
+# /*
+
+7. LINK COLORS
+   ========================================================
+
+The color property changes the text color of a link.
+
+*/
+
+a {
+color: blue;
+}
+
+a:hover {
+color: red;
+}
+
+/*
+Background colors can also be used:
+
+*/
+
+a:hover {
+background-color: yellow;
+}
+
+/*
+Border colors can also be changed:
+
+*/
+
+a {
+border-bottom: 2px solid transparent;
+}
+
+a:hover {
+border-bottom-color: blue;
+}
+
+# /*
+
+8. REMOVING UNDERLINE
+   ========================================================
+
+By default, browsers usually display links with an
+underline.
+
+Use:
+
+text-decoration: none;
+
+to remove it.
+
+*/
+
+a {
+text-decoration: none;
+}
+
+/*
+To restore an underline:
+
+*/
+
+a:hover {
+text-decoration: underline;
+}
+
+# /*
+
+9. TEXT DECORATION OPTIONS
+   ========================================================
+
+text-decoration can control:
+
+* Line
+* Style
+* Color
+* Thickness
+
+Example:
+*/
+
+a {
+text-decoration-line: underline;
+text-decoration-style: solid;
+text-decoration-color: blue;
+text-decoration-thickness: 2px;
+}
+
+/*
+Shorthand:
+
+*/
+
+a {
+text-decoration: underline solid blue 2px;
+}
+
+/*
+Other decoration styles include:
+
+solid
+dashed
+dotted
+double
+wavy
+
+Example:
+*/
+
+a:hover {
+text-decoration-style: wavy;
+}
+
+# /*
+
+10. CUSTOM LINK EFFECTS
+    ========================================================
+
+Links can be made to look like:
+
+* Buttons
+* Pills
+* Cards
+* Navigation items
+* Animated underlines
+* Badges
+
+Example: Button-style link
+*/
+
+.button-link {
+display: inline-block;
+padding: 10px 20px;
+background-color: blue;
+color: white;
+text-decoration: none;
+border-radius: 5px;
+}
+
+.button-link:hover {
+background-color: darkblue;
+}
+
+# /*
+
+11. LINK AS A PILL BUTTON
+    ========================================================
+    */
+
+.pill-link {
+display: inline-block;
+padding: 8px 18px;
+background-color: black;
+color: white;
+text-decoration: none;
+border-radius: 50px;
+}
+
+.pill-link:hover {
+background-color: gray;
+}
+
+# /*
+
+12. LINK HOVER EFFECTS
+    ========================================================
+
+Hover effects make links visually respond when the
+pointer moves over them.
+
+Example:
+*/
+
+.hover-link {
+color: black;
+text-decoration: none;
+}
+
+.hover-link:hover {
+color: blue;
+}
+
+# /*
+
+13. HOVER WITH BACKGROUND
+    ========================================================
+    */
+
+.background-link {
+padding: 8px 12px;
+color: black;
+text-decoration: none;
+}
+
+.background-link:hover {
+background-color: lightblue;
+}
+
+# /*
+
+14. HOVER WITH BORDER
+    ========================================================
+    */
+
+.border-link {
+padding: 5px;
+color: black;
+text-decoration: none;
+border-bottom: 2px solid transparent;
+}
+
+.border-link:hover {
+border-bottom-color: blue;
+}
+
+# /*
+
+15. CUSTOM UNDERLINE EFFECT
+    ========================================================
+
+Instead of using the default underline, a custom underline
+can be created using a background gradient.
+
+*/
+
+.underline-link {
+color: black;
+text-decoration: none;
+background-image: linear-gradient(blue, blue);
+background-size: 0% 2px;
+background-repeat: no-repeat;
+background-position: left bottom;
+}
+
+.underline-link:hover {
+background-size: 100% 2px;
+}
+
+/*
+The underline starts at 0% width and expands to 100%.
+
+========================================================
+16. ANIMATED UNDERLINE USING ::AFTER
+====================================
+
+Pseudo-elements can create custom link effects.
+
+*/
+
+.animated-link {
+position: relative;
+color: black;
+text-decoration: none;
+}
+
+.animated-link::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: -4px;
+width: 0;
+height: 2px;
+background-color: blue;
+transition: width 0.3s ease;
+}
+
+.animated-link:hover::after {
+width: 100%;
+}
+
+# /*
+
+17. LINK HOVER WITH TRANSITION
+    ========================================================
+
+transition makes changes happen smoothly.
+
+*/
+
+.smooth-link {
+color: blue;
+text-decoration: none;
+transition: color 0.3s ease;
+}
+
+.smooth-link:hover {
+color: red;
+}
+
+/*
+Multiple properties can be transitioned:
+
+*/
+
+.smooth-button {
+display: inline-block;
+padding: 10px 20px;
+background-color: blue;
+color: white;
+text-decoration: none;
+border-radius: 5px;
+transition:
+background-color 0.3s ease,
+transform 0.2s ease;
+}
+
+.smooth-button:hover {
+background-color: darkblue;
+transform: translateY(-2px);
+}
+
+# /*
+
+18. NAVIGATION LINKS
+    ========================================================
+
+Links are commonly used to create navigation menus.
+
+Example HTML:
+
+<nav class="navbar">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+</nav>
+
+CSS:
+*/
+
+.navbar {
+display: flex;
+gap: 20px;
+}
+
+.navbar a {
+color: black;
+text-decoration: none;
+padding: 10px 15px;
+}
+
+# /*
+
+19. NAVIGATION LINK HOVER
+    ========================================================
+    */
+
+.navbar a:hover {
+color: blue;
+background-color: lightgray;
+}
+
+# /*
+
+20. ACTIVE NAVIGATION LINK
+    ========================================================
+
+You can create a custom class to show the current page.
+
+HTML:
+
+<a href="#" class="active">Home</a>
+
+CSS:
+*/
+
+.navbar a.active {
+color: white;
+background-color: blue;
+}
+
+/*
+Important:
+
+.active is a class, not the :active pseudo-class.
+
+.active
+-> Usually used to represent the current/selected page.
+
+:active
+-> Represents the moment an element is being activated.
+
+========================================================
+21. NAVIGATION LINK WITH UNDERLINE
+==================================
+
+*/
+
+.nav-links {
+display: flex;
+gap: 25px;
+}
+
+.nav-links a {
+position: relative;
+color: black;
+text-decoration: none;
+}
+
+.nav-links a::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: -5px;
+width: 0;
+height: 2px;
+background-color: blue;
+transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+width: 100%;
+}
+
+# /*
+
+22. NAVIGATION BAR WITH SPACING
+    ========================================================
+    */
+
+.navigation {
+display: flex;
+align-items: center;
+gap: 15px;
+padding: 15px;
+}
+
+.navigation a {
+padding: 8px 12px;
+color: #333;
+text-decoration: none;
+border-radius: 5px;
+}
+
+.navigation a:hover {
+color: white;
+background-color: #333;
+}
+
+# /*
+
+23. LINK FOCUS
+    ========================================================
+
+Links can receive keyboard focus.
+
+Use :focus or :focus-visible to provide a visible
+focus indicator.
+
+*/
+
+a:focus-visible {
+outline: 3px solid blue;
+outline-offset: 3px;
+}
+
+/*
+Do not remove focus indicators without providing another
+clear way for keyboard users to see which element is focused.
+
+========================================================
+24. CUSTOM CARD LINK
+====================
+
+A link can contain an entire card.
+
+Example HTML:
+
+<a href="#" class="card-link">
+    <h3>Product</h3>
+    <p>View product details</p>
+</a>
+
+CSS:
+*/
+
+.card-link {
+display: block;
+padding: 20px;
+border: 1px solid #ccc;
+color: black;
+text-decoration: none;
+border-radius: 10px;
+transition:
+transform 0.2s ease,
+box-shadow 0.2s ease;
+}
+
+.card-link:hover {
+transform: translateY(-4px);
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+# /*
+
+25. LINK AS A BUTTON
+    ========================================================
+
+If a link navigates somewhere, <a> is appropriate.
+
+Example:
+
+<a href="/products" class="btn-link">Products</a>
+
+If an element performs an action rather than navigation,
+a <button> is usually more appropriate.
+
+========================================================
+26. COMPLETE LINK EXAMPLE
+=========================
+
+*/
+
+.custom-link {
+display: inline-block;
+position: relative;
+padding: 8px 12px;
+color: #222;
+text-decoration: none;
+transition: color 0.3s ease;
+}
+
+.custom-link::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: 0;
+width: 0;
+height: 2px;
+background-color: blue;
+transition: width 0.3s ease;
+}
+
+.custom-link:hover {
+color: blue;
+}
+
+.custom-link:hover::after {
+width: 100%;
+}
+
+.custom-link:focus-visible {
+outline: 2px solid blue;
+outline-offset: 4px;
+}
+
+# /*
+
+27. QUICK REVISION
+    ========================================================
+
+a
+Styles all links.
+
+:link
+Unvisited link.
+
+:visited
+Visited link.
+
+:hover
+Pointer is over the link.
+
+:active
+Link is being activated.
+
+text-decoration: none
+Removes the default underline.
+
+text-decoration: underline
+Adds an underline.
+
+transition
+Creates smooth visual changes.
+
+```
+Can be used to create custom underline effects.
+```
+
+display: inline-block
+Useful when padding, width, height, or transforms
+are needed on a link.
+
+========================================================
+28. IMPORTANT DIFFERENCES
+=========================
+
+:active
+Temporary state while clicking/activating.
+
+.active
+A normal class commonly used to indicate the
+current navigation item.
+
+Example:
+
+a:active {
+color: red;
+}
+
+a.active {
+color: white;
+background-color: blue;
+}
+
+========================================================
+29. QUESTIONS
+=============
+
+Q1. How do you style an HTML link using CSS?
+
+Q2. What are the four common link pseudo-classes?
+
+Q3. What does :link do?
+
+Q4. What does :visited do?
+
+Q5. What does :hover do?
+
+Q6. What does :active do?
+
+Q7. How do you remove the default underline from a link?
+
+Q8. How can you create a button-style link?
+
+Q9. How can you create navigation links?
+
+Q10. How can you create a custom underline effect?
+
+Q11. What is the difference between .active and :active?
+
+Q12. Why should links have a visible focus state?
+
+========================================================
+30. SOLUTIONS
+=============
+
+Q1.
+Use the <a> selector.
+
+Example:
+
+a {
+color: blue;
+}
+
+Q2.
+The four common link pseudo-classes are:
+
+:link
+:visited
+:hover
+:active
+
+Q3.
+:link selects unvisited links.
+
+Q4.
+:visited selects links that the user has already visited.
+
+Q5.
+:hover applies styles when the pointer is over the link.
+
+Q6.
+:active applies while the link is being activated.
+
+Q7.
+Use:
+
+text-decoration: none;
+
+Q8.
+Use padding, background color, border-radius,
+text-decoration: none, and display: inline-block.
+
+Q9.
+Use <nav> containing multiple <a> elements and style
+them using Flexbox or another layout method.
+
+Q10.
+A custom underline can be created using:
+
+*
+* background gradients
+* transitions
+
+Q11.
+.active is a normal CSS class.
+
+:active is a pseudo-class representing the temporary
+activation state of an element.
+
+Q12.
+A visible focus state helps keyboard users identify
+which link currently has focus.
+
+========================================================
+31. PRACTICE QUESTIONS
+======================
+
+1. Create a link with blue text and no underline.
+
+2. Change the link color to red when hovered.
+
+3. Make visited links purple.
+
+4. Create a button-style link.
+
+5. Create a horizontal navigation bar.
+
+6. Add a gray background when navigation links are
+   hovered.
+
+7. Create an animated underline on hover.
+
+8. Create a navigation link with an active class.
+
+9. Add a visible keyboard focus outline.
+
+10. Create a product card that behaves like a link.
+
+========================================================
+32. PRACTICE SOLUTIONS
+======================
+
+*/
+
+/* 1. Blue link without underline */
+.practice-link {
+color: blue;
+text-decoration: none;
+}
+
+/* 2. Red on hover */
+.practice-link:hover {
+color: red;
+}
+
+/* 3. Purple visited link */
+.practice-link:visited {
+color: purple;
+}
+
+/* 4. Button-style link */
+.practice-button {
+display: inline-block;
+padding: 10px 20px;
+background-color: blue;
+color: white;
+text-decoration: none;
+border-radius: 5px;
+}
+
+/* 5. Horizontal navigation */
+.practice-nav {
+display: flex;
+gap: 20px;
+}
+
+.practice-nav a {
+color: black;
+text-decoration: none;
+padding: 10px;
+}
+
+/* 6. Gray hover background */
+.practice-nav a:hover {
+background-color: lightgray;
+}
+
+/* 7. Animated underline */
+.practice-underline {
+position: relative;
+color: black;
+text-decoration: none;
+}
+
+.practice-underline::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: -4px;
+width: 0;
+height: 2px;
+background-color: blue;
+transition: width 0.3s ease;
+}
+
+.practice-underline:hover::after {
+width: 100%;
+}
+
+/* 8. Active navigation link */
+.practice-nav a.active {
+color: white;
+background-color: blue;
+}
+
+/* 9. Keyboard focus */
+.practice-nav a:focus-visible {
+outline: 3px solid orange;
+outline-offset: 3px;
+}
+
+/* 10. Product card link */
+.practice-card {
+display: block;
+width: 250px;
+padding: 20px;
+color: black;
+text-decoration: none;
+border: 1px solid #ccc;
+border-radius: 10px;
+transition: transform 0.2s ease;
+}
+
+.practice-card:hover {
+transform: translateY(-5px);
+}
+
+# /*
+
+# END OF CSS LINKS
+
+*/

@@ -1,0 +1,1132 @@
+# /*
+
+20. CSS LISTS
+    ========================================================
+
+CSS provides properties for controlling the appearance,
+position, and markers of HTML lists.
+
+HTML provides two commonly used lists:
+
+1. Ordered List
+
+   <ol>
+   Items are numbered.
+
+2. Unordered List
+
+   <ul>
+   Items usually use bullets.
+
+List items are written using:
+
+<li>
+
+Example:
+
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+</ul>
+
+CSS can control:
+
+* Marker type
+* Marker position
+* Marker image
+* Marker color
+* Marker size
+* Spacing
+* Layout
+* Navigation menus
+
+========================================================
+
+1. list-style-type
+   ========================================================
+
+The list-style-type property specifies the type of
+marker used for list items.
+
+Syntax:
+
+list-style-type: value;
+
+Common values for unordered lists:
+
+disc
+circle
+square
+none
+
+Common values for ordered lists:
+
+decimal
+decimal-leading-zero
+lower-alpha
+upper-alpha
+lower-roman
+upper-roman
+lower-greek
+
+========================================================
+2. UNORDERED LIST MARKERS
+=========================
+
+*/
+
+ul.disc {
+list-style-type: disc;
+}
+
+ul.circle {
+list-style-type: circle;
+}
+
+ul.square {
+list-style-type: square;
+}
+
+ul.none {
+list-style-type: none;
+}
+
+/*
+HTML:
+
+<ul class="disc">
+    <li>HTML</li>
+    <li>CSS</li>
+</ul>
+
+========================================================
+3. ORDERED LIST MARKERS
+=======================
+
+*/
+
+ol.decimal {
+list-style-type: decimal;
+}
+
+ol.alpha {
+list-style-type: lower-alpha;
+}
+
+ol.upper-alpha {
+list-style-type: upper-alpha;
+}
+
+ol.roman {
+list-style-type: lower-roman;
+}
+
+ol.upper-roman {
+list-style-type: upper-roman;
+}
+
+/*
+Examples:
+
+decimal:
+1
+2
+3
+
+lower-alpha:
+a
+b
+c
+
+upper-alpha:
+A
+B
+C
+
+lower-roman:
+i
+ii
+iii
+
+upper-roman:
+I
+II
+III
+
+========================================================
+4. list-style-image
+===================
+
+list-style-image allows an image to be used as the
+list marker.
+
+Syntax:
+
+list-style-image: url("image.png");
+
+Example:
+*/
+
+ul.image-list {
+list-style-image: url("bullet.png");
+}
+
+/*
+If the image is not available or does not load,
+the browser can use the list-style-type marker.
+
+Example:
+*/
+
+ul.image-list {
+list-style-type: square;
+list-style-image: url("bullet.png");
+}
+
+# /*
+
+5. list-style-position
+   ========================================================
+
+list-style-position controls whether the marker is
+inside or outside the list item's main content box.
+
+Values:
+
+outside
+inside
+
+Default is usually:
+
+outside
+
+========================================================
+6. OUTSIDE
+==========
+
+*/
+
+ul.outside {
+list-style-position: outside;
+}
+
+/*
+The marker is placed outside the main content area.
+
+========================================================
+7. INSIDE
+=========
+
+*/
+
+ul.inside {
+list-style-position: inside;
+}
+
+/*
+The marker is placed inside the list item's content area.
+
+Useful when the marker should align closely with the
+content.
+
+========================================================
+8. list-style SHORTHAND
+=======================
+
+The list-style property is shorthand for:
+
+list-style-type
+list-style-position
+list-style-image
+
+Syntax:
+
+list-style:
+type
+position
+image;
+
+Example:
+*/
+
+ul {
+list-style: square inside;
+}
+
+/*
+Another example:
+*/
+
+ul.custom-list {
+list-style: circle outside;
+}
+
+/*
+Image example:
+
+*/
+
+ul.image-style {
+list-style: square inside url("bullet.png");
+}
+
+# /*
+
+9. ORDERED LIST STYLING
+   ========================================================
+
+Ordered lists use <ol>.
+
+Example:
+*/
+
+ol {
+list-style-type: decimal;
+padding-left: 30px;
+}
+
+# /*
+
+10. ORDERED LIST WITH ROMAN NUMBERS
+    ========================================================
+    */
+
+ol.roman-list {
+list-style-type: upper-roman;
+}
+
+# /*
+
+11. ORDERED LIST WITH LETTERS
+    ========================================================
+    */
+
+ol.letter-list {
+list-style-type: lower-alpha;
+}
+
+# /*
+
+12. UNORDERED LIST STYLING
+    ========================================================
+
+Unordered lists use <ul>.
+
+*/
+
+ul {
+list-style-type: disc;
+}
+
+/*
+Change marker:
+
+*/
+
+ul.square-list {
+list-style-type: square;
+}
+
+ul.circle-list {
+list-style-type: circle;
+}
+
+ul.no-marker {
+list-style-type: none;
+}
+
+# /*
+
+13. REMOVING DEFAULT LIST MARKERS
+    ========================================================
+
+Use:
+
+list-style-type: none;
+
+This is commonly used for navigation menus.
+
+*/
+
+.no-bullets {
+list-style-type: none;
+margin: 0;
+padding: 0;
+}
+
+/*
+Removing margin and padding is often useful because
+browsers provide default spacing for lists.
+
+========================================================
+14. CUSTOM LIST MARKERS USING ::marker
+======================================
+
+::marker is a pseudo-element that styles the marker
+of a list item.
+
+Example:
+*/
+
+.custom-marker li::marker {
+color: red;
+font-size: 20px;
+}
+
+# /*
+
+15. CUSTOM MARKER COLOR
+    ========================================================
+    */
+
+.color-marker li::marker {
+color: blue;
+}
+
+/*
+The text of the list item remains unaffected.
+
+========================================================
+16. CUSTOM MARKER FONT SIZE
+===========================
+
+*/
+
+.large-marker li::marker {
+font-size: 24px;
+}
+
+# /*
+
+17. CUSTOM MARKER WITH SYMBOLS
+    ========================================================
+
+::marker can be used with content to customize markers
+in supported cases.
+
+*/
+
+.check-list li::marker {
+content: "✓ ";
+color: green;
+}
+
+/*
+Example:
+
+<ul class="check-list">
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+</ul>
+
+========================================================
+18. CUSTOM MARKER USING ::BEFORE
+================================
+
+Another common technique is removing the normal marker
+and creating a custom marker using ::before.
+
+*/
+
+.custom-before {
+list-style: none;
+padding: 0;
+}
+
+.custom-before li::before {
+content: "→ ";
+color: blue;
+font-weight: bold;
+}
+
+/*
+This technique provides more control than ::marker,
+because ::before can be styled like a normal
+pseudo-element.
+
+========================================================
+19. NESTED LISTS
+================
+
+A list can contain another list.
+
+Example HTML:
+
+<ul>
+    <li>Frontend
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+        </ul>
+    </li>
+</ul>
+
+CSS can style different levels differently.
+
+*/
+
+.nested-list {
+list-style-type: disc;
+}
+
+.nested-list ul {
+list-style-type: circle;
+}
+
+.nested-list ul ul {
+list-style-type: square;
+}
+
+/*
+This creates:
+
+• Frontend
+○ HTML
+○ CSS
+
+Different levels can use different marker types.
+
+========================================================
+20. NESTED ORDERED LIST
+=======================
+
+*/
+
+.nested-ordered {
+list-style-type: decimal;
+}
+
+.nested-ordered ol {
+list-style-type: lower-alpha;
+}
+
+.nested-ordered ol ol {
+list-style-type: lower-roman;
+}
+
+/*
+Example:
+
+1. Frontend
+   a. HTML
+   i. Tags
+   ii. Attributes
+
+========================================================
+21. LIST SPACING
+================
+
+Margins can create space between list items.
+
+*/
+
+.spaced-list li {
+margin-bottom: 10px;
+}
+
+/*
+Padding can also be used:
+
+*/
+
+.padded-list li {
+padding: 5px 0;
+}
+
+# /*
+
+22. HORIZONTAL LISTS
+    ========================================================
+
+Lists are normally vertical.
+
+They can be made horizontal using:
+
+display: flex;
+
+Example:
+*/
+
+.horizontal-list {
+display: flex;
+gap: 20px;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+/*
+HTML:
+
+<ul class="horizontal-list">
+    <li>Home</li>
+    <li>About</li>
+    <li>Contact</li>
+</ul>
+
+========================================================
+23. HORIZONTAL LIST WITH LINKS
+==============================
+
+*/
+
+.horizontal-links {
+display: flex;
+gap: 20px;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.horizontal-links a {
+color: black;
+text-decoration: none;
+}
+
+# /*
+
+24. HORIZONTAL LIST HOVER EFFECT
+    ========================================================
+    */
+
+.horizontal-links a:hover {
+color: blue;
+}
+
+# /*
+
+25. NAVIGATION MENUS USING LISTS
+    ========================================================
+
+Lists are commonly used to create navigation menus.
+
+Typical HTML structure:
+
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+CSS:
+*/
+
+.nav-menu ul {
+list-style: none;
+margin: 0;
+padding: 0;
+display: flex;
+gap: 20px;
+}
+
+.nav-menu a {
+text-decoration: none;
+color: black;
+padding: 10px 15px;
+}
+
+# /*
+
+26. NAVIGATION MENU HOVER
+    ========================================================
+    */
+
+.nav-menu a:hover {
+background-color: black;
+color: white;
+border-radius: 5px;
+}
+
+# /*
+
+27. NAVIGATION MENU WITH ACTIVE ITEM
+    ========================================================
+    */
+
+.nav-menu a.active {
+background-color: blue;
+color: white;
+}
+
+/*
+Remember:
+
+.active
+-> normal class
+
+:active
+-> temporary activation state
+
+========================================================
+28. VERTICAL NAVIGATION MENU
+============================
+
+A navigation list does not have to be horizontal.
+
+*/
+
+.vertical-nav ul {
+list-style: none;
+margin: 0;
+padding: 0;
+width: 200px;
+}
+
+.vertical-nav a {
+display: block;
+padding: 12px;
+color: black;
+text-decoration: none;
+}
+
+.vertical-nav a:hover {
+background-color: lightgray;
+}
+
+# /*
+
+29. NAVIGATION BAR WITH SPACE-BETWEEN
+    ========================================================
+    */
+
+.nav-space {
+display: flex;
+justify-content: space-between;
+align-items: center;
+list-style: none;
+margin: 0;
+padding: 15px;
+}
+
+# /*
+
+30. LIST AS A SIDEBAR
+    ========================================================
+    */
+
+.sidebar-list {
+list-style: none;
+margin: 0;
+padding: 0;
+width: 220px;
+}
+
+.sidebar-list li {
+border-bottom: 1px solid #ccc;
+}
+
+.sidebar-list a {
+display: block;
+padding: 12px;
+color: #333;
+text-decoration: none;
+}
+
+.sidebar-list a:hover {
+background-color: #eeeeee;
+}
+
+# /*
+
+31. CUSTOM CHECKLIST
+    ========================================================
+    */
+
+.checklist {
+list-style: none;
+padding: 0;
+}
+
+.checklist li::before {
+content: "✓";
+color: green;
+font-weight: bold;
+margin-right: 10px;
+}
+
+# /*
+
+32. CARD LIST
+    ========================================================
+    */
+
+.card-list {
+display: flex;
+gap: 20px;
+list-style: none;
+padding: 0;
+}
+
+.card-list li {
+padding: 20px;
+border: 1px solid #ccc;
+border-radius: 10px;
+}
+
+# /*
+
+33. IMPORTANT DIFFERENCE:
+    ::marker VS ::before
+    ========================================================
+
+```
+Specifically styles the list marker.
+```
+
+Example:
+
+li::marker {
+color: red;
+}
+
+```
+Creates a pseudo-element before the content.
+```
+
+Example:
+
+li::before {
+content: "✓";
+}
+
+Use ::marker when you only need to customize the
+actual list marker.
+
+Use ::before when you need more control over a
+custom decorative symbol or element.
+
+========================================================
+34. LIST DEFAULT STYLING
+========================
+
+Browsers provide default styling for lists.
+
+Typical defaults include:
+
+* Padding
+* Margin
+* List markers
+
+For custom navigation menus, it is common to reset:
+
+*/
+
+ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+
+/*
+Do not remove list markers from meaningful content
+unless you replace them with another clear visual
+structure.
+
+========================================================
+35. QUICK REVISION
+==================
+
+list-style-type
+Controls marker type.
+
+list-style-image
+Uses an image as the marker.
+
+list-style-position
+Controls marker position.
+
+list-style
+Shorthand for list-style properties.
+
+```
+Styles list markers.
+```
+
+<ol>
+    Ordered list.
+
+<ul>
+    Unordered list.
+
+<li>
+    List item.
+
+Nested list
+A list inside another list item.
+
+Horizontal list
+List items arranged horizontally.
+
+Navigation menu
+Commonly created using <nav>, <ul>, <li>, and <a>.
+
+========================================================
+36. COMMON list-style-type VALUES
+=================================
+
+Unordered:
+disc
+circle
+square
+none
+
+Ordered:
+decimal
+decimal-leading-zero
+lower-alpha
+upper-alpha
+lower-roman
+upper-roman
+lower-greek
+
+========================================================
+37. QUESTIONS
+=============
+
+Q1. What is the purpose of list-style-type?
+
+Q2. What is the difference between <ol> and <ul>?
+
+Q3. What does list-style-image do?
+
+Q4. What does list-style-position control?
+
+Q5. What is the list-style shorthand?
+
+Q6. How do you remove bullets from a list?
+
+Q7. What is ::marker?
+
+Q8. What is the difference between ::marker and ::before?
+
+Q9. How can you create a horizontal list?
+
+Q10. How can lists be used to create navigation menus?
+
+Q11. How do you style nested lists differently?
+
+Q12. How can you create a vertical navigation menu?
+
+========================================================
+38. SOLUTIONS
+=============
+
+Q1.
+list-style-type controls the type of marker displayed
+for list items.
+
+Q2.
+
+<ol> creates an ordered list, normally using numbers
+or another sequence.
+
+<ul> creates an unordered list, normally using bullets.
+
+Q3.
+list-style-image allows an image to be used as a list
+marker.
+
+Q4.
+list-style-position controls whether the marker is
+inside or outside the list item's content area.
+
+Q5.
+list-style is a shorthand property for:
+
+* list-style-type
+* list-style-position
+* list-style-image
+
+Q6.
+Use:
+
+list-style-type: none;
+
+Q7.
+::marker is a pseudo-element used to style list markers.
+
+Q8.
+::marker specifically styles a list marker.
+
+::before creates a pseudo-element before the element's
+content and can be used to create a custom marker.
+
+Q9.
+Use Flexbox:
+
+display: flex;
+
+along with list-style: none and appropriate spacing.
+
+Q10.
+Use:
+
+<nav>
+    <ul>
+        <li>
+            <a>
+        </li>
+    </ul>
+</nav>
+
+Then remove default markers and style the links.
+
+Q11.
+Target nested lists separately.
+
+Example:
+
+ul {
+list-style-type: disc;
+}
+
+ul ul {
+list-style-type: circle;
+}
+
+Q12.
+Use a list with list-style: none and make the links
+display as block elements.
+
+========================================================
+39. PRACTICE QUESTIONS
+======================
+
+1. Create an unordered list with square markers.
+
+2. Create an ordered list using Roman numerals.
+
+3. Remove bullets from an unordered list.
+
+4. Use a custom image as a list marker.
+
+5. Change the color of list markers using ::marker.
+
+6. Create a nested list with different marker styles.
+
+7. Create a horizontal list using Flexbox.
+
+8. Create a horizontal navigation menu.
+
+9. Create a vertical sidebar navigation menu.
+
+10. Create a checklist using custom checkmarks.
+
+========================================================
+40. PRACTICE SOLUTIONS
+======================
+
+*/
+
+/* 1. Square markers */
+.practice-square {
+list-style-type: square;
+}
+
+/* 2. Roman numerals */
+.practice-roman {
+list-style-type: upper-roman;
+}
+
+/* 3. Remove bullets */
+.practice-no-bullets {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+/* 4. Custom image marker */
+.practice-image {
+list-style-image: url("bullet.png");
+}
+
+/* 5. Custom marker color */
+.practice-marker li::marker {
+color: red;
+}
+
+/* 6. Nested list */
+.practice-nested {
+list-style-type: disc;
+}
+
+.practice-nested ul {
+list-style-type: circle;
+}
+
+.practice-nested ul ul {
+list-style-type: square;
+}
+
+/* 7. Horizontal list */
+.practice-horizontal {
+display: flex;
+gap: 20px;
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+/* 8. Horizontal navigation */
+.practice-navigation ul {
+display: flex;
+gap: 15px;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.practice-navigation a {
+display: block;
+padding: 10px 15px;
+color: black;
+text-decoration: none;
+}
+
+.practice-navigation a:hover {
+background-color: black;
+color: white;
+}
+
+/* 9. Vertical sidebar navigation */
+.practice-sidebar ul {
+width: 200px;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.practice-sidebar a {
+display: block;
+padding: 12px;
+color: black;
+text-decoration: none;
+}
+
+.practice-sidebar a:hover {
+background-color: lightgray;
+}
+
+/* 10. Checklist */
+.practice-checklist {
+list-style: none;
+padding: 0;
+}
+
+.practice-checklist li::before {
+content: "✓";
+color: green;
+font-weight: bold;
+margin-right: 10px;
+}
+
+# /*
+
+# END OF CSS LISTS
+
+*/

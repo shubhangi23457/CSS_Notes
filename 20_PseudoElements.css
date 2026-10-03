@@ -1,0 +1,996 @@
+# /*
+
+18. CSS PSEUDO-ELEMENTS
+    ========================================================
+
+19. WHAT ARE PSEUDO-ELEMENTS?
+
+---
+
+Pseudo-elements are keywords used to style a specific
+part of an HTML element or create generated content.
+
+Syntax:
+
+selector::pseudo-element {
+property: value;
+}
+
+Pseudo-elements generally use TWO colons (::).
+
+Examples:
+
+Pseudo-elements can:
+
+* Style part of an element
+* Add decorative content
+* Create shapes
+* Add icons or symbols
+* Style selected text
+* Style placeholder text
+* Style list markers
+
+========================================================
+2. PSEUDO-CLASS VS PSEUDO-ELEMENT
+=================================
+
+Pseudo-class:
+Selects an element based on its state, position,
+or condition.
+
+Example:
+button:hover
+
+Pseudo-element:
+Styles a specific part of an element or creates
+generated content.
+
+Example:
+p::first-letter
+
+Pseudo-class -> :
+Pseudo-element -> ::
+
+Examples:
+
+:hover
+:focus
+:first-child
+
+========================================================
+3. ::before
+===========
+
+::before creates a pseudo-element as the first child
+of the selected element.
+
+It is commonly used for:
+
+* Icons
+* Decorative lines
+* Labels
+* Shapes
+* Background decorations
+
+The content property is normally required for generated
+content.
+
+Example:
+*/
+
+.heading::before {
+content: "★ ";
+color: gold;
+}
+
+/*
+HTML:
+
+<h2 class="heading">Welcome</h2>
+
+Result:
+
+★ Welcome
+
+========================================================
+4. ::after
+==========
+
+::after creates a pseudo-element as the last child
+of the selected element.
+
+It is commonly used for:
+
+* Decorative elements
+* Icons
+* Underlines
+* Arrows
+* Clearfix
+* Labels
+
+Example:
+*/
+
+.heading::after {
+content: " ✓";
+color: green;
+}
+
+# /*
+
+5. ::before AND ::after TOGETHER
+   ========================================================
+   */
+
+.title::before {
+content: "【 ";
+}
+
+.title::after {
+content: " 】";
+}
+
+/*
+HTML:
+
+<h2 class="title">CSS</h2>
+
+Visual result:
+
+【 CSS 】
+
+========================================================
+6. ::first-letter
+=================
+
+::first-letter styles the first letter of the first line
+of text in an element.
+
+Commonly used for:
+
+* Drop caps
+* Magazine-style text
+* Decorative paragraphs
+
+*/
+
+p::first-letter {
+font-size: 40px;
+font-weight: bold;
+}
+
+/*
+Example:
+
+<p>Lorem ipsum dolor sit amet...</p>
+
+The "L" gets the specified styling.
+
+========================================================
+7. ::first-line
+===============
+
+::first-line styles the first formatted line of text
+inside an element.
+
+The exact characters included depend on:
+
+* Element width
+* Font
+* Font size
+* Screen size
+* Other layout conditions
+
+*/
+
+p::first-line {
+font-weight: bold;
+color: blue;
+}
+
+/*
+Important:
+
+::first-line does NOT mean the first physical line of
+source code.
+
+It means the first rendered/formatted line.
+
+========================================================
+8. ::selection
+==============
+
+::selection styles text when the user selects/highlights it.
+
+*/
+
+::selection {
+background-color: black;
+color: white;
+}
+
+/*
+Example:
+
+When the user selects text on the page,
+the selected text gets the specified styling.
+
+========================================================
+9. ::placeholder
+================
+
+::placeholder styles placeholder text inside form controls.
+
+*/
+
+input::placeholder {
+color: gray;
+font-style: italic;
+}
+
+/*
+HTML:
+
+<input type="text" placeholder="Enter your name">
+
+The placeholder text receives the styling.
+
+========================================================
+10. ::marker
+============
+
+::marker styles the marker of list items.
+
+It can style:
+
+* Bullet points
+* Number markers
+
+Example:
+*/
+
+li::marker {
+color: red;
+font-size: 20px;
+}
+
+/*
+HTML:
+
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+</ul>
+
+The bullet markers are styled.
+
+Ordered lists can also use ::marker:
+
+*/
+
+ol li::marker {
+font-weight: bold;
+}
+
+# /*
+
+11.
+
+========================================================
+
+::backdrop styles the backdrop rendered behind certain
+elements that are displayed in a top layer.
+
+A common example is the <dialog> element when it is
+shown as a modal.
+
+Example:
+*/
+
+dialog::backdrop {
+background-color: rgba(0, 0, 0, 0.6);
+}
+
+/*
+The backdrop appears behind the dialog and above the
+rest of the page.
+
+Typical use:
+
+* Modal dialogs
+* Fullscreen elements
+* Other top-layer UI
+
+========================================================
+12. GENERATED CONTENT
+=====================
+
+Generated content is content created using CSS rather
+than written directly inside the HTML.
+
+It is commonly created using:
+
+with:
+
+content
+
+Example:
+*/
+
+.note::before {
+content: "Note: ";
+font-weight: bold;
+}
+
+/*
+HTML:
+
+<p class="note">Save your work regularly.</p>
+
+The browser displays:
+
+Note: Save your work regularly.
+
+Generated content is mainly useful for presentation
+and decoration.
+
+Important:
+Do not use CSS generated content as the only place for
+important information that users need to understand.
+
+========================================================
+13. content PROPERTY
+====================
+
+The content property specifies what a pseudo-element
+should display.
+
+It is mainly used with:
+
+Common values:
+
+content: "text";
+content: "";
+content: none;
+
+Example:
+*/
+
+.box::before {
+content: "Hello";
+}
+
+# /*
+
+14. EMPTY CONTENT
+    ========================================================
+
+content: "";
+
+creates a pseudo-element without text.
+
+This is extremely useful for decorative shapes.
+
+*/
+
+.box::before {
+content: "";
+display: block;
+width: 50px;
+height: 5px;
+background-color: blue;
+}
+
+# /*
+
+15. USING SYMBOLS WITH content
+    ========================================================
+
+You can use symbols and Unicode characters.
+
+*/
+
+.success::before {
+content: "✓ ";
+}
+
+.warning::before {
+content: "⚠ ";
+}
+
+.favorite::before {
+content: "♥ ";
+}
+
+# /*
+
+16. USING ATTRIBUTES WITH content
+    ========================================================
+
+The attr() function can retrieve an HTML attribute.
+
+Example:
+*/
+
+a::after {
+content: " (" attr(href) ")";
+}
+
+/*
+HTML:
+
+<a href="https://example.com">Example</a>
+
+The pseudo-element can display the href value.
+
+This technique is often used for print styles or
+additional visual information.
+
+========================================================
+17. DECORATIVE ELEMENTS WITH PSEUDO-ELEMENTS
+============================================
+
+Pseudo-elements are excellent for creating decorative
+elements without adding extra HTML.
+
+Example: Decorative underline
+*/
+
+.heading-underline {
+position: relative;
+}
+
+.heading-underline::after {
+content: "";
+display: block;
+width: 60px;
+height: 4px;
+background-color: blue;
+margin-top: 8px;
+}
+
+# /*
+
+18. DECORATIVE CIRCLE
+    ========================================================
+    */
+
+.icon {
+position: relative;
+}
+
+.icon::before {
+content: "";
+position: absolute;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background-color: lightblue;
+z-index: -1;
+}
+
+# /*
+
+19. DECORATIVE SIDE LINE
+    ========================================================
+    */
+
+.card {
+position: relative;
+padding: 20px;
+}
+
+.card::before {
+content: "";
+position: absolute;
+left: 0;
+top: 0;
+width: 5px;
+height: 100%;
+background-color: blue;
+}
+
+# /*
+
+20. QUOTE DESIGN
+    ========================================================
+    */
+
+.quote {
+position: relative;
+padding: 30px;
+}
+
+.quote::before {
+content: "“";
+font-size: 60px;
+position: absolute;
+left: 5px;
+top: -10px;
+}
+
+.quote::after {
+content: "”";
+font-size: 60px;
+}
+
+# /*
+
+21. BADGE USING ::AFTER
+    ========================================================
+    */
+
+.product {
+position: relative;
+}
+
+.product::after {
+content: "NEW";
+position: absolute;
+top: 10px;
+right: 10px;
+background-color: red;
+color: white;
+padding: 5px 10px;
+font-size: 12px;
+border-radius: 5px;
+}
+
+# /*
+
+22. CUSTOM CHECKMARK
+    ========================================================
+    */
+
+.completed::before {
+content: "✓";
+margin-right: 8px;
+color: green;
+font-weight: bold;
+}
+
+# /*
+
+23. ARROW USING PSEUDO-ELEMENT
+    ========================================================
+    */
+
+.next-button::after {
+content: " →";
+}
+
+# /*
+
+24. TOOLTIP USING PSEUDO-ELEMENT
+    ========================================================
+    */
+
+.tooltip {
+position: relative;
+}
+
+.tooltip::after {
+content: attr(data-tooltip);
+position: absolute;
+bottom: 100%;
+left: 50%;
+transform: translateX(-50%);
+background-color: black;
+color: white;
+padding: 5px 10px;
+border-radius: 4px;
+white-space: nowrap;
+opacity: 0;
+pointer-events: none;
+}
+
+.tooltip:hover::after {
+opacity: 1;
+}
+
+/*
+HTML:
+
+<span class="tooltip" data-tooltip="More information">
+    Hover me
+</span>
+
+========================================================
+25. CLEARFIX USING ::AFTER
+==========================
+
+A traditional clearfix can use ::after to clear floats.
+
+*/
+
+.clearfix::after {
+content: "";
+display: table;
+clear: both;
+}
+
+/*
+This helps a parent contain floated children.
+
+Modern layouts usually use Flexbox or Grid instead of
+float-based layouts, but clearfix is still useful to know.
+
+========================================================
+26. IMPORTANT RULES FOR ::BEFORE AND ::AFTER
+============================================
+
+1. They create generated pseudo-elements.
+
+2. They are commonly used with content.
+
+3. For decorative shapes:
+
+content: "";
+
+can be used.
+
+4. ::before appears before the element's content.
+
+5. ::after appears after the element's content.
+
+6. Positioning often uses:
+
+position: relative;
+
+on the parent and:
+
+position: absolute;
+
+on the pseudo-element.
+
+7. Generated content should generally be decorative,
+   not the only source of essential information.
+
+========================================================
+27. PRACTICAL EXAMPLE - COMPLETE CARD
+=====================================
+
+*/
+
+.card-demo {
+position: relative;
+width: 250px;
+padding: 20px;
+border: 1px solid #ccc;
+}
+
+.card-demo::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 4px;
+background-color: blue;
+}
+
+.card-demo::after {
+content: "Featured";
+position: absolute;
+top: 10px;
+right: 10px;
+font-size: 12px;
+background-color: gold;
+padding: 4px 8px;
+border-radius: 4px;
+}
+
+# /*
+
+28. QUICK REVISION
+    ========================================================
+
+```
+Creates content before the element's content.
+```
+
+```
+Creates content after the element's content.
+```
+
+```
+Styles the first letter.
+```
+
+```
+Styles the first formatted line.
+```
+
+```
+Styles selected/highlighted text.
+```
+
+```
+Styles placeholder text.
+```
+
+```
+Styles list markers.
+```
+
+```
+Styles the backdrop behind top-layer elements such
+as modal dialogs.
+```
+
+content
+Specifies generated content for pseudo-elements.
+
+Generated Content
+Content created through CSS, commonly with
+::before and ::after.
+
+========================================================
+29. IMPORTANT DIFFERENCES
+=========================
+
+Pseudo-class:
+:
+Selects an element based on state or condition.
+
+Pseudo-element:
+::
+Styles a specific part of an element or creates
+generated content.
+
+Example:
+
+button:hover {
+...
+}
+
+p::first-letter {
+...
+}
+
+========================================================
+30. QUESTIONS
+=============
+
+Q1. What is a pseudo-element?
+
+Q2. What is the difference between a pseudo-class and
+a pseudo-element?
+
+Q3. What is the purpose of ::before?
+
+Q4. What is the purpose of ::after?
+
+Q5. Why is the content property commonly used with
+::before and ::after?
+
+Q6. What does ::first-letter do?
+
+Q7. What does ::first-line do?
+
+Q8. What is the use of ::selection?
+
+Q9. How is ::placeholder used?
+
+Q10. What does ::marker style?
+
+Q11. What is ::backdrop used for?
+
+Q12. What is generated content?
+
+Q13. How can pseudo-elements be used to create
+decorative elements?
+
+Q14. What is the difference between content: "text"
+and content: ""?
+
+========================================================
+31. SOLUTIONS
+=============
+
+Q1.
+A pseudo-element is a CSS keyword used to style a
+specific part of an element or create generated content.
+
+Q2.
+A pseudo-class selects an element based on its state,
+position, or condition.
+
+A pseudo-element styles a specific part of an element
+or creates generated content.
+
+Pseudo-class:
+:hover
+
+Pseudo-element:
+
+Q3.
+::before creates a pseudo-element before the element's
+main content.
+
+Q4.
+::after creates a pseudo-element after the element's
+main content.
+
+Q5.
+The content property specifies what the generated
+pseudo-element should display.
+
+Q6.
+::first-letter styles the first letter of the first
+formatted line.
+
+Q7.
+::first-line styles the first formatted line of text.
+
+Q8.
+::selection styles text while the user has selected it.
+
+Q9.
+::placeholder styles placeholder text inside supported
+form controls.
+
+Q10.
+::marker styles list item markers such as bullets and
+number markers.
+
+Q11.
+::backdrop styles the backdrop behind elements displayed
+in the top layer, such as modal dialogs.
+
+Q12.
+Generated content is content created by CSS, commonly
+using ::before, ::after, and the content property.
+
+Q13.
+Pseudo-elements can create lines, circles, badges,
+arrows, borders, icons, and other decorations without
+adding extra HTML elements.
+
+Q14.
+content: "text";
+Creates/display the specified text.
+
+content: "";
+Creates an empty pseudo-element, which is useful
+for decorative shapes and layout effects.
+
+========================================================
+32. PRACTICE QUESTIONS
+======================
+
+1. Add a "NEW" label before every element with class
+   .new.
+
+2. Add a checkmark after elements with class .completed.
+
+3. Make the first letter of every paragraph larger.
+
+4. Change the color of selected text.
+
+5. Style placeholder text in an input.
+
+6. Change the color of list bullets.
+
+7. Create a blue decorative underline below a heading.
+
+8. Create a red circular decoration before a card.
+
+9. Create a "SALE" badge in the top-right corner of
+   a product card.
+
+10. Create a tooltip using ::after and attr().
+
+========================================================
+33. PRACTICE SOLUTIONS
+======================
+
+*/
+
+/* 1. NEW label before elements */
+.new::before {
+content: "NEW ";
+font-weight: bold;
+}
+
+/* 2. Checkmark after completed elements */
+.completed::after {
+content: " ✓";
+color: green;
+}
+
+/* 3. Large first letter */
+p::first-letter {
+font-size: 40px;
+font-weight: bold;
+}
+
+/* 4. Selected text */
+::selection {
+background-color: black;
+color: white;
+}
+
+/* 5. Placeholder styling */
+input::placeholder {
+color: gray;
+font-style: italic;
+}
+
+/* 6. List bullet styling */
+li::marker {
+color: red;
+}
+
+/* 7. Decorative underline */
+.heading {
+position: relative;
+}
+
+.heading::after {
+content: "";
+display: block;
+width: 60px;
+height: 4px;
+background-color: blue;
+margin-top: 8px;
+}
+
+/* 8. Red circular decoration */
+.card-decoration {
+position: relative;
+}
+
+.card-decoration::before {
+content: "";
+position: absolute;
+width: 30px;
+height: 30px;
+border-radius: 50%;
+background-color: red;
+}
+
+/* 9. SALE badge */
+.product-card {
+position: relative;
+}
+
+.product-card::after {
+content: "SALE";
+position: absolute;
+top: 10px;
+right: 10px;
+background-color: red;
+color: white;
+padding: 5px 10px;
+border-radius: 4px;
+}
+
+/* 10. Tooltip */
+.tooltip-box {
+position: relative;
+}
+
+.tooltip-box::after {
+content: attr(data-tooltip);
+position: absolute;
+bottom: 100%;
+left: 50%;
+transform: translateX(-50%);
+background-color: black;
+color: white;
+padding: 5px 10px;
+white-space: nowrap;
+opacity: 0;
+}
+
+.tooltip-box:hover::after {
+opacity: 1;
+}
+
+# /*
+
+# END OF CSS PSEUDO-ELEMENTS
+
+*/

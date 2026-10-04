@@ -1,0 +1,890 @@
+# /*
+
+```
+             22. CSS IMAGES
+```
+
+====================================================
+
+CSS is used to control the appearance, size, position,
+alignment, cropping, and effects of images on a webpage.
+
+TOPICS:
+
+1. Image Width and Height
+2. Responsive Images
+3. object-fit
+4. object-position
+5. Image Borders
+6. Image Opacity
+7. Image Filters
+8. Image Alignment
+9. Image Cropping
+10. Rounded Images
+11. Image Hover Effects
+12. Image as Background
+13. Image Sprites
+
+====================================================
+
+1. IMAGE WIDTH AND HEIGHT
+   ====================================================
+
+* width controls the width of an image.
+* height controls the height of an image.
+* Setting both dimensions may distort the image if
+  the original aspect ratio is not maintained.
+* Use height: auto to preserve the original ratio.
+
+Example:
+
+*/
+
+.image {
+width: 300px;
+height: auto;
+}
+
+/*
+Fixed dimensions:
+
+*/
+
+.fixed-image {
+width: 300px;
+height: 200px;
+}
+
+# /*
+
+2. RESPONSIVE IMAGES
+   ====================================================
+
+Responsive images adjust according to the screen size
+and their parent container.
+
+Important properties:
+
+* max-width: 100% prevents an image from overflowing.
+* height: auto maintains the aspect ratio.
+* display: block removes the inline baseline gap.
+
+Example:
+*/
+
+.responsive-image {
+max-width: 100%;
+height: auto;
+display: block;
+}
+
+/*
+Responsive image inside a container:
+*/
+
+.image-container {
+width: 80%;
+max-width: 600px;
+margin: auto;
+}
+
+.image-container img {
+width: 100%;
+height: auto;
+}
+
+# /*
+
+3. OBJECT-FIT
+   ====================================================
+
+object-fit controls how an image fits inside its
+specified width and height.
+
+Values:
+
+1. fill       - Stretches image to fill the box.
+2. contain    - Shows the complete image without cropping.
+3. cover      - Fills the box; may crop the image.
+4. none       - Keeps original image size.
+5. scale-down - Uses the smaller result of none or contain.
+
+Example:
+*/
+
+.fit-fill {
+width: 300px;
+height: 200px;
+object-fit: fill;
+}
+
+.fit-contain {
+width: 300px;
+height: 200px;
+object-fit: contain;
+}
+
+.fit-cover {
+width: 300px;
+height: 200px;
+object-fit: cover;
+}
+
+.fit-none {
+width: 300px;
+height: 200px;
+object-fit: none;
+}
+
+.fit-scale-down {
+width: 300px;
+height: 200px;
+object-fit: scale-down;
+}
+
+/*
+Common use:
+Product cards, profile pictures, galleries and thumbnails.
+
+====================================================
+4. OBJECT-POSITION
+==================
+
+object-position controls which part of an image is
+visible inside its box when object-fit is used.
+
+Values:
+
+* center
+* top
+* bottom
+* left
+* right
+* percentage values
+* pixel values
+
+Example:
+*/
+
+.object-center {
+width: 300px;
+height: 200px;
+object-fit: cover;
+object-position: center;
+}
+
+.object-top {
+object-fit: cover;
+object-position: top;
+}
+
+.object-left {
+object-fit: cover;
+object-position: left;
+}
+
+.object-custom {
+object-fit: cover;
+object-position: 70% 30%;
+}
+
+# /*
+
+5. IMAGE BORDERS
+   ====================================================
+
+Borders can be added around images using the border
+property.
+
+Properties:
+
+* border-width
+* border-style
+* border-color
+* border-radius
+
+Example:
+*/
+
+.image-border {
+width: 250px;
+border: 3px solid black;
+}
+
+.dashed-border {
+border: 3px dashed red;
+}
+
+.colored-border {
+border: 5px solid blue;
+}
+
+# /*
+
+6. IMAGE OPACITY
+   ====================================================
+
+opacity controls the transparency of an image.
+
+Values:
+
+* 0   = Completely transparent
+* 0.5 = 50% visible
+* 1   = Completely visible
+
+Example:
+*/
+
+.transparent-image {
+opacity: 0.5;
+}
+
+.full-opacity {
+opacity: 1;
+}
+
+.low-opacity {
+opacity: 0.3;
+}
+
+/*
+Hover opacity effect:
+*/
+
+.opacity-hover {
+opacity: 0.6;
+transition: opacity 0.3s ease;
+}
+
+.opacity-hover:hover {
+opacity: 1;
+}
+
+/*
+NOTE:
+Opacity affects the entire element and its contents,
+not just the image pixels.
+
+====================================================
+7. IMAGE FILTERS
+================
+
+The filter property applies visual effects to images.
+
+Common filter functions:
+
+1. grayscale()   - Converts image to grayscale.
+2. blur()        - Blurs the image.
+3. brightness()  - Changes brightness.
+4. contrast()    - Changes contrast.
+5. sepia()       - Gives an old-photo effect.
+6. saturate()    - Changes color intensity.
+7. invert()      - Inverts colors.
+8. opacity()     - Changes transparency.
+9. hue-rotate()  - Rotates colors.
+10. drop-shadow()- Adds a shadow.
+
+Example:
+*/
+
+.grayscale-image {
+filter: grayscale(100%);
+}
+
+.blur-image {
+filter: blur(3px);
+}
+
+.bright-image {
+filter: brightness(150%);
+}
+
+.contrast-image {
+filter: contrast(150%);
+}
+
+.sepia-image {
+filter: sepia(100%);
+}
+
+.saturated-image {
+filter: saturate(200%);
+}
+
+.invert-image {
+filter: invert(100%);
+}
+
+.hue-image {
+filter: hue-rotate(90deg);
+}
+
+.shadow-image {
+filter: drop-shadow(5px 5px 5px gray);
+}
+
+/*
+Multiple filters can be combined:
+*/
+
+.multiple-filters {
+filter: grayscale(50%) brightness(120%) contrast(110%);
+}
+
+# /*
+
+8. IMAGE ALIGNMENT
+   ====================================================
+
+Images are inline elements by default.
+
+Different methods can be used to align images.
+
+A. Center image using margin:
+
+*/
+
+.center-image {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+/*
+B. Center image using Flexbox:
+*/
+
+.flex-image-container {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+/*
+C. Align image to the right:
+*/
+
+.right-image {
+display: block;
+margin-left: auto;
+}
+
+/*
+D. Center inline image using text-align:
+*/
+
+.text-center {
+text-align: center;
+}
+
+# /*
+
+9. IMAGE CROPPING
+   ====================================================
+
+Image cropping means displaying only a selected part
+of an image.
+
+Commonly achieved using:
+
+* Fixed width and height
+* object-fit: cover
+* object-position
+
+Example:
+*/
+
+.crop-image {
+width: 250px;
+height: 180px;
+object-fit: cover;
+object-position: center;
+}
+
+/*
+Crop from the top:
+*/
+
+.crop-top {
+width: 250px;
+height: 180px;
+object-fit: cover;
+object-position: top;
+}
+
+/*
+Crop from the right:
+*/
+
+.crop-right {
+width: 250px;
+height: 180px;
+object-fit: cover;
+object-position: right;
+}
+
+# /*
+
+10. ROUNDED IMAGES
+    ====================================================
+
+border-radius creates rounded corners and circular images.
+
+A. Slightly rounded corners:
+*/
+
+.rounded-image {
+width: 250px;
+border-radius: 10px;
+}
+
+/*
+B. Highly rounded corners:
+*/
+
+.highly-rounded {
+border-radius: 30px;
+}
+
+/*
+C. Circular image:
+*/
+
+.circle-image {
+width: 150px;
+height: 150px;
+border-radius: 50%;
+object-fit: cover;
+}
+
+/*
+IMPORTANT:
+For a perfect circle, use equal width and height
+along with border-radius: 50%.
+
+====================================================
+11. IMAGE HOVER EFFECTS
+=======================
+
+Hover effects change the appearance of an image when
+the mouse pointer moves over it.
+
+Common effects:
+
+* Zoom
+* Brightness
+* Grayscale removal
+* Opacity
+* Rotation
+* Shadow
+
+A. Zoom effect:
+*/
+
+.zoom-image {
+width: 250px;
+transition: transform 0.3s ease;
+}
+
+.zoom-image:hover {
+transform: scale(1.1);
+}
+
+/*
+B. Rotate effect:
+*/
+
+.rotate-image {
+transition: transform 0.4s ease;
+}
+
+.rotate-image:hover {
+transform: rotate(5deg);
+}
+
+/*
+C. Grayscale to color:
+*/
+
+.color-hover {
+filter: grayscale(100%);
+transition: filter 0.3s ease;
+}
+
+.color-hover:hover {
+filter: grayscale(0%);
+}
+
+/*
+D. Shadow effect:
+*/
+
+.shadow-hover {
+transition: box-shadow 0.3s ease;
+}
+
+.shadow-hover:hover {
+box-shadow: 0 8px 20px gray;
+}
+
+/*
+E. Combined hover effect:
+*/
+
+.combined-hover {
+transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.combined-hover:hover {
+transform: scale(1.05);
+filter: brightness(110%);
+}
+
+# /*
+
+12. IMAGE AS BACKGROUND
+    ====================================================
+
+Images can be used as backgrounds using background-image.
+
+Important properties:
+
+* background-image
+* background-repeat
+* background-position
+* background-size
+* background-attachment
+* background-origin
+* background-clip
+
+Example:
+*/
+
+.background-image {
+background-image: url("background.jpg");
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+height: 400px;
+}
+
+/*
+Background size values:
+
+cover:
+
+* Covers the complete container.
+* May crop the image.
+
+contain:
+
+* Displays the complete image.
+* May leave empty space.
+
+auto:
+
+* Uses the original image dimensions.
+
+Background shorthand:
+*/
+
+.background-shorthand {
+background: url("background.jpg") center / cover no-repeat;
+height: 400px;
+}
+
+/*
+Fixed background:
+*/
+
+.fixed-background {
+background-image: url("background.jpg");
+background-attachment: fixed;
+background-position: center;
+background-size: cover;
+}
+
+/*
+Background image with overlay:
+*/
+
+.background-overlay {
+background:
+linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+url("background.jpg") center / cover no-repeat;
+color: white;
+padding: 50px;
+}
+
+# /*
+
+13. IMAGE SPRITES
+    ====================================================
+
+An image sprite is a single image containing multiple
+small images or icons.
+
+CSS background-position displays a selected portion
+of the sprite.
+
+Advantages:
+
+* Reduces separate image requests.
+* Useful for small icons.
+* Can improve loading efficiency when implemented well.
+
+Example:
+
+Assume sprite.png contains two icons side by side.
+The first icon starts at the top-left.
+The second icon is positioned 50px to the right.
+
+*/
+
+.sprite {
+width: 50px;
+height: 50px;
+background-image: url("sprite.png");
+background-repeat: no-repeat;
+}
+
+.sprite-first {
+background-position: 0 0;
+}
+
+.sprite-second {
+background-position: -50px 0;
+}
+
+/*
+Sprite with hover effect:
+*/
+
+.sprite-hover {
+width: 50px;
+height: 50px;
+background-image: url("sprite.png");
+background-position: 0 0;
+}
+
+.sprite-hover:hover {
+background-position: -50px 0;
+}
+
+/*
+NOTE:
+The background-position values depend on the actual
+dimensions and arrangement of the sprite image.
+
+====================================================
+QUICK REVISION
+==============
+
+1. width and height control image dimensions.
+2. max-width: 100% makes images responsive.
+3. height: auto maintains aspect ratio.
+4. object-fit controls how an image fits its box.
+5. object-position controls the visible image area.
+6. border adds a border around an image.
+7. opacity controls transparency.
+8. filter applies visual effects.
+9. margin: auto can center a block image.
+10. object-fit: cover is commonly used for cropping.
+11. border-radius: 50% creates circular images.
+12. transform: scale() creates a zoom effect.
+13. background-image sets an image as a background.
+14. background-size: cover fills the container.
+15. Image sprites combine multiple icons into one image.
+
+====================================================
+QUESTIONS
+=========
+
+Q1. Which property controls the width of an image?
+Answer: width.
+
+Q2. How can we make an image responsive?
+Answer:
+img {
+max-width: 100%;
+height: auto;
+}
+
+Q3. What is the difference between object-fit: cover
+and object-fit: contain?
+
+Answer:
+
+* cover fills the complete box but may crop the image.
+* contain displays the complete image but may leave
+  empty space.
+
+Q4. Which property controls the visible position
+of an image inside its box?
+Answer: object-position.
+
+Q5. Which property makes an image transparent?
+Answer: opacity.
+
+Q6. Which property converts an image to grayscale?
+Answer: filter: grayscale(100%).
+
+Q7. How do you create a circular image?
+Answer:
+img {
+border-radius: 50%;
+}
+
+Q8. How do you center an image horizontally?
+Answer:
+img {
+display: block;
+margin: auto;
+}
+
+Q9. Which property is used to crop an image?
+Answer: object-fit, commonly with cover.
+
+Q10. What is the difference between an image and
+a background image?
+
+Answer:
+
+* An img element adds an image as page content.
+* background-image adds an image as an element's
+  decorative background.
+
+Q11. What is an image sprite?
+Answer:
+A single image file containing multiple smaller images
+or icons, displayed using background-position.
+
+Q12. Which property creates a zoom hover effect?
+Answer: transform: scale().
+
+====================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Create a responsive image with a maximum width
+of 500px.
+
+SOLUTION:
+*/
+
+.practice-responsive {
+width: 100%;
+max-width: 500px;
+height: auto;
+}
+
+/*
+Q2. Create a product image of size 250px x 250px
+that completely fills its container without distortion.
+
+SOLUTION:
+*/
+
+.practice-product {
+width: 250px;
+height: 250px;
+object-fit: cover;
+}
+
+/*
+Q3. Create a circular profile picture.
+
+SOLUTION:
+*/
+
+.practice-profile {
+width: 150px;
+height: 150px;
+border-radius: 50%;
+object-fit: cover;
+}
+
+/*
+Q4. Create an image that becomes grayscale on hover.
+
+SOLUTION:
+*/
+
+.practice-grayscale {
+filter: grayscale(0%);
+transition: filter 0.3s ease;
+}
+
+.practice-grayscale:hover {
+filter: grayscale(100%);
+}
+
+/*
+Q5. Create an image that zooms in on hover.
+
+SOLUTION:
+*/
+
+.practice-zoom {
+transition: transform 0.3s ease;
+}
+
+.practice-zoom:hover {
+transform: scale(1.1);
+}
+
+/*
+Q6. Create a centered image with a 3px solid black
+border and rounded corners.
+
+SOLUTION:
+*/
+
+.practice-centered {
+display: block;
+width: 250px;
+height: auto;
+margin: auto;
+border: 3px solid black;
+border-radius: 15px;
+}
+
+/*
+Q7. Create a background image that covers the entire
+container without repeating.
+
+SOLUTION:
+*/
+
+.practice-background {
+height: 400px;
+background-image: url("background.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+/*
+Q8. Create a semi-transparent image that becomes
+fully visible on hover.
+
+SOLUTION:
+*/
+
+.practice-opacity {
+opacity: 0.5;
+transition: opacity 0.3s ease;
+}
+
+.practice-opacity:hover {
+opacity: 1;
+}
+
+# /*
+
+```
+             END OF CSS IMAGES
+```
+
+====================================================
+*/

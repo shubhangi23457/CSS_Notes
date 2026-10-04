@@ -1,0 +1,1198 @@
+# /*
+
+21. CSS TABLES
+    ========================================================
+
+CSS can be used to control the appearance and layout of
+HTML tables.
+
+A table commonly contains:
+
+<table>
+    <caption>...</caption>
+    <thead>
+        <tr>
+            <th>...</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>...</td>
+        </tr>
+    </tbody>
+</table>
+
+Important table elements:
+
+<table>      -> Table
+<tr>         -> Table row
+<th>         -> Table header cell
+<td>         -> Table data cell
+<caption>    -> Table caption
+<thead>      -> Header section
+<tbody>      -> Body section
+<tfoot>      -> Footer section
+
+CSS can control:
+
+* Borders
+* Width and height
+* Spacing
+* Alignment
+* Padding
+* Colors
+* Rows and headers
+* Hover effects
+* Responsive behavior
+
+========================================================
+
+1. TABLE BORDERS
+   ========================================================
+
+Use the border property to add borders to a table,
+table rows, headers, and cells.
+
+Example:
+*/
+
+table {
+border: 2px solid black;
+}
+
+th,
+td {
+border: 1px solid black;
+}
+
+# /*
+
+2. BORDER COLLAPSE
+   ========================================================
+
+The border-collapse property controls whether adjacent
+table borders are separated or collapsed.
+
+Values:
+
+collapse
+separate
+
+Default:
+
+separate
+
+Example:
+*/
+
+table {
+border-collapse: collapse;
+}
+
+/*
+With collapse:
+
+* Adjacent borders are combined.
+* Tables usually have a cleaner appearance.
+
+Without collapse, cells can have separate borders.
+
+========================================================
+3. border-spacing
+=================
+
+border-spacing controls the space between table cells
+when border-collapse is set to separate.
+
+*/
+
+table {
+border-collapse: separate;
+border-spacing: 10px;
+}
+
+/*
+Two values can be used:
+
+border-spacing: horizontal vertical;
+
+Example:
+*/
+
+table {
+border-spacing: 10px 20px;
+}
+
+/*
+10px -> horizontal spacing
+20px -> vertical spacing
+
+Important:
+border-spacing has no visible effect when the table uses
+border-collapse: collapse.
+
+========================================================
+4. TABLE WIDTH
+==============
+
+The width property controls the width of a table.
+
+*/
+
+table {
+width: 100%;
+}
+
+/*
+Using 100% makes the table fill the available width.
+
+Fixed width example:
+*/
+
+.fixed-table {
+width: 600px;
+}
+
+/*
+Percentage width is generally more flexible for
+responsive layouts.
+
+========================================================
+5. TABLE HEIGHT
+===============
+
+The height property can set the height of a table or
+its rows/cells.
+
+*/
+
+table {
+height: 300px;
+}
+
+/*
+Height can also be applied to rows:
+
+*/
+
+tr {
+height: 50px;
+}
+
+/*
+Important:
+Table content may affect the final rendered size,
+especially when the specified height is too small.
+
+========================================================
+6. CELL PADDING
+===============
+
+Padding creates space between the cell content and
+the cell border.
+
+*/
+
+th,
+td {
+padding: 12px;
+}
+
+/*
+Individual padding values can also be used:
+
+*/
+
+td {
+padding-top: 10px;
+padding-right: 15px;
+padding-bottom: 10px;
+padding-left: 15px;
+}
+
+/*
+Shorthand:
+
+*/
+
+td {
+padding: 10px 15px;
+}
+
+# /*
+
+7. TEXT ALIGNMENT
+   ========================================================
+
+The text-align property controls horizontal alignment
+of content inside table cells.
+
+Values:
+
+left
+center
+right
+start
+end
+
+Example:
+*/
+
+th {
+text-align: center;
+}
+
+td {
+text-align: left;
+}
+
+/*
+Right alignment:
+
+*/
+
+.number {
+text-align: right;
+}
+
+# /*
+
+8. VERTICAL ALIGNMENT
+   ========================================================
+
+The vertical-align property controls vertical alignment
+of content inside table cells.
+
+Common values:
+
+top
+middle
+bottom
+
+Example:
+*/
+
+td {
+vertical-align: middle;
+}
+
+/*
+Top:
+
+*/
+
+.top-cell {
+vertical-align: top;
+}
+
+/*
+Bottom:
+
+*/
+
+.bottom-cell {
+vertical-align: bottom;
+}
+
+# /*
+
+9. TABLE LAYOUT
+   ========================================================
+
+The table-layout property controls how the browser
+calculates column widths.
+
+Values:
+
+auto
+fixed
+
+Default:
+
+auto
+
+========================================================
+10. table-layout: auto
+======================
+
+The browser determines column widths based on the
+content and available space.
+
+*/
+
+.auto-table {
+width: 100%;
+table-layout: auto;
+}
+
+/*
+This can cause columns to change width based on content.
+
+========================================================
+11. table-layout: fixed
+=======================
+
+With fixed layout, column widths are determined more
+predictably from the table width and specified column
+widths.
+
+*/
+
+.fixed-layout-table {
+width: 100%;
+table-layout: fixed;
+}
+
+/*
+This can be useful for:
+
+* Predictable column widths
+* Large tables
+* Consistent layouts
+
+Example:
+*/
+
+.fixed-layout-table th:nth-child(1) {
+width: 25%;
+}
+
+.fixed-layout-table th:nth-child(2) {
+width: 50%;
+}
+
+.fixed-layout-table th:nth-child(3) {
+width: 25%;
+}
+
+# /*
+
+12. CAPTION POSITION
+    ========================================================
+
+The caption-side property controls the position of
+a table caption.
+
+Values:
+
+top
+bottom
+
+Default is usually:
+
+top
+
+Example:
+*/
+
+caption {
+caption-side: top;
+}
+
+/*
+Caption at bottom:
+
+*/
+
+.bottom-caption {
+caption-side: bottom;
+}
+
+/*
+HTML:
+
+<table>
+    <caption>Student Details</caption>
+    ...
+</table>
+
+========================================================
+13. STYLING TABLE ROWS
+======================
+
+Rows can be styled using the <tr> selector.
+
+*/
+
+tr {
+background-color: white;
+}
+
+/*
+Specific rows can be styled using classes:
+
+*/
+
+.highlight-row {
+background-color: lightyellow;
+}
+
+# /*
+
+14. STYLING TABLE HEADERS
+    ========================================================
+
+<th> elements represent table headers.
+
+They can be styled separately.
+
+*/
+
+th {
+background-color: black;
+color: white;
+padding: 12px;
+text-align: center;
+}
+
+/*
+Common header styling includes:
+
+* Background color
+* Text color
+* Font weight
+* Padding
+* Alignment
+* Borders
+
+========================================================
+15. TABLE DATA CELLS
+====================
+
+*/
+
+td {
+padding: 10px;
+border: 1px solid #ccc;
+}
+
+# /*
+
+16. ZEBRA STRIPING
+    ========================================================
+
+Zebra striping means giving alternating rows different
+background colors.
+
+The :nth-child() pseudo-class is commonly used.
+
+*/
+
+tbody tr:nth-child(even) {
+background-color: #f2f2f2;
+}
+
+/*
+Odd rows can also be styled:
+
+*/
+
+tbody tr:nth-child(odd) {
+background-color: white;
+}
+
+/*
+Example result:
+
+Row 1 -> white
+Row 2 -> gray
+Row 3 -> white
+Row 4 -> gray
+
+========================================================
+17. TABLE ROW HOVER EFFECT
+==========================
+
+:hover can be used to highlight a row when the pointer
+moves over it.
+
+*/
+
+tbody tr:hover {
+background-color: lightblue;
+}
+
+# /*
+
+18. CELL HOVER EFFECT
+    ========================================================
+
+Individual cells can also respond to hover.
+
+*/
+
+td:hover {
+background-color: lightyellow;
+}
+
+/*
+Usually, row hover is more useful for data tables.
+
+========================================================
+19. RESPONSIVE TABLES
+=====================
+
+Large tables can cause horizontal overflow on small
+screens.
+
+A common solution is to place the table inside a
+scrollable wrapper.
+
+HTML:
+
+<div class="table-container">
+    <table>
+        ...
+    </table>
+</div>
+
+CSS:
+*/
+
+.table-container {
+width: 100%;
+overflow-x: auto;
+}
+
+.table-container table {
+width: 100%;
+min-width: 600px;
+}
+
+/*
+On small screens, the wrapper can scroll horizontally
+instead of forcing the entire page to become wider.
+
+========================================================
+20. RESPONSIVE TABLE WITH WHITE-SPACE
+=====================================
+
+white-space can prevent table content from wrapping.
+
+*/
+
+.responsive-table th,
+.responsive-table td {
+white-space: nowrap;
+}
+
+/*
+This is useful for:
+
+* Dates
+* IDs
+* Short labels
+* Numerical values
+
+But excessive nowrap can increase the required width,
+so it should be used carefully.
+
+========================================================
+21. COMPLETE BASIC TABLE
+========================
+
+*/
+
+.basic-table {
+width: 100%;
+border-collapse: collapse;
+}
+
+.basic-table th,
+.basic-table td {
+border: 1px solid #ccc;
+padding: 12px;
+}
+
+.basic-table th {
+background-color: #333;
+color: white;
+}
+
+.basic-table td {
+text-align: left;
+vertical-align: middle;
+}
+
+# /*
+
+22. COMPLETE STYLED TABLE
+    ========================================================
+    */
+
+.styled-table {
+width: 100%;
+border-collapse: collapse;
+}
+
+.styled-table th,
+.styled-table td {
+border: 1px solid #ddd;
+padding: 12px;
+}
+
+.styled-table th {
+background-color: #222;
+color: white;
+text-align: left;
+}
+
+.styled-table tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+
+.styled-table tbody tr:hover {
+background-color: #e8f0ff;
+}
+
+# /*
+
+23. TABLE WITH CAPTION
+    ========================================================
+    */
+
+.caption-table {
+width: 100%;
+border-collapse: collapse;
+}
+
+.caption-table caption {
+caption-side: top;
+font-size: 20px;
+font-weight: bold;
+margin-bottom: 10px;
+}
+
+.caption-table th,
+.caption-table td {
+border: 1px solid #ccc;
+padding: 10px;
+}
+
+# /*
+
+24. TABLE WITH FIXED LAYOUT
+    ========================================================
+    */
+
+.fixed-table-layout {
+width: 100%;
+table-layout: fixed;
+border-collapse: collapse;
+}
+
+.fixed-table-layout th,
+.fixed-table-layout td {
+border: 1px solid #ccc;
+padding: 10px;
+overflow-wrap: break-word;
+}
+
+# /*
+
+25. PROFESSIONAL DATA TABLE
+    ========================================================
+    */
+
+.data-table {
+width: 100%;
+border-collapse: collapse;
+table-layout: auto;
+}
+
+.data-table caption {
+caption-side: top;
+text-align: left;
+font-size: 20px;
+font-weight: bold;
+padding-bottom: 10px;
+}
+
+.data-table th {
+background-color: #333;
+color: white;
+padding: 12px;
+text-align: left;
+}
+
+.data-table td {
+padding: 12px;
+border-bottom: 1px solid #ddd;
+}
+
+.data-table tbody tr:nth-child(even) {
+background-color: #f7f7f7;
+}
+
+.data-table tbody tr:hover {
+background-color: #e6f2ff;
+}
+
+# /*
+
+26. CENTERING A TABLE
+    ========================================================
+
+margin: auto can horizontally center a table when it has
+a width smaller than its containing block.
+
+*/
+
+.center-table {
+width: 80%;
+margin: 0 auto;
+border-collapse: collapse;
+}
+
+# /*
+
+27. TABLE BORDERS WITH ROUNDED CORNERS
+    ========================================================
+
+border-radius can be used on tables, but rounded corners
+often work more predictably when combined with
+border-collapse: separate.
+
+*/
+
+.rounded-table {
+width: 100%;
+border-collapse: separate;
+border-spacing: 0;
+border: 1px solid #ccc;
+border-radius: 10px;
+overflow: hidden;
+}
+
+# /*
+
+28. FIRST AND LAST ROW/CELL STYLING
+    ========================================================
+
+Pseudo-classes can target specific rows.
+
+*/
+
+.data-table tbody tr:first-child {
+font-weight: bold;
+}
+
+/*
+Last row:
+
+*/
+
+.data-table tbody tr:last-child {
+border-bottom: none;
+}
+
+/*
+Specific cells can also be styled:
+
+*/
+
+.data-table td:first-child {
+font-weight: bold;
+}
+
+# /*
+
+29. COLUMN ALIGNMENT
+    ========================================================
+
+Different columns can have different alignment.
+
+*/
+
+.data-table th:nth-child(1),
+.data-table td:nth-child(1) {
+text-align: left;
+}
+
+.data-table th:nth-child(2),
+.data-table td:nth-child(2) {
+text-align: center;
+}
+
+.data-table th:nth-child(3),
+.data-table td:nth-child(3) {
+text-align: right;
+}
+
+/*
+Useful for:
+Text -> left
+Status -> center
+Numbers -> right
+
+========================================================
+30. IMPORTANT DIFFERENCE:
+border-collapse VS border-spacing
+=================================
+
+border-collapse: collapse;
+Combines adjacent borders.
+
+border-collapse: separate;
+Keeps borders separate.
+
+border-spacing:
+Controls space between cells when borders are separate.
+
+Example:
+
+*/
+
+.separate-table {
+border-collapse: separate;
+border-spacing: 8px;
+}
+
+.collapsed-table {
+border-collapse: collapse;
+}
+
+# /*
+
+31. QUICK REVISION
+    ========================================================
+
+border
+Adds borders to table/cells.
+
+border-collapse
+Controls whether borders collapse.
+
+border-spacing
+Controls space between cells when borders are separate.
+
+width
+Controls table width.
+
+height
+Controls table/row/cell height.
+
+padding
+Creates space inside cells.
+
+text-align
+Controls horizontal alignment.
+
+vertical-align
+Controls vertical alignment.
+
+table-layout
+Controls column width calculation.
+
+caption-side
+Positions the table caption.
+
+:nth-child()
+Useful for zebra striping.
+
+:hover
+Creates hover effects.
+
+overflow-x: auto
+Helps make wide tables scrollable on small screens.
+
+========================================================
+32. COMMON TABLE PROPERTIES
+===========================
+
+table {
+width: 100%;
+border-collapse: collapse;
+}
+
+th,
+td {
+border: 1px solid #ccc;
+padding: 10px;
+}
+
+th {
+text-align: center;
+}
+
+td {
+vertical-align: middle;
+}
+
+tbody tr:nth-child(even) {
+background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+background-color: #ddd;
+}
+
+========================================================
+33. QUESTIONS
+=============
+
+Q1. How do you add borders to a table?
+
+Q2. What does border-collapse do?
+
+Q3. What is the difference between collapse and separate?
+
+Q4. What does border-spacing do?
+
+Q5. How do you set the width of a table?
+
+Q6. How do you add spacing inside table cells?
+
+Q7. What is the use of text-align?
+
+Q8. What is the use of vertical-align?
+
+Q9. What does table-layout control?
+
+Q10. What is the difference between auto and fixed
+table layout?
+
+Q11. How do you position a table caption?
+
+Q12. What is zebra striping?
+
+Q13. How do you create a hover effect for table rows?
+
+Q14. How can a table be made responsive?
+
+Q15. How do you style table headers separately?
+
+========================================================
+34. SOLUTIONS
+=============
+
+Q1.
+Use the border property.
+
+Example:
+
+table,
+th,
+td {
+border: 1px solid black;
+}
+
+Q2.
+border-collapse controls whether adjacent table borders
+are combined or kept separate.
+
+Q3.
+
+collapse:
+Adjacent borders are combined.
+
+separate:
+Borders remain separate.
+
+Q4.
+border-spacing controls the space between cells when
+border-collapse is set to separate.
+
+Q5.
+Use:
+
+table {
+width: 100%;
+}
+
+Q6.
+Use the padding property.
+
+Example:
+
+td {
+padding: 10px;
+}
+
+Q7.
+text-align controls horizontal alignment of cell content.
+
+Q8.
+vertical-align controls vertical alignment of content
+inside table cells.
+
+Q9.
+table-layout controls how the browser calculates the
+width of table columns.
+
+Q10.
+
+auto:
+Column widths can depend on content.
+
+fixed:
+Column widths are determined more predictably from
+the table width and specified column widths.
+
+Q11.
+Use:
+
+caption {
+caption-side: top;
+}
+
+or:
+
+caption {
+caption-side: bottom;
+}
+
+Q12.
+Zebra striping means using alternating colors for table
+rows to make data easier to scan.
+
+Example:
+
+tr:nth-child(even) {
+background-color: #f2f2f2;
+}
+
+Q13.
+Use:
+
+tr:hover {
+background-color: lightblue;
+}
+
+Q14.
+Place the table inside a wrapper with:
+
+overflow-x: auto;
+
+This allows horizontal scrolling on smaller screens.
+
+Q15.
+Use the th selector.
+
+Example:
+
+th {
+background-color: black;
+color: white;
+}
+
+========================================================
+35. PRACTICE QUESTIONS
+======================
+
+1. Create a table with collapsed borders.
+
+2. Add 10px padding to every table cell.
+
+3. Make the table 100% wide.
+
+4. Center all table headers.
+
+5. Vertically center all table cell content.
+
+6. Create zebra striping for table rows.
+
+7. Add a hover effect to table rows.
+
+8. Create a styled table header with a dark background.
+
+9. Create a responsive table wrapper.
+
+10. Create a table with a bottom caption.
+
+11. Create a fixed-layout table.
+
+12. Create a table where the first column is left-aligned,
+    second column is center-aligned, and third column is
+    right-aligned.
+
+========================================================
+36. PRACTICE SOLUTIONS
+======================
+
+*/
+
+/* 1. Collapsed borders */
+.practice-table {
+border-collapse: collapse;
+}
+
+/* 2. Cell padding */
+.practice-table th,
+.practice-table td {
+padding: 10px;
+}
+
+/* 3. Full-width table */
+.practice-table {
+width: 100%;
+}
+
+/* 4. Center table headers */
+.practice-table th {
+text-align: center;
+}
+
+/* 5. Vertical alignment */
+.practice-table td {
+vertical-align: middle;
+}
+
+/* 6. Zebra striping */
+.practice-table tbody tr:nth-child(even) {
+background-color: #f2f2f2;
+}
+
+/* 7. Row hover effect */
+.practice-table tbody tr:hover {
+background-color: lightblue;
+}
+
+/* 8. Styled header */
+.practice-table th {
+background-color: #222;
+color: white;
+}
+
+/* 9. Responsive wrapper */
+.practice-table-container {
+width: 100%;
+overflow-x: auto;
+}
+
+.practice-table-container table {
+min-width: 600px;
+}
+
+/* 10. Bottom caption */
+.practice-bottom-caption {
+caption-side: bottom;
+}
+
+/* 11. Fixed table layout */
+.practice-fixed-table {
+width: 100%;
+table-layout: fixed;
+}
+
+/* 12. Column alignment */
+.practice-fixed-table th:nth-child(1),
+.practice-fixed-table td:nth-child(1) {
+text-align: left;
+}
+
+.practice-fixed-table th:nth-child(2),
+.practice-fixed-table td:nth-child(2) {
+text-align: center;
+}
+
+.practice-fixed-table th:nth-child(3),
+.practice-fixed-table td:nth-child(3) {
+text-align: right;
+}
+
+# /*
+
+# END OF CSS TABLES
+
+*/

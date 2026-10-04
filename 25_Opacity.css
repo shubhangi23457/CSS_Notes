@@ -1,0 +1,1046 @@
+# /*
+
+```
+  CSS OPACITY, TRANSPARENCY & SHADOWS
+```
+
+====================================================
+
+====================================================
+
+1. CSS OPACITY AND TRANSPARENCY
+   ====================================================
+
+* Opacity controls how transparent an element is.
+* The opacity property accepts values from 0 to 1.
+
+Values:
+
+* 1   = completely visible
+* 0.75 = slightly transparent
+* 0.5 = 50% visible
+* 0.25 = mostly transparent
+* 0   = completely transparent
+
+Syntax:
+
+selector {
+opacity: value;
+}
+
+---
+
+2. opacity
+
+---
+
+Example:
+
+.box {
+opacity: 0.5;
+}
+
+* opacity: 1 means fully visible.
+* opacity: 0 means invisible.
+* opacity affects the complete element, including
+  its text, background, borders, and children.
+
+Example:
+
+.card {
+background-color: blue;
+color: white;
+opacity: 0.7;
+}
+
+IMPORTANT:
+If a parent has opacity: 0.5, its child elements
+will also appear transparent.
+
+---
+
+3. TRANSPARENT BACKGROUNDS
+
+---
+
+* The transparent keyword makes a background fully
+  transparent.
+* Unlike opacity, it can be applied specifically
+  to a background property.
+
+Example:
+
+.box {
+background-color: transparent;
+}
+
+This allows the content behind the element to show.
+
+Example:
+
+.overlay {
+background-color: transparent;
+border: 2px solid black;
+}
+
+---
+
+4. RGBA TRANSPARENCY
+
+---
+
+* RGBA stands for:
+  R = Red
+  G = Green
+  B = Blue
+  A = Alpha
+
+* The alpha value controls transparency.
+
+* Alpha ranges from 0 to 1.
+
+Examples:
+
+rgba(255, 0, 0, 1)
+= completely visible red
+
+rgba(255, 0, 0, 0.5)
+= 50% transparent red
+
+rgba(255, 0, 0, 0)
+= completely transparent red
+
+Example:
+
+.box {
+background-color: rgba(0, 0, 255, 0.5);
+}
+
+IMPORTANT:
+RGBA is useful when you want only the background
+to become transparent while keeping the text
+fully visible.
+
+---
+
+5. HSLA TRANSPARENCY
+
+---
+
+* HSLA stands for:
+  H = Hue
+  S = Saturation
+  L = Lightness
+  A = Alpha
+
+Syntax:
+
+hsla(hue, saturation, lightness, alpha)
+
+Example:
+
+.box {
+background-color: hsla(200, 100%, 50%, 0.5);
+}
+
+* Alpha controls transparency.
+* 1 = fully visible.
+* 0 = fully transparent.
+
+Example:
+
+.overlay {
+background-color: hsla(0, 0%, 0%, 0.6);
+}
+
+This creates a semi-transparent black background.
+
+---
+
+6. OPACITY ON IMAGES
+
+---
+
+* opacity can be used to make images transparent.
+
+Example:
+
+img {
+opacity: 0.5;
+}
+
+The image becomes 50% visible.
+
+Example:
+
+img {
+opacity: 0.7;
+}
+
+---
+
+7. OPACITY ON HOVER
+
+---
+
+* opacity can be combined with :hover.
+* transition makes the change smooth.
+
+Example:
+
+img {
+opacity: 0.6;
+transition: opacity 0.3s ease;
+}
+
+img:hover {
+opacity: 1;
+}
+
+The image becomes fully visible when the mouse
+moves over it.
+
+Another example:
+
+.card {
+opacity: 0.7;
+transition: opacity 0.3s ease;
+}
+
+.card:hover {
+opacity: 1;
+}
+
+---
+
+8. DIFFERENCE BETWEEN OPACITY AND TRANSPARENCY
+
+---
+
+OPACITY:
+
+* Uses the opacity property.
+* Affects the entire element.
+* Also affects text, borders, background, and children.
+* Example:
+
+.box {
+opacity: 0.5;
+}
+
+RGBA/HSLA TRANSPARENCY:
+
+* Controls transparency of a specific color.
+* Can make only the background transparent.
+* Text can remain completely visible.
+
+Example:
+
+.box {
+background-color: rgba(0, 0, 0, 0.5);
+color: white;
+}
+
+IMPORTANT DIFFERENCE:
+
+opacity: 0.5;
+
+makes the entire element 50% transparent.
+
+Whereas:
+
+background-color: rgba(0, 0, 0, 0.5);
+
+makes only the background color transparent.
+
+---
+
+9. PRACTICAL TRANSPARENT OVERLAY
+
+---
+
+Example:
+
+.overlay {
+background-color: rgba(0, 0, 0, 0.6);
+color: white;
+padding: 20px;
+}
+
+The black background is transparent, but the
+white text remains fully visible.
+
+====================================================
+CSS SHADOWS
+===========
+
+---
+
+10. box-shadow
+
+---
+
+* box-shadow adds a shadow around an element.
+
+Basic syntax:
+
+box-shadow:
+horizontal-offset
+vertical-offset
+blur-radius
+spread-radius
+color;
+
+Example:
+
+.box {
+box-shadow: 5px 5px 10px gray;
+}
+
+Here:
+
+5px  = horizontal offset
+5px  = vertical offset
+10px = blur radius
+gray = shadow color
+
+---
+
+11. HORIZONTAL OFFSET
+
+---
+
+* The first value controls the horizontal position.
+
+Positive value:
+
+* Shadow moves to the right.
+
+Negative value:
+
+* Shadow moves to the left.
+
+Example:
+
+.box {
+box-shadow: 10px 0 5px gray;
+}
+
+Shadow moves right.
+
+Example:
+
+.box {
+box-shadow: -10px 0 5px gray;
+}
+
+Shadow moves left.
+
+---
+
+12. VERTICAL OFFSET
+
+---
+
+* The second value controls vertical position.
+
+Positive value:
+
+* Shadow moves downward.
+
+Negative value:
+
+* Shadow moves upward.
+
+Example:
+
+.box {
+box-shadow: 0 10px 5px gray;
+}
+
+Shadow moves downward.
+
+Example:
+
+.box {
+box-shadow: 0 -10px 5px gray;
+}
+
+Shadow moves upward.
+
+---
+
+13. BLUR RADIUS
+
+---
+
+* The third value controls how blurred the shadow is.
+* Larger values create a softer shadow.
+
+Example:
+
+.box {
+box-shadow: 5px 5px 5px gray;
+}
+
+Less blur.
+
+Example:
+
+.box {
+box-shadow: 5px 5px 20px gray;
+}
+
+More blur.
+
+IMPORTANT:
+
+* Blur radius cannot be negative.
+
+---
+
+14. SPREAD RADIUS
+
+---
+
+* The fourth value controls how much the shadow
+  expands or contracts.
+
+Example:
+
+.box {
+box-shadow: 5px 5px 10px 5px gray;
+}
+
+Here:
+
+5px  = horizontal offset
+5px  = vertical offset
+10px = blur radius
+5px  = spread radius
+gray = color
+
+Positive spread:
+
+.box {
+box-shadow: 0 0 10px 5px gray;
+}
+
+The shadow becomes larger.
+
+Negative spread:
+
+.box {
+box-shadow: 0 0 10px -3px gray;
+}
+
+The shadow becomes smaller.
+
+---
+
+15. SHADOW COLOR
+
+---
+
+* Shadow color can use:
+
+  * color names
+  * HEX
+  * RGB
+  * RGBA
+  * HSL
+  * HSLA
+
+Example:
+
+.box {
+box-shadow: 5px 5px 10px black;
+}
+
+Example with transparency:
+
+.box {
+box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+Using RGBA is useful for creating soft,
+natural-looking shadows.
+
+---
+
+16. INSET SHADOW
+
+---
+
+* By default, box-shadow appears outside the element.
+* inset places the shadow inside the element.
+
+Syntax:
+
+box-shadow:
+inset horizontal-offset
+vertical-offset
+blur-radius
+color;
+
+Example:
+
+.box {
+box-shadow: inset 5px 5px 10px gray;
+}
+
+Example:
+
+.input {
+box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+---
+
+17. MULTIPLE SHADOWS
+
+---
+
+* Multiple shadows can be applied to the same element.
+* Each shadow is separated by a comma.
+
+Example:
+
+.box {
+box-shadow:
+5px 5px 10px gray,
+-5px -5px 10px lightgray;
+}
+
+Another example:
+
+.card {
+box-shadow:
+0 2px 5px rgba(0, 0, 0, 0.2),
+0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+IMPORTANT:
+
+* The first shadow is drawn above the shadows that
+  appear later in the list.
+
+---
+
+18. text-shadow
+
+---
+
+* text-shadow adds a shadow to text.
+
+Syntax:
+
+text-shadow:
+horizontal-offset
+vertical-offset
+blur-radius
+color;
+
+Example:
+
+h1 {
+text-shadow: 2px 2px 5px gray;
+}
+
+Here:
+
+2px = horizontal offset
+2px = vertical offset
+5px = blur radius
+gray = shadow color
+
+---
+
+19. TEXT SHADOW EFFECTS
+
+---
+
+Simple shadow:
+
+h1 {
+text-shadow: 2px 2px 4px gray;
+}
+
+Dark shadow:
+
+h1 {
+text-shadow: 3px 3px 5px black;
+}
+
+Glow effect:
+
+h1 {
+color: white;
+text-shadow: 0 0 10px blue;
+}
+
+Stronger glow:
+
+h1 {
+color: white;
+text-shadow:
+0 0 5px blue,
+0 0 10px blue,
+0 0 20px blue;
+}
+
+Multiple text shadows:
+
+h1 {
+text-shadow:
+2px 2px 3px black,
+-2px -2px 3px gray;
+}
+
+---
+
+20. box-shadow vs text-shadow
+
+---
+
+box-shadow:
+
+* Applies a shadow to an element's box.
+* Used for cards, buttons, containers, images, etc.
+
+Example:
+
+.card {
+box-shadow: 0 5px 15px gray;
+}
+
+text-shadow:
+
+* Applies a shadow to text.
+
+Example:
+
+h1 {
+text-shadow: 2px 2px 5px gray;
+}
+
+---
+
+21. PRACTICAL CARD SHADOW
+
+---
+
+.card {
+width: 300px;
+padding: 20px;
+background-color: white;
+border-radius: 10px;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+---
+
+22. HOVER SHADOW EFFECT
+
+---
+
+.card {
+box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+---
+
+23. BUTTON SHADOW
+
+---
+
+.button {
+padding: 12px 20px;
+border: none;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+---
+
+24. INSET BUTTON EFFECT
+
+---
+
+.button {
+padding: 12px 20px;
+border: none;
+box-shadow:
+inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+---
+
+25. COMMON box-shadow SYNTAX
+
+---
+
+Basic:
+
+box-shadow: 5px 5px 10px gray;
+
+With spread:
+
+box-shadow: 5px 5px 10px 5px gray;
+
+With RGBA:
+
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+Inset:
+
+box-shadow: inset 0 0 10px gray;
+
+Multiple:
+
+box-shadow:
+0 5px 10px gray,
+0 10px 20px lightgray;
+
+---
+
+26. COMMON text-shadow SYNTAX
+
+---
+
+Basic:
+
+text-shadow: 2px 2px 5px gray;
+
+Glow:
+
+text-shadow: 0 0 10px blue;
+
+Multiple:
+
+text-shadow:
+0 0 5px blue,
+0 0 10px blue,
+0 0 20px blue;
+
+====================================================
+QUICK REVISION
+==============
+
+OPACITY:
+
+* opacity controls the transparency of the entire element.
+* Values range from 0 to 1.
+
+TRANSPARENT:
+
+* transparent makes a color completely transparent.
+
+RGBA:
+
+* rgba(R, G, B, A)
+* A controls transparency.
+
+HSLA:
+
+* hsla(H, S, L, A)
+* A controls transparency.
+
+box-shadow:
+
+* Adds shadow around an element.
+
+box-shadow order:
+
+horizontal
+vertical
+blur
+spread
+color
+
+Example:
+
+box-shadow: 5px 5px 10px 2px gray;
+
+inset:
+
+* Places the shadow inside the element.
+
+Multiple shadows:
+
+* Separate shadows with commas.
+
+text-shadow:
+
+* Adds shadows to text.
+
+IMPORTANT DIFFERENCE:
+
+opacity: 0.5;
+
+= entire element becomes transparent.
+
+background-color: rgba(0, 0, 0, 0.5);
+
+= only the background color becomes transparent.
+
+====================================================
+QUESTIONS
+=========
+
+Q1. What is the range of the opacity property?
+
+SOLUTION:
+
+0 to 1
+
+0 = completely transparent
+1 = completely visible
+
+---
+
+Q2. What happens when opacity is set to 0?
+
+SOLUTION:
+
+The element becomes completely transparent/invisible,
+although it still occupies space in the layout.
+
+---
+
+Q3. What is the difference between opacity and RGBA?
+
+SOLUTION:
+
+opacity affects the entire element.
+
+RGBA can make only a particular color, such as
+the background, transparent.
+
+Example:
+
+.box {
+opacity: 0.5;
+}
+
+vs.
+
+.box {
+background-color: rgba(0, 0, 0, 0.5);
+}
+
+---
+
+Q4. What does the first value of box-shadow represent?
+
+SOLUTION:
+
+The horizontal offset.
+
+Positive = right
+Negative = left
+
+---
+
+Q5. What does the second value of box-shadow represent?
+
+SOLUTION:
+
+The vertical offset.
+
+Positive = down
+Negative = up
+
+---
+
+Q6. What is blur radius?
+
+SOLUTION:
+
+Blur radius controls how soft or sharp the shadow is.
+
+Larger value = softer shadow.
+
+---
+
+Q7. What is spread radius?
+
+SOLUTION:
+
+Spread radius controls how much the shadow expands
+or contracts.
+
+---
+
+Q8. How do you create an inner shadow?
+
+SOLUTION:
+
+.card {
+box-shadow: inset 0 0 10px gray;
+}
+
+---
+
+Q9. How do you add multiple shadows?
+
+SOLUTION:
+
+.card {
+box-shadow:
+5px 5px 10px gray,
+-5px -5px 10px lightgray;
+}
+
+---
+
+Q10. Which property adds a shadow to text?
+
+SOLUTION:
+
+text-shadow
+
+Example:
+
+h1 {
+text-shadow: 2px 2px 5px gray;
+}
+
+====================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Make a box 50% transparent.
+
+SOLUTION:
+
+.box {
+opacity: 0.5;
+}
+
+---
+
+Q2. Create a box with a semi-transparent black
+background but fully visible white text.
+
+SOLUTION:
+
+.box {
+background-color: rgba(0, 0, 0, 0.5);
+color: white;
+}
+
+---
+
+Q3. Create a card with a soft shadow.
+
+SOLUTION:
+
+.card {
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+---
+
+Q4. Create a card with an inner shadow.
+
+SOLUTION:
+
+.card {
+box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+---
+
+Q5. Create a card with two shadows.
+
+SOLUTION:
+
+.card {
+box-shadow:
+0 5px 10px rgba(0, 0, 0, 0.2),
+0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+---
+
+Q6. Create a heading with a glowing text effect.
+
+SOLUTION:
+
+h1 {
+color: white;
+text-shadow:
+0 0 5px blue,
+0 0 10px blue,
+0 0 20px blue;
+}
+
+---
+
+Q7. Make an image slightly transparent and fully
+visible when hovered.
+
+SOLUTION:
+
+img {
+opacity: 0.6;
+transition: opacity 0.3s ease;
+}
+
+img:hover {
+opacity: 1;
+}
+
+---
+
+Q8. Create a shadow that moves 10px right,
+15px down, has 20px blur, and 5px spread.
+
+SOLUTION:
+
+.box {
+box-shadow: 10px 15px 20px 5px gray;
+}
+
+====================================================
+END
+===
+
+*/
+.box {
+opacity: 0.5;
+}
+
+.transparent-box {
+background-color: rgba(0, 0, 0, 0.5);
+color: white;
+}
+
+.shadow-box {
+box-shadow: 5px 5px 15px 3px rgba(0, 0, 0, 0.3);
+}
+
+.inset-box {
+box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.text-effect {
+text-shadow: 2px 2px 5px gray;
+}
+
+.glow-text {
+text-shadow:
+0 0 5px blue,
+0 0 10px blue,
+0 0 20px blue;
+}

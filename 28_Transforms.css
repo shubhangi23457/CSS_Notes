@@ -1,0 +1,1084 @@
+# /*
+
+```
+            24. CSS TRANSFORMS
+```
+
+====================================================
+
+* CSS transforms are used to move, resize, rotate,
+  skew, or change the perspective of an element.
+
+* Transforms can be:
+
+  1. 2D Transforms
+  2. 3D Transforms
+
+Common transform functions:
+
+translate()
+translateX()
+translateY()
+translateZ()
+scale()
+scaleX()
+scaleY()
+rotate()
+skew()
+skewX()
+skewY()
+matrix()
+
+3D functions:
+
+perspective()
+rotateX()
+rotateY()
+rotateZ()
+
+Other important property:
+
+transform-origin
+
+---
+
+1. INTRODUCTION TO TRANSFORM
+
+---
+
+* The transform property changes the visual position,
+  size, rotation, or shape of an element.
+
+Syntax:
+
+selector {
+transform: function(value);
+}
+
+Example:
+
+.box {
+transform: translateX(50px);
+}
+
+IMPORTANT:
+
+* Transform usually does not change the normal layout
+  position of surrounding elements.
+* The element is visually transformed.
+
+====================================================
+2D TRANSFORMS
+=============
+
+---
+
+2. translate()
+
+---
+
+* translate() moves an element horizontally and
+  vertically.
+
+Syntax:
+
+transform: translate(x, y);
+
+Example:
+
+.box {
+transform: translate(50px, 20px);
+}
+
+Meaning:
+
+50px -> moves right
+20px -> moves down
+
+Negative values can also be used:
+
+.box {
+transform: translate(-30px, -20px);
+}
+
+This moves the element left and upward.
+
+---
+
+3. translateX()
+
+---
+
+* translateX() moves an element along the X-axis.
+* X-axis represents horizontal movement.
+
+Example:
+
+.box {
+transform: translateX(50px);
+}
+
+Moves 50px to the right.
+
+Negative value:
+
+.box {
+transform: translateX(-50px);
+}
+
+Moves 50px to the left.
+
+---
+
+4. translateY()
+
+---
+
+* translateY() moves an element along the Y-axis.
+* Y-axis represents vertical movement.
+
+Example:
+
+.box {
+transform: translateY(50px);
+}
+
+Moves the element downward.
+
+Negative value:
+
+.box {
+transform: translateY(-50px);
+}
+
+Moves the element upward.
+
+---
+
+5. translateZ()
+
+---
+
+* translateZ() moves an element along the Z-axis.
+
+* Z-axis represents movement toward or away from
+  the viewer.
+
+* translateZ() is mainly used with 3D transforms.
+
+Example:
+
+.box {
+transform: perspective(500px)
+translateZ(50px);
+}
+
+IMPORTANT:
+
+* translateZ() may not show a visible effect without
+  a 3D perspective context.
+
+====================================================
+6. scale()
+==========
+
+* scale() changes the size of an element.
+
+Syntax:
+
+transform: scale(x, y);
+
+Example:
+
+.box {
+transform: scale(1.5);
+}
+
+The element becomes 1.5 times its original size.
+
+Values:
+
+scale(1)
+= Original size
+
+scale(2)
+= Double size
+
+scale(0.5)
+= Half size
+
+---
+
+7. scale() WITH X AND Y
+
+---
+
+Example:
+
+.box {
+transform: scale(2, 1.5);
+}
+
+X direction:
+
+* 2 times wider.
+
+Y direction:
+
+* 1.5 times taller.
+
+If only one value is given:
+
+transform: scale(2);
+
+Both X and Y are scaled equally.
+
+---
+
+8. scaleX()
+
+---
+
+* scaleX() changes the width of an element.
+
+Example:
+
+.box {
+transform: scaleX(1.5);
+}
+
+The element becomes 1.5 times wider.
+
+Example:
+
+.box {
+transform: scaleX(0.5);
+}
+
+The element becomes half as wide.
+
+---
+
+9. scaleY()
+
+---
+
+* scaleY() changes the height of an element.
+
+Example:
+
+.box {
+transform: scaleY(1.5);
+}
+
+The element becomes 1.5 times taller.
+
+Example:
+
+.box {
+transform: scaleY(0.5);
+}
+
+The element becomes half as tall.
+
+====================================================
+10. rotate()
+============
+
+* rotate() rotates an element around its transform
+  origin.
+
+* Angles are normally specified using:
+  deg (degrees)
+
+Example:
+
+.box {
+transform: rotate(45deg);
+}
+
+Positive angle:
+
+* Clockwise rotation.
+
+Negative angle:
+
+* Counterclockwise rotation.
+
+Example:
+
+.box {
+transform: rotate(-45deg);
+}
+
+---
+
+Common rotation values:
+
+rotate(90deg)
+rotate(180deg)
+rotate(270deg)
+rotate(360deg)
+
+---
+
+11. skew()
+
+---
+
+* skew() tilts or slants an element along the X and
+  Y axes.
+
+Syntax:
+
+transform: skew(x, y);
+
+Example:
+
+.box {
+transform: skew(20deg, 10deg);
+}
+
+The element is tilted in both directions.
+
+If only one value is provided:
+
+.box {
+transform: skew(20deg);
+}
+
+The Y value is treated as 0.
+
+---
+
+12. skewX()
+
+---
+
+* skewX() tilts an element along the X-axis.
+
+Example:
+
+.box {
+transform: skewX(20deg);
+}
+
+The element appears slanted horizontally.
+
+Negative value:
+
+.box {
+transform: skewX(-20deg);
+}
+
+---
+
+13. skewY()
+
+---
+
+* skewY() tilts an element along the Y-axis.
+
+Example:
+
+.box {
+transform: skewY(20deg);
+}
+
+The element is slanted vertically.
+
+---
+
+14. MATRIX()
+
+---
+
+* matrix() is a compact way to apply multiple 2D
+  transformations using one function.
+
+Syntax:
+
+transform:
+matrix(scaleX, skewY, skewX, scaleY, translateX, translateY);
+
+Example:
+
+.box {
+transform:
+matrix(1, 0, 0, 1, 50, 20);
+}
+
+This represents a transformation using:
+
+scaleX = 1
+skewY = 0
+skewX = 0
+scaleY = 1
+translateX = 50
+translateY = 20
+
+IMPORTANT:
+
+* matrix() is more advanced.
+* It is useful when multiple transformation values
+  need to be represented in one matrix.
+
+====================================================
+15. MULTIPLE TRANSFORMS
+=======================
+
+* Multiple transform functions can be combined.
+
+Example:
+
+.box {
+transform:
+translateX(50px)
+rotate(20deg)
+scale(1.2);
+}
+
+IMPORTANT:
+
+* The order of transform functions matters.
+* Changing the order can produce a different result.
+
+Example:
+
+.box {
+transform:
+rotate(45deg)
+translateX(50px);
+}
+
+This may behave differently from:
+
+.box {
+transform:
+translateX(50px)
+rotate(45deg);
+}
+
+====================================================
+3D TRANSFORMS
+=============
+
+* 3D transforms work with three axes:
+
+X-axis
+
+* Horizontal
+
+Y-axis
+
+* Vertical
+
+Z-axis
+
+* Depth
+
+Common 3D functions:
+
+perspective()
+translateZ()
+rotateX()
+rotateY()
+rotateZ()
+
+---
+
+16. perspective()
+
+---
+
+* perspective() creates a 3D depth effect.
+* It controls how far the viewer appears to be
+  from the object.
+
+Example:
+
+.box {
+transform: perspective(500px)
+rotateY(30deg);
+}
+
+Smaller perspective value:
+
+* Stronger 3D effect.
+
+Larger perspective value:
+
+* Weaker/more subtle 3D effect.
+
+IMPORTANT:
+
+* perspective() can be used as a transform function.
+* The CSS perspective property can also establish
+  a perspective for child elements.
+
+---
+
+17. rotateX()
+
+---
+
+* rotateX() rotates an element around the X-axis.
+
+Example:
+
+.box {
+transform:
+perspective(500px)
+rotateX(45deg);
+}
+
+The top/bottom of the element appears to move
+toward or away from the viewer.
+
+---
+
+18. rotateY()
+
+---
+
+* rotateY() rotates an element around the Y-axis.
+
+Example:
+
+.box {
+transform:
+perspective(500px)
+rotateY(45deg);
+}
+
+The element appears to rotate from left to right
+in 3D.
+
+---
+
+19. rotateZ()
+
+---
+
+* rotateZ() rotates an element around the Z-axis.
+* In normal 2D viewing, this behaves similarly
+  to rotate().
+
+Example:
+
+.box {
+transform: rotateZ(45deg);
+}
+
+Equivalent common usage:
+
+.box {
+transform: rotate(45deg);
+}
+
+====================================================
+20. TRANSFORM-ORIGIN
+====================
+
+* transform-origin defines the point around which
+  a transformation occurs.
+
+* By default, the transform origin is usually:
+
+center center
+
+Example:
+
+.box {
+transform-origin: center;
+transform: rotate(45deg);
+}
+
+---
+
+Common values:
+
+center
+top
+bottom
+left
+right
+top left
+top right
+bottom left
+bottom right
+
+---
+
+Example:
+
+.box {
+transform-origin: top left;
+transform: rotate(45deg);
+}
+
+The element rotates around its top-left corner.
+
+---
+
+Using percentages:
+
+.box {
+transform-origin: 0% 0%;
+transform: rotate(45deg);
+}
+
+0% 0% = top-left
+
+50% 50% = center
+
+100% 100% = bottom-right
+
+---
+
+Using pixels:
+
+.box {
+transform-origin: 20px 30px;
+transform: rotate(45deg);
+}
+
+====================================================
+21. TRANSFORM WITH HOVER
+========================
+
+* Transforms are commonly used with :hover.
+* transition makes the transformation smooth.
+
+Example:
+
+.box {
+transition: transform 0.3s ease;
+}
+
+.box:hover {
+transform: scale(1.1);
+}
+
+---
+
+22. HOVER ROTATION
+
+---
+
+.card {
+transition: transform 0.3s ease;
+}
+
+.card:hover {
+transform: rotate(5deg);
+}
+
+---
+
+23. HOVER TRANSLATION
+
+---
+
+.button {
+transition: transform 0.3s ease;
+}
+
+.button:hover {
+transform: translateY(-5px);
+}
+
+---
+
+24. HOVER SCALE + ROTATE
+
+---
+
+.image {
+transition: transform 0.3s ease;
+}
+
+.image:hover {
+transform:
+scale(1.1)
+rotate(3deg);
+}
+
+====================================================
+25. PRACTICAL 3D CARD
+=====================
+
+.card {
+width: 200px;
+height: 150px;
+
+```
+transition: transform 0.5s ease;
+```
+
+}
+
+.card:hover {
+transform:
+perspective(600px)
+rotateY(15deg);
+}
+
+====================================================
+26. 2D vs 3D TRANSFORMS
+=======================
+
+2D TRANSFORMS:
+
+* Work mainly with X and Y axes.
+* Examples:
+
+translate()
+scale()
+rotate()
+skew()
+matrix()
+
+3D TRANSFORMS:
+
+* Work with X, Y, and Z axes.
+* Examples:
+
+translateZ()
+rotateX()
+rotateY()
+rotateZ()
+perspective()
+
+====================================================
+QUICK REVISION
+==============
+
+translate(x, y)
+
+* Moves horizontally and vertically.
+
+translateX()
+
+* Moves along X-axis.
+
+translateY()
+
+* Moves along Y-axis.
+
+translateZ()
+
+* Moves along Z-axis/depth.
+
+scale()
+
+* Changes size.
+
+scaleX()
+
+* Changes width.
+
+scaleY()
+
+* Changes height.
+
+rotate()
+
+* Rotates an element.
+
+skew()
+
+* Slants an element along X and Y.
+
+skewX()
+
+* Slants along X-axis.
+
+skewY()
+
+* Slants along Y-axis.
+
+matrix()
+
+* Combines multiple 2D transformation values.
+
+perspective()
+
+* Creates a 3D depth effect.
+
+rotateX()
+
+* Rotates around X-axis.
+
+rotateY()
+
+* Rotates around Y-axis.
+
+rotateZ()
+
+* Rotates around Z-axis.
+
+transform-origin
+
+* Defines the point around which the transformation
+  takes place.
+
+====================================================
+TRANSFORM MEMORY TABLE
+======================
+
+Function       Purpose
+
+translate()    Move
+translateX()   Move horizontally
+translateY()   Move vertically
+translateZ()   Move in depth
+scale()        Resize
+scaleX()       Change width
+scaleY()       Change height
+rotate()       Rotate
+skew()         Slant X and Y
+skewX()        Slant horizontally
+skewY()        Slant vertically
+matrix()       Combine 2D transforms
+
+perspective()  Create depth
+rotateX()      3D X rotation
+rotateY()      3D Y rotation
+rotateZ()      3D Z rotation
+
+====================================================
+QUESTIONS
+=========
+
+Q1. What is CSS transform?
+
+SOLUTION:
+
+CSS transform is used to visually move, resize,
+rotate, or skew an element.
+
+---
+
+Q2. What does translate() do?
+
+SOLUTION:
+
+translate() moves an element along the X and Y axes.
+
+Example:
+
+.box {
+transform: translate(50px, 20px);
+}
+
+---
+
+Q3. What is the difference between translateX()
+and translateY()?
+
+SOLUTION:
+
+translateX() moves horizontally.
+
+translateY() moves vertically.
+
+---
+
+Q4. What does scale() do?
+
+SOLUTION:
+
+scale() changes the size of an element.
+
+Example:
+
+.box {
+transform: scale(1.5);
+}
+
+---
+
+Q5. What is the difference between scaleX()
+and scaleY()?
+
+SOLUTION:
+
+scaleX() changes the width.
+
+scaleY() changes the height.
+
+---
+
+Q6. What does rotate() do?
+
+SOLUTION:
+
+rotate() rotates an element by a specified angle.
+
+Example:
+
+.box {
+transform: rotate(45deg);
+}
+
+---
+
+Q7. What is skew() used for?
+
+SOLUTION:
+
+skew() slants an element along the X and Y axes.
+
+---
+
+Q8. What is matrix()?
+
+SOLUTION:
+
+matrix() is an advanced function that represents
+multiple 2D transformations using six values.
+
+---
+
+Q9. What is perspective()?
+
+SOLUTION:
+
+perspective() creates a 3D depth effect and controls
+the apparent distance between the viewer and object.
+
+---
+
+Q10. What is transform-origin?
+
+SOLUTION:
+
+transform-origin defines the point around which
+a transformation occurs.
+
+Example:
+
+.box {
+transform-origin: top left;
+transform: rotate(45deg);
+}
+
+====================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Move an element 50px to the right.
+
+SOLUTION:
+
+.box {
+transform: translateX(50px);
+}
+
+---
+
+Q2. Move an element 30px downward.
+
+SOLUTION:
+
+.box {
+transform: translateY(30px);
+}
+
+---
+
+Q3. Make an element twice its original size.
+
+SOLUTION:
+
+.box {
+transform: scale(2);
+}
+
+---
+
+Q4. Make an element 1.5 times wider.
+
+SOLUTION:
+
+.box {
+transform: scaleX(1.5);
+}
+
+---
+
+Q5. Rotate an element by 45 degrees.
+
+SOLUTION:
+
+.box {
+transform: rotate(45deg);
+}
+
+---
+
+Q6. Skew an element 20 degrees horizontally.
+
+SOLUTION:
+
+.box {
+transform: skewX(20deg);
+}
+
+---
+
+Q7. Rotate an element around its top-left corner.
+
+SOLUTION:
+
+.box {
+transform-origin: top left;
+transform: rotate(45deg);
+}
+
+---
+
+Q8. Create a 3D Y-axis rotation.
+
+SOLUTION:
+
+.box {
+transform:
+perspective(500px)
+rotateY(45deg);
+}
+
+---
+
+Q9. Create an image that becomes larger when
+hovered.
+
+SOLUTION:
+
+.image {
+transition: transform 0.3s ease;
+}
+
+.image:hover {
+transform: scale(1.1);
+}
+
+---
+
+Q10. Combine translation, rotation, and scaling.
+
+SOLUTION:
+
+.box {
+transform:
+translateX(50px)
+rotate(20deg)
+scale(1.2);
+}
+
+====================================================
+END
+===
+
+*/

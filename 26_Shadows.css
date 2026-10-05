@@ -1,0 +1,896 @@
+# /*
+
+```
+              26. CSS SHADOWS
+```
+
+====================================================
+
+* CSS shadows are used to add depth and visual effects
+  to HTML elements and text.
+
+There are two main shadow properties:
+
+1. box-shadow
+   -> Adds a shadow around an element.
+
+2. text-shadow
+   -> Adds a shadow to text.
+
+====================================================
+
+1. box-shadow
+   ====================================================
+
+* box-shadow adds a shadow around an element.
+* It is commonly used for:
+
+  * Cards
+  * Buttons
+  * Images
+  * Containers
+  * Input fields
+
+Basic syntax:
+
+box-shadow:
+horizontal-offset
+vertical-offset
+blur-radius
+spread-radius
+color;
+
+Example:
+
+.card {
+box-shadow: 5px 5px 10px gray;
+}
+
+IMPORTANT:
+
+The first two values are required:
+
+horizontal-offset
+vertical-offset
+
+Blur, spread, and color are optional.
+
+====================================================
+2. HORIZONTAL OFFSET
+====================
+
+* The first value controls the horizontal position
+  of the shadow.
+
+Positive value:
+
+* Moves shadow to the right.
+
+Negative value:
+
+* Moves shadow to the left.
+
+Example:
+
+.box {
+box-shadow: 10px 0 5px gray;
+}
+
+Shadow moves 10px to the right.
+
+Example:
+
+.box {
+box-shadow: -10px 0 5px gray;
+}
+
+Shadow moves 10px to the left.
+
+---
+
+## EXAM REMEMBER:
+
+First value = Horizontal Offset
+
+* value = Right
+
+- value = Left
+
+====================================================
+3. VERTICAL OFFSET
+==================
+
+* The second value controls the vertical position
+  of the shadow.
+
+Positive value:
+
+* Moves shadow downward.
+
+Negative value:
+
+* Moves shadow upward.
+
+Example:
+
+.box {
+box-shadow: 0 10px 5px gray;
+}
+
+Shadow moves 10px downward.
+
+Example:
+
+.box {
+box-shadow: 0 -10px 5px gray;
+}
+
+Shadow moves 10px upward.
+
+---
+
+## EXAM REMEMBER:
+
+Second value = Vertical Offset
+
+* value = Down
+
+- value = Up
+
+====================================================
+4. BLUR RADIUS
+==============
+
+* The third value controls the softness of the shadow.
+* Higher value = more blurred/softer shadow.
+* Lower value = sharper shadow.
+
+Example:
+
+.box {
+box-shadow: 5px 5px 2px gray;
+}
+
+Small blur.
+
+Example:
+
+.box {
+box-shadow: 5px 5px 20px gray;
+}
+
+Large blur.
+
+IMPORTANT:
+
+* Blur radius cannot be negative.
+
+====================================================
+5. SPREAD RADIUS
+================
+
+* The fourth value controls how much the shadow
+  expands or shrinks.
+
+Example:
+
+.box {
+box-shadow: 5px 5px 10px 5px gray;
+}
+
+Here:
+
+5px  = Horizontal Offset
+5px  = Vertical Offset
+10px = Blur Radius
+5px  = Spread Radius
+gray = Shadow Color
+
+Positive spread:
+
+* Makes the shadow larger.
+
+Negative spread:
+
+* Makes the shadow smaller.
+
+Example:
+
+.box {
+box-shadow: 0 0 10px -3px gray;
+}
+
+====================================================
+6. SHADOW COLOR
+===============
+
+* The last value specifies the color of the shadow.
+
+Colors can be written using:
+
+* Color names
+* HEX
+* RGB
+* RGBA
+* HSL
+* HSLA
+
+Example:
+
+.box {
+box-shadow: 5px 5px 10px black;
+}
+
+Using HEX:
+
+.box {
+box-shadow: 5px 5px 10px #888888;
+}
+
+Using RGBA:
+
+.box {
+box-shadow:
+5px 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+RGBA is commonly used for soft shadows because
+the alpha value controls transparency.
+
+====================================================
+7. COMPLETE box-shadow SYNTAX
+=============================
+
+Example:
+
+.box {
+box-shadow: 10px 15px 20px 5px gray;
+}
+
+Meaning:
+
+10px = Horizontal Offset
+15px = Vertical Offset
+20px = Blur Radius
+5px  = Spread Radius
+gray = Shadow Color
+
+---
+
+## MEMORY TRICK:
+
+H -> Horizontal
+V -> Vertical
+B -> Blur
+S -> Spread
+C -> Color
+
+H V B S C
+
+====================================================
+8. INSET SHADOW
+===============
+
+* By default, box-shadow appears outside the element.
+* The inset keyword places the shadow inside
+  the element.
+
+Syntax:
+
+box-shadow:
+inset
+horizontal-offset
+vertical-offset
+blur-radius
+color;
+
+Example:
+
+.box {
+box-shadow: inset 5px 5px 10px gray;
+}
+
+Another example:
+
+.input {
+box-shadow:
+inset 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+Common uses:
+
+* Input fields
+* Pressed buttons
+* Inner borders
+* Depth effects
+
+====================================================
+9. MULTIPLE SHADOWS
+===================
+
+* Multiple shadows can be applied to one element.
+* Separate each shadow using a comma.
+
+Example:
+
+.box {
+box-shadow:
+5px 5px 10px gray,
+-5px -5px 10px lightgray;
+}
+
+Another example:
+
+.card {
+box-shadow:
+0 2px 5px rgba(0, 0, 0, 0.2),
+0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+IMPORTANT:
+
+* Each shadow has its own complete set of values.
+* The shadows are separated using commas.
+
+====================================================
+10. PRACTICAL CARD SHADOW
+=========================
+
+.card {
+width: 300px;
+padding: 20px;
+background-color: white;
+
+```
+border-radius: 10px;
+
+box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.2);
+```
+
+}
+
+This creates a common soft card shadow.
+
+====================================================
+11. HOVER SHADOW EFFECT
+=======================
+
+* box-shadow can be combined with :hover.
+* transition creates a smooth effect.
+
+.card {
+box-shadow:
+0 3px 10px rgba(0, 0, 0, 0.2);
+
+```
+transition: box-shadow 0.3s ease;
+```
+
+}
+
+.card:hover {
+box-shadow:
+0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+====================================================
+12. BUTTON SHADOW
+=================
+
+.button {
+padding: 12px 20px;
+
+```
+border: none;
+border-radius: 8px;
+
+box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.2);
+```
+
+}
+
+.button:hover {
+box-shadow:
+0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+====================================================
+13. PRESSED / INSET BUTTON
+==========================
+
+.button {
+padding: 12px 20px;
+border: none;
+
+```
+box-shadow:
+    inset 0 2px 5px rgba(0, 0, 0, 0.3);
+```
+
+}
+
+The inset shadow creates a pressed or embedded
+appearance.
+
+====================================================
+14. text-shadow
+===============
+
+* text-shadow adds a shadow to text.
+* It does not create a shadow around the entire
+  element box.
+
+Syntax:
+
+text-shadow:
+horizontal-offset
+vertical-offset
+blur-radius
+color;
+
+Example:
+
+h1 {
+text-shadow: 2px 2px 5px gray;
+}
+
+Here:
+
+2px = Horizontal Offset
+2px = Vertical Offset
+5px = Blur Radius
+gray = Shadow Color
+
+IMPORTANT:
+
+* text-shadow does NOT have a spread-radius value.
+
+====================================================
+15. TEXT SHADOW EFFECTS
+=======================
+
+Simple shadow:
+
+h1 {
+text-shadow: 2px 2px 4px gray;
+}
+
+---
+
+## Dark text shadow:
+
+h1 {
+text-shadow: 3px 3px 5px black;
+}
+
+---
+
+## Soft text shadow:
+
+h1 {
+text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+---
+
+## Glow effect:
+
+h1 {
+color: white;
+
+```
+text-shadow:
+    0 0 10px blue;
+```
+
+}
+
+---
+
+## Strong glow effect:
+
+h1 {
+color: white;
+
+```
+text-shadow:
+    0 0 5px blue,
+    0 0 10px blue,
+    0 0 20px blue;
+```
+
+}
+
+---
+
+## Multiple text shadows:
+
+h1 {
+text-shadow:
+2px 2px 3px black,
+-2px -2px 3px gray;
+}
+
+====================================================
+16. box-shadow vs text-shadow
+=============================
+
+box-shadow:
+
+* Creates a shadow around an element's box.
+* Used with:
+
+  * div
+  * card
+  * button
+  * image
+  * input
+  * container
+
+Example:
+
+.card {
+box-shadow: 0 5px 15px gray;
+}
+
+text-shadow:
+
+* Creates a shadow behind text.
+* Used with:
+
+  * headings
+  * paragraphs
+  * labels
+  * text elements
+
+Example:
+
+h1 {
+text-shadow: 2px 2px 5px gray;
+}
+
+====================================================
+17. COMMON box-shadow EXAMPLES
+==============================
+
+Basic:
+
+box-shadow: 5px 5px 10px gray;
+
+With spread:
+
+box-shadow: 5px 5px 10px 5px gray;
+
+Transparent shadow:
+
+box-shadow:
+0 5px 15px rgba(0, 0, 0, 0.3);
+
+Inset shadow:
+
+box-shadow:
+inset 0 0 10px gray;
+
+Multiple shadows:
+
+box-shadow:
+0 5px 10px gray,
+0 10px 20px lightgray;
+
+====================================================
+18. COMMON text-shadow EXAMPLES
+===============================
+
+Basic:
+
+text-shadow: 2px 2px 5px gray;
+
+No blur:
+
+text-shadow: 2px 2px 0 black;
+
+Glow:
+
+text-shadow: 0 0 10px blue;
+
+Multiple:
+
+text-shadow:
+0 0 5px blue,
+0 0 10px blue,
+0 0 20px blue;
+
+====================================================
+QUICK REVISION
+==============
+
+box-shadow:
+
+* Adds shadow around an element.
+
+Syntax:
+
+box-shadow:
+horizontal
+vertical
+blur
+spread
+color;
+
+Horizontal:
+
+* Positive -> Right
+* Negative -> Left
+
+Vertical:
+
+* Positive -> Down
+* Negative -> Up
+
+Blur:
+
+* Controls softness.
+
+Spread:
+
+* Controls shadow size.
+
+Color:
+
+* Controls shadow color.
+
+inset:
+
+* Creates an inner shadow.
+
+Multiple shadows:
+
+* Separate shadows using commas.
+
+text-shadow:
+
+* Adds shadow to text.
+
+IMPORTANT:
+
+box-shadow has:
+
+Horizontal
+Vertical
+Blur
+Spread
+Color
+
+text-shadow has:
+
+Horizontal
+Vertical
+Blur
+Color
+
+====================================================
+QUESTIONS
+=========
+
+Q1. What is box-shadow?
+
+SOLUTION:
+
+box-shadow is a CSS property used to add a shadow
+around an element.
+
+---
+
+Q2. What is the order of values in box-shadow?
+
+SOLUTION:
+
+Horizontal Offset
+Vertical Offset
+Blur Radius
+Spread Radius
+Color
+
+Example:
+
+box-shadow: 5px 5px 10px 2px gray;
+
+---
+
+Q3. What does the first value in box-shadow control?
+
+SOLUTION:
+
+Horizontal offset.
+
+Positive value -> Right
+Negative value -> Left
+
+---
+
+Q4. What does the second value control?
+
+SOLUTION:
+
+Vertical offset.
+
+Positive value -> Down
+Negative value -> Up
+
+---
+
+Q5. What does blur radius control?
+
+SOLUTION:
+
+It controls the softness of the shadow.
+
+Higher blur = softer shadow.
+
+---
+
+Q6. What does spread radius control?
+
+SOLUTION:
+
+It controls how much the shadow expands or shrinks.
+
+---
+
+Q7. How do you create an inset shadow?
+
+SOLUTION:
+
+.box {
+box-shadow:
+inset 0 0 10px gray;
+}
+
+---
+
+Q8. How do you create multiple shadows?
+
+SOLUTION:
+
+.box {
+box-shadow:
+5px 5px 10px gray,
+-5px -5px 10px lightgray;
+}
+
+---
+
+Q9. What is text-shadow?
+
+SOLUTION:
+
+text-shadow is used to add a shadow behind text.
+
+Example:
+
+h1 {
+text-shadow: 2px 2px 5px gray;
+}
+
+---
+
+Q10. What is the main difference between
+box-shadow and text-shadow?
+
+SOLUTION:
+
+box-shadow:
+
+* Shadow around an element's box.
+
+text-shadow:
+
+* Shadow behind text.
+
+====================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Create a box with a shadow of 5px right,
+5px down and 10px blur.
+
+SOLUTION:
+
+.box {
+box-shadow: 5px 5px 10px gray;
+}
+
+---
+
+Q2. Create a shadow that appears 10px to the left.
+
+SOLUTION:
+
+.box {
+box-shadow: -10px 0 5px gray;
+}
+
+---
+
+Q3. Create a shadow that appears 10px upward.
+
+SOLUTION:
+
+.box {
+box-shadow: 0 -10px 5px gray;
+}
+
+---
+
+Q4. Create a shadow with:
+
+* 10px horizontal offset
+* 15px vertical offset
+* 20px blur
+* 5px spread
+* black color
+
+SOLUTION:
+
+.box {
+box-shadow: 10px 15px 20px 5px black;
+}
+
+---
+
+Q5. Create an inner shadow.
+
+SOLUTION:
+
+.box {
+box-shadow:
+inset 0 0 10px gray;
+}
+
+---
+
+Q6. Create two shadows on one box.
+
+SOLUTION:
+
+.box {
+box-shadow:
+0 5px 10px gray,
+0 10px 20px lightgray;
+}
+
+---
+
+Q7. Create a heading with a simple text shadow.
+
+SOLUTION:
+
+h1 {
+text-shadow: 2px 2px 5px gray;
+}
+
+---
+
+Q8. Create a glowing text effect.
+
+SOLUTION:
+
+h1 {
+color: white;
+
+```
+text-shadow:
+    0 0 5px blue,
+    0 0 10px blue,
+    0 0 20px blue;
+```
+
+}
+
+====================================================
+END
+===
+
+*/

@@ -1,0 +1,1248 @@
+# /*
+
+```
+             23. CSS GRADIENTS
+```
+
+====================================================
+
+* CSS gradients create smooth transitions between
+  two or more colors.
+* Gradients are commonly used as backgrounds.
+* Gradients do not require image files.
+* The main types of CSS gradients are:
+
+  1. Linear Gradient
+  2. Radial Gradient
+  3. Conic Gradient
+
+---
+
+1. LINEAR GRADIENT
+
+---
+
+* A linear gradient creates a smooth color transition
+  along a straight line.
+* It can move horizontally, vertically, diagonally,
+  or at a specific angle.
+
+Syntax:
+
+background: linear-gradient(direction, color1, color2);
+
+Example:
+
+.box {
+background: linear-gradient(red, blue);
+}
+
+By default, the gradient goes from top to bottom.
+
+---
+
+2. GRADIENT DIRECTION
+
+---
+
+* Direction controls the direction in which the
+  gradient colors change.
+
+Common directions:
+
+to right
+to left
+to top
+to bottom
+
+Example:
+
+.box {
+background: linear-gradient(to right, red, blue);
+}
+
+Left to right:
+
+.box {
+background: linear-gradient(to right, red, blue);
+}
+
+Right to left:
+
+.box {
+background: linear-gradient(to left, red, blue);
+}
+
+Bottom to top:
+
+.box {
+background: linear-gradient(to top, red, blue);
+}
+
+Top to bottom:
+
+.box {
+background: linear-gradient(to bottom, red, blue);
+}
+
+---
+
+3. DIAGONAL GRADIENT
+
+---
+
+* Gradients can also move diagonally.
+
+Example:
+
+.box {
+background: linear-gradient(
+to bottom right,
+red,
+blue
+);
+}
+
+---
+
+4. ANGLE IN LINEAR GRADIENT
+
+---
+
+* Angles can be used instead of directions.
+* The angle is measured in degrees.
+
+Example:
+
+.box {
+background: linear-gradient(
+90deg,
+red,
+blue
+);
+}
+
+Common angles:
+
+0deg   = bottom to top
+90deg  = left to right
+180deg = top to bottom
+270deg = right to left
+
+Example:
+
+.box {
+background: linear-gradient(
+45deg,
+red,
+blue
+);
+}
+
+---
+
+5. GRADIENT STOPS
+
+---
+
+* A color stop defines where a particular color
+  appears in the gradient.
+* Percentage or length values can be used.
+
+Example:
+
+.box {
+background: linear-gradient(
+to right,
+red 0%,
+blue 100%
+);
+}
+
+Another example:
+
+.box {
+background: linear-gradient(
+to right,
+red 20%,
+blue 80%
+);
+}
+
+Here:
+
+* Red reaches its stop at 20%.
+* Blue reaches its stop at 80%.
+
+---
+
+6. MULTIPLE COLOR STOPS
+
+---
+
+* A gradient can contain more than two colors.
+
+Example:
+
+.box {
+background: linear-gradient(
+to right,
+red,
+yellow,
+green,
+blue
+);
+}
+
+Using specific positions:
+
+.box {
+background: linear-gradient(
+to right,
+red 0%,
+yellow 25%,
+green 50%,
+blue 100%
+);
+}
+
+---
+
+7. HARD COLOR STOPS
+
+---
+
+* Color stops can also create sharp transitions
+  instead of smooth transitions.
+
+Example:
+
+.box {
+background: linear-gradient(
+to right,
+red 0%,
+red 50%,
+blue 50%,
+blue 100%
+);
+}
+
+The result has a sharp change from red to blue.
+
+---
+
+8. REPEATING LINEAR GRADIENT
+
+---
+
+* repeating-linear-gradient() creates a repeating
+  linear pattern.
+
+Syntax:
+
+background:
+repeating-linear-gradient(
+direction,
+color-stop1,
+color-stop2
+);
+
+Example:
+
+.box {
+background: repeating-linear-gradient(
+to right,
+red 0px,
+red 20px,
+blue 20px,
+blue 40px
+);
+}
+
+The red and blue pattern repeats.
+
+Another example:
+
+.box {
+background: repeating-linear-gradient(
+45deg,
+red 0px,
+red 10px,
+white 10px,
+white 20px
+);
+}
+
+This can create a striped pattern.
+
+====================================================
+RADIAL GRADIENT
+===============
+
+---
+
+9. RADIAL GRADIENT
+
+---
+
+* A radial gradient creates a circular or elliptical
+  color transition.
+* The colors spread outward from a center point.
+
+Syntax:
+
+background:
+radial-gradient(shape, color1, color2);
+
+Example:
+
+.box {
+background: radial-gradient(red, blue);
+}
+
+By default, the gradient is elliptical.
+
+---
+
+10. RADIAL GRADIENT WITH MULTIPLE COLORS
+
+---
+
+Example:
+
+.box {
+background: radial-gradient(
+red,
+yellow,
+blue
+);
+}
+
+The colors transition outward from the center.
+
+---
+
+11. RADIAL GRADIENT SHAPE
+
+---
+
+Radial gradients support two main shapes:
+
+* ellipse
+* circle
+
+Ellipse:
+
+.box {
+background: radial-gradient(
+ellipse,
+red,
+blue
+);
+}
+
+Circle:
+
+.box {
+background: radial-gradient(
+circle,
+red,
+blue
+);
+}
+
+---
+
+12. RADIAL GRADIENT SIZE
+
+---
+
+Common size keywords:
+
+* closest-side
+* farthest-side
+* closest-corner
+* farthest-corner
+
+Example:
+
+.box {
+background: radial-gradient(
+circle closest-side,
+red,
+blue
+);
+}
+
+Another example:
+
+.box {
+background: radial-gradient(
+circle farthest-corner,
+red,
+blue
+);
+}
+
+---
+
+13. RADIAL GRADIENT POSITION
+
+---
+
+* The at keyword controls the starting position
+  of a radial gradient.
+
+Syntax:
+
+radial-gradient(
+shape at position,
+color1,
+color2
+);
+
+Example:
+
+.box {
+background: radial-gradient(
+circle at center,
+red,
+blue
+);
+}
+
+Top-left:
+
+.box {
+background: radial-gradient(
+circle at top left,
+red,
+blue
+);
+}
+
+Top-right:
+
+.box {
+background: radial-gradient(
+circle at top right,
+red,
+blue
+);
+}
+
+Bottom-left:
+
+.box {
+background: radial-gradient(
+circle at bottom left,
+red,
+blue
+);
+}
+
+Using percentages:
+
+.box {
+background: radial-gradient(
+circle at 30% 40%,
+red,
+blue
+);
+}
+
+---
+
+14. RADIAL GRADIENT COLOR STOPS
+
+---
+
+Example:
+
+.box {
+background: radial-gradient(
+circle,
+red 0%,
+yellow 40%,
+blue 100%
+);
+}
+
+---
+
+15. REPEATING RADIAL GRADIENT
+
+---
+
+* repeating-radial-gradient() creates repeating
+  circular or elliptical patterns.
+
+Example:
+
+.box {
+background: repeating-radial-gradient(
+circle,
+red 0px,
+red 10px,
+white 10px,
+white 20px
+);
+}
+
+Another example:
+
+.box {
+background: repeating-radial-gradient(
+circle,
+blue 0px,
+blue 15px,
+white 15px,
+white 30px
+);
+}
+
+This creates concentric repeating circles.
+
+====================================================
+CONIC GRADIENT
+==============
+
+---
+
+16. CONIC GRADIENT
+
+---
+
+* A conic gradient creates a color transition around
+  a center point.
+* Colors rotate around the center like a pie chart.
+
+Syntax:
+
+background:
+conic-gradient(color1, color2, color3);
+
+Example:
+
+.box {
+background: conic-gradient(
+red,
+yellow,
+green,
+blue,
+red
+);
+}
+
+---
+
+17. CONIC GRADIENT ANGLE
+
+---
+
+* from controls the starting angle.
+
+Example:
+
+.box {
+background: conic-gradient(
+from 45deg,
+red,
+blue,
+green
+);
+}
+
+---
+
+18. CONIC GRADIENT POSITION
+
+---
+
+* at controls the center position.
+
+Example:
+
+.box {
+background: conic-gradient(
+at center,
+red,
+yellow,
+blue
+);
+}
+
+Using a custom position:
+
+.box {
+background: conic-gradient(
+at 30% 40%,
+red,
+yellow,
+blue
+);
+}
+
+---
+
+19. CONIC GRADIENT COLOR STOPS
+
+---
+
+Example:
+
+.box {
+background: conic-gradient(
+red 0deg,
+yellow 120deg,
+blue 240deg,
+red 360deg
+);
+}
+
+---
+
+20. CONIC GRADIENT AS PIE CHART
+
+---
+
+* Conic gradients can be used to create simple
+  CSS pie charts.
+
+Example:
+
+.pie {
+width: 200px;
+height: 200px;
+border-radius: 50%;
+
+```
+background: conic-gradient(
+    red 0deg 120deg,
+    yellow 120deg 240deg,
+    blue 240deg 360deg
+);
+```
+
+}
+
+---
+
+21. REPEATING CONIC GRADIENT
+
+---
+
+* repeating-conic-gradient() creates repeating
+  angular patterns.
+
+Example:
+
+.box {
+background: repeating-conic-gradient(
+red 0deg 20deg,
+white 20deg 40deg
+);
+}
+
+This creates a repeated radial/rotating pattern.
+
+Another example:
+
+.box {
+background: repeating-conic-gradient(
+from 45deg,
+black 0deg 10deg,
+white 10deg 20deg
+);
+}
+
+====================================================
+GRADIENTS AS BACKGROUNDS
+========================
+
+---
+
+22. GRADIENT AS BACKGROUND
+
+---
+
+* Gradients are commonly used with the
+  background property.
+
+Example:
+
+.banner {
+background: linear-gradient(
+to right,
+blue,
+purple
+);
+}
+
+---
+
+23. GRADIENT WITH TEXT
+
+---
+
+* A gradient can be applied to text using
+  background-clip.
+
+Example:
+
+.gradient-text {
+background: linear-gradient(
+to right,
+red,
+blue
+);
+
+```
+background-clip: text;
+-webkit-background-clip: text;
+color: transparent;
+```
+
+}
+
+IMPORTANT:
+
+* background-clip: text makes the background visible
+  only through the text.
+* color: transparent allows the gradient to show.
+
+---
+
+24. GRADIENT OVER AN IMAGE
+
+---
+
+* Multiple backgrounds can combine a gradient
+  with an image.
+
+Example:
+
+.hero {
+background:
+linear-gradient(
+rgba(0, 0, 0, 0.5),
+rgba(0, 0, 0, 0.5)
+),
+url("image.jpg");
+
+```
+background-size: cover;
+background-position: center;
+```
+
+}
+
+This creates a dark overlay over the image.
+
+---
+
+25. GRADIENT BUTTON
+
+---
+
+.button {
+background: linear-gradient(
+to right,
+blue,
+purple
+);
+
+```
+color: white;
+padding: 12px 25px;
+border: none;
+border-radius: 8px;
+```
+
+}
+
+---
+
+26. GRADIENT CARD
+
+---
+
+.card {
+background: linear-gradient(
+135deg,
+#ffffff,
+#e8e8e8
+);
+
+```
+padding: 20px;
+border-radius: 12px;
+```
+
+}
+
+---
+
+27. GRADIENT BORDER EFFECT
+
+---
+
+* Gradients can also be used to create visual
+  border effects.
+
+Example:
+
+.gradient-border {
+padding: 3px;
+
+```
+background: linear-gradient(
+    45deg,
+    red,
+    blue
+);
+
+border-radius: 12px;
+```
+
+}
+
+.gradient-border-content {
+background: white;
+padding: 20px;
+border-radius: 10px;
+}
+
+---
+
+28. COMMON GRADIENT FUNCTIONS
+
+---
+
+Linear:
+
+linear-gradient()
+
+Repeating linear:
+
+repeating-linear-gradient()
+
+Radial:
+
+radial-gradient()
+
+Repeating radial:
+
+repeating-radial-gradient()
+
+Conic:
+
+conic-gradient()
+
+Repeating conic:
+
+repeating-conic-gradient()
+
+====================================================
+GRADIENT COMPARISON
+===================
+
+LINEAR GRADIENT:
+
+* Colors transition along a straight line.
+* Uses direction or angle.
+
+RADIAL GRADIENT:
+
+* Colors spread outward from a center.
+* Can be circular or elliptical.
+
+CONIC GRADIENT:
+
+* Colors rotate around a center point.
+* Useful for pie charts and circular patterns.
+
+REPEATING GRADIENTS:
+
+* Repeat the defined gradient pattern.
+
+====================================================
+QUICK REVISION
+==============
+
+linear-gradient()
+
+* Straight-line color transition.
+
+linear-gradient(to right, red, blue)
+
+* Left-to-right gradient.
+
+linear-gradient(45deg, red, blue)
+
+* Diagonal gradient.
+
+Color stops:
+
+* Control where colors appear.
+
+repeating-linear-gradient()
+
+* Repeating linear pattern.
+
+radial-gradient()
+
+* Circular/elliptical color transition.
+
+radial-gradient(circle, red, blue)
+
+* Circular radial gradient.
+
+radial-gradient(circle at top left, red, blue)
+
+* Changes gradient position.
+
+repeating-radial-gradient()
+
+* Repeating circular pattern.
+
+conic-gradient()
+
+* Rotating color transition around a center.
+
+repeating-conic-gradient()
+
+* Repeating angular pattern.
+
+IMPORTANT:
+
+Linear = straight line
+Radial = outward from center
+Conic = around center
+
+====================================================
+QUESTIONS
+=========
+
+Q1. What is a CSS gradient?
+
+SOLUTION:
+
+A CSS gradient creates a smooth transition between
+two or more colors without using an image file.
+
+---
+
+Q2. What are the three main types of CSS gradients?
+
+SOLUTION:
+
+1. Linear Gradient
+2. Radial Gradient
+3. Conic Gradient
+
+---
+
+Q3. What is the default direction of a linear gradient?
+
+SOLUTION:
+
+Top to bottom.
+
+Example:
+
+background: linear-gradient(red, blue);
+
+---
+
+Q4. How do you create a left-to-right gradient?
+
+SOLUTION:
+
+.box {
+background: linear-gradient(
+to right,
+red,
+blue
+);
+}
+
+---
+
+Q5. What are gradient stops?
+
+SOLUTION:
+
+Gradient stops specify where particular colors
+appear in a gradient.
+
+Example:
+
+.box {
+background: linear-gradient(
+to right,
+red 20%,
+blue 80%
+);
+}
+
+---
+
+Q6. What is the difference between linear and
+radial gradients?
+
+SOLUTION:
+
+Linear gradient:
+
+* Colors transition along a straight line.
+
+Radial gradient:
+
+* Colors spread outward from a central point.
+
+---
+
+Q7. How do you create a circular radial gradient?
+
+SOLUTION:
+
+.box {
+background: radial-gradient(
+circle,
+red,
+blue
+);
+}
+
+---
+
+Q8. Which keyword is used to change the position
+of a radial gradient?
+
+SOLUTION:
+
+The "at" keyword.
+
+Example:
+
+.box {
+background: radial-gradient(
+circle at top left,
+red,
+blue
+);
+}
+
+---
+
+Q9. Which gradient is useful for creating a pie chart?
+
+SOLUTION:
+
+Conic gradient.
+
+Example:
+
+.pie {
+background: conic-gradient(
+red 0deg 120deg,
+yellow 120deg 240deg,
+blue 240deg 360deg
+);
+}
+
+---
+
+Q10. What is the purpose of repeating gradients?
+
+SOLUTION:
+
+Repeating gradients create patterns by repeatedly
+repeating a defined gradient.
+
+Examples:
+
+repeating-linear-gradient()
+repeating-radial-gradient()
+repeating-conic-gradient()
+
+====================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Create a horizontal gradient from red to blue.
+
+SOLUTION:
+
+.box {
+background: linear-gradient(
+to right,
+red,
+blue
+);
+}
+
+---
+
+Q2. Create a three-color vertical gradient using
+red, yellow, and green.
+
+SOLUTION:
+
+.box {
+background: linear-gradient(
+to bottom,
+red,
+yellow,
+green
+);
+}
+
+---
+
+Q3. Create a diagonal gradient from purple to pink.
+
+SOLUTION:
+
+.box {
+background: linear-gradient(
+45deg,
+purple,
+pink
+);
+}
+
+---
+
+Q4. Create a circular radial gradient from white
+to blue.
+
+SOLUTION:
+
+.box {
+background: radial-gradient(
+circle,
+white,
+blue
+);
+}
+
+---
+
+Q5. Create a radial gradient starting from the
+top-left corner.
+
+SOLUTION:
+
+.box {
+background: radial-gradient(
+circle at top left,
+red,
+blue
+);
+}
+
+---
+
+Q6. Create a repeating striped gradient.
+
+SOLUTION:
+
+.box {
+background: repeating-linear-gradient(
+45deg,
+red 0px,
+red 10px,
+white 10px,
+white 20px
+);
+}
+
+---
+
+Q7. Create a conic gradient using three colors.
+
+SOLUTION:
+
+.box {
+background: conic-gradient(
+red,
+yellow,
+blue
+);
+}
+
+---
+
+Q8. Create a simple CSS pie chart with three
+equal sections.
+
+SOLUTION:
+
+.pie {
+width: 200px;
+height: 200px;
+border-radius: 50%;
+
+```
+background: conic-gradient(
+    red 0deg 120deg,
+    yellow 120deg 240deg,
+    blue 240deg 360deg
+);
+```
+
+}
+
+---
+
+Q9. Create a hero section with an image and a
+dark gradient overlay.
+
+SOLUTION:
+
+.hero {
+height: 400px;
+
+```
+background:
+    linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+    ),
+    url("hero.jpg");
+
+background-size: cover;
+background-position: center;
+```
+
+}
+
+---
+
+Q10. Create a button with a blue-to-purple gradient.
+
+SOLUTION:
+
+.button {
+background: linear-gradient(
+to right,
+blue,
+purple
+);
+
+```
+color: white;
+border: none;
+padding: 12px 25px;
+border-radius: 8px;
+```
+
+}
+
+====================================================
+END
+===
+
+*/

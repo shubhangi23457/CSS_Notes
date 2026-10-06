@@ -1,0 +1,1592 @@
+/*
+========================================================
+              27. CSS RESPONSIVE DESIGN
+========================================================
+
+Responsive Web Design means creating websites that
+automatically adjust their layout and content according
+to the screen size and device.
+
+A responsive website should work well on:
+
+    Mobile phones
+    Tablets
+    Laptops
+    Desktops
+    Large screens
+
+Main concepts:
+
+    Flexible layouts
+    Flexible widths
+    Flexible images
+    Responsive typography
+    Viewport meta tag
+    Media queries
+    Breakpoints
+    Mobile-first design
+    Responsive navigation
+    Responsive tables
+    Responsive Flexbox
+    Responsive Grid
+
+
+--------------------------------------------------------
+1. INTRODUCTION TO RESPONSIVE WEB DESIGN
+--------------------------------------------------------
+
+Responsive design allows a website to adapt to different
+screen sizes without creating a separate website for
+each device.
+
+Example:
+
+Desktop:
+    Navigation → horizontal
+    Cards → 4 columns
+
+Tablet:
+    Navigation → smaller
+    Cards → 2 columns
+
+Mobile:
+    Navigation → vertical
+    Cards → 1 column
+
+Important CSS tools:
+
+    %
+    rem
+    em
+    vw
+    vh
+    max-width
+    min-width
+    flexbox
+    grid
+    media queries
+
+
+--------------------------------------------------------
+2. RESPONSIVE LAYOUTS
+--------------------------------------------------------
+
+A responsive layout changes according to the available
+screen width.
+
+Avoid fixed layouts such as:
+
+width: 1200px;
+
+Prefer flexible values:
+
+width: 100%;
+max-width: 1200px;
+
+Example:
+*/
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+
+/*
+This allows the container to:
+
+    Use 90% of the screen
+    Never become wider than 1200px
+    Stay centered
+
+
+--------------------------------------------------------
+3. FLEXIBLE WIDTHS
+--------------------------------------------------------
+
+Flexible widths allow elements to resize based on the
+available screen space.
+
+Common units:
+
+%
+vw
+em
+rem
+fr
+
+Example:
+*/
+
+.flexible-box {
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+}
+
+
+/*
+Percentage width:
+
+width: 50%;
+
+means the element takes 50% of its containing element.
+
+
+Example:
+*/
+
+.half-width {
+    width: 50%;
+}
+
+
+/*
+Using max-width:
+
+*/
+
+.responsive-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+
+/*
+Important:
+
+width: 100%;
+max-width: 1200px;
+
+is a common responsive pattern.
+
+
+--------------------------------------------------------
+4. FLEXIBLE IMAGES
+--------------------------------------------------------
+
+Images should not become wider than their containers.
+
+Most common responsive image rule:
+
+max-width: 100%;
+height: auto;
+
+Example:
+*/
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/*
+max-width: 100%
+    → Image cannot exceed its container.
+
+height: auto
+    → Maintains the original aspect ratio.
+
+
+Example:
+*/
+
+.product-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
+
+
+/*
+--------------------------------------------------------
+5. RESPONSIVE TYPOGRAPHY
+--------------------------------------------------------
+
+Text should remain readable on different screen sizes.
+
+Common units:
+
+px
+em
+rem
+vw
+
+rem is commonly preferred for scalable typography.
+
+Example:
+*/
+
+body {
+    font-size: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+
+/*
+Viewport-based typography:
+
+*/
+
+.responsive-heading {
+    font-size: 5vw;
+}
+
+
+/*
+However, extremely large or small text can be avoided
+using clamp().
+
+Example:
+
+font-size: clamp(minimum, preferred, maximum);
+*/
+
+.responsive-title {
+    font-size: clamp(1.8rem, 5vw, 4rem);
+}
+
+
+/*
+This means:
+
+Minimum = 1.8rem
+Preferred = 5vw
+Maximum = 4rem
+
+
+--------------------------------------------------------
+6. VIEWPORT META TAG
+--------------------------------------------------------
+
+The viewport meta tag is written in HTML, not CSS.
+
+It tells mobile browsers how to control the page's
+dimensions and scaling.
+
+Syntax:
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+Meaning:
+
+width=device-width
+    → Page width matches device width.
+
+initial-scale=1.0
+    → Initial zoom level is 100%.
+
+Typical HTML:
+
+<head>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+</head>
+
+IMPORTANT:
+The viewport meta tag is HTML, but it is essential
+for responsive CSS to work correctly on mobile devices.
+
+
+--------------------------------------------------------
+7. MEDIA QUERIES
+--------------------------------------------------------
+
+Media queries allow CSS to apply different styles based
+on conditions such as screen width.
+
+Syntax:
+
+@media (condition) {
+
+    CSS code
+
+}
+
+Example:
+*/
+
+.media-box {
+    width: 50%;
+    background-color: blue;
+}
+
+@media (max-width: 600px) {
+
+    .media-box {
+        width: 100%;
+        background-color: red;
+    }
+}
+
+
+/*
+Above:
+
+Desktop/tablet:
+    width = 50%
+
+Screen 600px or smaller:
+    width = 100%
+
+
+--------------------------------------------------------
+8. @media
+--------------------------------------------------------
+
+@media is the CSS at-rule used to create media queries.
+
+Syntax:
+
+@media (max-width: 768px) {
+    selector {
+        property: value;
+    }
+}
+
+Example:
+*/
+
+.example-media {
+    font-size: 24px;
+}
+
+@media (max-width: 768px) {
+
+    .example-media {
+        font-size: 18px;
+    }
+}
+
+
+/*
+Multiple conditions can be combined.
+
+Example:
+
+*/
+
+@media (min-width: 600px) and (max-width: 900px) {
+
+    .tablet-box {
+        width: 80%;
+    }
+}
+
+
+/*
+Orientation can also be used:
+
+*/
+
+@media (orientation: landscape) {
+
+    .landscape-box {
+        width: 80%;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+9. BREAKPOINTS
+--------------------------------------------------------
+
+Breakpoints are screen widths where the layout changes.
+
+There is no single required set of breakpoints.
+
+Common examples:
+
+Small mobile:
+    480px
+
+Mobile/tablet:
+    600px
+
+Tablet:
+    768px
+
+Laptop:
+    1024px
+
+Desktop:
+    1200px
+
+Large desktop:
+    1440px
+
+Example:
+*/
+
+.breakpoint-box {
+    width: 25%;
+}
+
+@media (max-width: 1024px) {
+
+    .breakpoint-box {
+        width: 33.33%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .breakpoint-box {
+        width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .breakpoint-box {
+        width: 100%;
+    }
+}
+
+
+/*
+IMPORTANT:
+
+Breakpoints should be chosen based on where your
+content needs to change, not only on specific devices.
+
+
+--------------------------------------------------------
+10. MOBILE-FIRST DESIGN
+--------------------------------------------------------
+
+Mobile-first means designing for small screens first
+and then adding styles for larger screens.
+
+Base CSS:
+    Mobile
+
+@media min-width:
+    Tablet/Desktop
+
+Example:
+*/
+
+.mobile-first-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/*
+Larger screen:
+
+*/
+
+@media (min-width: 768px) {
+
+    .mobile-first-container {
+        flex-direction: row;
+    }
+}
+
+
+/*
+Mobile:
+    column
+
+Desktop:
+    row
+
+
+Another example:
+*/
+
+.mobile-first-card {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+
+    .mobile-first-card {
+        width: 50%;
+    }
+}
+
+
+/*
+Advantages:
+
+    Better mobile experience
+    Less unnecessary CSS
+    Progressive enhancement
+    Easier responsive design
+
+
+--------------------------------------------------------
+11. DESKTOP-FIRST DESIGN
+--------------------------------------------------------
+
+Desktop-first means designing for large screens first
+and then overriding styles for smaller screens.
+
+Example:
+*/
+
+.desktop-first-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+
+/*
+Mobile override:
+
+*/
+
+@media (max-width: 768px) {
+
+    .desktop-first-container {
+        flex-direction: column;
+    }
+}
+
+
+/*
+Comparison:
+
+Mobile-first:
+    Base = mobile
+    Use min-width
+
+Desktop-first:
+    Base = desktop
+    Use max-width
+
+Modern responsive development commonly favors
+mobile-first design.
+
+
+--------------------------------------------------------
+12. RESPONSIVE NAVIGATION
+--------------------------------------------------------
+
+Navigation menus often change layout on smaller screens.
+
+Desktop:
+    Items appear horizontally.
+
+Mobile:
+    Items can appear vertically.
+
+Example:
+*/
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+
+/*
+Mobile navigation:
+*/
+
+@media (max-width: 768px) {
+
+    .nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+
+/*
+Example of hiding/showing a mobile menu button:
+
+*/
+
+.menu-button {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    .menu-button {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+    }
+}
+
+
+/*
+NOTE:
+
+CSS can control the visual layout, but an actual
+clickable hamburger menu generally requires HTML and
+JavaScript (or another interactive mechanism).
+
+
+--------------------------------------------------------
+13. RESPONSIVE IMAGES
+--------------------------------------------------------
+
+Basic responsive image:
+
+*/
+
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/*
+Full-width responsive image:
+
+*/
+
+.full-image {
+    width: 100%;
+    height: auto;
+}
+
+
+/*
+Responsive image inside a fixed-height card:
+
+*/
+
+.card-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+
+/*
+object-fit: cover
+    → Fills the area while maintaining aspect ratio.
+
+object-fit: contain
+    → Shows the complete image while maintaining
+      aspect ratio.
+
+
+--------------------------------------------------------
+14. RESPONSIVE TABLES
+--------------------------------------------------------
+
+Tables can become too wide on small screens.
+
+A common solution is to allow horizontal scrolling.
+
+HTML structure:
+
+<div class="table-container">
+    <table>
+        ...
+    </table>
+</div>
+
+CSS:
+*/
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-container table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+}
+
+
+/*
+On small screens:
+
+    Table remains readable
+    User can scroll horizontally
+
+
+Another technique:
+
+*/
+
+.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.responsive-table th,
+.responsive-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+
+/*
+For very wide content:
+
+*/
+
+.responsive-table th,
+.responsive-table td {
+    white-space: nowrap;
+}
+
+
+/*
+--------------------------------------------------------
+15. RESPONSIVE FLEXBOX
+--------------------------------------------------------
+
+Flexbox is naturally useful for responsive layouts.
+
+Example:
+*/
+
+.flex-container {
+    display: flex;
+    gap: 20px;
+}
+
+.flex-item {
+    flex: 1;
+}
+
+
+/*
+On smaller screens:
+
+*/
+
+@media (max-width: 768px) {
+
+    .flex-container {
+        flex-direction: column;
+    }
+}
+
+
+/*
+Desktop:
+    [Item] [Item] [Item]
+
+Mobile:
+    [Item]
+    [Item]
+    [Item]
+
+
+Another example using wrapping:
+*/
+
+.responsive-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.responsive-flex-item {
+    flex: 1 1 250px;
+}
+
+
+/*
+This means:
+
+flex-grow:
+    1
+
+flex-shrink:
+    1
+
+flex-basis:
+    250px
+
+Items can grow and shrink and wrap when necessary.
+
+
+--------------------------------------------------------
+16. RESPONSIVE GRID
+--------------------------------------------------------
+
+CSS Grid is excellent for responsive card layouts.
+
+Basic grid:
+
+*/
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+
+/*
+Tablet:
+*/
+
+@media (max-width: 900px) {
+
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/*
+Mobile:
+*/
+
+@media (max-width: 600px) {
+
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/*
+Desktop:
+    4 columns
+
+Tablet:
+    2 columns
+
+Mobile:
+    1 column
+
+
+--------------------------------------------------------
+17. RESPONSIVE GRID WITH auto-fit
+--------------------------------------------------------
+
+Grid can automatically adjust the number of columns
+without multiple breakpoints.
+
+Example:
+*/
+
+.auto-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 20px;
+}
+
+
+/*
+Meaning:
+
+auto-fit
+    → Creates as many columns as can fit.
+
+minmax(250px, 1fr)
+    → Each column should be at least 250px and can
+      grow to use available space.
+
+This is one of the most useful responsive Grid patterns.
+
+
+--------------------------------------------------------
+18. RESPONSIVE FLEXBOX + GRID
+--------------------------------------------------------
+
+Flexbox is commonly used for:
+
+    Navigation
+    Buttons
+    Rows
+    One-dimensional layouts
+
+Grid is commonly used for:
+
+    Card grids
+    Galleries
+    Page layouts
+    Two-dimensional layouts
+
+
+Example page layout:
+
+*/
+
+.page {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 20px;
+}
+
+
+/*
+Mobile:
+
+*/
+
+@media (max-width: 768px) {
+
+    .page {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+19. RESPONSIVE CONTAINER
+--------------------------------------------------------
+*/
+
+.container-responsive {
+    width: 100%;
+    max-width: 1200px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    box-sizing: border-box;
+}
+
+
+/*
+--------------------------------------------------------
+20. RESPONSIVE CARD LAYOUT
+--------------------------------------------------------
+*/
+
+.product-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 20px;
+}
+
+.product-card-responsive {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/*
+--------------------------------------------------------
+21. RESPONSIVE TWO-COLUMN LAYOUT
+--------------------------------------------------------
+*/
+
+.two-column {
+    display: flex;
+    gap: 30px;
+}
+
+.two-column > * {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+
+    .two-column {
+        flex-direction: column;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+22. RESPONSIVE HERO SECTION
+--------------------------------------------------------
+*/
+
+.hero-responsive {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    padding: 50px;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-image {
+    flex: 1;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+
+    .hero-responsive {
+        flex-direction: column;
+        padding: 30px 20px;
+        text-align: center;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+23. RESPONSIVE SPACING
+--------------------------------------------------------
+
+Fixed large spacing can be uncomfortable on mobile.
+
+Instead of:
+
+padding: 80px;
+
+Use responsive values:
+
+*/
+
+.responsive-section {
+    padding: 5vw;
+}
+
+
+/*
+Or use clamp():
+
+*/
+
+.responsive-padding {
+    padding: clamp(20px, 5vw, 80px);
+}
+
+
+/*
+--------------------------------------------------------
+24. RESPONSIVE TYPOGRAPHY WITH CLAMP()
+--------------------------------------------------------
+
+clamp() syntax:
+
+clamp(minimum, preferred, maximum)
+
+Example:
+*/
+
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+
+p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+
+/*
+This prevents text from becoming:
+
+    Too small on mobile
+    Too large on desktop
+
+
+--------------------------------------------------------
+25. RESPONSIVE DESIGN BEST PRACTICES
+--------------------------------------------------------
+
+1. Use flexible widths.
+
+2. Use max-width for containers.
+
+3. Use max-width: 100% for images.
+
+4. Use height: auto for responsive images.
+
+5. Prefer relative units where appropriate.
+
+6. Use Flexbox and Grid.
+
+7. Use media queries when the content needs them.
+
+8. Design for touch-friendly controls.
+
+9. Avoid unnecessary fixed widths.
+
+10. Test different screen sizes.
+
+11. Use mobile-first design when appropriate.
+
+12. Keep text readable.
+
+13. Avoid horizontal page scrolling.
+
+14. Use responsive tables.
+
+15. Use responsive images.
+
+
+========================================================
+                MOBILE-FIRST VS DESKTOP-FIRST
+========================================================
+
+MOBILE-FIRST:
+
+Base CSS:
+    Mobile styles
+
+Media queries:
+    min-width
+
+Example:
+
+.box {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .box {
+        width: 50%;
+    }
+}
+
+
+DESKTOP-FIRST:
+
+Base CSS:
+    Desktop styles
+
+Media queries:
+    max-width
+
+Example:
+
+.box {
+    width: 50%;
+}
+
+@media (max-width: 768px) {
+    .box {
+        width: 100%;
+    }
+}
+
+
+========================================================
+                 RESPONSIVE UNITS
+========================================================
+
+%:
+    Relative to containing element.
+
+em:
+    Relative to font size of the relevant context.
+
+rem:
+    Relative to root font size.
+
+vw:
+    1% of viewport width.
+
+vh:
+    1% of viewport height.
+
+fr:
+    Fraction of available Grid space.
+
+px:
+    Fixed CSS pixel unit.
+
+
+========================================================
+                COMMON BREAKPOINTS
+========================================================
+
+These are examples, not mandatory rules.
+
+480px
+    Small mobile
+
+600px
+    Mobile
+
+768px
+    Tablet
+
+1024px
+    Laptop
+
+1200px
+    Desktop
+
+1440px
+    Large desktop
+
+
+IMPORTANT:
+
+Do not blindly design around device names.
+
+Choose breakpoints where your content or layout
+actually needs to change.
+
+
+========================================================
+                 QUICK REVISION
+========================================================
+
+Responsive Web Design:
+    Website adapts to different screen sizes.
+
+Flexible Width:
+    Use %, max-width, vw, etc.
+
+Flexible Image:
+
+    max-width: 100%;
+    height: auto;
+
+Viewport Meta Tag:
+    Makes mobile viewport behave correctly.
+
+Media Query:
+
+    @media (max-width: 768px) {
+        ...
+    }
+
+Mobile-first:
+    Mobile styles first + min-width queries.
+
+Desktop-first:
+    Desktop styles first + max-width queries.
+
+Flexbox:
+    Excellent for one-dimensional responsive layouts.
+
+Grid:
+    Excellent for two-dimensional responsive layouts.
+
+Responsive Grid:
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+
+========================================================
+                     QUESTIONS
+========================================================
+
+Q1. What is responsive web design?
+
+ANSWER:
+Responsive web design is an approach where a website
+automatically adapts its layout and content to different
+screen sizes and devices.
+
+
+Q2. What is a flexible width?
+
+ANSWER:
+A flexible width allows an element to resize based on
+the available space.
+
+Example:
+
+width: 100%;
+max-width: 1200px;
+
+
+Q3. How do you make an image responsive?
+
+ANSWER:
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+Q4. What is a media query?
+
+ANSWER:
+A media query applies CSS styles based on conditions
+such as screen width, height, or orientation.
+
+
+Q5. What is @media?
+
+ANSWER:
+@media is the CSS at-rule used to create media queries.
+
+
+Q6. What is a breakpoint?
+
+ANSWER:
+A breakpoint is a screen width where the layout or
+styles change to better fit the available space.
+
+
+Q7. What is mobile-first design?
+
+ANSWER:
+Mobile-first design starts with styles for small screens
+and then adds styles for larger screens using min-width
+media queries.
+
+
+Q8. What is desktop-first design?
+
+ANSWER:
+Desktop-first design starts with desktop styles and then
+uses max-width media queries to adapt the design for
+smaller screens.
+
+
+Q9. What is the viewport meta tag?
+
+ANSWER:
+It is an HTML meta tag that controls the viewport's
+dimensions and initial scaling on mobile devices.
+
+
+Q10. Why is Flexbox useful for responsive design?
+
+ANSWER:
+Flexbox allows elements to grow, shrink, wrap, and change
+direction based on available space.
+
+
+Q11. Why is Grid useful for responsive design?
+
+ANSWER:
+CSS Grid allows layouts to automatically adjust the
+number and size of rows and columns.
+
+
+Q12. How can a table be made responsive?
+
+ANSWER:
+Place the table inside a container with:
+
+overflow-x: auto;
+
+This allows horizontal scrolling on smaller screens.
+
+
+========================================================
+                     PRACTICE
+========================================================
+
+Q1. Create a responsive container that is 90% wide but
+    cannot exceed 1200px.
+
+SOLUTION:
+*/
+
+.practice-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+
+/*
+Q2. Make an image responsive.
+*/
+
+.practice-responsive-image {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/*
+Q3. Create a mobile-first layout where items are stacked
+    on mobile and appear in a row on larger screens.
+*/
+
+.practice-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+
+    .practice-flex {
+        flex-direction: row;
+    }
+}
+
+
+/*
+Q4. Create a responsive Grid with:
+
+Desktop → 4 columns
+Tablet  → 2 columns
+Mobile  → 1 column
+*/
+
+.practice-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+
+    .practice-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .practice-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/*
+Q5. Create a responsive Grid without using multiple
+    breakpoints.
+*/
+
+.practice-auto-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 20px;
+}
+
+
+/*
+Q6. Create a responsive table.
+
+*/
+
+.practice-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.practice-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+}
+
+
+/*
+Q7. Create responsive typography using clamp().
+*/
+
+.practice-heading {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+
+
+/*
+Q8. Create a responsive navigation layout where links
+    are horizontal on desktop and vertical on mobile.
+*/
+
+.practice-nav {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+
+    .practice-nav {
+        flex-direction: column;
+    }
+}
+
+
+/*
+========================================================
+                 EXAM MEMORY TRICKS
+========================================================
+
+RESPONSIVE IMAGE:
+
+max-width: 100%;
+height: auto;
+
+
+MOBILE-FIRST:
+
+Base → Mobile
+min-width → Larger screens
+
+
+DESKTOP-FIRST:
+
+Base → Desktop
+max-width → Smaller screens
+
+
+MEDIA QUERY:
+
+@media (max-width: 768px) {
+    ...
+}
+
+
+RESPONSIVE GRID:
+
+repeat(auto-fit, minmax(250px, 1fr))
+
+
+RESPONSIVE TEXT:
+
+font-size: clamp(min, preferred, max);
+
+
+RESPONSIVE TABLE:
+
+overflow-x: auto;
+
+
+RESPONSIVE CONTAINER:
+
+width: 100%;
+max-width: 1200px;
+margin: auto;
+
+
+========================================================
+                         END
+========================================================
+*/

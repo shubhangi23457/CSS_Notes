@@ -1,0 +1,935 @@
+/*
+========================================================
+                    25. CSS TRANSITIONS
+========================================================
+
+CSS Transitions are used to make changes in CSS properties
+happen smoothly over a specified period of time.
+
+Without transition:
+    Element changes immediately.
+
+With transition:
+    Element changes gradually and smoothly.
+
+Commonly used with:
+    :hover
+    :focus
+    :active
+
+--------------------------------------------------------
+1. INTRODUCTION TO TRANSITIONS
+--------------------------------------------------------
+
+Basic syntax:
+
+selector {
+    transition: property duration timing-function delay;
+}
+
+Example:
+
+button {
+    background-color: blue;
+    transition: background-color 0.5s;
+}
+
+button:hover {
+    background-color: red;
+}
+
+The background color changes smoothly from blue to red.
+
+--------------------------------------------------------
+2. transition-property
+--------------------------------------------------------
+
+Specifies which CSS property should have a transition.
+
+Syntax:
+
+transition-property: property;
+
+Examples:
+
+transition-property: background-color;
+transition-property: color;
+transition-property: width;
+transition-property: transform;
+transition-property: all;
+
+Example:
+*/
+
+.button-property {
+    background-color: blue;
+    color: white;
+    width: 120px;
+
+    transition-property: background-color;
+    transition-duration: 1s;
+}
+
+.button-property:hover {
+    background-color: red;
+}
+
+
+/*
+--------------------------------------------------------
+3. transition-duration
+--------------------------------------------------------
+
+Specifies how long the transition should take.
+
+Units:
+    s  = seconds
+    ms = milliseconds
+
+Examples:
+
+transition-duration: 1s;
+transition-duration: 500ms;
+
+1000ms = 1s
+
+Example:
+*/
+
+.duration-box {
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+
+    transition-property: width;
+    transition-duration: 2s;
+}
+
+.duration-box:hover {
+    width: 300px;
+}
+
+
+/*
+--------------------------------------------------------
+4. transition-timing-function
+--------------------------------------------------------
+
+Controls the speed of the transition during its duration.
+
+Common values:
+
+ease
+linear
+ease-in
+ease-out
+ease-in-out
+
+Syntax:
+
+transition-timing-function: value;
+
+Example:
+*/
+
+.timing-box {
+    width: 100px;
+    height: 100px;
+    background-color: purple;
+
+    transition-property: width;
+    transition-duration: 2s;
+    transition-timing-function: ease;
+}
+
+.timing-box:hover {
+    width: 300px;
+}
+
+
+/*
+--------------------------------------------------------
+5. transition-delay
+--------------------------------------------------------
+
+Specifies how long to wait before starting the transition.
+
+Syntax:
+
+transition-delay: time;
+
+Example:
+*/
+
+.delay-box {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+
+    transition-property: width;
+    transition-duration: 1s;
+    transition-delay: 0.5s;
+}
+
+.delay-box:hover {
+    width: 300px;
+}
+
+
+/*
+--------------------------------------------------------
+6. TRANSITION SHORTHAND
+--------------------------------------------------------
+
+Instead of writing all transition properties separately,
+we can use the transition shorthand.
+
+Syntax:
+
+transition:
+    property
+    duration
+    timing-function
+    delay;
+
+Example:
+*/
+
+.shorthand-button {
+    background-color: blue;
+    color: white;
+
+    transition:
+        background-color
+        0.5s
+        ease
+        0s;
+}
+
+.shorthand-button:hover {
+    background-color: red;
+}
+
+
+/*
+A common shorter form:
+
+transition: background-color 0.5s;
+
+This means:
+
+property         = background-color
+duration         = 0.5s
+timing-function  = default
+delay            = 0s
+
+
+Another example:
+
+transition: all 0.3s ease;
+
+This means all transitionable properties change
+over 0.3 seconds using ease timing.
+*/
+
+
+/*
+--------------------------------------------------------
+7. ease
+--------------------------------------------------------
+
+ease is the default timing function.
+
+It starts relatively slowly, speeds up, and slows down
+towards the end.
+
+Syntax:
+
+transition-timing-function: ease;
+*/
+
+.ease-box {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    transition: width 2s ease;
+}
+
+.ease-box:hover {
+    width: 300px;
+}
+
+
+/*
+--------------------------------------------------------
+8. linear
+--------------------------------------------------------
+
+The transition moves at a constant speed.
+
+Syntax:
+
+transition-timing-function: linear;
+*/
+
+.linear-box {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+
+    transition: width 2s linear;
+}
+
+.linear-box:hover {
+    width: 300px;
+}
+
+
+/*
+--------------------------------------------------------
+9. ease-in
+--------------------------------------------------------
+
+The transition starts slowly and becomes faster.
+
+Syntax:
+
+transition-timing-function: ease-in;
+*/
+
+.ease-in-box {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+
+    transition: width 2s ease-in;
+}
+
+.ease-in-box:hover {
+    width: 300px;
+}
+
+
+/*
+--------------------------------------------------------
+10. ease-out
+--------------------------------------------------------
+
+The transition starts quickly and slows down towards
+the end.
+
+Syntax:
+
+transition-timing-function: ease-out;
+*/
+
+.ease-out-box {
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+
+    transition: width 2s ease-out;
+}
+
+.ease-out-box:hover {
+    width: 300px;
+}
+
+
+/*
+--------------------------------------------------------
+11. ease-in-out
+--------------------------------------------------------
+
+The transition starts slowly, becomes faster in the
+middle, and slows down again at the end.
+
+Syntax:
+
+transition-timing-function: ease-in-out;
+*/
+
+.ease-in-out-box {
+    width: 100px;
+    height: 100px;
+    background-color: purple;
+
+    transition: width 2s ease-in-out;
+}
+
+.ease-in-out-box:hover {
+    width: 300px;
+}
+
+
+/*
+--------------------------------------------------------
+TIMING FUNCTION QUICK COMPARISON
+--------------------------------------------------------
+
+ease:
+    Slow → Fast → Slow
+
+linear:
+    Constant speed
+
+ease-in:
+    Slow → Fast
+
+ease-out:
+    Fast → Slow
+
+ease-in-out:
+    Slow → Fast → Slow
+
+
+--------------------------------------------------------
+12. HOVER TRANSITIONS
+--------------------------------------------------------
+
+Transitions are commonly used with :hover.
+
+Important:
+
+The transition should normally be placed on the
+original element, not only on :hover.
+
+Correct:
+
+button {
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: red;
+}
+
+Example:
+*/
+
+.hover-button {
+    background-color: black;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+
+    transition: background-color 0.3s ease,
+                color 0.3s ease;
+}
+
+.hover-button:hover {
+    background-color: white;
+    color: black;
+}
+
+
+/*
+--------------------------------------------------------
+13. TRANSFORM TRANSITIONS
+--------------------------------------------------------
+
+Transitions can be combined with transform.
+
+Common transforms:
+
+transform: scale();
+transform: rotate();
+transform: translate();
+transform: skew();
+
+Example:
+*/
+
+.transform-box {
+    width: 100px;
+    height: 100px;
+    background-color: tomato;
+
+    transition: transform 0.5s ease;
+}
+
+.transform-box:hover {
+    transform: scale(1.2);
+}
+
+
+/*
+Example with rotation:
+*/
+
+.rotate-box {
+    width: 100px;
+    height: 100px;
+    background-color: teal;
+
+    transition: transform 0.5s ease;
+}
+
+.rotate-box:hover {
+    transform: rotate(45deg);
+}
+
+
+/*
+Example with movement:
+*/
+
+.move-box {
+    width: 100px;
+    height: 100px;
+    background-color: gold;
+
+    transition: transform 0.5s ease;
+}
+
+.move-box:hover {
+    transform: translateX(50px);
+}
+
+
+/*
+Example combining transform and background color:
+*/
+
+.card-transition {
+    width: 200px;
+    padding: 30px;
+    background-color: white;
+    border: 1px solid gray;
+
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.card-transition:hover {
+    transform: translateY(-10px);
+    background-color: lightgray;
+    box-shadow: 0 10px 20px gray;
+}
+
+
+/*
+--------------------------------------------------------
+14. MULTIPLE TRANSITIONS
+--------------------------------------------------------
+
+Different properties can have different transition
+settings.
+
+Syntax:
+
+transition:
+    property1 duration timing-function,
+    property2 duration timing-function;
+
+Example:
+*/
+
+.multi-button {
+    background-color: blue;
+    color: white;
+    transform: scale(1);
+
+    transition:
+        background-color 0.5s ease,
+        color 0.3s linear,
+        transform 0.4s ease-in-out;
+}
+
+.multi-button:hover {
+    background-color: red;
+    color: yellow;
+    transform: scale(1.1);
+}
+
+
+/*
+Another example:
+
+.card {
+    transition:
+        transform 0.3s ease,
+        background-color 0.5s ease,
+        box-shadow 0.4s ease;
+}
+
+This allows each property to have its own duration
+and timing function.
+
+
+--------------------------------------------------------
+15. TRANSITION VS TRANSFORM
+--------------------------------------------------------
+
+TRANSITION:
+    Controls how a property changes over time.
+
+TRANSFORM:
+    Changes the shape, size, position, or rotation
+    of an element.
+
+Example:
+
+.box {
+    transition: transform 0.5s;
+}
+
+.box:hover {
+    transform: scale(1.2);
+}
+
+Here:
+
+transform:
+    Performs the scaling.
+
+transition:
+    Makes the scaling smooth.
+
+
+--------------------------------------------------------
+16. COMMON TRANSITION PROPERTIES
+--------------------------------------------------------
+
+transition-property
+transition-duration
+transition-timing-function
+transition-delay
+transition
+
+
+--------------------------------------------------------
+17. COMMONLY TRANSITIONED PROPERTIES
+--------------------------------------------------------
+
+Examples:
+
+background-color
+color
+opacity
+width
+height
+transform
+box-shadow
+border-color
+padding
+margin
+
+Note:
+Not every CSS property can be smoothly transitioned.
+
+
+--------------------------------------------------------
+18. PRACTICAL BUTTON
+--------------------------------------------------------
+*/
+
+.practical-button {
+    padding: 12px 25px;
+    background-color: royalblue;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.practical-button:hover {
+    background-color: darkblue;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px gray;
+}
+
+
+/*
+--------------------------------------------------------
+19. PRACTICAL CARD HOVER
+--------------------------------------------------------
+*/
+
+.product-card {
+    width: 250px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px gray;
+}
+
+
+/*
+========================================================
+                    QUICK REVISION
+========================================================
+
+transition-property
+    → Which property should transition?
+
+transition-duration
+    → How long should it take?
+
+transition-timing-function
+    → How should the speed change?
+
+transition-delay
+    → How long should it wait before starting?
+
+transition
+    → Shorthand for all transition properties.
+
+
+Timing functions:
+
+ease
+    → Slow → Fast → Slow
+
+linear
+    → Constant speed
+
+ease-in
+    → Slow → Fast
+
+ease-out
+    → Fast → Slow
+
+ease-in-out
+    → Slow → Fast → Slow
+
+
+Most common pattern:
+
+.element {
+    transition: transform 0.3s ease;
+}
+
+.element:hover {
+    transform: scale(1.1);
+}
+
+
+--------------------------------------------------------
+IMPORTANT EXAM POINTS
+--------------------------------------------------------
+
+1. transition makes CSS property changes smooth.
+
+2. transition-duration controls the time.
+
+3. transition-delay controls the waiting time.
+
+4. transition-timing-function controls the speed pattern.
+
+5. transition-property specifies the property being animated
+   smoothly.
+
+6. transition is the shorthand property.
+
+7. Transitions are commonly used with :hover.
+
+8. transform and transition are different.
+
+9. Multiple transitions are separated using commas.
+
+Example:
+
+transition:
+    color 0.3s,
+    background-color 0.5s,
+    transform 0.4s;
+
+
+========================================================
+                       QUESTIONS
+========================================================
+
+Q1. What is CSS transition?
+
+ANSWER:
+CSS transition is used to make changes in CSS property
+values occur smoothly over a specified duration.
+
+
+Q2. What does transition-duration do?
+
+ANSWER:
+It specifies how long the transition takes to complete.
+
+
+Q3. What does transition-delay do?
+
+ANSWER:
+It specifies how long the browser waits before starting
+the transition.
+
+
+Q4. What is transition-timing-function?
+
+ANSWER:
+It controls the speed pattern of the transition.
+
+
+Q5. What is the difference between ease and linear?
+
+ANSWER:
+
+ease:
+    Speed changes during the transition.
+
+linear:
+    Constant speed throughout the transition.
+
+
+Q6. What is transition shorthand?
+
+ANSWER:
+
+transition:
+    property duration timing-function delay;
+
+
+Q7. Can transition and transform be used together?
+
+ANSWER:
+Yes.
+
+Example:
+
+.box {
+    transition: transform 0.5s;
+}
+
+.box:hover {
+    transform: scale(1.2);
+}
+
+
+Q8. How do you apply multiple transitions?
+
+ANSWER:
+Separate each transition using a comma.
+
+Example:
+
+transition:
+    color 0.3s,
+    background-color 0.5s,
+    transform 0.4s;
+
+
+========================================================
+                     PRACTICE
+========================================================
+
+Q1. Create a button that changes its background color
+    smoothly when hovered.
+
+SOLUTION:
+*/
+
+.practice-button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+
+    transition: background-color 0.5s ease;
+}
+
+.practice-button:hover {
+    background-color: red;
+}
+
+
+/*
+Q2. Create a box that becomes 1.2 times larger on hover.
+*/
+
+.practice-scale {
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+
+    transition: transform 0.4s ease;
+}
+
+.practice-scale:hover {
+    transform: scale(1.2);
+}
+
+
+/*
+Q3. Create a card that moves upward and gets a shadow
+    when hovered.
+*/
+
+.practice-card {
+    width: 200px;
+    padding: 20px;
+    background-color: white;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.practice-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px gray;
+}
+
+
+/*
+Q4. Create a box with a 1 second delay before it moves.
+*/
+
+.practice-delay {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+
+    transition: transform 1s ease 1s;
+}
+
+.practice-delay:hover {
+    transform: translateX(100px);
+}
+
+
+/*
+Q5. Create a button with multiple transitions:
+    background color
+    color
+    transform
+*/
+
+.practice-multiple {
+    background-color: black;
+    color: white;
+    padding: 12px 20px;
+
+    transition:
+        background-color 0.5s ease,
+        color 0.3s linear,
+        transform 0.4s ease-in-out;
+}
+
+.practice-multiple:hover {
+    background-color: white;
+    color: black;
+    transform: scale(1.1);
+}

@@ -1,0 +1,1461 @@
+/*
+========================================================
+                  26. CSS ANIMATIONS
+========================================================
+
+CSS Animations allow an element to change from one CSS
+style to another automatically over a period of time.
+
+Unlike transitions, animations can:
+    - Start automatically
+    - Run multiple times
+    - Run infinitely
+    - Have multiple stages
+    - Use keyframes
+    - Control direction and timing
+    - Pause and resume
+
+Basic structure:
+
+@keyframes animationName {
+    from {
+        property: value;
+    }
+
+    to {
+        property: value;
+    }
+}
+
+.element {
+    animation-name: animationName;
+    animation-duration: 2s;
+}
+
+
+--------------------------------------------------------
+1. INTRODUCTION TO ANIMATIONS
+--------------------------------------------------------
+
+CSS animation has two main parts:
+
+1. @keyframes
+   Defines what happens during the animation.
+
+2. animation properties
+   Define how the animation should run.
+
+Example:
+*/
+
+.intro-box {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    animation-name: moveBox;
+    animation-duration: 2s;
+}
+
+@keyframes moveBox {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+
+
+/*
+--------------------------------------------------------
+2. @keyframes
+--------------------------------------------------------
+
+@keyframes defines the stages of an animation.
+
+Syntax:
+
+@keyframes animationName {
+    from {
+        property: value;
+    }
+
+    to {
+        property: value;
+    }
+}
+
+Example:
+*/
+
+@keyframes colorChange {
+    from {
+        background-color: red;
+    }
+
+    to {
+        background-color: blue;
+    }
+}
+
+.color-animation {
+    width: 100px;
+    height: 100px;
+
+    animation-name: colorChange;
+    animation-duration: 2s;
+}
+
+
+/*
+Keyframes can also use percentages:
+
+@keyframes animationName {
+
+    0% {
+        ...
+    }
+
+    50% {
+        ...
+    }
+
+    100% {
+        ...
+    }
+}
+
+
+--------------------------------------------------------
+3. animation-name
+--------------------------------------------------------
+
+Specifies the name of the @keyframes animation.
+
+Syntax:
+
+animation-name: name;
+
+Example:
+*/
+
+.name-animation {
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+
+    animation-name: rotateBox;
+    animation-duration: 2s;
+}
+
+@keyframes rotateBox {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/*
+--------------------------------------------------------
+4. animation-duration
+--------------------------------------------------------
+
+Specifies how long one complete animation cycle takes.
+
+Units:
+
+s
+ms
+
+Examples:
+
+animation-duration: 2s;
+animation-duration: 500ms;
+
+Example:
+*/
+
+.duration-animation {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+
+    animation-name: growBox;
+    animation-duration: 3s;
+}
+
+@keyframes growBox {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.5);
+    }
+}
+
+
+/*
+--------------------------------------------------------
+5. animation-delay
+--------------------------------------------------------
+
+Specifies how long the browser waits before starting
+the animation.
+
+Example:
+*/
+
+.delay-animation {
+    width: 100px;
+    height: 100px;
+    background-color: purple;
+
+    animation-name: delayedMove;
+    animation-duration: 2s;
+    animation-delay: 1s;
+}
+
+@keyframes delayedMove {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+
+
+/*
+--------------------------------------------------------
+6. animation-iteration-count
+--------------------------------------------------------
+
+Specifies how many times the animation should run.
+
+Values:
+
+1
+2
+3
+infinite
+
+Example:
+*/
+
+.repeat-animation {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    animation-name: repeatBox;
+    animation-duration: 1s;
+    animation-iteration-count: 3;
+}
+
+@keyframes repeatBox {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+
+
+/*
+Infinite animation:
+
+animation-iteration-count: infinite;
+
+
+Example:
+*/
+
+.infinite-box {
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+
+    animation-name: infiniteMove;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes infiniteMove {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+
+
+/*
+--------------------------------------------------------
+7. animation-direction
+--------------------------------------------------------
+
+Controls the direction in which the animation runs.
+
+Values:
+
+normal
+reverse
+alternate
+alternate-reverse
+
+NORMAL:
+    Animation runs from beginning to end.
+
+REVERSE:
+    Animation runs from end to beginning.
+
+ALTERNATE:
+    First cycle → normal
+    Second cycle → reverse
+    Third cycle → normal
+
+ALTERNATE-REVERSE:
+    First cycle → reverse
+    Second cycle → normal
+
+
+Example:
+*/
+
+.direction-animation {
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+
+    animation-name: directionMove;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes directionMove {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+
+
+/*
+--------------------------------------------------------
+8. animation-timing-function
+--------------------------------------------------------
+
+Controls the speed pattern of the animation.
+
+Common values:
+
+ease
+linear
+ease-in
+ease-out
+ease-in-out
+
+Example:
+*/
+
+.timing-animation {
+    width: 100px;
+    height: 100px;
+    background-color: teal;
+
+    animation-name: timingMove;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes timingMove {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+
+
+/*
+TIMING FUNCTIONS
+
+ease:
+    Slow → Fast → Slow
+
+linear:
+    Constant speed
+
+ease-in:
+    Slow → Fast
+
+ease-out:
+    Fast → Slow
+
+ease-in-out:
+    Slow → Fast → Slow
+
+
+--------------------------------------------------------
+9. animation-fill-mode
+--------------------------------------------------------
+
+Controls the styles applied before and/or after
+the animation runs.
+
+Values:
+
+none
+forwards
+backwards
+both
+
+NONE:
+    Default.
+    No styles are retained before or after animation.
+
+FORWARDS:
+    Keeps the styles from the final keyframe after
+    the animation finishes.
+
+BACKWARDS:
+    Applies the styles from the first keyframe during
+    the animation delay.
+
+BOTH:
+    Applies both backwards and forwards behavior.
+
+
+Example:
+*/
+
+.fill-animation {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    animation-name: fillBox;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fillBox {
+    from {
+        transform: translateX(0);
+        background-color: red;
+    }
+
+    to {
+        transform: translateX(200px);
+        background-color: green;
+    }
+}
+
+
+/*
+After the animation finishes, the box stays at the
+final position because of:
+
+animation-fill-mode: forwards;
+
+
+--------------------------------------------------------
+10. animation-play-state
+--------------------------------------------------------
+
+Controls whether an animation is running or paused.
+
+Values:
+
+running
+paused
+
+Example:
+*/
+
+.play-animation {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+
+    animation-name: playBox;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+}
+
+.play-animation:hover {
+    animation-play-state: paused;
+}
+
+@keyframes playBox {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+
+
+/*
+The animation pauses when the user hovers over it.
+
+
+--------------------------------------------------------
+11. ANIMATION SHORTHAND
+--------------------------------------------------------
+
+All major animation properties can be combined using
+the animation shorthand.
+
+Syntax:
+
+animation:
+    name
+    duration
+    timing-function
+    delay
+    iteration-count
+    direction
+    fill-mode
+    play-state;
+
+Example:
+*/
+
+.shorthand-animation {
+    width: 100px;
+    height: 100px;
+    background-color: purple;
+
+    animation:
+        moveAndColor
+        2s
+        ease-in-out
+        0s
+        infinite
+        alternate
+        both
+        running;
+}
+
+@keyframes moveAndColor {
+    from {
+        transform: translateX(0);
+        background-color: purple;
+    }
+
+    to {
+        transform: translateX(200px);
+        background-color: pink;
+    }
+}
+
+
+/*
+A shorter and very common form:
+
+animation: moveAndColor 2s ease-in-out infinite alternate;
+
+
+--------------------------------------------------------
+12. FROM / TO ANIMATIONS
+--------------------------------------------------------
+
+The simplest type of animation uses:
+
+from
+to
+
+from = starting state
+to   = ending state
+
+Example:
+*/
+
+.from-to-box {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    animation: fromToMove 2s;
+}
+
+@keyframes fromToMove {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(300px);
+    }
+}
+
+
+/*
+Another example:
+
+from:
+    opacity: 0;
+
+to:
+    opacity: 1;
+
+
+--------------------------------------------------------
+13. PERCENTAGE-BASED KEYFRAMES
+--------------------------------------------------------
+
+Percentages allow us to define multiple stages.
+
+Important percentages:
+
+0%
+    Start
+
+50%
+    Middle
+
+100%
+    End
+
+Example:
+*/
+
+.percentage-box {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    animation: percentageMove 4s infinite;
+}
+
+@keyframes percentageMove {
+
+    0% {
+        transform: translateX(0);
+        background-color: red;
+    }
+
+    25% {
+        transform: translateX(100px);
+        background-color: orange;
+    }
+
+    50% {
+        transform: translateX(200px);
+        background-color: yellow;
+    }
+
+    75% {
+        transform: translateX(100px);
+        background-color: green;
+    }
+
+    100% {
+        transform: translateX(0);
+        background-color: blue;
+    }
+}
+
+
+/*
+Percentage keyframes are useful when an animation has
+more than two stages.
+
+
+--------------------------------------------------------
+14. INFINITE ANIMATIONS
+--------------------------------------------------------
+
+An infinite animation continues running continuously.
+
+Syntax:
+
+animation-iteration-count: infinite;
+
+Example:
+*/
+
+.infinite-rotate {
+    width: 80px;
+    height: 80px;
+    background-color: tomato;
+
+    animation:
+        infiniteRotate
+        2s
+        linear
+        infinite;
+}
+
+@keyframes infiniteRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/*
+Common uses:
+
+    Loading indicators
+    Spinners
+    Pulsing effects
+    Notification effects
+    Background effects
+
+
+--------------------------------------------------------
+15. LOADING ANIMATIONS
+--------------------------------------------------------
+
+Loading animations are commonly created using
+infinite animations.
+
+Example: Spinner
+*/
+
+.loader {
+    width: 50px;
+    height: 50px;
+
+    border: 5px solid lightgray;
+    border-top: 5px solid blue;
+    border-radius: 50%;
+
+    animation: spinLoader 1s linear infinite;
+}
+
+@keyframes spinLoader {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/*
+Example: Pulsing loader
+*/
+
+.pulse-loader {
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    border-radius: 50%;
+
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+16. BUTTON ANIMATIONS
+--------------------------------------------------------
+
+Animations can be used to make buttons more interactive.
+
+Example:
+*/
+
+.animated-button {
+    padding: 12px 25px;
+
+    background-color: royalblue;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+.animated-button:hover {
+    animation: buttonPulse 0.5s ease;
+}
+
+@keyframes buttonPulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/*
+Example: Button shake
+*/
+
+.shake-button {
+    padding: 12px 25px;
+    background-color: red;
+    color: white;
+    border: none;
+}
+
+.shake-button:hover {
+    animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+/*
+--------------------------------------------------------
+17. IMAGE ANIMATIONS
+--------------------------------------------------------
+
+Images can be animated using:
+
+    transform
+    opacity
+    filter
+    scale
+    rotate
+    translate
+
+
+Example: Image zoom
+*/
+
+.animated-image {
+    width: 250px;
+
+    animation: imageZoom 2s ease-in-out;
+}
+
+@keyframes imageZoom {
+
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/*
+Example: Image floating effect
+*/
+
+.floating-image {
+    width: 200px;
+
+    animation:
+        floating 2s ease-in-out infinite alternate;
+}
+
+@keyframes floating {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-20px);
+    }
+}
+
+
+/*
+Example: Image rotation
+*/
+
+.rotating-image {
+    width: 200px;
+
+    animation:
+        imageRotate
+        4s
+        linear
+        infinite;
+}
+
+@keyframes imageRotate {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/*
+--------------------------------------------------------
+18. FADE-IN ANIMATION
+--------------------------------------------------------
+
+A common animation for websites.
+
+*/
+
+.fade-in {
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+19. SLIDE-IN ANIMATION
+--------------------------------------------------------
+*/
+
+.slide-in {
+    animation: slideIn 1s ease-out;
+}
+
+@keyframes slideIn {
+
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+20. BOUNCE ANIMATION
+--------------------------------------------------------
+*/
+
+.bounce {
+    animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-30px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/*
+========================================================
+            ANIMATION PROPERTY SUMMARY
+========================================================
+
+animation-name
+    → Name of the @keyframes animation.
+
+animation-duration
+    → Duration of one animation cycle.
+
+animation-delay
+    → Waiting time before animation starts.
+
+animation-iteration-count
+    → Number of times animation runs.
+
+animation-direction
+    → Controls animation direction.
+
+animation-timing-function
+    → Controls speed pattern.
+
+animation-fill-mode
+    → Controls styles before/after animation.
+
+animation-play-state
+    → Running or paused.
+
+animation
+    → Shorthand for animation properties.
+
+
+========================================================
+              ANIMATION-DIRECTION VALUES
+========================================================
+
+normal
+    → Forward
+
+reverse
+    → Backward
+
+alternate
+    → Forward → Backward → Forward
+
+alternate-reverse
+    → Backward → Forward → Backward
+
+
+========================================================
+              FILL-MODE VALUES
+========================================================
+
+none
+    → Default
+
+forwards
+    → Keeps final keyframe styles
+
+backwards
+    → Applies first keyframe during delay
+
+both
+    → Applies both backwards and forwards
+
+
+========================================================
+           TRANSITION VS ANIMATION
+========================================================
+
+TRANSITION:
+
+    Usually needs a trigger such as :hover.
+
+    Example:
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    button {
+        transition: transform 0.3s;
+    }
+
+
+ANIMATION:
+
+    Uses @keyframes and can run automatically.
+
+    Example:
+
+    .box {
+        animation: move 2s infinite;
+    }
+
+    @keyframes move {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(200px);
+        }
+    }
+
+
+========================================================
+                  QUICK REVISION
+========================================================
+
+@keyframes
+    → Defines animation stages.
+
+animation-name
+    → Selects the keyframe animation.
+
+animation-duration
+    → Controls animation time.
+
+animation-delay
+    → Delays the start.
+
+animation-iteration-count
+    → Controls repetitions.
+
+animation-direction
+    → Controls direction.
+
+animation-timing-function
+    → Controls speed.
+
+animation-fill-mode
+    → Controls styles before/after animation.
+
+animation-play-state
+    → Controls running/paused state.
+
+animation
+    → Shorthand property.
+
+
+IMPORTANT:
+
+0% = Start
+50% = Middle
+100% = End
+
+
+========================================================
+                    QUESTIONS
+========================================================
+
+Q1. What is CSS animation?
+
+ANSWER:
+CSS animation allows an element to change its CSS
+properties automatically over a period of time.
+
+Q2. What is @keyframes?
+
+ANSWER:
+@keyframes defines the different stages of a CSS animation.
+
+Q3. What does animation-duration do?
+
+ANSWER:
+It specifies how long one complete animation cycle takes.
+
+Q4. What does animation-iteration-count do?
+
+ANSWER:
+It specifies how many times an animation should run.
+
+Q5. How do you create an infinite animation?
+
+ANSWER:
+
+animation-iteration-count: infinite;
+
+
+Q6. What is the difference between from/to and percentages?
+
+ANSWER:
+
+from/to:
+    Defines only starting and ending states.
+
+Percentages:
+    Allows multiple stages such as 0%, 25%, 50%, 75%
+    and 100%.
+
+
+Q7. What does animation-fill-mode: forwards do?
+
+ANSWER:
+It keeps the styles from the final keyframe after the
+animation finishes.
+
+
+Q8. How can an animation be paused?
+
+ANSWER:
+
+animation-play-state: paused;
+
+
+Q9. What is animation-direction: alternate?
+
+ANSWER:
+It makes the animation run forward and backward
+alternately.
+
+
+Q10. Write animation shorthand.
+
+ANSWER:
+
+animation:
+    name
+    duration
+    timing-function
+    delay
+    iteration-count
+    direction
+    fill-mode
+    play-state;
+
+
+========================================================
+                    PRACTICE
+========================================================
+
+Q1. Create a box that moves from left to right.
+
+SOLUTION:
+*/
+
+.practice-move {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+
+    animation: moveRight 2s;
+}
+
+@keyframes moveRight {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(300px);
+    }
+}
+
+
+/*
+Q2. Create an infinitely rotating circle.
+*/
+
+.practice-spinner {
+    width: 50px;
+    height: 50px;
+
+    border: 5px solid lightgray;
+    border-top: 5px solid blue;
+    border-radius: 50%;
+
+    animation: practiceSpin 1s linear infinite;
+}
+
+@keyframes practiceSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/*
+Q3. Create a button that shakes when hovered.
+*/
+
+.practice-shake {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+}
+
+.practice-shake:hover {
+    animation: practiceShake 0.4s;
+}
+
+@keyframes practiceShake {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+/*
+Q4. Create an image that slowly zooms in.
+*/
+
+.practice-image {
+    width: 200px;
+
+    animation: practiceZoom 2s ease-in-out;
+}
+
+@keyframes practiceZoom {
+
+    from {
+        transform: scale(0.8);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+
+/*
+Q5. Create a loading animation using a pulsing circle.
+*/
+
+.practice-loader {
+    width: 40px;
+    height: 40px;
+
+    background-color: blue;
+    border-radius: 50%;
+
+    animation: practicePulse 1s ease-in-out infinite;
+}
+
+@keyframes practicePulse {
+
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/*
+========================================================
+                  EXAM MEMORY TRICK
+========================================================
+
+ANIMATION PROPERTIES:
+
+NAME
+DURATION
+DELAY
+COUNT
+DIRECTION
+TIMING
+FILL
+PLAY
+
+Think:
+
+"Name → How Long → Wait → Repeat → Direction →
+ Speed → After → Play/Pause"
+
+
+KEYFRAMES:
+
+0%
+    Start
+
+50%
+    Middle
+
+100%
+    End
+
+
+MOST COMMON SHORTHAND:
+
+animation: move 2s ease-in-out infinite alternate;
+
+
+========================================================
+                         END
+========================================================
+*/

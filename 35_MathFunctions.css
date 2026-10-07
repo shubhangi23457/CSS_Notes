@@ -1,0 +1,920 @@
+# /*
+
+31. CSS MATH FUNCTIONS
+    ============================================================
+
+CSS Math Functions allow us to perform calculations directly
+inside CSS property values.
+
+MAIN CSS MATH FUNCTIONS:
+
+1. calc()
+2. Addition
+3. Subtraction
+4. Multiplication
+5. Division
+6. min()
+7. max()
+8. clamp()
+9. Responsive Sizing with Math Functions
+10. Combining CSS Variables with Math Functions
+
+---
+
+1. calc()
+
+---
+
+calc() performs mathematical calculations in CSS.
+
+Syntax:
+
+calc(expression)
+
+Example:
+
+width: calc(100% - 40px);
+
+The browser calculates the final value before applying it.
+
+calc() is especially useful when combining different units.
+
+Example:
+
+width: calc(100% - 20px);
+
+Here, percentage and pixels can be used together.
+
+---
+
+2. ADDITION
+
+---
+
+The + operator performs addition.
+
+Syntax:
+
+calc(value1 + value2)
+
+Example:
+
+width: calc(100px + 50px);
+
+Result:
+
+150px
+
+Different compatible units can also be combined.
+
+Example:
+
+width: calc(50% + 20px);
+
+IMPORTANT:
+
+There should be spaces around the + operator.
+
+Correct:
+
+calc(100% + 20px)
+
+Avoid:
+
+calc(100%+20px)
+
+Example:
+
+.container {
+width: calc(50% + 100px);
+}
+
+---
+
+3. SUBTRACTION
+
+---
+
+The - operator performs subtraction.
+
+Syntax:
+
+calc(value1 - value2)
+
+Example:
+
+width: calc(100% - 40px);
+
+If the parent width is 1000px:
+
+1000px - 40px = 960px
+
+Example:
+
+.container {
+width: calc(100% - 40px);
+}
+
+This is very useful for responsive layouts.
+
+Another example:
+
+height: calc(100vh - 80px);
+
+This can be used when a page has a fixed header.
+
+For example:
+
+Viewport height - Header height
+
+---
+
+4. MULTIPLICATION
+
+---
+
+Multiplication uses the * operator.
+
+However, CSS calc() has restrictions on multiplication.
+
+A multiplication operation must have one side
+dimensionless.
+
+Example:
+
+width: calc(100px * 2);
+
+Result:
+
+200px
+
+Another example:
+
+width: calc(50px * 3);
+
+IMPORTANT:
+
+Do not try to multiply two lengths.
+
+Invalid:
+
+calc(20px * 10px)
+
+Correct:
+
+calc(20px * 10)
+
+A number can be multiplied by a length.
+
+---
+
+5. DIVISION
+
+---
+
+Division uses the / operator.
+
+One side must be a number.
+
+Example:
+
+width: calc(200px / 2);
+
+Result:
+
+100px
+
+Another example:
+
+width: calc(100% / 3);
+
+This divides the available percentage into three parts.
+
+IMPORTANT:
+
+Do not divide a length by another length.
+
+Avoid:
+
+calc(200px / 20px)
+
+Instead, divide a length by a unitless number:
+
+calc(200px / 2)
+
+---
+
+6. min()
+
+---
+
+min() returns the smallest value from a list of values.
+
+Syntax:
+
+min(value1, value2, ...)
+
+Example:
+
+width: min(90%, 1000px);
+
+The browser chooses whichever value is smaller.
+
+If 90% = 800px:
+
+min(800px, 1000px)
+= 800px
+
+If 90% = 1200px:
+
+min(1200px, 1000px)
+= 1000px
+
+Common responsive example:
+
+.container {
+width: min(90%, 1200px);
+margin: auto;
+}
+
+This means:
+
+The container can use up to 1200px,
+but it remains 90% wide on smaller screens.
+
+---
+
+7. max()
+
+---
+
+max() returns the largest value from a list of values.
+
+Syntax:
+
+max(value1, value2, ...)
+
+Example:
+
+padding: max(20px, 5vw);
+
+The browser chooses whichever value is larger.
+
+This can prevent spacing from becoming too small.
+
+Example:
+
+.container {
+padding-left: max(20px, 5vw);
+padding-right: max(20px, 5vw);
+}
+
+Another example:
+
+width: max(300px, 50%);
+
+The width will never be smaller than 300px.
+
+---
+
+8. clamp()
+
+---
+
+clamp() keeps a value between a minimum and maximum.
+
+Syntax:
+
+clamp(minimum, preferred, maximum)
+
+Example:
+
+font-size: clamp(20px, 5vw, 50px);
+
+Meaning:
+
+Minimum = 20px
+Preferred = 5vw
+Maximum = 50px
+
+The browser tries to use 5vw,
+but it will never go below 20px
+or above 50px.
+
+MEMORY TRICK:
+
+clamp(MIN, PREFERRED, MAX)
+
+Example:
+
+h1 {
+font-size: clamp(2rem, 5vw, 4rem);
+}
+
+---
+
+9. RESPONSIVE SIZING WITH MATH FUNCTIONS
+
+---
+
+CSS Math Functions are very useful for responsive design.
+
+Instead of creating many media queries, we can allow
+CSS to calculate suitable sizes automatically.
+
+A. Responsive Container Using min()
+
+.container {
+width: min(90%, 1200px);
+margin: auto;
+}
+
+The container:
+
+* Uses 90% on smaller screens
+* Never becomes wider than 1200px
+
+B. Responsive Spacing Using max()
+
+.container {
+padding: max(20px, 5vw);
+}
+
+The padding will be at least 20px.
+
+C. Responsive Font Using clamp()
+
+h1 {
+font-size: clamp(2rem, 5vw, 4rem);
+}
+
+The font:
+
+* Never becomes smaller than 2rem
+* Tries to follow 5vw
+* Never becomes larger than 4rem
+
+D. Responsive Height Using calc()
+
+main {
+min-height: calc(100vh - 80px);
+}
+
+This can reserve space for an 80px header.
+
+---
+
+## COMBINING MATH FUNCTIONS
+
+Math functions can be nested.
+
+Example:
+
+width: min(calc(100% - 40px), 1200px);
+
+Meaning:
+
+1. Calculate 100% - 40px.
+2. Compare that result with 1200px.
+3. Use the smaller value.
+
+Another example:
+
+font-size: clamp(
+20px,
+calc(1rem + 2vw),
+50px
+);
+
+This creates a responsive font size with a calculated
+preferred value.
+
+---
+
+10. COMBINING CSS VARIABLES WITH MATH FUNCTIONS
+
+---
+
+CSS variables can be used inside math functions.
+
+Example:
+
+:root {
+--spacing: 20px;
+}
+
+.container {
+padding: calc(var(--spacing) * 2);
+}
+
+Result:
+
+20px * 2 = 40px
+
+Another example:
+
+:root {
+--header-height: 80px;
+}
+
+main {
+min-height: calc(100vh - var(--header-height));
+}
+
+This calculates:
+
+Viewport height - header height
+
+---
+
+## VARIABLE + calc() + MULTIPLICATION
+
+:root {
+--base-spacing: 10px;
+}
+
+.card {
+padding: calc(var(--base-spacing) * 2);
+}
+
+Result:
+
+10px × 2 = 20px
+
+---
+
+## VARIABLE + calc() + ADDITION
+
+:root {
+--base-size: 20px;
+}
+
+.title {
+font-size: calc(var(--base-size) + 10px);
+}
+
+Result:
+
+20px + 10px = 30px
+
+---
+
+## VARIABLE + calc() + SUBTRACTION
+
+:root {
+--container-width: 100%;
+}
+
+.container {
+width: calc(var(--container-width) - 40px);
+}
+
+---
+
+## VARIABLE + calc() + DIVISION
+
+:root {
+--total-width: 1200px;
+}
+
+.column {
+width: calc(var(--total-width) / 3);
+}
+
+This creates approximately three equal columns
+within the given total width.
+
+---
+
+## VARIABLE + min()
+
+:root {
+--max-width: 1200px;
+}
+
+.container {
+width: min(90%, var(--max-width));
+}
+
+---
+
+## VARIABLE + max()
+
+:root {
+--minimum-padding: 20px;
+}
+
+.container {
+padding: max(var(--minimum-padding), 5vw);
+}
+
+---
+
+## VARIABLE + clamp()
+
+:root {
+--min-font: 20px;
+--preferred-font: 5vw;
+--max-font: 50px;
+}
+
+h1 {
+font-size:
+clamp(
+var(--min-font),
+var(--preferred-font),
+var(--max-font)
+);
+}
+
+---
+
+## PRACTICAL RESPONSIVE DESIGN EXAMPLE
+
+:root {
+--max-width: 1200px;
+--side-padding: 20px;
+
+```
+--min-heading: 28px;
+--preferred-heading: 5vw;
+--max-heading: 60px;
+```
+
+}
+
+.container {
+width: min(
+calc(100% - 40px),
+var(--max-width)
+);
+
+```
+margin: auto;
+```
+
+}
+
+.container h1 {
+font-size:
+clamp(
+var(--min-heading),
+var(--preferred-heading),
+var(--max-heading)
+);
+}
+
+.card {
+padding: max(var(--side-padding), 3vw);
+}
+
+---
+
+## IMPORTANT RULES OF calc()
+
+1. Use + for addition.
+
+2. Use - for subtraction.
+
+3. Use * for multiplication with a unitless number.
+
+4. Use / for division by a unitless number.
+
+5. Use parentheses when necessary.
+
+6. Spaces around + and - are strongly recommended and
+   required for reliable parsing of these operators.
+
+7. Different compatible units can often be combined.
+
+Example:
+
+calc(100% - 40px)
+
+8. CSS variables can be used inside calc().
+
+Example:
+
+calc(100% - var(--sidebar-width))
+
+---
+
+## IMPORTANT DIFFERENCES
+
+calc()
+→ Performs a calculation.
+
+min()
+→ Selects the smallest value.
+
+max()
+→ Selects the largest value.
+
+clamp()
+→ Keeps a value between minimum and maximum.
+
+Example:
+
+width: calc(100% - 40px);
+
+width: min(90%, 1200px);
+
+padding: max(20px, 5vw);
+
+font-size: clamp(20px, 5vw, 50px);
+
+---
+
+## MIN() vs MAX() vs CLAMP()
+
+min():
+
+width: min(90%, 1200px);
+
+"Do not exceed 1200px."
+
+max():
+
+padding: max(20px, 5vw);
+
+"Do not go below 20px."
+
+clamp():
+
+font-size: clamp(20px, 5vw, 50px);
+
+"Stay between 20px and 50px."
+
+---
+
+## QUICK REVISION
+
+calc()
+→ Mathematical calculation
+
+*
+
+→ Addition
+
+*
+
+→ Subtraction
+
+*
+
+→ Multiplication
+
+/
+→ Division
+
+min()
+→ Smallest value
+
+max()
+→ Largest value
+
+clamp()
+→ Minimum + preferred + maximum
+
+CSS Variables + Math Functions
+→ Create reusable and responsive design values.
+
+---
+
+## QUESTIONS AND ANSWERS
+
+Q1. What is calc()?
+
+Answer:
+calc() performs mathematical calculations directly in CSS.
+
+Example:
+
+width: calc(100% - 40px);
+
+Q2. Which operator is used for addition?
+
+Answer:
+
+*
+
+Example:
+
+calc(100px + 20px)
+
+Q3. Which operator is used for subtraction?
+
+Answer:
+
+*
+
+Example:
+
+calc(100% - 40px)
+
+Q4. How is multiplication performed in calc()?
+
+Answer:
+
+Use * with a unitless number.
+
+Example:
+
+calc(20px * 2)
+
+Q5. How is division performed in calc()?
+
+Answer:
+
+Use / with a unitless number.
+
+Example:
+
+calc(200px / 2)
+
+Q6. What does min() do?
+
+Answer:
+It returns the smallest value from the supplied values.
+
+Q7. What does max() do?
+
+Answer:
+It returns the largest value from the supplied values.
+
+Q8. What is the syntax of clamp()?
+
+Answer:
+
+clamp(minimum, preferred, maximum)
+
+Q9. Why is clamp() useful?
+
+Answer:
+It creates responsive values that stay within a defined
+minimum and maximum range.
+
+Q10. Can CSS variables be used with calc()?
+
+Answer:
+Yes.
+
+Example:
+
+:root {
+--spacing: 20px;
+}
+
+.box {
+padding: calc(var(--spacing) * 2);
+}
+
+Q11. Give one responsive container example.
+
+Answer:
+
+.container {
+width: min(90%, 1200px);
+}
+
+Q12. Give one responsive font example.
+
+Answer:
+
+h1 {
+font-size: clamp(2rem, 5vw, 4rem);
+}
+
+---
+
+## PRACTICE QUESTIONS
+
+Q1. Create a box with a width of:
+
+100% - 40px
+
+using calc().
+
+Q2. Create a container that is at most 1200px wide
+using min().
+
+Q3. Create padding that never becomes smaller than 20px
+using max().
+
+Q4. Create a responsive heading using clamp().
+
+Q5. Create a CSS variable named --spacing and use it
+inside calc().
+
+Q6. Create a layout whose minimum height is:
+
+100vh - 80px
+
+Q7. Create a responsive container using:
+
+CSS variable
++
+calc()
++
+min()
+
+Q8. Create responsive typography using:
+
+CSS variables
++
+clamp()
+
+---
+
+## EXAM MEMORY TRICK
+
+CALCULATION:
+calc()
+
+ADD:
++
+
+## SUBTRACT:
+
+MULTIPLY:
+*
+
+DIVIDE:
+/
+
+SMALLEST:
+min()
+
+LARGEST:
+max()
+
+LIMIT:
+clamp()
+
+ONE-LINE MEMORY:
+
+calc() = Calculate
+min()  = Smallest
+max()  = Largest
+clamp() = Limit
+
+RESPONSIVE CSS:
+
+min()   → Maximum limit
+max()   → Minimum limit
+clamp() → Minimum + Preferred + Maximum
+
+============================================================
+END OF CSS MATH FUNCTIONS
+=========================
+
+*/
+
+:root {
+--max-width: 1200px;
+--spacing: 20px;
+
+```
+--min-heading: 28px;
+--preferred-heading: 5vw;
+--max-heading: 60px;
+```
+
+}
+
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background: #f4f4f4;
+}
+
+.container {
+width: min(
+calc(100% - 40px),
+var(--max-width)
+);
+
+margin: auto;
+padding: max(var(--spacing), 3vw);
+
+}
+
+h1 {
+font-size:
+clamp(
+var(--min-heading),
+var(--preferred-heading),
+var(--max-heading)
+);
+}
+
+.card {
+padding: calc(var(--spacing) * 2);
+margin-bottom: calc(var(--spacing) / 2);
+background: white;
+border-radius: 12px;
+}
+
+.content {
+min-height: calc(100vh - 80px);
+}

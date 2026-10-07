@@ -1,0 +1,1341 @@
+# /*
+
+33. CSS SPECIFICITY AND CASCADE
+    ============================================================
+
+CSS CASCADE AND SPECIFICITY determine which CSS rule is
+applied when multiple rules target the same element.
+
+TOPICS:
+
+1. Understanding Cascade
+2. Specificity
+3. Inline Specificity
+4. ID Specificity
+5. Class Specificity
+6. Element Specificity
+7. Universal Selector Specificity
+8. Specificity Calculation
+9. !important
+10. Inheritance
+11. Initial Value
+12. inherit
+13. initial
+14. unset
+15. revert
+16. Cascade Layers
+
+---
+
+1. UNDERSTANDING CASCADE
+
+---
+
+The "cascade" is the process the browser uses to decide
+which CSS declaration should win when multiple declarations
+apply to the same element.
+
+Example:
+
+p {
+color: blue;
+}
+
+p {
+color: red;
+}
+
+The paragraph becomes RED because the later declaration
+wins when the selectors have equal specificity.
+
+The cascade considers several factors, including:
+
+1. Origin and importance
+2. Cascade layers
+3. Specificity
+4. Scoping proximity
+5. Source order
+
+For normal author CSS, specificity and source order are
+very commonly encountered when resolving conflicts.
+
+---
+
+2. SPECIFICITY
+
+---
+
+Specificity determines how strongly a selector targets
+an element.
+
+When multiple selectors match the same element and declare
+the same property, the selector with higher specificity
+normally wins.
+
+Example:
+
+p {
+color: blue;
+}
+
+.highlight {
+color: red;
+}
+
+The paragraph becomes RED because the class selector has
+higher specificity than the element selector.
+
+---
+
+3. SPECIFICITY LEVELS
+
+---
+
+A useful way to remember specificity is:
+
+INLINE
+↓
+ID
+↓
+CLASS / ATTRIBUTE / PSEUDO-CLASS
+↓
+ELEMENT / PSEUDO-ELEMENT
+↓
+UNIVERSAL
+
+Specificity is commonly represented as:
+
+(a, b, c, d)
+
+a = Inline styles
+b = ID selectors
+c = Class, attribute and pseudo-class selectors
+d = Element and pseudo-element selectors
+
+---
+
+4. INLINE SPECIFICITY
+
+---
+
+Inline styles are written directly inside the HTML element.
+
+Example:
+
+<p style="color: red;">Hello</p>
+
+Inline styles normally have stronger specificity than
+author stylesheet selectors.
+
+Conceptually:
+
+(1, 0, 0, 0)
+
+Example:
+
+#title {
+color: blue;
+}
+
+HTML:
+
+<h1 id="title" style="color: red;">
+    Hello
+</h1>
+
+The inline declaration normally wins.
+
+---
+
+5. ID SPECIFICITY
+
+---
+
+An ID selector has high specificity.
+
+Syntax:
+
+#id
+
+Example:
+
+#header {
+color: red;
+}
+
+Specificity:
+
+(0, 1, 0, 0)
+
+If we compare:
+
+#header {
+color: red;
+}
+
+.title {
+color: blue;
+}
+
+The ID selector wins.
+
+---
+
+6. CLASS SPECIFICITY
+
+---
+
+Class selectors have lower specificity than IDs but higher
+specificity than element selectors.
+
+Example:
+
+.title {
+color: blue;
+}
+
+Specificity:
+
+(0, 0, 1, 0)
+
+The following also contribute to this same specificity
+category:
+
+Class selectors:
+
+.box
+
+Attribute selectors:
+
+[type="text"]
+
+Pseudo-classes:
+
+:hover
+:focus
+:nth-child(2)
+
+Example:
+
+input[type="text"] {
+border: 1px solid blue;
+}
+
+This contains one attribute selector.
+
+---
+
+7. ELEMENT SPECIFICITY
+
+---
+
+Element selectors have lower specificity than classes and IDs.
+
+Examples:
+
+p
+h1
+div
+button
+
+Specificity:
+
+(0, 0, 0, 1)
+
+Pseudo-elements are also counted in this category.
+
+Examples:
+
+Example:
+
+p {
+color: blue;
+}
+
+.class-name {
+color: red;
+}
+
+The class selector wins.
+
+---
+
+8. UNIVERSAL SELECTOR SPECIFICITY
+
+---
+
+The universal selector (*) has ZERO specificity.
+
+Example:
+
+* {
+  margin: 0;
+  }
+
+Specificity:
+
+(0, 0, 0, 0)
+
+It does not add specificity.
+
+Example:
+
+* {
+  color: blue;
+  }
+
+p {
+color: red;
+}
+
+The p selector wins because the universal selector
+has zero specificity.
+
+---
+
+9. SPECIFICITY CALCULATION
+
+---
+
+Specificity can be calculated by counting the selectors.
+
+Use:
+
+A B C D
+
+A = Inline styles
+B = IDs
+C = Classes, attributes, pseudo-classes
+D = Elements and pseudo-elements
+
+Example 1:
+
+p
+
+Specificity:
+
+(0, 0, 0, 1)
+
+Example 2:
+
+.card
+
+Specificity:
+
+(0, 0, 1, 0)
+
+Example 3:
+
+#header
+
+Specificity:
+
+(0, 1, 0, 0)
+
+Example 4:
+
+.card p
+
+Specificity:
+
+(0, 0, 1, 1)
+
+Example 5:
+
+#header .title p
+
+Specificity:
+
+(0, 1, 1, 1)
+
+Example 6:
+
+div.card#main
+
+Specificity:
+
+(0, 1, 1, 1)
+
+Example 7:
+
+ul li.active
+
+Specificity:
+
+(0, 0, 1, 2)
+
+Example 8:
+
+input[type="text"]:focus
+
+Specificity:
+
+(0, 0, 2, 1)
+
+---
+
+## SPECIFICITY COMPARISON
+
+Specificity is compared from left to right.
+
+Example:
+
+#box .title
+
+(0, 1, 1, 0)
+
+vs
+
+.container .title p
+
+(0, 0, 2, 1)
+
+The first selector wins because:
+
+1 ID > any number of classes/elements in the lower category.
+
+Do NOT simply add all the numbers together.
+
+Compare each specificity component from left to right.
+
+---
+
+## SPECIFICITY EXAMPLE
+
+HTML:
+
+<p id="text" class="highlight">
+    Hello
+</p>
+
+CSS:
+
+p {
+color: blue;
+}
+
+.highlight {
+color: green;
+}
+
+#text {
+color: red;
+}
+
+The final color is RED.
+
+Specificities:
+
+p
+(0, 0, 0, 1)
+
+.highlight
+(0, 0, 1, 0)
+
+#text
+(0, 1, 0, 0)
+
+ID wins.
+
+---
+
+10. !IMPORTANT
+
+---
+
+!important gives a declaration special importance in the
+cascade.
+
+Syntax:
+
+property: value !important;
+
+Example:
+
+p {
+color: blue !important;
+}
+
+Even if another normal rule has greater specificity,
+the !important declaration can win within the relevant
+cascade origin/layer rules.
+
+IMPORTANT:
+
+!important should not be used unnecessarily.
+
+Avoid:
+
+* {
+  color: red !important;
+  }
+
+It makes CSS difficult to maintain and override.
+
+Example:
+
+.button {
+color: blue !important;
+}
+
+.button.special {
+color: red;
+}
+
+The !important declaration wins over the normal declaration.
+
+---
+
+## IMPORTANT CAVEAT ABOUT !IMPORTANT
+
+!important does NOT simply mean:
+
+"Highest specificity always wins."
+
+The cascade considers importance, origin and cascade layers
+before specificity.
+
+Among declarations of the same importance/origin/layer,
+specificity is then used to resolve the conflict.
+
+Also, important declarations reverse the normal layer
+precedence order within an origin.
+
+For beginner-level CSS:
+
+Normal rule:
+specificity matters.
+
+Important rule:
+!important changes the cascade priority.
+
+---
+
+11. INHERITANCE
+
+---
+
+Inheritance means some CSS properties automatically pass
+from a parent element to its children.
+
+Example:
+
+body {
+color: blue;
+}
+
+<p>Hello</p>
+
+The paragraph normally inherits the blue text color.
+
+Common inherited properties include:
+
+color
+font-family
+font-size
+font-style
+font-weight
+line-height
+text-align
+
+Many layout properties do NOT automatically inherit.
+
+Examples:
+
+margin
+padding
+border
+width
+height
+
+---
+
+12. inherit
+
+---
+
+The inherit keyword explicitly tells an element to take
+the computed value of a property from its parent.
+
+Syntax:
+
+property: inherit;
+
+Example:
+
+.parent {
+color: blue;
+}
+
+.child {
+color: inherit;
+}
+
+The child inherits the parent's color.
+
+Example:
+
+.parent {
+font-size: 30px;
+}
+
+.child {
+font-size: inherit;
+}
+
+The child becomes 30px.
+
+---
+
+13. initial
+
+---
+
+The initial keyword resets a property to its initial
+value as defined by CSS.
+
+Syntax:
+
+property: initial;
+
+Example:
+
+p {
+color: initial;
+}
+
+This resets color to its CSS initial value.
+
+IMPORTANT:
+
+initial does NOT mean:
+
+"Use the browser's default style."
+
+It means:
+
+"Use the property's CSS-defined initial value."
+
+---
+
+14. unset
+
+---
+
+unset behaves differently depending on whether a property
+is inherited.
+
+For an inherited property:
+
+unset behaves like inherit.
+
+For a non-inherited property:
+
+unset behaves like initial.
+
+Example:
+
+.child {
+color: unset;
+}
+
+Since color is inherited, unset acts like inherit.
+
+For a non-inherited property such as margin:
+
+.box {
+margin: unset;
+}
+
+It behaves like initial for margin.
+
+MEMORY:
+
+unset =
+inherit if inherited
+initial if not inherited
+
+---
+
+15. revert
+
+---
+
+revert rolls a property back to a value from an earlier
+stage of the cascade.
+
+It can allow browser/user-agent styles or lower-priority
+cascade origins/layers to apply again.
+
+Example:
+
+button {
+all: revert;
+}
+
+This can be useful when you want an element to return toward
+its previous/browser styling instead of simply using the CSS
+initial value.
+
+IMPORTANT DIFFERENCE:
+
+initial
+→ CSS-defined initial value.
+
+revert
+→ Go back to an earlier cascade result.
+
+Example:
+
+button {
+all: revert;
+}
+
+---
+
+## INITIAL vs INHERIT vs UNSET vs REVERT
+
+initial:
+
+Use the property's CSS-defined initial value.
+
+inherit:
+
+Use the parent's computed value.
+
+unset:
+
+Use inherit for inherited properties;
+use initial for non-inherited properties.
+
+revert:
+
+Roll back to an earlier cascade origin/layer result.
+
+MEMORY:
+
+initial → CSS initial
+inherit → Parent
+unset → Automatic choice
+revert → Previous cascade
+
+---
+
+16. CASCADE LAYERS
+
+---
+
+Cascade layers allow developers to organize CSS into
+different priority layers.
+
+Syntax:
+
+@layer reset, base, components, utilities;
+
+Example:
+
+@layer base {
+p {
+color: blue;
+}
+}
+
+@layer components {
+.card p {
+color: red;
+}
+}
+
+Normal declarations in later layers have higher priority
+than normal declarations in earlier layers, before specificity
+is considered within the relevant origin.
+
+So the layer order can make CSS easier to manage without
+having to create unnecessarily specific selectors.
+
+---
+
+## DECLARING LAYER ORDER
+
+@layer reset, base, components, utilities;
+
+This establishes the order.
+
+Then:
+
+@layer reset {
+* {
+margin: 0;
+}
+}
+
+@layer base {
+body {
+font-family: Arial;
+}
+}
+
+@layer components {
+.card {
+padding: 20px;
+}
+}
+
+@layer utilities {
+.text-center {
+text-align: center;
+}
+}
+
+---
+
+## WHY CASCADE LAYERS ARE USEFUL
+
+Cascade layers help organize large stylesheets.
+
+Example structure:
+
+reset
+↓
+base
+↓
+components
+↓
+utilities
+
+This reduces the need for extremely specific selectors
+and excessive !important declarations.
+
+---
+
+## LAYER EXAMPLE
+
+@layer base {
+p {
+color: blue;
+}
+}
+
+@layer components {
+p {
+color: red;
+}
+}
+
+Both selectors have the same specificity.
+
+The later normal layer wins:
+
+color: red;
+
+---
+
+## LAYER ORDER
+
+Example:
+
+@layer reset, base, components;
+
+@layer reset {
+p {
+color: black;
+}
+}
+
+@layer base {
+p {
+color: blue;
+}
+}
+
+@layer components {
+p {
+color: red;
+}
+}
+
+Final color:
+
+RED
+
+because components is later than base and reset for normal
+author declarations.
+
+---
+
+## SPECIFICITY DOES NOT OVERRIDE LAYER ORDER
+
+Example:
+
+@layer base {
+#title {
+color: blue;
+}
+}
+
+@layer components {
+p {
+color: red;
+}
+}
+
+Even though #title has greater specificity than p,
+the normal declaration in the later layer can win because
+cascade layer precedence is considered before selector
+specificity.
+
+---
+
+## CASCADE ORDER MEMORY
+
+A simplified way to think about a normal author CSS conflict:
+
+1. Importance / origin
+2. Cascade layer
+3. Specificity
+4. Source order
+
+This is a simplified study model; the full CSS cascade also
+includes other concepts such as scoping proximity.
+
+---
+
+## SOURCE ORDER
+
+If two declarations have the same relevant cascade priority,
+same layer, and same specificity, the later declaration wins.
+
+Example:
+
+p {
+color: blue;
+}
+
+p {
+color: red;
+}
+
+Final color:
+
+RED
+
+---
+
+## SPECIFICITY CHEAT SHEET
+
+Inline:
+
+(1, 0, 0, 0)
+
+ID:
+
+(0, 1, 0, 0)
+
+Class / Attribute / Pseudo-class:
+
+(0, 0, 1, 0)
+
+Element / Pseudo-element:
+
+(0, 0, 0, 1)
+
+Universal:
+
+(0, 0, 0, 0)
+
+Examples:
+
+* ```
+                → (0,0,0,0)
+  ```
+
+p                   → (0,0,0,1)
+.card               → (0,0,1,0)
+#header             → (0,1,0,0)
+.card p             → (0,0,1,1)
+#header .card p     → (0,1,1,1)
+
+---
+
+## IMPORTANT SELECTOR RULE
+
+Specificity does NOT work by simply adding all values.
+
+Compare:
+
+(0, 1, 0, 0)
+
+with:
+
+(0, 0, 20, 20)
+
+The first selector wins because the ID column is compared
+before the class and element columns.
+
+---
+
+## QUICK REVISION
+
+CASCADE:
+Determines which CSS declaration wins.
+
+SPECIFICITY:
+Determines selector strength when relevant declarations
+are otherwise competing at the same cascade level.
+
+INLINE:
+Highest normal author selector category.
+
+ID:
+High specificity.
+
+CLASS:
+Medium specificity.
+
+ELEMENT:
+Low specificity.
+
+UNIVERSAL:
+Zero specificity.
+
+!important:
+Makes a declaration important and changes cascade priority.
+
+inherit:
+Use parent's value.
+
+initial:
+Use property's CSS-defined initial value.
+
+unset:
+inherit if inherited, otherwise initial.
+
+revert:
+Roll back to an earlier cascade result.
+
+@layer:
+Organizes CSS into cascade layers.
+
+---
+
+## QUESTIONS AND ANSWERS
+
+Q1. What is the CSS cascade?
+
+Answer:
+The cascade is the process used by the browser to determine
+which CSS declarations should be applied when multiple rules
+match an element.
+
+Q2. What is specificity?
+
+Answer:
+Specificity is the weight of a selector used to determine
+which matching selector wins when declarations are otherwise
+competing at the same cascade priority.
+
+Q3. Which has higher specificity: ID or class?
+
+Answer:
+ID.
+
+#id
+
+has higher specificity than:
+
+.class
+
+Q4. What is the specificity of the universal selector?
+
+Answer:
+
+(0, 0, 0, 0)
+
+It contributes zero specificity.
+
+Q5. What is the specificity of an ID selector?
+
+Answer:
+
+(0, 1, 0, 0)
+
+Q6. What is the specificity of a class selector?
+
+Answer:
+
+(0, 0, 1, 0)
+
+Q7. What is the specificity of an element selector?
+
+Answer:
+
+(0, 0, 0, 1)
+
+Q8. What is !important?
+
+Answer:
+!important marks a declaration as important and changes its
+priority in the cascade.
+
+Q9. Why should !important be avoided?
+
+Answer:
+Overusing it makes CSS difficult to maintain and override.
+
+Q10. What is inheritance?
+
+Answer:
+Inheritance is the process by which certain property values
+are passed from parent elements to their descendants.
+
+Q11. What does inherit do?
+
+Answer:
+It explicitly makes an element use its parent's computed
+value for that property.
+
+Q12. What does initial do?
+
+Answer:
+It resets a property to its CSS-defined initial value.
+
+Q13. What does unset do?
+
+Answer:
+It behaves like inherit for inherited properties and like
+initial for non-inherited properties.
+
+Q14. What does revert do?
+
+Answer:
+It rolls the property back to an earlier result in the
+cascade, which can restore lower-priority or user-agent
+styling.
+
+Q15. What are cascade layers?
+
+Answer:
+Cascade layers are an organizational mechanism that lets
+developers control groups of CSS rules as separate cascade
+layers.
+
+Q16. Why are cascade layers useful?
+
+Answer:
+They help organize CSS and reduce the need for excessive
+specificity and !important.
+
+---
+
+## PRACTICE QUESTIONS
+
+Q1. Calculate the specificity of:
+
+#header .title p
+
+Q2. Calculate the specificity of:
+
+div.card
+
+Q3. Which wins?
+
+p {
+color: blue;
+}
+
+.text {
+color: red;
+}
+
+Q4. Which wins?
+
+#title {
+color: blue;
+}
+
+.title {
+color: red;
+}
+
+Q5. Explain the difference between:
+
+inherit
+initial
+unset
+revert
+
+Q6. Explain why the universal selector has zero specificity.
+
+Q7. Create an example using !important.
+
+Q8. Create four cascade layers:
+
+reset
+base
+components
+utilities
+
+Q9. Explain why cascade layers can reduce the need for
+highly specific selectors.
+
+Q10. Determine the final color:
+
+@layer base {
+#title {
+color: blue;
+}
+}
+
+@layer components {
+p {
+color: red;
+}
+}
+
+---
+
+## EXAM MEMORY TRICK
+
+SPECIFICITY:
+
+INLINE
+↓
+ID
+↓
+CLASS
+↓
+ELEMENT
+↓
+UNIVERSAL
+
+MEMORY:
+
+I → ID → C → E → U
+
+Inline → ID → Class → Element → Universal
+
+SPECIFICITY VALUES:
+
+Inline = 1000
+ID     = 100
+Class  = 10
+Element = 1
+Universal = 0
+
+These numeric values are a convenient exam shorthand for
+the specificity tuple; do not treat them as simple additive
+scores in every CSS situation.
+
+SPECIAL KEYWORDS:
+
+inherit → Parent
+
+initial → CSS initial
+
+unset → Inherit/Initial depending on property
+
+revert → Earlier cascade result
+
+CASCADE:
+
+Origin / Importance
+↓
+Layer
+↓
+Specificity
+↓
+Source Order
+
+IMPORTANT:
+
+!important changes the normal cascade priority.
+
+============================================================
+END OF CSS SPECIFICITY AND CASCADE
+==================================
+
+*/
+
+* {
+  box-sizing: border-box;
+  }
+
+body {
+margin: 0;
+padding: 30px;
+font-family: Arial, sans-serif;
+}
+
+/* Specificity examples */
+
+p {
+color: blue;
+}
+
+.text {
+color: green;
+}
+
+#main-text {
+color: red;
+}
+
+/* Inheritance */
+
+.parent {
+color: purple;
+font-size: 20px;
+}
+
+.child {
+color: inherit;
+}
+
+/* initial */
+
+.initial-example {
+color: initial;
+}
+
+/* unset */
+
+.unset-example {
+color: unset;
+margin: unset;
+}
+
+/* revert */
+
+.revert-example {
+color: revert;
+}
+
+/* Cascade layers */
+
+@layer reset, base, components, utilities;
+
+@layer reset {
+.layer-demo {
+margin: 0;
+}
+}
+
+@layer base {
+.layer-demo {
+color: blue;
+padding: 10px;
+}
+}
+
+@layer components {
+.layer-demo {
+color: red;
+border: 2px solid red;
+}
+}
+
+@layer utilities {
+.text-center {
+text-align: center;
+}
+}

@@ -1,0 +1,1190 @@
+# /*
+
+32. CSS ADVANCED SELECTORS
+    ============================================================
+
+Advanced selectors allow us to target elements based on:
+
+* Attributes
+* Relationships between elements
+* Position among siblings
+* Element types
+* Conditions
+
+TOPICS:
+
+1. Attribute Selectors
+2. Exact Attribute Matching
+3. Prefix Matching
+4. Suffix Matching
+5. Substring Matching
+6. Child Combinator
+7. Descendant Combinator
+8. Adjacent Sibling
+9. General Sibling
+10. :not()
+11. :is()
+12. :where()
+13. :has()
+14. :nth-child()
+15. :nth-of-type()
+
+---
+
+1. ATTRIBUTE SELECTORS
+
+---
+
+Attribute selectors select elements based on their HTML
+attributes.
+
+Basic syntax:
+
+[attribute]
+
+Example:
+
+input[required] {
+border: 2px solid red;
+}
+
+This selects every input element that has the
+required attribute.
+
+HTML:
+
+<input type="text" required>
+<input type="email" required>
+
+Both elements are selected.
+
+Common attribute selectors:
+
+[attribute]
+[attribute="value"]
+[attribute^="value"]
+[attribute$="value"]
+[attribute*="value"]
+
+---
+
+2. EXACT ATTRIBUTE MATCHING
+
+---
+
+The = operator selects elements whose attribute value
+exactly matches the specified value.
+
+Syntax:
+
+[attribute="value"]
+
+Example:
+
+input[type="text"] {
+border: 2px solid blue;
+}
+
+This selects:
+
+<input type="text">
+
+but not:
+
+<input type="email">
+
+Another example:
+
+a[target="_blank"] {
+color: red;
+}
+
+Only links with exactly:
+
+target="_blank"
+
+are selected.
+
+---
+
+3. PREFIX MATCHING
+
+---
+
+The ^= operator selects elements whose attribute value
+STARTS WITH a specified value.
+
+Syntax:
+
+[attribute^="value"]
+
+Example:
+
+a[href^="https"] {
+color: green;
+}
+
+This selects links whose href starts with:
+
+https
+
+Examples:
+
+https://example.com
+https://google.com
+
+It does not select:
+
+http://example.com
+
+Another example:
+
+[class^="btn"] {
+padding: 10px;
+}
+
+This selects class attribute values beginning with "btn".
+
+---
+
+4. SUFFIX MATCHING
+
+---
+
+The $= operator selects elements whose attribute value
+ENDS WITH a specified value.
+
+Syntax:
+
+[attribute$="value"]
+
+Example:
+
+a[href$=".pdf"] {
+color: red;
+}
+
+This selects links ending with:
+
+.pdf
+
+Example:
+
+<a href="notes.pdf">Notes</a>
+
+It can be useful for selecting specific file types.
+
+Examples:
+
+[href$=".pdf"]
+[href$=".jpg"]
+[href$=".png"]
+
+---
+
+5. SUBSTRING MATCHING
+
+---
+
+The *= operator selects elements whose attribute value
+CONTAINS the specified text anywhere.
+
+Syntax:
+
+[attribute*="value"]
+
+Example:
+
+a[href*="google"] {
+color: blue;
+}
+
+This selects:
+
+https://google.com
+https://google.com/search
+https://example.com/google
+
+because "google" appears somewhere in the href.
+
+ATTRIBUTE SELECTOR MEMORY:
+
+=   Exact match
+^=  Starts with
+$=  Ends with
+*=  Contains
+
+---
+
+6. CHILD COMBINATOR
+
+---
+
+The > symbol is called the child combinator.
+
+It selects elements that are DIRECT children of another
+element.
+
+Syntax:
+
+parent > child
+
+Example:
+
+.container > p {
+color: blue;
+}
+
+HTML:
+
+<div class="container">
+    <p>First paragraph</p>
+
+```
+<section>
+    <p>Second paragraph</p>
+</section>
+```
+
+</div>
+
+Only the first <p> is selected because it is a direct
+child of .container.
+
+The second <p> is nested inside <section>.
+
+IMPORTANT:
+
+> means DIRECT CHILD.
+
+---
+
+7. DESCENDANT COMBINATOR
+
+---
+
+A space between selectors represents the descendant
+combinator.
+
+Syntax:
+
+ancestor descendant
+
+Example:
+
+.container p {
+color: blue;
+}
+
+This selects ALL <p> elements inside .container,
+including deeply nested elements.
+
+HTML:
+
+<div class="container">
+    <p>First</p>
+
+```
+<section>
+    <p>Second</p>
+
+    <div>
+        <p>Third</p>
+    </div>
+</section>
+```
+
+</div>
+
+All three paragraphs are selected.
+
+IMPORTANT DIFFERENCE:
+
+.container > p
+→ Direct children only.
+
+.container p
+→ All descendants.
+
+---
+
+8. ADJACENT SIBLING
+
+---
+
+The + symbol is the adjacent sibling combinator.
+
+It selects the element immediately following another
+element.
+
+Syntax:
+
+element1 + element2
+
+Example:
+
+h2 + p {
+color: red;
+}
+
+HTML:
+
+<h2>Heading</h2>
+<p>Paragraph 1</p>
+<p>Paragraph 2</p>
+
+Only Paragraph 1 is selected because it immediately
+follows the h2.
+
+IMPORTANT:
+
+* selects ONLY the immediately next sibling.
+
+---
+
+9. GENERAL SIBLING
+
+---
+
+The ~ symbol is the general sibling combinator.
+
+It selects all matching siblings that appear after
+the specified element.
+
+Syntax:
+
+element1 ~ element2
+
+Example:
+
+h2 ~ p {
+color: blue;
+}
+
+HTML:
+
+<h2>Heading</h2>
+<p>Paragraph 1</p>
+<p>Paragraph 2</p>
+<div>Something</div>
+<p>Paragraph 3</p>
+
+All the <p> elements after the h2 that are siblings
+are selected.
+
+IMPORTANT:
+
+~ selects ALL matching following siblings.
+
+It does not need to be immediately adjacent.
+
+---
+
+10. :not()
+
+---
+
+:not() selects elements that DO NOT match the selector
+inside the parentheses.
+
+Syntax:
+
+:not(selector)
+
+Example:
+
+p:not(.special) {
+color: gray;
+}
+
+This selects paragraphs that do not have the class
+special.
+
+HTML:
+
+<p>Normal</p>
+<p class="special">Special</p>
+<p>Normal</p>
+
+The first and third paragraphs are selected.
+
+Another example:
+
+button:not(.disabled) {
+cursor: pointer;
+}
+
+This selects buttons that are not .disabled.
+
+---
+
+11. :is()
+
+---
+
+:is() allows multiple selectors to be grouped together.
+
+Syntax:
+
+:is(selector1, selector2, ...)
+
+Instead of writing:
+
+h1,
+h2,
+h3 {
+color: blue;
+}
+
+We can write:
+
+:is(h1, h2, h3) {
+color: blue;
+}
+
+This is shorter and easier to read.
+
+Another example:
+
+.card :is(h2, p) {
+margin: 10px;
+}
+
+This selects h2 and p elements inside .card.
+
+IMPORTANT:
+
+:is() uses the specificity of its most specific argument.
+
+---
+
+12. :where()
+
+---
+
+:where() is similar to :is() because it groups selectors.
+
+Syntax:
+
+:where(selector1, selector2, ...)
+
+Example:
+
+:where(h1, h2, h3) {
+color: blue;
+}
+
+It selects h1, h2 and h3.
+
+IMPORTANT DIFFERENCE:
+
+:is()
+→ Has the specificity of its most specific argument.
+
+:where()
+→ Always has ZERO specificity.
+
+This makes :where() very useful for default styles
+that should be easy to override.
+
+Example:
+
+:where(.card h2) {
+color: gray;
+}
+
+---
+
+13. :has()
+
+---
+
+:has() selects an element based on what it contains
+or what follows it in a relationship.
+
+It is often described as a "parent selector", although
+it is more accurately a relational pseudo-class.
+
+Syntax:
+
+element:has(selector)
+
+Example:
+
+.card:has(img) {
+border: 2px solid blue;
+}
+
+This selects .card elements that contain a matching
+img descendant.
+
+HTML:
+
+<div class="card">
+    <img src="image.jpg">
+    <h2>Product</h2>
+</div>
+
+The card is selected because it has an img.
+
+Another example:
+
+div:has(> p) {
+background: lightgray;
+}
+
+This selects div elements that have a direct child p.
+
+IMPORTANT:
+
+:has() looks at relationships and allows the selection
+of an element based on matching relative selectors.
+
+---
+
+14. :nth-child()
+
+---
+
+:nth-child() selects elements based on their position
+among their siblings.
+
+Syntax:
+
+:nth-child(number)
+
+Example:
+
+li:nth-child(2) {
+color: red;
+}
+
+This selects the second child of its parent.
+
+It is based on the element's position among ALL siblings,
+not only elements of the same type.
+
+Common values:
+
+:nth-child(1)
+:nth-child(2)
+:nth-child(3)
+
+:nth-child(odd)
+:nth-child(even)
+
+Example:
+
+li:nth-child(odd) {
+background: #eee;
+}
+
+li:nth-child(even) {
+background: white;
+}
+
+Formula:
+
+:nth-child(an + b)
+
+Example:
+
+li:nth-child(2n) {
+background: gray;
+}
+
+This selects:
+
+2nd
+4th
+6th
+8th
+...
+
+Another example:
+
+li:nth-child(2n + 1)
+
+This selects:
+
+1st
+3rd
+5th
+7th
+...
+
+---
+
+15. :nth-of-type()
+
+---
+
+:nth-of-type() selects an element based on its position
+among siblings of the SAME ELEMENT TYPE.
+
+Syntax:
+
+element:nth-of-type(number)
+
+Example:
+
+p:nth-of-type(2) {
+color: red;
+}
+
+This selects the second <p> among its sibling <p> elements.
+
+IMPORTANT DIFFERENCE:
+
+:nth-child()
+→ Counts ALL sibling elements.
+
+:nth-of-type()
+→ Counts only elements of the same type.
+
+Example HTML:
+
+<div>
+    <h2>Heading</h2>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+</div>
+
+For:
+
+p:nth-child(2)
+
+Paragraph 1 is selected because it is the second child.
+
+For:
+
+p:nth-of-type(2)
+
+Paragraph 2 is selected because it is the second <p>.
+
+---
+
+## ATTRIBUTE SELECTOR SUMMARY
+
+[attribute]
+
+→ Attribute exists.
+
+[attribute="value"]
+
+→ Exact match.
+
+[attribute^="value"]
+
+→ Starts with.
+
+[attribute$="value"]
+
+→ Ends with.
+
+[attribute*="value"]
+
+→ Contains.
+
+---
+
+## COMBINATOR SUMMARY
+
+A B
+
+→ Descendant
+
+A > B
+
+→ Direct child
+
+A + B
+
+→ Immediately following sibling
+
+A ~ B
+
+→ All following matching siblings
+
+---
+
+## PSEUDO-CLASS SUMMARY
+
+:not()
+
+→ Does NOT match.
+
+:is()
+
+→ Matches any selector in the list.
+
+:where()
+
+→ Matches any selector in the list with zero specificity.
+
+:has()
+
+→ Matches based on a related element/condition.
+
+:nth-child()
+
+→ Position among ALL siblings.
+
+:nth-of-type()
+
+→ Position among same-type siblings.
+
+---
+
+## IMPORTANT COMPARISON
+
+1. CHILD vs DESCENDANT
+
+.parent > p
+
+→ Direct child only.
+
+.parent p
+
+→ Any descendant.
+
+2. ADJACENT vs GENERAL SIBLING
+
+h2 + p
+
+→ Only the next p.
+
+h2 ~ p
+
+→ All following p siblings.
+
+3. :is() vs :where()
+
+:is()
+→ Groups selectors.
+→ Specificity comes from the most specific argument.
+
+:where()
+→ Groups selectors.
+→ Always zero specificity.
+
+4. :nth-child() vs :nth-of-type()
+
+:nth-child(2)
+→ Second child overall.
+
+:nth-of-type(2)
+→ Second element of that type.
+
+5. = vs ^= vs $= vs *=
+
+=   → Exact
+^=  → Starts with
+$=  → Ends with
+*=  → Contains
+
+---
+
+## PRACTICAL EXAMPLE
+
+HTML:
+
+<div class="products">
+
+```
+<div class="card">
+    <h2>Phone</h2>
+    <p>Smartphone</p>
+</div>
+
+<div class="card">
+    <img src="laptop.jpg">
+    <h2>Laptop</h2>
+    <p>Computer</p>
+</div>
+
+<div class="card special">
+    <h2>Tablet</h2>
+    <p>Portable device</p>
+</div>
+```
+
+</div>
+
+CSS:
+
+.products > .card {
+padding: 20px;
+}
+
+.card p {
+color: gray;
+}
+
+.card:not(.special) {
+border: 1px solid black;
+}
+
+.card:has(img) {
+background: lightblue;
+}
+
+.card :is(h2, p) {
+margin: 5px;
+}
+
+.card:nth-child(odd) {
+background: #f5f5f5;
+}
+
+---
+
+## QUICK REVISION
+
+ATTRIBUTE SELECTORS:
+
+[attribute]
+[attribute="value"]
+[attribute^="value"]
+[attribute$="value"]
+[attribute*="value"]
+
+COMBINATORS:
+
+A B
+→ Descendant
+
+A > B
+→ Child
+
+A + B
+→ Adjacent sibling
+
+A ~ B
+→ General sibling
+
+FUNCTIONAL PSEUDO-CLASSES:
+
+:not()
+→ Exclude
+
+:is()
+→ Group
+
+:where()
+→ Group with zero specificity
+
+:has()
+→ Select based on relationship
+
+:nth-child()
+→ Position among all siblings
+
+:nth-of-type()
+→ Position among same-type siblings
+
+---
+
+## QUESTIONS AND ANSWERS
+
+Q1. What is an attribute selector?
+
+Answer:
+An attribute selector selects elements based on the
+presence or value of an HTML attribute.
+
+Example:
+
+input[type="text"] {
+border: 1px solid blue;
+}
+
+Q2. What does ^= mean?
+
+Answer:
+It selects elements whose attribute value starts with
+the specified value.
+
+Example:
+
+a[href^="https"] { }
+
+Q3. What does $= mean?
+
+Answer:
+It selects elements whose attribute value ends with
+the specified value.
+
+Example:
+
+a[href$=".pdf"] { }
+
+Q4. What does *= mean?
+
+Answer:
+It selects elements whose attribute value contains
+the specified text.
+
+Example:
+
+a[href*="google"] { }
+
+Q5. What is the difference between > and a space?
+
+Answer:
+
+.parent > p
+
+Selects direct children.
+
+.parent p
+
+Selects all descendants.
+
+Q6. What does + mean in CSS selectors?
+
+Answer:
+It selects the immediately following sibling.
+
+Example:
+
+h2 + p { }
+
+Q7. What does ~ mean?
+
+Answer:
+It selects all matching siblings that appear after
+the specified element.
+
+Example:
+
+h2 ~ p { }
+
+Q8. What does :not() do?
+
+Answer:
+It selects elements that do not match the selector
+inside :not().
+
+Example:
+
+p:not(.special) { }
+
+Q9. What is :is() used for?
+
+Answer:
+:is() groups multiple selectors into a single selector.
+
+Example:
+
+:is(h1, h2, h3) {
+color: blue;
+}
+
+Q10. What is the difference between :is() and :where()?
+
+Answer:
+Both group selectors.
+
+:is() takes the specificity of its most specific argument.
+
+:where() always has zero specificity.
+
+Q11. What is :has()?
+
+Answer:
+:has() selects an element based on a related element
+or condition.
+
+Example:
+
+.card:has(img) { }
+
+Q12. What does :nth-child(2) mean?
+
+Answer:
+It selects an element that is the second child among
+all of its siblings.
+
+Q13. What does :nth-of-type(2) mean?
+
+Answer:
+It selects the second element of that specific type
+among its siblings.
+
+---
+
+## PRACTICE QUESTIONS
+
+Q1. Select all links that point to PDF files.
+
+Q2. Select all links whose href starts with https.
+
+Q3. Select all images whose src ends with .png.
+
+Q4. Select all elements whose class contains "card".
+
+Q5. Select only direct p children of .container.
+
+Q6. Select all p elements inside .container, including
+deeply nested paragraphs.
+
+Q7. Select the paragraph immediately after an h2.
+
+Q8. Select all paragraphs following an h2 that are siblings.
+
+Q9. Select all buttons except buttons with class disabled.
+
+Q10. Use :is() to style h1, h2 and h3 together.
+
+Q11. Use :where() to create a default style for headings.
+
+Q12. Select .card elements that contain an image using :has().
+
+Q13. Select every second list item using :nth-child().
+
+Q14. Select every odd list item.
+
+Q15. Select the third paragraph among all paragraphs
+using :nth-of-type().
+
+---
+
+## EXAM MEMORY TRICK
+
+ATTRIBUTE:
+
+=   EXACT
+^=  STARTS
+$=  ENDS
+*=  CONTAINS
+
+RELATIONSHIPS:
+
+SPACE → DESCENDANT
+
+> ```
+> → DIRECT CHILD
+> ```
+
+* ```
+  → NEXT SIBLING
+  ```
+
+~     → ALL FOLLOWING SIBLINGS
+
+PSEUDO-CLASSES:
+
+:not()         → EXCLUDE
+:is()          → GROUP
+:where()       → GROUP + ZERO SPECIFICITY
+:has()         → RELATIONSHIP
+:nth-child()   → POSITION
+:nth-of-type() → SAME TYPE POSITION
+
+ONE-LINE MEMORY:
+
+"Space goes deep,
+
+> goes direct,
+
+* goes next,
+  ~ goes all after."
+
+============================================================
+END OF CSS ADVANCED SELECTORS
+=============================
+
+*/
+
+body {
+font-family: Arial, sans-serif;
+padding: 20px;
+}
+
+/* Attribute selectors */
+
+input[type="text"] {
+border: 2px solid blue;
+padding: 8px;
+}
+
+a[href^="https"] {
+color: green;
+}
+
+a[href$=".pdf"] {
+color: red;
+}
+
+a[href*="example"] {
+font-weight: bold;
+}
+
+/* Child combinator */
+
+.container > p {
+background: #eeeeee;
+}
+
+/* Descendant combinator */
+
+.container p {
+padding: 5px;
+}
+
+/* Adjacent sibling */
+
+h2 + p {
+color: darkblue;
+}
+
+/* General sibling */
+
+h2 ~ p {
+font-style: italic;
+}
+
+/* :not() */
+
+button:not(.disabled) {
+cursor: pointer;
+}
+
+/* :is() */
+
+:is(h1, h2, h3) {
+font-family: Georgia, serif;
+}
+
+/* :where() */
+
+:where(.card h2, .card p) {
+margin: 5px;
+}
+
+/* :has() */
+
+.card:has(img) {
+border: 2px solid blue;
+}
+
+/* :nth-child() */
+
+li:nth-child(even) {
+background: #eeeeee;
+}
+
+/* :nth-of-type() */
+
+p:nth-of-type(2) {
+color: purple;
+}
+
+/* Example card */
+
+.card {
+padding: 20px;
+margin: 10px 0;
+border: 1px solid #cccccc;
+}

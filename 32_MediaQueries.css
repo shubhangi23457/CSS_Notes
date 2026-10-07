@@ -1,0 +1,1530 @@
+/*
+========================================================
+                28. CSS MEDIA QUERIES
+========================================================
+
+Media Queries allow CSS to apply different styles based
+on conditions such as:
+
+    Screen width
+    Screen height
+    Orientation
+    User preferences
+    Device/display features
+
+Media queries are mainly used for responsive design.
+
+Basic syntax:
+
+@media (condition) {
+    selector {
+        property: value;
+    }
+}
+
+
+--------------------------------------------------------
+1. BASIC MEDIA QUERIES
+--------------------------------------------------------
+
+A basic media query checks a condition and applies CSS
+only when that condition is true.
+
+Example:
+*/
+
+.basic-box {
+    width: 50%;
+    background-color: blue;
+}
+
+@media (max-width: 600px) {
+
+    .basic-box {
+        width: 100%;
+        background-color: red;
+    }
+}
+
+
+/*
+Meaning:
+
+Normal:
+    width = 50%
+
+600px or smaller:
+    width = 100%
+
+
+--------------------------------------------------------
+2. WIDTH-BASED QUERIES
+--------------------------------------------------------
+
+Width-based media queries check the available viewport
+width.
+
+Common features:
+
+min-width
+max-width
+
+Example:
+*/
+
+.width-box {
+    font-size: 24px;
+}
+
+
+/*
+When viewport is 768px or smaller:
+*/
+
+@media (max-width: 768px) {
+
+    .width-box {
+        font-size: 18px;
+    }
+}
+
+
+/*
+When viewport is 769px or wider:
+*/
+
+@media (min-width: 769px) {
+
+    .width-box {
+        font-size: 28px;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+3. HEIGHT-BASED QUERIES
+--------------------------------------------------------
+
+Height-based queries check the viewport height.
+
+Features:
+
+min-height
+max-height
+
+Example:
+*/
+
+.height-box {
+    padding: 50px;
+}
+
+
+/*
+When viewport height is 600px or smaller:
+*/
+
+@media (max-height: 600px) {
+
+    .height-box {
+        padding: 20px;
+    }
+}
+
+
+/*
+When viewport height is at least 800px:
+*/
+
+@media (min-height: 800px) {
+
+    .height-box {
+        padding: 80px;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+4. ORIENTATION
+--------------------------------------------------------
+
+Orientation checks whether the viewport is:
+
+portrait
+landscape
+
+PORTRAIT:
+    Height > Width
+
+LANDSCAPE:
+    Width > Height
+
+
+Example:
+*/
+
+.orientation-box {
+    width: 80%;
+}
+
+
+/*
+Landscape:
+*/
+
+@media (orientation: landscape) {
+
+    .orientation-box {
+        width: 60%;
+    }
+}
+
+
+/*
+Portrait:
+*/
+
+@media (orientation: portrait) {
+
+    .orientation-box {
+        width: 90%;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+5. DEVICE FEATURES
+--------------------------------------------------------
+
+Media queries can also detect certain device/display
+features.
+
+Examples:
+
+orientation
+prefers-color-scheme
+prefers-reduced-motion
+
+Other useful media features include:
+
+hover
+pointer
+resolution
+aspect-ratio
+print
+
+
+Example using hover:
+*/
+
+.hover-device-button {
+    padding: 12px 20px;
+}
+
+
+/*
+Apply hover-specific styling only when the primary input
+device supports hovering:
+*/
+
+@media (hover: hover) {
+
+    .hover-device-button:hover {
+        transform: scale(1.05);
+    }
+}
+
+
+/*
+Example using pointer:
+
+pointer: fine
+    → Precise pointing device such as a mouse.
+
+pointer: coarse
+    → Less precise pointing device such as touch.
+
+
+*/
+
+@media (pointer: coarse) {
+
+    .touch-friendly-button {
+        padding: 16px 24px;
+        font-size: 18px;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+6. min-width
+--------------------------------------------------------
+
+min-width applies styles when the viewport width is
+greater than or equal to the specified value.
+
+Syntax:
+
+@media (min-width: 768px) {
+    ...
+}
+
+Example:
+*/
+
+.min-width-box {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+
+    .min-width-box {
+        width: 50%;
+    }
+}
+
+
+/*
+Meaning:
+
+0px → 767px:
+    width = 100%
+
+768px and above:
+    width = 50%
+
+
+IMPORTANT:
+
+min-width is commonly used in mobile-first design.
+
+
+--------------------------------------------------------
+7. max-width
+--------------------------------------------------------
+
+max-width applies styles when the viewport width is
+less than or equal to the specified value.
+
+Syntax:
+
+@media (max-width: 768px) {
+    ...
+}
+
+Example:
+*/
+
+.max-width-box {
+    width: 50%;
+}
+
+@media (max-width: 768px) {
+
+    .max-width-box {
+        width: 100%;
+    }
+}
+
+
+/*
+max-width is commonly used in desktop-first design.
+
+
+--------------------------------------------------------
+8. min-height
+--------------------------------------------------------
+
+Applies styles when viewport height is greater than
+or equal to the specified value.
+
+Example:
+*/
+
+.min-height-box {
+    padding: 20px;
+}
+
+@media (min-height: 800px) {
+
+    .min-height-box {
+        padding: 50px;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+9. max-height
+--------------------------------------------------------
+
+Applies styles when viewport height is less than or
+equal to the specified value.
+
+Example:
+*/
+
+.max-height-box {
+    padding: 50px;
+}
+
+@media (max-height: 600px) {
+
+    .max-height-box {
+        padding: 20px;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+10. orientation
+--------------------------------------------------------
+
+Syntax:
+
+@media (orientation: portrait) {
+    ...
+}
+
+@media (orientation: landscape) {
+    ...
+}
+
+
+Example:
+*/
+
+.orientation-layout {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (orientation: landscape) {
+
+    .orientation-layout {
+        flex-direction: row;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+11. prefers-color-scheme
+--------------------------------------------------------
+
+Detects the user's preferred color scheme.
+
+Values:
+
+light
+dark
+
+Example:
+*/
+
+.theme-box {
+    background-color: white;
+    color: black;
+}
+
+
+/*
+Dark mode:
+*/
+
+@media (prefers-color-scheme: dark) {
+
+    .theme-box {
+        background-color: #111;
+        color: white;
+    }
+}
+
+
+/*
+Light mode can also be explicitly targeted:
+
+*/
+
+@media (prefers-color-scheme: light) {
+
+    .theme-box {
+        background-color: white;
+        color: black;
+    }
+}
+
+
+/*
+IMPORTANT:
+
+prefers-color-scheme responds to the user's system or
+browser preference.
+
+It does not itself create a manual theme switch.
+
+
+--------------------------------------------------------
+12. prefers-reduced-motion
+--------------------------------------------------------
+
+Detects whether the user has requested reduced motion.
+
+Values:
+
+reduce
+no-preference
+
+This is important for accessibility.
+
+Example:
+*/
+
+.motion-box {
+    animation: slideBox 2s ease infinite;
+}
+
+@keyframes slideBox {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(200px);
+    }
+}
+
+
+/*
+Reduce or disable non-essential motion:
+
+*/
+
+@media (prefers-reduced-motion: reduce) {
+
+    .motion-box {
+        animation: none;
+        transition: none;
+    }
+}
+
+
+/*
+IMPORTANT:
+
+Do not simply assume that every animation must be
+removed. Essential motion may still be necessary.
+
+Use reduced-motion preferences to minimize
+non-essential motion.
+
+
+--------------------------------------------------------
+13. COMBINING MEDIA CONDITIONS
+--------------------------------------------------------
+
+Multiple conditions can be combined using:
+
+and
+
+Example:
+
+*/
+
+.combined-box {
+    width: 100%;
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+
+    .combined-box {
+        width: 80%;
+    }
+}
+
+
+/*
+Meaning:
+
+Viewport width must be:
+
+    >= 600px
+
+AND
+
+    <= 900px
+
+
+--------------------------------------------------------
+14. WIDTH + ORIENTATION
+--------------------------------------------------------
+
+Conditions can also be combined with orientation.
+
+Example:
+*/
+
+.combined-layout {
+    display: block;
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+
+    .combined-layout {
+        display: flex;
+    }
+}
+
+
+/*
+Both conditions must be true:
+
+    Width >= 768px
+    AND
+    Orientation = landscape
+
+
+--------------------------------------------------------
+15. MULTIPLE MEDIA CONDITIONS
+--------------------------------------------------------
+
+Multiple conditions can be combined in one query.
+
+Example:
+*/
+
+.advanced-box {
+    font-size: 16px;
+}
+
+@media
+    (min-width: 768px)
+    and (min-height: 600px)
+    and (orientation: landscape) {
+
+    .advanced-box {
+        font-size: 20px;
+    }
+}
+
+
+/*
+All conditions must be satisfied.
+
+
+--------------------------------------------------------
+16. USING OR CONDITIONS
+--------------------------------------------------------
+
+The comma acts like OR between media queries.
+
+Example:
+
+*/
+
+.or-box {
+    background-color: gray;
+}
+
+@media (max-width: 600px), (orientation: portrait) {
+
+    .or-box {
+        background-color: orange;
+    }
+}
+
+
+/*
+The styles apply when:
+
+    Width <= 600px
+
+OR
+
+    Orientation = portrait
+
+
+--------------------------------------------------------
+17. NOT IN MEDIA QUERIES
+--------------------------------------------------------
+
+The not keyword negates a media query.
+
+Example:
+
+*/
+
+@media not (orientation: portrait) {
+
+    .not-example {
+        display: flex;
+    }
+}
+
+
+/*
+This targets cases where the condition is not portrait.
+
+
+--------------------------------------------------------
+18. MULTIPLE BREAKPOINTS
+--------------------------------------------------------
+
+Different media queries can be used for different
+screen widths.
+
+Example:
+*/
+
+.breakpoint-layout {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+/*
+Tablet:
+*/
+
+@media (max-width: 1024px) {
+
+    .breakpoint-layout {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/*
+Small tablet:
+*/
+
+@media (max-width: 768px) {
+
+    .breakpoint-layout {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/*
+Mobile:
+*/
+
+@media (max-width: 600px) {
+
+    .breakpoint-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/*
+Result:
+
+Large desktop:
+    4 columns
+
+Tablet:
+    3 columns
+
+Small tablet:
+    2 columns
+
+Mobile:
+    1 column
+
+
+--------------------------------------------------------
+19. MOBILE-FIRST MULTIPLE BREAKPOINTS
+--------------------------------------------------------
+
+Mobile-first starts with the smallest layout.
+
+Example:
+*/
+
+.mobile-first-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+
+/*
+Tablet:
+*/
+
+@media (min-width: 600px) {
+
+    .mobile-first-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/*
+Desktop:
+*/
+
+@media (min-width: 1024px) {
+
+    .mobile-first-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+/*
+This is generally easier to reason about when building
+responsive layouts from small screens upward.
+
+
+--------------------------------------------------------
+20. DESKTOP-FIRST MULTIPLE BREAKPOINTS
+--------------------------------------------------------
+
+Desktop-first starts with the largest layout.
+
+Example:
+*/
+
+.desktop-first-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+/*
+Tablet:
+*/
+
+@media (max-width: 1024px) {
+
+    .desktop-first-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/*
+Mobile:
+*/
+
+@media (max-width: 600px) {
+
+    .desktop-first-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+21. RESPONSIVE TYPOGRAPHY
+--------------------------------------------------------
+
+Media queries can change font sizes according to
+screen width.
+
+Example:
+*/
+
+.responsive-heading {
+    font-size: 3rem;
+}
+
+@media (max-width: 768px) {
+
+    .responsive-heading {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .responsive-heading {
+        font-size: 1.5rem;
+    }
+}
+
+
+/*
+An alternative is clamp():
+
+*/
+
+.fluid-heading {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+}
+
+
+/*
+clamp() can reduce the need for many typography
+breakpoints.
+
+
+--------------------------------------------------------
+22. RESPONSIVE NAVIGATION
+--------------------------------------------------------
+
+Example:
+*/
+
+.responsive-nav {
+    display: flex;
+    gap: 20px;
+}
+
+
+/*
+Mobile:
+*/
+
+@media (max-width: 768px) {
+
+    .responsive-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+23. RESPONSIVE FLEXBOX
+--------------------------------------------------------
+*/
+
+.responsive-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+
+    .responsive-flex {
+        flex-direction: column;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+24. RESPONSIVE GRID
+--------------------------------------------------------
+*/
+
+.responsive-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+
+    .responsive-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .responsive-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/*
+--------------------------------------------------------
+25. PRINT MEDIA QUERY
+--------------------------------------------------------
+
+Media queries can target printing.
+
+Syntax:
+
+@media print {
+    ...
+}
+
+Example:
+*/
+
+@media print {
+
+    .navigation {
+        display: none;
+    }
+
+    .print-content {
+        color: black;
+        background: white;
+    }
+}
+
+
+/*
+This allows a page to have different styles when
+printed.
+
+
+========================================================
+               MEDIA QUERY CHEAT SHEET
+========================================================
+
+min-width:
+
+@media (min-width: 768px)
+
+Means:
+
+    viewport width >= 768px
+
+
+max-width:
+
+@media (max-width: 768px)
+
+Means:
+
+    viewport width <= 768px
+
+
+min-height:
+
+@media (min-height: 600px)
+
+Means:
+
+    viewport height >= 600px
+
+
+max-height:
+
+@media (max-height: 600px)
+
+Means:
+
+    viewport height <= 600px
+
+
+orientation:
+
+@media (orientation: portrait)
+
+@media (orientation: landscape)
+
+
+dark mode:
+
+@media (prefers-color-scheme: dark)
+
+
+reduced motion:
+
+@media (prefers-reduced-motion: reduce)
+
+
+AND:
+
+@media (min-width: 600px) and (max-width: 900px)
+
+
+OR:
+
+@media (max-width: 600px), (orientation: portrait)
+
+
+NOT:
+
+@media not (orientation: portrait)
+
+
+========================================================
+           MOBILE-FIRST VS DESKTOP-FIRST
+========================================================
+
+MOBILE-FIRST:
+
+Base styles:
+    Mobile
+
+Use:
+    min-width
+
+Example:
+
+.box {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .box {
+        width: 50%;
+    }
+}
+
+
+DESKTOP-FIRST:
+
+Base styles:
+    Desktop
+
+Use:
+    max-width
+
+Example:
+
+.box {
+    width: 50%;
+}
+
+@media (max-width: 768px) {
+    .box {
+        width: 100%;
+    }
+}
+
+
+========================================================
+             COMMON BREAKPOINT EXAMPLES
+========================================================
+
+480px
+    Small mobile
+
+600px
+    Mobile
+
+768px
+    Tablet
+
+900px
+    Small laptop/tablet
+
+1024px
+    Laptop
+
+1200px
+    Desktop
+
+IMPORTANT:
+
+These are only common examples.
+
+There is no requirement to use exactly these values.
+
+Choose breakpoints based on where your content/layout
+actually needs to change.
+
+
+========================================================
+                 QUICK REVISION
+========================================================
+
+@media
+    → Creates a media query.
+
+min-width
+    → At least this width.
+
+max-width
+    → At most this width.
+
+min-height
+    → At least this height.
+
+max-height
+    → At most this height.
+
+orientation
+    → Portrait or landscape.
+
+prefers-color-scheme
+    → User's light/dark preference.
+
+prefers-reduced-motion
+    → User's motion preference.
+
+and
+    → Both/all conditions must be true.
+
+comma (,)
+    → OR between media queries.
+
+not
+    → Negates a media condition.
+
+
+========================================================
+                    QUESTIONS
+========================================================
+
+Q1. What is a media query?
+
+ANSWER:
+A media query is a CSS feature used to apply styles
+based on conditions such as viewport width, height,
+orientation, or user preferences.
+
+
+Q2. What is the difference between min-width and
+   max-width?
+
+ANSWER:
+
+min-width:
+    Applies when width is greater than or equal to
+    the specified value.
+
+max-width:
+    Applies when width is less than or equal to
+    the specified value.
+
+
+Q3. What is orientation?
+
+ANSWER:
+Orientation detects whether the viewport is in
+portrait or landscape mode.
+
+
+Q4. What is prefers-color-scheme?
+
+ANSWER:
+It detects the user's preferred light or dark color
+scheme.
+
+
+Q5. What is prefers-reduced-motion?
+
+ANSWER:
+It detects whether the user has requested reduced
+motion and can be used to reduce non-essential
+animations and transitions.
+
+
+Q6. How do you combine two media conditions?
+
+ANSWER:
+Use the `and` keyword.
+
+Example:
+
+@media (min-width: 600px) and (max-width: 900px) {
+    ...
+}
+
+
+Q7. How do you create an OR condition?
+
+ANSWER:
+Separate media queries using a comma.
+
+Example:
+
+@media (max-width: 600px), (orientation: portrait) {
+    ...
+}
+
+
+Q8. What is a breakpoint?
+
+ANSWER:
+A breakpoint is a viewport size at which the design
+changes to better fit the available space.
+
+
+Q9. Which media query is commonly used in mobile-first
+   design?
+
+ANSWER:
+
+min-width
+
+
+Q10. Which media query is commonly used in
+    desktop-first design?
+
+ANSWER:
+
+max-width
+
+
+========================================================
+                    PRACTICE
+========================================================
+
+Q1. Change the background color when the screen is
+    600px or smaller.
+
+SOLUTION:
+*/
+
+.practice-width {
+    background-color: blue;
+}
+
+@media (max-width: 600px) {
+
+    .practice-width {
+        background-color: red;
+    }
+}
+
+
+/*
+Q2. Make text larger when the viewport is at least
+    768px wide.
+*/
+
+.practice-min-width {
+    font-size: 16px;
+}
+
+@media (min-width: 768px) {
+
+    .practice-min-width {
+        font-size: 24px;
+    }
+}
+
+
+/*
+Q3. Change the layout when the screen is in landscape
+    orientation.
+*/
+
+.practice-orientation {
+    display: block;
+}
+
+@media (orientation: landscape) {
+
+    .practice-orientation {
+        display: flex;
+    }
+}
+
+
+/*
+Q4. Create a dark mode using prefers-color-scheme.
+*/
+
+.practice-theme {
+    background-color: white;
+    color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+
+    .practice-theme {
+        background-color: #111;
+        color: white;
+    }
+}
+
+
+/*
+Q5. Disable a non-essential animation when the user
+    prefers reduced motion.
+*/
+
+.practice-motion {
+    animation: practiceMove 2s infinite;
+}
+
+@keyframes practiceMove {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .practice-motion {
+        animation: none;
+    }
+}
+
+
+/*
+Q6. Create a media query that applies only when:
+
+    width >= 600px
+    width <= 1000px
+
+*/
+
+.practice-range {
+    width: 100%;
+}
+
+@media (min-width: 600px) and (max-width: 1000px) {
+
+    .practice-range {
+        width: 80%;
+    }
+}
+
+
+/*
+Q7. Create three responsive breakpoints:
+
+    Desktop → 4 columns
+    Tablet  → 2 columns
+    Mobile  → 1 column
+*/
+
+.practice-breakpoints {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+
+    .practice-breakpoints {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .practice-breakpoints {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/*
+Q8. Create a mobile-first responsive layout.
+
+    Mobile → 1 column
+    Tablet → 2 columns
+    Desktop → 4 columns
+*/
+
+.practice-mobile-first {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 600px) {
+
+    .practice-mobile-first {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .practice-mobile-first {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+/*
+========================================================
+                 EXAM MEMORY TRICK
+========================================================
+
+WIDTH:
+
+min-width
+    → GO UP from this width
+
+max-width
+    → GO DOWN to this width
+
+
+HEIGHT:
+
+min-height
+    → At least this height
+
+max-height
+    → At most this height
+
+
+PREFERENCES:
+
+prefers-color-scheme
+    → LIGHT / DARK
+
+prefers-reduced-motion
+    → NORMAL MOTION / REDUCED MOTION
+
+
+COMBINING:
+
+and
+    → AND
+
+,
+    → OR
+
+not
+    → NOT
+
+
+MOST COMMON PATTERNS:
+
+Mobile-first:
+
+@media (min-width: 768px) {
+    ...
+}
+
+
+Desktop-first:
+
+@media (max-width: 768px) {
+    ...
+}
+
+
+Width range:
+
+@media (min-width: 600px) and (max-width: 900px) {
+    ...
+}
+
+
+Dark mode:
+
+@media (prefers-color-scheme: dark) {
+    ...
+}
+
+
+Reduced motion:
+
+@media (prefers-reduced-motion: reduce) {
+    ...
+}
+
+
+========================================================
+                         END
+========================================================
+*/

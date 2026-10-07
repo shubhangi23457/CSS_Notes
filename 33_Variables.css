@@ -1,0 +1,836 @@
+# /*
+
+29. CSS VARIABLES / CUSTOM PROPERTIES
+    ============================================================
+
+30. INTRODUCTION TO CSS VARIABLES
+
+31. DECLARING VARIABLES
+
+32. USING var()
+
+33. GLOBAL VARIABLES
+
+34. LOCAL VARIABLES
+
+35. VARIABLE FALLBACK VALUES
+
+36. CHANGING VARIABLES
+
+37. VARIABLES WITH THEMES
+
+38. DARK MODE USING VARIABLES
+
+39. REUSABLE DESIGN VALUES
+
+40. QUICK REVISION
+
+41. QUESTIONS AND ANSWERS
+
+42. PRACTICE QUESTIONS
+    ============================================================
+
+---
+
+1. INTRODUCTION TO CSS VARIABLES
+
+---
+
+CSS Variables are also called CSS Custom Properties.
+
+They allow us to store values in one place and reuse them
+throughout a stylesheet.
+
+Common values that can be stored:
+
+* Colors
+* Font sizes
+* Spacing
+* Border radius
+* Widths
+* Shadows
+* Transitions
+
+Syntax:
+
+--variable-name: value;
+
+Example:
+
+:root {
+--main-color: blue;
+}
+
+CSS variable names must begin with two hyphens (--).
+
+Advantages:
+
+* Reusable values
+* Easier maintenance
+* Easy theme creation
+* Reduces repetition
+* Makes CSS easier to modify
+* Useful for responsive designs
+
+---
+
+2. DECLARING VARIABLES
+
+---
+
+CSS variables are declared using two hyphens (--).
+
+Syntax:
+
+selector {
+--variable-name: value;
+}
+
+Example:
+
+:root {
+--primary-color: blue;
+--font-size: 20px;
+--spacing: 10px;
+}
+
+The variable name is:
+--primary-color
+
+The value is:
+blue
+
+---
+
+3. USING var()
+
+---
+
+The var() function is used to access the value stored
+inside a CSS variable.
+
+Syntax:
+
+property: var(--variable-name);
+
+Example:
+
+color: var(--primary-color);
+
+Multiple variables can be used in the same stylesheet.
+
+Example:
+
+:root {
+--primary-color: blue;
+--text-color: white;
+--padding: 15px;
+}
+
+button {
+background-color: var(--primary-color);
+color: var(--text-color);
+padding: var(--padding);
+}
+
+---
+
+4. GLOBAL VARIABLES
+
+---
+
+Global variables can be accessed from almost any element
+in the document.
+
+The most common place to declare global variables is :root.
+
+Example:
+
+:root {
+--primary-color: #2563eb;
+--secondary-color: #64748b;
+--text-color: #222;
+}
+
+Any element can use these variables:
+
+h1 {
+color: var(--primary-color);
+}
+
+p {
+color: var(--text-color);
+}
+
+button {
+background-color: var(--primary-color);
+}
+
+Why use :root?
+
+:root represents the root element of the document.
+
+For HTML documents, :root refers to the <html> element.
+
+It is commonly used for global CSS variables.
+
+---
+
+5. LOCAL VARIABLES
+
+---
+
+A variable can also be declared inside a specific selector.
+
+Such a variable is local to that element and its descendants.
+
+Example:
+
+.card {
+--card-color: purple;
+color: var(--card-color);
+}
+
+The variable can be used inside .card and its children.
+
+Example:
+
+.card {
+--card-color: purple;
+}
+
+.card h2 {
+color: var(--card-color);
+}
+
+A local variable is not normally available to unrelated
+elements outside its scope.
+
+---
+
+6. VARIABLE FALLBACK VALUES
+
+---
+
+A fallback value is used when a CSS variable is unavailable
+or invalid in the current context.
+
+Syntax:
+
+var(--variable, fallback-value);
+
+Example:
+
+color: var(--text-color, black);
+
+If --text-color exists:
+its value is used.
+
+If --text-color does not exist:
+black is used.
+
+Multiple fallback values are also possible.
+
+Example:
+
+color: var(--primary-color, var(--backup-color, black));
+
+Important:
+
+The fallback is not used simply because the variable's
+stored value is invalid CSS in every situation.
+
+It is mainly useful when the custom property is missing
+or otherwise cannot provide a usable value.
+
+---
+
+7. CHANGING VARIABLES
+
+---
+
+One major advantage of CSS variables is that changing the
+variable changes every property using that variable.
+
+Example:
+
+:root {
+--main-color: blue;
+}
+
+h1 {
+color: var(--main-color);
+}
+
+button {
+background-color: var(--main-color);
+}
+
+Changing:
+
+--main-color: blue;
+
+to:
+
+--main-color: green;
+
+changes both h1 and button.
+
+This makes variables useful for maintaining consistent
+design systems.
+
+---
+
+8. VARIABLES WITH THEMES
+
+---
+
+CSS variables are very useful for creating different themes.
+
+For example:
+
+Light Theme:
+
+* White background
+* Dark text
+* Blue primary color
+
+Dark Theme:
+
+* Dark background
+* White text
+* Light primary color
+
+Example:
+
+:root {
+--background: white;
+--text: black;
+--primary: blue;
+}
+
+.dark-theme {
+--background: #111;
+--text: white;
+--primary: #60a5fa;
+}
+
+Elements can use:
+
+body {
+background: var(--background);
+color: var(--text);
+}
+
+button {
+background: var(--primary);
+}
+
+When .dark-theme is applied to a parent element,
+its variables override the inherited values.
+
+---
+
+9. DARK MODE USING VARIABLES
+
+---
+
+CSS variables make dark mode much easier.
+
+Example:
+
+:root {
+--bg-color: white;
+--text-color: black;
+--card-color: #f2f2f2;
+}
+
+.dark {
+--bg-color: #121212;
+--text-color: white;
+--card-color: #1e1e1e;
+}
+
+body {
+background-color: var(--bg-color);
+color: var(--text-color);
+}
+
+.card {
+background-color: var(--card-color);
+}
+
+Instead of changing every element individually,
+we change the variable values.
+
+JavaScript can also add or remove the .dark class
+to create a theme toggle.
+
+---
+
+10. REUSABLE DESIGN VALUES
+
+---
+
+Variables are useful for storing common design values.
+
+Example:
+
+:root {
+--primary-color: #2563eb;
+--secondary-color: #64748b;
+
+```
+--spacing-small: 8px;
+--spacing-medium: 16px;
+--spacing-large: 32px;
+
+--radius-small: 4px;
+--radius-medium: 8px;
+--radius-large: 16px;
+
+--font-small: 14px;
+--font-medium: 18px;
+--font-large: 32px;
+```
+
+}
+
+Now these values can be reused.
+
+Example:
+
+.card {
+padding: var(--spacing-medium);
+border-radius: var(--radius-medium);
+}
+
+button {
+padding: var(--spacing-small);
+border-radius: var(--radius-small);
+background: var(--primary-color);
+}
+
+h1 {
+font-size: var(--font-large);
+}
+
+---
+
+## COMPLETE BASIC EXAMPLE
+
+:root {
+--primary-color: #2563eb;
+--secondary-color: #64748b;
+--background-color: #f8fafc;
+--text-color: #1e293b;
+--card-color: white;
+
+```
+--spacing: 20px;
+--radius: 10px;
+```
+
+}
+
+body {
+background-color: var(--background-color);
+color: var(--text-color);
+}
+
+.card {
+background-color: var(--card-color);
+padding: var(--spacing);
+border-radius: var(--radius);
+}
+
+button {
+background-color: var(--primary-color);
+color: white;
+padding: var(--spacing);
+border: none;
+border-radius: var(--radius);
+}
+
+---
+
+## GLOBAL + LOCAL VARIABLE EXAMPLE
+
+:root {
+--main-color: blue;
+--padding: 20px;
+}
+
+.card {
+--card-color: purple;
+
+```
+padding: var(--padding);
+border: 2px solid var(--main-color);
+```
+
+}
+
+.card h2 {
+color: var(--card-color);
+}
+
+---
+
+## FALLBACK VALUE EXAMPLE
+
+:root {
+--main-color: blue;
+}
+
+h1 {
+color: var(--main-color, black);
+}
+
+p {
+color: var(--unknown-color, gray);
+}
+
+Here:
+
+h1 uses blue.
+
+p uses gray because --unknown-color is not defined.
+
+---
+
+## THEME EXAMPLE
+
+:root {
+--bg-color: white;
+--text-color: black;
+--button-color: #2563eb;
+}
+
+.dark-theme {
+--bg-color: #121212;
+--text-color: white;
+--button-color: #60a5fa;
+}
+
+body {
+background-color: var(--bg-color);
+color: var(--text-color);
+}
+
+button {
+background-color: var(--button-color);
+color: white;
+}
+
+---
+
+## CSS VARIABLES WITH MEDIA QUERY
+
+CSS variables can also be changed inside media queries.
+
+Example:
+
+:root {
+--spacing: 30px;
+--font-size: 32px;
+}
+
+@media (max-width: 600px) {
+:root {
+--spacing: 15px;
+--font-size: 24px;
+}
+}
+
+.container {
+padding: var(--spacing);
+}
+
+h1 {
+font-size: var(--font-size);
+}
+
+This allows the same variables to automatically use
+different values on smaller screens.
+
+---
+
+## VARIABLE NAMING BEST PRACTICES
+
+Good:
+
+--primary-color
+--text-color
+--font-size
+--spacing-medium
+--border-radius
+
+Avoid unclear names:
+
+--x
+--abc
+--value1
+
+Use names that describe the purpose of the value.
+
+---
+
+## IMPORTANT DIFFERENCE
+
+Normal CSS property:
+
+color: red;
+
+CSS variable:
+
+--main-color: red;
+
+Using the variable:
+
+color: var(--main-color);
+
+---
+
+## QUICK REVISION
+
+1. CSS variables are also called custom properties.
+
+2. Variable names start with --.
+
+3. Variables are usually declared globally inside :root.
+
+4. var() is used to access a variable.
+
+5. Local variables can be declared inside selectors.
+
+6. Global variables can be reused throughout the stylesheet.
+
+7. Fallback syntax:
+
+   var(--name, fallback);
+
+8. Variables make theme creation easier.
+
+9. Variables can be changed inside media queries.
+
+10. CSS variables reduce repetition and improve maintainability.
+
+---
+
+## QUESTIONS AND ANSWERS
+
+Q1. What are CSS variables?
+
+Answer:
+CSS variables are custom properties that store reusable
+CSS values.
+
+Example:
+
+:root {
+--main-color: blue;
+}
+
+Q2. How do you declare a CSS variable?
+
+Answer:
+
+--variable-name: value;
+
+Example:
+
+--primary-color: blue;
+
+Q3. How do you use a CSS variable?
+
+Answer:
+
+Use the var() function.
+
+Example:
+
+color: var(--primary-color);
+
+Q4. Where are global CSS variables commonly declared?
+
+Answer:
+
+Inside the :root selector.
+
+Example:
+
+:root {
+--main-color: blue;
+}
+
+Q5. What is a local CSS variable?
+
+Answer:
+A variable declared inside a specific selector is local
+to that element and its descendants through CSS inheritance.
+
+Example:
+
+.card {
+--card-color: purple;
+}
+
+Q6. What is a fallback value?
+
+Answer:
+A fallback is an alternative value used when a custom
+property is unavailable or cannot provide a usable value.
+
+Example:
+
+color: var(--main-color, black);
+
+Q7. Why are CSS variables useful for themes?
+
+Answer:
+Because changing a small set of variables can change the
+appearance of many elements at once.
+
+Q8. Can CSS variables be changed inside media queries?
+
+Answer:
+Yes.
+
+Example:
+
+@media (max-width: 600px) {
+:root {
+--spacing: 10px;
+}
+}
+
+Q9. What is the difference between a CSS variable and
+a normal CSS property?
+
+Answer:
+A CSS variable stores a reusable value, while a normal
+property applies a value to a particular property.
+
+Example:
+
+--color: blue;
+color: var(--color);
+
+Q10. Can JavaScript change CSS variables?
+
+Answer:
+Yes. JavaScript can modify custom properties dynamically.
+
+Example:
+
+document.documentElement.style.setProperty(
+"--main-color",
+"red"
+);
+
+---
+
+## PRACTICE QUESTIONS
+
+Q1. Create three global variables for:
+
+* Primary color
+* Font size
+* Padding
+
+Use all three in a card.
+
+Q2. Create a dark theme using CSS variables.
+
+Q3. Create local variables for a card's:
+
+* Color
+* Padding
+* Border radius
+
+Q4. Create a fallback value for a missing variable.
+
+Q5. Create responsive CSS variables using a media query.
+
+Q6. Create a button that uses variables for:
+
+* Background color
+* Text color
+* Padding
+* Border radius
+
+---
+
+## EXAM MEMORY TRICK
+
+DECLARE:
+--name: value;
+
+USE:
+var(--name);
+
+FALLBACK:
+var(--name, backup);
+
+GLOBAL:
+:root {
+--name: value;
+}
+
+LOCAL:
+.selector {
+--name: value;
+}
+
+THEME:
+Change variable values instead of changing every element.
+
+============================================================
+END OF CSS VARIABLES / CUSTOM PROPERTIES
+========================================
+
+*/
+
+:root {
+--primary-color: #2563eb;
+--text-color: #1e293b;
+--background-color: #f8fafc;
+--card-color: white;
+--spacing: 20px;
+--radius: 10px;
+}
+
+body {
+margin: 0;
+padding: var(--spacing);
+background-color: var(--background-color);
+color: var(--text-color);
+font-family: Arial, sans-serif;
+}
+
+.card {
+max-width: 400px;
+margin: 20px auto;
+padding: var(--spacing);
+background-color: var(--card-color);
+border-radius: var(--radius);
+box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+}
+
+.card h1 {
+color: var(--primary-color);
+}
+
+.card button {
+padding: 10px 20px;
+border: none;
+border-radius: var(--radius);
+background-color: var(--primary-color);
+color: white;
+cursor: pointer;
+}
+
+.card button:hover {
+opacity: 0.85;
+}

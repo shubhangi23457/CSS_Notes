@@ -1,0 +1,1110 @@
+# /*
+
+30. CSS FUNCTIONS
+    ============================================================
+
+CSS functions are special CSS expressions that perform
+calculations, return values, reference resources, create
+colors/gradients, or apply transformations.
+
+IMPORTANT CSS FUNCTIONS:
+
+1. var()
+2. calc()
+3. min()
+4. max()
+5. clamp()
+6. url()
+7. rgb()
+8. rgba()
+9. hsl()
+10. hsla()
+11. linear-gradient()
+12. radial-gradient()
+13. repeating-linear-gradient()
+14. repeating-radial-gradient()
+15. translate()
+16. scale()
+17. rotate()
+
+---
+
+1. var()
+
+---
+
+var() is used to access a CSS custom property
+(CSS variable).
+
+Syntax:
+
+var(--variable-name)
+
+Example:
+
+:root {
+--main-color: blue;
+}
+
+h1 {
+color: var(--main-color);
+}
+
+FALLBACK VALUE:
+
+var(--variable-name, fallback-value)
+
+Example:
+
+color: var(--main-color, black);
+
+If --main-color is unavailable, black is used.
+
+---
+
+2. calc()
+
+---
+
+calc() performs mathematical calculations in CSS.
+
+It can combine different units.
+
+Syntax:
+
+calc(expression)
+
+Example:
+
+width: calc(100% - 40px);
+
+Common operators:
+
+* Addition
+
+- Subtraction
+
+* Multiplication
+  /   Division
+
+Example:
+
+width: calc(100% - 20px);
+height: calc(100vh - 80px);
+margin: calc(10px + 5px);
+
+IMPORTANT:
+
+Spaces should be used around + and - operators.
+
+Correct:
+
+calc(100% - 20px)
+
+Avoid:
+
+calc(100%-20px)
+
+---
+
+3. min()
+
+---
+
+min() returns the smallest value from the values provided.
+
+Syntax:
+
+min(value1, value2, ...)
+
+Example:
+
+width: min(90%, 600px);
+
+This means:
+
+Use 90% or 600px,
+whichever is smaller.
+
+Useful for responsive layouts.
+
+Example:
+
+.container {
+width: min(90%, 1200px);
+margin: auto;
+}
+
+---
+
+4. max()
+
+---
+
+max() returns the largest value from the values provided.
+
+Syntax:
+
+max(value1, value2, ...)
+
+Example:
+
+width: max(50%, 300px);
+
+The browser uses whichever value is larger.
+
+Useful for setting minimum-like limits.
+
+Example:
+
+.container {
+padding: max(20px, 5vw);
+}
+
+---
+
+5. clamp()
+
+---
+
+clamp() limits a value between a minimum and maximum.
+
+Syntax:
+
+clamp(minimum, preferred, maximum)
+
+Example:
+
+font-size: clamp(20px, 5vw, 50px);
+
+Meaning:
+
+Minimum = 20px
+Preferred = 5vw
+Maximum = 50px
+
+The value can grow and shrink responsively but will
+never go below 20px or above 50px.
+
+Very useful for responsive typography.
+
+Example:
+
+h1 {
+font-size: clamp(2rem, 5vw, 4rem);
+}
+
+Memory trick:
+
+clamp(MIN, PREFERRED, MAX)
+
+---
+
+6. url()
+
+---
+
+url() specifies a resource such as an image or font.
+
+Syntax:
+
+url("path");
+
+Example:
+
+background-image: url("background.jpg");
+
+Other examples:
+
+background: url("image.png");
+src: url("font.woff2");
+
+url() can be used with:
+
+* Background images
+* Fonts
+* Cursors
+* Other CSS resources
+
+---
+
+7. rgb()
+
+---
+
+rgb() creates a color using:
+
+Red
+Green
+Blue
+
+Syntax:
+
+rgb(red, green, blue)
+
+Values traditionally range from 0 to 255.
+
+Example:
+
+color: rgb(255, 0, 0);
+
+This creates red.
+
+Examples:
+
+rgb(0, 0, 0)       = Black
+rgb(255, 255, 255) = White
+rgb(0, 0, 255)     = Blue
+rgb(0, 255, 0)     = Green
+
+Modern CSS also allows an optional alpha component:
+
+rgb(255 0 0 / 0.5)
+
+This creates red with 50% opacity.
+
+---
+
+8. rgba()
+
+---
+
+rgba() represents:
+
+Red
+Green
+Blue
+Alpha
+
+Syntax:
+
+rgba(red, green, blue, alpha)
+
+Alpha controls transparency.
+
+Alpha:
+
+0   = completely transparent
+1   = completely opaque
+
+Example:
+
+background-color: rgba(0, 0, 0, 0.5);
+
+This creates black with 50% opacity.
+
+Example:
+
+rgba(255, 0, 0, 0.2);
+
+Red with 20% opacity.
+
+NOTE:
+
+Modern CSS can use rgb() with alpha:
+
+rgb(255 0 0 / 0.5)
+
+So rgba() is still commonly seen, but rgb() can also
+represent alpha in modern CSS.
+
+---
+
+9. hsl()
+
+---
+
+HSL stands for:
+
+H = Hue
+S = Saturation
+L = Lightness
+
+Syntax:
+
+hsl(hue, saturation, lightness)
+
+Example:
+
+color: hsl(0, 100%, 50%);
+
+This creates red.
+
+Hue is represented as an angle.
+
+Examples:
+
+0°   = Red
+120° = Green
+240° = Blue
+
+Saturation:
+
+0%   = No saturation
+100% = Full saturation
+
+Lightness:
+
+0%   = Black
+50%  = Normal color
+100% = White
+
+Example:
+
+hsl(200, 100%, 50%);
+
+---
+
+10. hsla()
+
+---
+
+hsla() adds an alpha value to HSL.
+
+Syntax:
+
+hsla(hue, saturation, lightness, alpha)
+
+Example:
+
+background-color: hsla(200, 100%, 50%, 0.5);
+
+This creates a blue/cyan color with 50% opacity.
+
+Modern CSS can also represent this using hsl():
+
+hsl(200 100% 50% / 0.5)
+
+---
+
+11. linear-gradient()
+
+---
+
+linear-gradient() creates a gradient along a straight line.
+
+Syntax:
+
+linear-gradient(direction, color1, color2, ...)
+
+Example:
+
+background: linear-gradient(red, blue);
+
+The gradient moves from the default top direction
+towards the bottom.
+
+Direction can be specified.
+
+Example:
+
+background: linear-gradient(to right, red, blue);
+
+Other directions:
+
+to left
+to right
+to top
+to bottom
+to top right
+to bottom right
+
+Angles can also be used:
+
+background:
+linear-gradient(45deg, red, blue);
+
+Color stops can be specified:
+
+background:
+linear-gradient(
+to right,
+red 0%,
+yellow 50%,
+blue 100%
+);
+
+---
+
+12. radial-gradient()
+
+---
+
+radial-gradient() creates a gradient spreading outward
+from a central point.
+
+Syntax:
+
+radial-gradient(shape, color1, color2, ...)
+
+Example:
+
+background:
+radial-gradient(circle, red, blue);
+
+Common shapes:
+
+circle
+ellipse
+
+Position can also be specified.
+
+Example:
+
+background:
+radial-gradient(
+circle at center,
+red,
+blue
+);
+
+Color stops can also be used:
+
+background:
+radial-gradient(
+circle,
+red 0%,
+yellow 50%,
+blue 100%
+);
+
+---
+
+13. repeating-linear-gradient()
+
+---
+
+repeating-linear-gradient() creates a linear gradient
+that repeats continuously.
+
+Example:
+
+background:
+repeating-linear-gradient(
+45deg,
+red 0px,
+red 10px,
+white 10px,
+white 20px
+);
+
+This creates repeated diagonal stripes.
+
+Useful for:
+
+* Stripes
+* Patterns
+* Decorative backgrounds
+
+---
+
+14. repeating-radial-gradient()
+
+---
+
+repeating-radial-gradient() creates a radial gradient
+that repeats outward.
+
+Example:
+
+background:
+repeating-radial-gradient(
+circle,
+red 0px,
+red 10px,
+white 10px,
+white 20px
+);
+
+This creates repeated circular patterns.
+
+Useful for:
+
+* Decorative backgrounds
+* Circular patterns
+* Repeating effects
+
+---
+
+15. translate()
+
+---
+
+translate() is a transform function used to move an element.
+
+Syntax:
+
+transform: translate(x, y);
+
+Example:
+
+transform: translate(50px, 20px);
+
+This moves the element:
+
+50px horizontally
+20px vertically
+
+Individual functions also exist:
+
+translateX(50px)
+translateY(20px)
+translateZ(30px)
+
+Example:
+
+transform: translateX(100px);
+
+---
+
+16. scale()
+
+---
+
+scale() changes the size of an element.
+
+Syntax:
+
+transform: scale(value);
+
+Example:
+
+transform: scale(1.5);
+
+The element becomes 1.5 times its original size.
+
+Examples:
+
+scale(1)   = Original size
+scale(2)   = Twice the size
+scale(0.5) = Half the size
+
+Different X and Y scaling can be specified:
+
+transform: scale(2, 1);
+
+This makes the element:
+
+2 times wider
+1 time taller
+
+Individual functions:
+
+scaleX()
+scaleY()
+scaleZ()
+
+---
+
+17. rotate()
+
+---
+
+rotate() rotates an element around its transform origin.
+
+Syntax:
+
+transform: rotate(angle);
+
+Example:
+
+transform: rotate(45deg);
+
+The element rotates 45 degrees clockwise.
+
+Negative values can rotate in the opposite direction.
+
+Example:
+
+transform: rotate(-45deg);
+
+Other transform functions include:
+
+rotateX()
+rotateY()
+rotateZ()
+
+---
+
+## COMBINING TRANSFORM FUNCTIONS
+
+Multiple transform functions can be combined.
+
+Example:
+
+transform:
+translate(50px, 20px)
+scale(1.2)
+rotate(10deg);
+
+The order of transform functions matters.
+
+Example:
+
+transform:
+translate(50px)
+rotate(45deg);
+
+is not necessarily visually equivalent to:
+
+transform:
+rotate(45deg)
+translate(50px);
+
+---
+
+## RESPONSIVE WIDTH USING min()
+
+.container {
+width: min(90%, 1200px);
+margin: auto;
+}
+
+This prevents the container from becoming too wide
+while still allowing it to be responsive.
+
+---
+
+## RESPONSIVE WIDTH USING max()
+
+.container {
+width: 100%;
+padding-left: max(20px, 5vw);
+padding-right: max(20px, 5vw);
+}
+
+This ensures the padding does not become smaller than 20px.
+
+---
+
+## RESPONSIVE FONT USING clamp()
+
+h1 {
+font-size: clamp(2rem, 5vw, 4rem);
+}
+
+This allows the heading to resize depending on the viewport
+while staying within the minimum and maximum values.
+
+---
+
+## COMPLETE PRACTICAL EXAMPLE
+
+:root {
+--primary: rgb(37 99 235);
+--card-width: min(90%, 500px);
+}
+
+.card {
+width: var(--card-width);
+margin: 30px auto;
+padding: 20px;
+
+```
+background:
+    linear-gradient(
+        135deg,
+        rgb(37 99 235),
+        rgb(124 58 237)
+    );
+
+border-radius: 15px;
+color: white;
+```
+
+}
+
+.card h1 {
+font-size: clamp(24px, 5vw, 40px);
+}
+
+.card:hover {
+transform:
+translateY(-10px)
+scale(1.03)
+rotate(1deg);
+}
+
+---
+
+## FUNCTION COMPARISON
+
+var()
+→ Uses CSS variables.
+
+calc()
+→ Performs calculations.
+
+min()
+→ Chooses the smallest value.
+
+max()
+→ Chooses the largest value.
+
+clamp()
+→ Keeps a value between minimum and maximum.
+
+url()
+→ References an external resource.
+
+rgb()
+→ Creates RGB colors.
+
+rgba()
+→ Creates RGB colors with alpha.
+
+hsl()
+→ Creates HSL colors.
+
+hsla()
+→ Creates HSL colors with alpha.
+
+linear-gradient()
+→ Creates a straight-line gradient.
+
+radial-gradient()
+→ Creates a circular/elliptical gradient.
+
+repeating-linear-gradient()
+→ Creates repeating linear patterns.
+
+repeating-radial-gradient()
+→ Creates repeating radial patterns.
+
+translate()
+→ Moves an element.
+
+scale()
+→ Resizes an element.
+
+rotate()
+→ Rotates an element.
+
+---
+
+## IMPORTANT DIFFERENCES
+
+min() vs max():
+
+min() → smallest value
+max() → largest value
+
+Example:
+
+width: min(90%, 600px);
+
+width: max(50%, 300px);
+
+min() vs clamp():
+
+min() chooses the smallest value.
+
+clamp() provides:
+minimum + preferred + maximum.
+
+Example:
+
+width: min(90%, 600px);
+
+font-size: clamp(20px, 5vw, 40px);
+
+rgb() vs rgba():
+
+rgb() → RGB color
+
+rgba() → RGB + alpha
+
+Modern CSS can also use rgb() with an alpha component.
+
+linear-gradient() vs radial-gradient():
+
+linear-gradient()
+→ Gradient moves along a line.
+
+radial-gradient()
+→ Gradient spreads from a central point.
+
+translate() vs scale() vs rotate():
+
+translate()
+→ Move
+
+scale()
+→ Resize
+
+rotate()
+→ Rotate
+
+---
+
+## QUICK REVISION
+
+var()       → CSS variable
+calc()      → Calculation
+min()       → Smallest value
+max()       → Largest value
+clamp()     → Min + preferred + max
+url()       → Resource
+rgb()       → RGB color
+rgba()      → RGB + alpha
+hsl()       → Hue + saturation + lightness
+hsla()      → HSL + alpha
+
+linear-gradient()
+→ Straight gradient
+
+radial-gradient()
+→ Circular/elliptical gradient
+
+repeating-linear-gradient()
+→ Repeating straight pattern
+
+repeating-radial-gradient()
+→ Repeating radial pattern
+
+translate()
+→ Move
+
+scale()
+→ Resize
+
+rotate()
+→ Rotate
+
+---
+
+## QUESTIONS AND ANSWERS
+
+Q1. What is var()?
+
+Answer:
+var() is used to access the value of a CSS custom property.
+
+Example:
+
+color: var(--main-color);
+
+Q2. What is calc()?
+
+Answer:
+calc() performs mathematical calculations in CSS.
+
+Example:
+
+width: calc(100% - 40px);
+
+Q3. What does min() do?
+
+Answer:
+min() returns the smallest value from the supplied values.
+
+Q4. What does max() do?
+
+Answer:
+max() returns the largest value from the supplied values.
+
+Q5. What is the syntax of clamp()?
+
+Answer:
+
+clamp(minimum, preferred, maximum)
+
+Q6. Why is clamp() useful?
+
+Answer:
+It is useful for responsive values such as font sizes,
+spacing and dimensions because the value stays within
+specified minimum and maximum limits.
+
+Q7. What is url() used for?
+
+Answer:
+url() is used to reference resources such as images and fonts.
+
+Example:
+
+background-image: url("image.jpg");
+
+Q8. What is the difference between RGB and HSL?
+
+Answer:
+RGB represents a color using red, green and blue values.
+
+HSL represents a color using hue, saturation and lightness.
+
+Q9. What does alpha represent?
+
+Answer:
+Alpha represents the opacity/transparency of a color.
+
+0 = transparent
+1 = opaque
+
+Q10. What is linear-gradient()?
+
+Answer:
+It creates a gradient that progresses along a straight line.
+
+Q11. What is radial-gradient()?
+
+Answer:
+It creates a gradient that spreads outward from a central point.
+
+Q12. What does translate() do?
+
+Answer:
+It moves an element from its original position.
+
+Q13. What does scale() do?
+
+Answer:
+It changes the size of an element.
+
+Q14. What does rotate() do?
+
+Answer:
+It rotates an element around its transform origin.
+
+---
+
+## PRACTICE QUESTIONS
+
+Q1. Create a responsive container using min().
+
+Q2. Create responsive font sizing using clamp().
+
+Q3. Create a box whose width is calculated using calc().
+
+Q4. Create a red color using rgb().
+
+Q5. Create a semi-transparent black background using rgba().
+
+Q6. Create a color using hsl().
+
+Q7. Create a linear gradient from blue to purple.
+
+Q8. Create a radial gradient from red to yellow.
+
+Q9. Create a repeating diagonal stripe pattern.
+
+Q10. Move a box 50px to the right using translate().
+
+Q11. Make a box 1.5 times larger using scale().
+
+Q12. Rotate a box by 45 degrees.
+
+Q13. Combine translate(), scale() and rotate() in one
+transform declaration.
+
+---
+
+## EXAM MEMORY TRICK
+
+CALCULATION:
+calc()
+
+SMALLEST:
+min()
+
+LARGEST:
+max()
+
+LIMIT:
+clamp()
+
+RESOURCE:
+url()
+
+COLOR:
+rgb()
+rgba()
+hsl()
+hsla()
+
+GRADIENT:
+linear-gradient()
+radial-gradient()
+
+REPEATING:
+repeating-linear-gradient()
+repeating-radial-gradient()
+
+TRANSFORM:
+translate() → Move
+scale()    → Resize
+rotate()   → Turn
+
+============================================================
+END OF CSS FUNCTIONS
+====================
+
+*/
+
+:root {
+--primary-color: rgb(37 99 235);
+--secondary-color: hsl(270 70% 55%);
+--container-width: min(90%, 900px);
+--heading-size: clamp(24px, 5vw, 48px);
+}
+
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background: rgb(245 247 250);
+}
+
+.container {
+width: var(--container-width);
+margin: 30px auto;
+}
+
+.card {
+padding: 30px;
+border-radius: 15px;
+color: white;
+
+```
+background:
+    linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--secondary-color)
+    );
+
+box-shadow: 0 10px 25px rgb(0 0 0 / 0.15);
+```
+
+}
+
+.card h1 {
+font-size: var(--heading-size);
+}
+
+.card p {
+width: calc(100% - 20px);
+}
+
+.card:hover {
+transform:
+translateY(-10px)
+scale(1.03)
+rotate(1deg);
+}
+
+.pattern {
+width: 200px;
+height: 100px;
+margin-top: 20px;
+
+```
+background:
+    repeating-linear-gradient(
+        45deg,
+        rgb(37 99 235) 0px,
+        rgb(37 99 235) 10px,
+        white 10px,
+        white 20px
+    );
+```
+
+}

@@ -1,0 +1,1066 @@
+# /*
+
+```
+                CSS FORMS
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. Styling Form Elements
+2. Input Fields
+3. Textareas
+4. Select Boxes
+5. Checkboxes
+6. Radio Buttons
+7. Buttons
+8. Labels
+9. Placeholder Styling
+10. Focus States
+11. Disabled States
+12. Valid/Invalid States
+13. Form Layouts
+14. Custom Form Controls
+15. Form Accessibility Styling
+
+========================================================
+
+1. STYLING FORM ELEMENTS
+   ========================================================
+
+CSS can be used to style:
+
+```
+input
+textarea
+select
+button
+label
+checkbox
+radio button
+```
+
+Common properties used for forms:
+
+```
+width
+height
+padding
+margin
+border
+border-radius
+background
+color
+font-size
+font-family
+outline
+box-shadow
+```
+
+Example:
+
+```
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+```
+
+========================================================
+2. INPUT FIELDS
+===============
+
+Input fields are used to accept different types of data.
+
+Common input types:
+
+```
+text
+email
+password
+number
+date
+time
+file
+search
+tel
+url
+```
+
+CSS can style input fields using:
+
+```
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+```
+
+Using type selectors:
+
+```
+input[type="text"] { }
+input[type="email"] { }
+input[type="password"] { }
+input[type="number"] { }
+```
+
+========================================================
+3. TEXTAREAS
+============
+
+<textarea> is used for multi-line text input.
+
+Example styling:
+
+    textarea {
+        width: 100%;
+        min-height: 120px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        resize: vertical;
+        box-sizing: border-box;
+    }
+
+resize controls whether the user can resize the textarea.
+
+Values:
+
+    resize: none;
+    resize: both;
+    resize: horizontal;
+    resize: vertical;
+
+For forms, vertical resizing is commonly preferred.
+
+========================================================
+4. SELECT BOXES
+========================================================
+
+The <select> element creates a dropdown list.
+
+Example:
+
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background: white;
+        font-size: 16px;
+    }
+
+The <option> elements represent individual choices.
+
+Example:
+
+    select {
+        cursor: pointer;
+    }
+
+========================================================
+5. CHECKBOXES
+========================================================
+
+Checkboxes allow users to select zero, one, or multiple options.
+
+Example:
+
+    input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: #2563eb;
+    }
+
+The accent-color property can change the main accent color
+of supported native form controls.
+
+========================================================
+6. RADIO BUTTONS
+========================================================
+
+Radio buttons are normally used when the user should select
+one option from a group.
+
+Example:
+
+    input[type="radio"] {
+        width: 18px;
+        height: 18px;
+        accent-color: #2563eb;
+    }
+
+Radio buttons with the same name attribute form a group.
+
+========================================================
+7. BUTTONS
+========================================================
+
+Buttons can be styled using:
+
+    background
+    color
+    padding
+    border
+    border-radius
+    font-size
+    cursor
+    box-shadow
+    transition
+
+Example:
+
+    button {
+        padding: 12px 20px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+Hover effect:
+
+    button:hover {
+        background: #1d4ed8;
+    }
+
+========================================================
+8. LABELS
+========================================================
+
+<label> describes a form control.
+
+Example:
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+    }
+
+A label can be connected to an input using the for attribute.
+
+Example HTML:
+
+    <label for="email">Email</label>
+    <input id="email" type="email">
+
+The value of for should match the input's id.
+
+Good labels improve usability and accessibility.
+
+========================================================
+9. PLACEHOLDER STYLING
+========================================================
+
+The ::placeholder pseudo-element styles placeholder text.
+
+Syntax:
+
+    input::placeholder {
+        color: gray;
+    }
+
+Example:
+
+    input::placeholder {
+        color: #888;
+        font-size: 14px;
+    }
+
+Placeholder text should not be used as the only label because
+it disappears when the user starts entering data.
+
+========================================================
+10. FOCUS STATES
+========================================================
+
+The :focus pseudo-class applies when an element receives focus.
+
+Example:
+
+    input:focus {
+        border-color: #2563eb;
+        outline: none;
+    }
+
+A visible focus indicator is important for keyboard users.
+
+A better accessible approach:
+
+    input:focus-visible {
+        outline: 3px solid #93c5fd;
+        outline-offset: 2px;
+    }
+
+:focus
+    Applies whenever the element is focused.
+
+:focus-visible
+    Applies when the browser determines that a visible focus
+    indicator is particularly appropriate, such as keyboard use.
+
+Do not remove focus indicators without providing another
+clear focus style.
+
+========================================================
+11. DISABLED STATES
+========================================================
+
+The :disabled pseudo-class styles disabled form controls.
+
+Example:
+
+    input:disabled {
+        background: #eee;
+        color: #777;
+        cursor: not-allowed;
+    }
+
+Button:
+
+    button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+A disabled control normally cannot be interacted with.
+
+========================================================
+12. VALID / INVALID STATES
+========================================================
+
+CSS provides:
+
+    :valid
+    :invalid
+
+These pseudo-classes can style controls based on their
+HTML validation state.
+
+Example:
+
+    input:valid {
+        border-color: green;
+    }
+
+    input:invalid {
+        border-color: red;
+    }
+
+For example, an email input may become invalid when the
+entered value does not satisfy its HTML constraints.
+
+Example HTML:
+
+    <input type="email" required>
+
+========================================================
+13. FORM LAYOUTS
+========================================================
+
+Forms can be arranged using:
+
+    Block layout
+    Flexbox
+    Grid
+
+========================================================
+Simple Form Layout
+========================================================
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 6px;
+    }
+
+========================================================
+Flexbox Form Layout
+========================================================
+
+Flexbox can arrange fields in rows.
+
+    .form-row {
+        display: flex;
+        gap: 20px;
+    }
+
+    .form-row > div {
+        flex: 1;
+    }
+
+This is useful for:
+
+    First Name + Last Name
+    City + State
+    Date + Time
+
+========================================================
+Grid Form Layout
+========================================================
+
+CSS Grid is useful for structured forms.
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+For mobile screens:
+
+    @media (max-width: 600px) {
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+========================================================
+14. CUSTOM FORM CONTROLS
+========================================================
+
+Native controls can be customized carefully.
+
+Examples:
+
+    Custom checkbox
+    Custom radio button
+    Custom select styling
+    Custom button
+
+The appearance property can be used to remove some
+browser-provided styling.
+
+Example:
+
+    input[type="checkbox"] {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #555;
+        border-radius: 4px;
+    }
+
+When checked:
+
+    input[type="checkbox"]:checked {
+        background: #2563eb;
+    }
+
+However, when creating custom controls, preserve:
+
+    Keyboard accessibility
+    Focus indicators
+    Clear checked state
+    Sufficient contrast
+    Proper labels
+
+========================================================
+Custom Radio Button
+========================================================
+
+Example:
+
+    input[type="radio"] {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #555;
+        border-radius: 50%;
+    }
+
+    input[type="radio"]:checked {
+        border: 6px solid #2563eb;
+    }
+
+The border creates the appearance of a selected radio button.
+
+========================================================
+15. FORM ACCESSIBILITY STYLING
+========================================================
+
+Accessible form styling should make forms easy to understand
+and use with keyboards, screen readers, and different devices.
+
+IMPORTANT PRACTICES:
+
+1. Use visible labels.
+
+2. Connect labels with controls.
+
+Example:
+
+    <label for="username">Username</label>
+    <input id="username" type="text">
+
+3. Maintain visible focus indicators.
+
+Example:
+
+    input:focus-visible {
+        outline: 3px solid #2563eb;
+        outline-offset: 2px;
+    }
+
+4. Use sufficient color contrast.
+
+5. Do not communicate errors only through color.
+
+Bad:
+
+    Red border only
+
+Better:
+
+    Red border + error message
+
+6. Keep controls large enough to use comfortably.
+
+7. Do not remove outlines without replacing them.
+
+8. Use placeholder text only as supporting information.
+
+9. Group related controls using fieldset and legend.
+
+Example:
+
+    <fieldset>
+        <legend>Gender</legend>
+
+        <label>
+            <input type="radio" name="gender" value="male">
+            Male
+        </label>
+
+        <label>
+            <input type="radio" name="gender" value="female">
+            Female
+        </label>
+    </fieldset>
+
+10. Make error and success states visually clear.
+
+========================================================
+COMMON FORM RESET
+========================================================
+
+A common starting point:
+
+    input,
+    textarea,
+    select,
+    button {
+        font: inherit;
+    }
+
+This makes form controls inherit the surrounding font.
+
+========================================================
+PRACTICAL FORM STYLE
+========================================================
+*/
+
+.form {
+    width: 100%;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 25px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600;
+}
+
+.form input,
+.form textarea,
+.form select {
+    width: 100%;
+    padding: 11px;
+    box-sizing: border-box;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font: inherit;
+}
+
+.form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+    color: #777;
+}
+
+.form input:focus,
+.form textarea:focus,
+.form select:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+.form input:focus-visible,
+.form textarea:focus-visible,
+.form select:focus-visible {
+    outline: 3px solid #bfdbfe;
+    outline-offset: 2px;
+}
+
+.form input:disabled,
+.form textarea:disabled,
+.form select:disabled {
+    background: #eee;
+    color: #777;
+    cursor: not-allowed;
+}
+
+.form button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #2563eb;
+    color: white;
+    font: inherit;
+    cursor: pointer;
+}
+
+.form button:hover {
+    background: #1d4ed8;
+}
+
+.form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/*
+========================================================
+FORM VALIDATION EXAMPLE
+========================================================
+*/
+
+.form input[type="email"]:valid {
+    border-color: green;
+}
+
+.form input[type="email"]:invalid {
+    border-color: red;
+}
+
+/*
+Note:
+
+If you style every empty required input with :invalid,
+it may appear red before the user starts interacting.
+
+For beginner-friendly forms, consider using:
+
+    :focus
+    :user-invalid
+
+where browser support is appropriate.
+
+========================================================
+CHECKBOX AND RADIO EXAMPLE
+========================================================
+*/
+
+.form input[type="checkbox"],
+.form input[type="radio"] {
+    width: auto;
+    accent-color: #2563eb;
+}
+
+/*
+========================================================
+RESPONSIVE FORM LAYOUT
+========================================================
+*/
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/*
+========================================================
+QUICK REVISION
+========================================================
+
+Input:
+    input { }
+
+Textarea:
+    textarea { }
+
+Select:
+    select { }
+
+Checkbox:
+    input[type="checkbox"] { }
+
+Radio:
+    input[type="radio"] { }
+
+Button:
+    button { }
+
+Label:
+    label { }
+
+Placeholder:
+    ::placeholder
+
+Focus:
+    :focus
+    :focus-visible
+
+Disabled:
+    :disabled
+
+Valid:
+    :valid
+
+Invalid:
+    :invalid
+
+Checked:
+    :checked
+
+Form layout:
+    Flexbox
+    Grid
+
+Custom controls:
+    appearance: none;
+
+========================================================
+IMPORTANT PSEUDO-CLASS MEMORY
+========================================================
+
+:focus
+    Element currently has focus.
+
+:focus-visible
+    Focus indicator when the browser determines it should
+    be visibly indicated.
+
+:disabled
+    Control is disabled.
+
+:enabled
+    Control is enabled.
+
+:checked
+    Checkbox/radio is selected.
+
+:valid
+    Value satisfies applicable validation constraints.
+
+:invalid
+    Value fails applicable validation constraints.
+
+:required
+    Control has the required attribute.
+
+:optional
+    Control is not required.
+
+========================================================
+IMPORTANT DIFFERENCES
+========================================================
+
+:focus vs :focus-visible
+------------------------
+
+:focus:
+    Applies whenever an element receives focus.
+
+:focus-visible:
+    More targeted for visible focus indication, especially
+    useful for keyboard navigation.
+
+--------------------------------------------------------
+
+:valid vs :invalid
+------------------
+
+:valid:
+    Input satisfies its validation rules.
+
+:invalid:
+    Input does not satisfy its validation rules.
+
+--------------------------------------------------------
+
+disabled vs readonly
+--------------------
+
+disabled:
+    Usually cannot be interacted with and is generally not
+    submitted with a form.
+
+readonly:
+    User cannot edit the value, but the control can generally
+    still receive focus and its value can be submitted.
+
+========================================================
+EXAM QUESTIONS
+========================================================
+
+Q1. How do you style an input field?
+
+Answer:
+
+    input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+--------------------------------------------------------
+
+Q2. Which pseudo-class is used for focused elements?
+
+Answer:
+
+    :focus
+
+--------------------------------------------------------
+
+Q3. Which pseudo-class is used for disabled controls?
+
+Answer:
+
+    :disabled
+
+--------------------------------------------------------
+
+Q4. How do you style placeholder text?
+
+Answer:
+
+    input::placeholder {
+        color: gray;
+    }
+
+--------------------------------------------------------
+
+Q5. How do you style a checked checkbox?
+
+Answer:
+
+    input[type="checkbox"]:checked {
+        background: blue;
+    }
+
+--------------------------------------------------------
+
+Q6. How do you style valid and invalid inputs?
+
+Answer:
+
+    input:valid {
+        border-color: green;
+    }
+
+    input:invalid {
+        border-color: red;
+    }
+
+--------------------------------------------------------
+
+Q7. Which CSS property can be used to customize native
+form control appearance?
+
+Answer:
+
+    appearance
+
+--------------------------------------------------------
+
+Q8. Which CSS layout systems are commonly used for forms?
+
+Answer:
+
+    Flexbox
+    Grid
+
+--------------------------------------------------------
+
+Q9. Why should focus indicators not be removed?
+
+Answer:
+
+They help users, especially keyboard users, identify which
+form control currently has focus.
+
+--------------------------------------------------------
+
+Q10. Why should placeholder text not replace labels?
+
+Answer:
+
+Placeholder text disappears when the user starts typing,
+which can make it difficult to understand what information
+the field requires.
+
+========================================================
+PRACTICE QUESTIONS
+========================================================
+
+Q1. Create an input with:
+    - 100% width
+    - 10px padding
+    - rounded border
+
+Solution:
+
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+--------------------------------------------------------
+
+Q2. Change an input border when it receives focus.
+
+Solution:
+
+    input:focus {
+        border-color: blue;
+        outline: none;
+    }
+
+--------------------------------------------------------
+
+Q3. Style disabled buttons.
+
+Solution:
+
+    button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+--------------------------------------------------------
+
+Q4. Change placeholder color.
+
+Solution:
+
+    input::placeholder {
+        color: gray;
+    }
+
+--------------------------------------------------------
+
+Q5. Create a two-column form using Grid.
+
+Solution:
+
+    .form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+--------------------------------------------------------
+
+Q6. Make the two-column form become one column on small
+screens.
+
+Solution:
+
+    @media (max-width: 600px) {
+        .form {
+            grid-template-columns: 1fr;
+        }
+    }
+
+--------------------------------------------------------
+
+Q7. Change checkbox accent color.
+
+Solution:
+
+    input[type="checkbox"] {
+        accent-color: blue;
+    }
+
+========================================================
+EXAM MEMORY TRICK
+========================================================
+
+FORM CONTROL:
+    input
+    textarea
+    select
+    button
+
+FORM STATE:
+    :focus
+    :checked
+    :disabled
+    :valid
+    :invalid
+
+FORM TEXT:
+    label
+    ::placeholder
+
+FORM LAYOUT:
+    Flexbox
+    Grid
+
+CUSTOM:
+    appearance: none;
+
+ACCESSIBILITY:
+    Labels
+    Focus indicators
+    Contrast
+    Keyboard support
+    Clear error messages
+    Do not rely only on color
+
+========================================================
+END OF CSS FORMS
+========================================================
+*/ 

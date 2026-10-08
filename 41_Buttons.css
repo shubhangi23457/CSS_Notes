@@ -1,0 +1,1166 @@
+# /*
+
+```
+                CSS BUTTONS
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. Basic Buttons
+2. Button Colors
+3. Button Borders
+4. Button Padding
+5. Rounded Buttons
+6. Hover Effects
+7. Active Effects
+8. Disabled Buttons
+9. Button Shadows
+10. Button Transitions
+11. Button Animations
+12. Icon Buttons
+
+========================================================
+
+1. BASIC BUTTONS
+   ========================================================
+
+The <button> element is used to create clickable buttons.
+
+Basic HTML:
+
+```
+<button>Click Me</button>
+```
+
+CSS can control:
+
+```
+color
+background
+border
+padding
+font
+size
+radius
+shadow
+animation
+transition
+```
+
+Basic CSS:
+
+```
+button {
+    padding: 10px 20px;
+    background: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+```
+
+========================================================
+2. BUTTON COLORS
+================
+
+The background-color property controls the button background.
+
+The color property controls the text color.
+
+Example:
+
+```
+button {
+    background-color: blue;
+    color: white;
+}
+```
+
+Different button types can use different colors.
+
+Primary:
+Blue
+
+Success:
+Green
+
+Danger:
+Red
+
+Warning:
+Orange/Yellow
+
+Secondary:
+Gray
+
+Example:
+
+```
+.primary {
+    background-color: blue;
+    color: white;
+}
+
+.success {
+    background-color: green;
+    color: white;
+}
+
+.danger {
+    background-color: red;
+    color: white;
+}
+```
+
+========================================================
+3. BUTTON BORDERS
+=================
+
+The border property controls the button border.
+
+Example:
+
+```
+button {
+    border: 2px solid blue;
+}
+```
+
+Remove the border:
+
+```
+border: none;
+```
+
+Individual borders can also be styled:
+
+```
+border-top
+border-right
+border-bottom
+border-left
+```
+
+Outline-style buttons can be created using:
+
+```
+background: transparent;
+border: 2px solid blue;
+color: blue;
+```
+
+========================================================
+4. BUTTON PADDING
+=================
+
+Padding creates space between the button's content and
+its border.
+
+Syntax:
+
+```
+padding: vertical horizontal;
+```
+
+Example:
+
+```
+button {
+    padding: 12px 24px;
+}
+```
+
+This means:
+
+```
+12px -> top and bottom
+24px -> left and right
+```
+
+Individual padding:
+
+```
+padding-top
+padding-right
+padding-bottom
+padding-left
+```
+
+Larger padding makes the button easier to click.
+
+========================================================
+5. ROUNDED BUTTONS
+==================
+
+border-radius creates rounded corners.
+
+Example:
+
+```
+button {
+    border-radius: 8px;
+}
+```
+
+Fully rounded button:
+
+```
+border-radius: 50px;
+```
+
+Circular button:
+
+```
+width: 50px;
+height: 50px;
+border-radius: 50%;
+```
+
+Rounded buttons are commonly used for:
+
+```
+Login buttons
+Buy buttons
+CTA buttons
+Icon buttons
+Tags
+```
+
+========================================================
+6. HOVER EFFECTS
+================
+
+The :hover pseudo-class applies when the mouse pointer
+moves over an element.
+
+Example:
+
+```
+button:hover {
+    background-color: darkblue;
+}
+```
+
+Other hover effects:
+
+```
+Change color
+Change background
+Add shadow
+Move button
+Scale button
+Change border
+```
+
+Example:
+
+```
+button:hover {
+    transform: translateY(-2px);
+}
+```
+
+========================================================
+7. ACTIVE EFFECTS
+=================
+
+The :active pseudo-class applies while the button is being
+activated, such as while the mouse button is pressed.
+
+Example:
+
+```
+button:active {
+    transform: translateY(2px);
+}
+```
+
+This creates a pressed-button effect.
+
+IMPORTANT:
+
+```
+:hover
+    Pointer is over the button.
+
+:active
+    Button is currently being activated.
+```
+
+========================================================
+8. DISABLED BUTTONS
+===================
+
+A button can be disabled using the disabled attribute.
+
+HTML:
+
+```
+<button disabled>Submit</button>
+```
+
+CSS:
+
+```
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+```
+
+Disabled buttons should visually communicate that they
+cannot currently be used.
+
+========================================================
+9. BUTTON SHADOWS
+=================
+
+box-shadow can create depth.
+
+Syntax:
+
+```
+box-shadow:
+    horizontal
+    vertical
+    blur
+    spread
+    color;
+```
+
+Example:
+
+```
+button {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+```
+
+A stronger shadow:
+
+```
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+```
+
+========================================================
+10. BUTTON TRANSITIONS
+======================
+
+Transitions make changes smooth.
+
+Example:
+
+```
+button {
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: darkblue;
+}
+```
+
+Multiple properties:
+
+```
+button {
+    transition:
+        background-color 0.3s ease,
+        transform 0.2s ease,
+        box-shadow 0.3s ease;
+}
+```
+
+IMPORTANT:
+
+Put transition on the normal/base button, not only on
+:hover.
+
+========================================================
+11. BUTTON ANIMATIONS
+=====================
+
+CSS animations can create continuous or triggered visual
+effects.
+
+Basic animation:
+
+```
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+button {
+    animation: pulse 1.5s infinite;
+}
+```
+
+Animations can be used for:
+
+```
+Loading buttons
+Attention effects
+Pulsing CTA buttons
+Notification buttons
+Entrance effects
+```
+
+Use animations carefully so they do not distract users.
+
+========================================================
+12. ICON BUTTONS
+================
+
+Icon buttons contain an icon instead of, or along with,
+text.
+
+Examples:
+
+```
+Search
+Menu
+Delete
+Edit
+Settings
+Like
+Shopping cart
+```
+
+An icon can be represented using:
+
+```
+Text symbol
+Unicode character
+SVG
+Icon library
+```
+
+Example:
+
+```
+<button class="icon-button" aria-label="Search">
+    🔍
+</button>
+```
+
+CSS:
+
+```
+.icon-button {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+```
+
+========================================================
+ICON BUTTON ACCESSIBILITY
+=========================
+
+If an icon-only button has no visible text, provide an
+accessible name.
+
+Example:
+
+```
+<button aria-label="Delete">
+    🗑
+</button>
+```
+
+The aria-label helps screen readers understand the purpose
+of the button.
+
+For buttons with visible text, an aria-label is often
+unnecessary.
+
+========================================================
+PRACTICAL BUTTON STYLES
+=======================
+
+*/
+
+/* Basic button */
+
+.basic-button {
+padding: 10px 20px;
+background-color: #2563eb;
+color: white;
+border: none;
+cursor: pointer;
+}
+
+/* Primary button */
+
+.primary-button {
+padding: 12px 24px;
+background-color: #2563eb;
+color: white;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+}
+
+/* Success button */
+
+.success-button {
+padding: 12px 24px;
+background-color: #16a34a;
+color: white;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+}
+
+/* Danger button */
+
+.danger-button {
+padding: 12px 24px;
+background-color: #dc2626;
+color: white;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+}
+
+/* Outline button */
+
+.outline-button {
+padding: 10px 22px;
+background: transparent;
+color: #2563eb;
+border: 2px solid #2563eb;
+border-radius: 6px;
+cursor: pointer;
+}
+
+# /*
+
+# HOVER BUTTON
+
+*/
+
+.hover-button {
+padding: 12px 24px;
+background-color: #2563eb;
+color: white;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.hover-button:hover {
+background-color: #1d4ed8;
+}
+
+# /*
+
+# BUTTON WITH TRANSFORM EFFECT
+
+*/
+
+.transform-button {
+padding: 12px 24px;
+background-color: #2563eb;
+color: white;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+transition: transform 0.2s ease;
+}
+
+.transform-button:hover {
+transform: translateY(-3px);
+}
+
+.transform-button:active {
+transform: translateY(1px);
+}
+
+# /*
+
+# BUTTON WITH SHADOW
+
+*/
+
+.shadow-button {
+padding: 12px 24px;
+background-color: #2563eb;
+color: white;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+transition:
+box-shadow 0.3s ease,
+transform 0.2s ease;
+}
+
+.shadow-button:hover {
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+transform: translateY(-2px);
+}
+
+# /*
+
+# DISABLED BUTTON
+
+*/
+
+.disabled-button:disabled {
+opacity: 0.5;
+cursor: not-allowed;
+}
+
+# /*
+
+# ROUNDED / PILL BUTTON
+
+*/
+
+.pill-button {
+padding: 10px 25px;
+border: none;
+border-radius: 50px;
+background-color: #7c3aed;
+color: white;
+cursor: pointer;
+}
+
+# /*
+
+# CIRCULAR ICON BUTTON
+
+*/
+
+.icon-button {
+width: 48px;
+height: 48px;
+padding: 0;
+border: none;
+border-radius: 50%;
+background-color: #2563eb;
+color: white;
+font-size: 20px;
+cursor: pointer;
+transition:
+background-color 0.3s ease,
+transform 0.2s ease;
+}
+
+.icon-button:hover {
+background-color: #1d4ed8;
+transform: scale(1.05);
+}
+
+.icon-button:active {
+transform: scale(0.95);
+}
+
+# /*
+
+# ANIMATED BUTTON
+
+*/
+
+@keyframes buttonPulse {
+0% {
+transform: scale(1);
+}
+
+```
+50% {
+    transform: scale(1.05);
+}
+
+100% {
+    transform: scale(1);
+}
+```
+
+}
+
+.animated-button {
+padding: 12px 24px;
+border: none;
+border-radius: 8px;
+background-color: #2563eb;
+color: white;
+cursor: pointer;
+animation: buttonPulse 1.5s infinite;
+}
+
+# /*
+
+# FOCUS ACCESSIBILITY
+
+*/
+
+button:focus-visible {
+outline: 3px solid #93c5fd;
+outline-offset: 3px;
+}
+
+# /*
+
+# COMPLETE PROFESSIONAL BUTTON
+
+*/
+
+.professional-button {
+padding: 12px 24px;
+background-color: #2563eb;
+color: white;
+border: 2px solid #2563eb;
+border-radius: 8px;
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+
+```
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
+```
+
+}
+
+.professional-button:hover {
+background-color: #1d4ed8;
+border-color: #1d4ed8;
+transform: translateY(-2px);
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.professional-button:active {
+transform: translateY(0);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.professional-button:focus-visible {
+outline: 3px solid #93c5fd;
+outline-offset: 3px;
+}
+
+.professional-button:disabled {
+opacity: 0.5;
+cursor: not-allowed;
+transform: none;
+box-shadow: none;
+}
+
+# /*
+
+# BUTTON STATES
+
+Normal:
+button
+
+Hover:
+button:hover
+
+Active:
+button:active
+
+Focus:
+button:focus
+button:focus-visible
+
+Disabled:
+button:disabled
+
+Checked:
+Usually relevant to checkbox/radio controls rather
+than ordinary buttons.
+
+========================================================
+BUTTON TRANSITION vs BUTTON ANIMATION
+=====================================
+
+TRANSITION:
+
+```
+Used when a property changes between states.
+```
+
+Example:
+
+```
+button {
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+```
+
+The animation happens because of the state change.
+
+---
+
+ANIMATION:
+
+```
+Uses @keyframes to define multiple stages.
+```
+
+Example:
+
+```
+@keyframes pulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+```
+
+========================================================
+COMMON BUTTON PROPERTIES
+========================
+
+background-color
+Button background.
+
+color
+Button text color.
+
+border
+Button border.
+
+padding
+Internal spacing.
+
+margin
+External spacing.
+
+border-radius
+Rounded corners.
+
+box-shadow
+Creates depth/shadow.
+
+cursor
+Controls mouse cursor.
+
+font-size
+Controls text size.
+
+font-weight
+Controls text thickness.
+
+transition
+Smoothly changes properties.
+
+animation
+Runs keyframe animation.
+
+transform
+Moves, scales, rotates, or skews the button.
+
+========================================================
+QUICK REVISION
+==============
+
+Basic:
+button { }
+
+Color:
+background-color
+color
+
+Border:
+border
+
+Spacing:
+padding
+
+Rounded:
+border-radius
+
+Hover:
+:hover
+
+Pressed:
+:active
+
+Disabled:
+:disabled
+
+Shadow:
+box-shadow
+
+Smooth effect:
+transition
+
+Animation:
+@keyframes
+animation
+
+Icon:
+aria-label
+SVG / icon / symbol
+
+========================================================
+QUESTIONS AND ANSWERS
+=====================
+
+Q1. Which CSS property creates rounded button corners?
+
+Answer:
+
+```
+border-radius
+```
+
+---
+
+Q2. Which pseudo-class is used when the mouse is over
+a button?
+
+Answer:
+
+```
+:hover
+```
+
+---
+
+Q3. Which pseudo-class represents the pressed/active state?
+
+Answer:
+
+```
+:active
+```
+
+---
+
+Q4. How do you style a disabled button?
+
+Answer:
+
+```
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+```
+
+---
+
+Q5. Which property creates a shadow around a button?
+
+Answer:
+
+```
+box-shadow
+```
+
+---
+
+Q6. Which property makes button state changes smooth?
+
+Answer:
+
+```
+transition
+```
+
+---
+
+Q7. Which CSS feature is used for multi-stage button
+animations?
+
+Answer:
+
+```
+@keyframes and animation
+```
+
+---
+
+Q8. How do you create a circular button?
+
+Answer:
+
+```
+width: 50px;
+height: 50px;
+border-radius: 50%;
+```
+
+---
+
+Q9. How do you create an outline button?
+
+Answer:
+
+```
+background: transparent;
+border: 2px solid blue;
+color: blue;
+```
+
+---
+
+Q10. Why should an icon-only button have an accessible name?
+
+Answer:
+
+Screen readers need a meaningful name to communicate the
+button's purpose to users.
+
+========================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Create a blue button with white text and rounded corners.
+
+Solution:
+
+```
+button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+}
+```
+
+---
+
+Q2. Add a hover effect that changes the background color.
+
+Solution:
+
+```
+button:hover {
+    background-color: darkblue;
+}
+```
+
+---
+
+Q3. Add a pressed effect.
+
+Solution:
+
+```
+button:active {
+    transform: translateY(2px);
+}
+```
+
+---
+
+Q4. Add a shadow and smooth transition.
+
+Solution:
+
+```
+button {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+```
+
+---
+
+Q5. Create a pill-shaped button.
+
+Solution:
+
+```
+button {
+    padding: 10px 25px;
+    border-radius: 50px;
+}
+```
+
+---
+
+Q6. Create a circular icon button.
+
+Solution:
+
+```
+button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+```
+
+---
+
+Q7. Create a disabled button.
+
+Solution:
+
+```
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+```
+
+========================================================
+EXAM MEMORY TRICK
+=================
+
+COLOR:
+background + color
+
+SHAPE:
+border-radius
+
+SPACE:
+padding
+
+DEPTH:
+box-shadow
+
+HOVER:
+:hover
+
+PRESS:
+:active
+
+DISABLED:
+:disabled
+
+SMOOTH:
+transition
+
+ANIMATION:
+@keyframes + animation
+
+ICON:
+SVG / icon + accessible name
+
+========================================================
+END OF CSS BUTTONS
+==================
+
+*/

@@ -1,0 +1,800 @@
+# /*
+
+```
+    CSS OBJECT AND MEDIA PROPERTIES
+```
+
+========================================================
+
+Topics Covered:
+
+1. object-fit
+2. object-position
+3. aspect-ratio
+4. Responsive Images
+5. Image Cropping
+6. Video Sizing
+7. Embedded Content Sizing
+
+========================================================
+
+1. object-fit
+   ========================================================
+
+The object-fit property controls how replaced content such
+as images and videos fit inside a specified width and height.
+
+Syntax:
+object-fit: value;
+
+Common values:
+
+1. fill
+
+   * Default value.
+   * Stretches the image/video to completely fill the box.
+   * May distort the original aspect ratio.
+
+2. contain
+
+   * Entire image/video is visible.
+   * Maintains aspect ratio.
+   * Empty space may appear.
+
+3. cover
+
+   * Completely fills the box.
+   * Maintains aspect ratio.
+   * Some parts may be cropped.
+
+4. none
+
+   * Original size is maintained.
+   * Content may overflow the box.
+
+5. scale-down
+
+   * Chooses between none and contain.
+   * Uses the smaller rendered size.
+
+Example:
+
+```
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+For most card thumbnails, object-fit: cover is commonly used.
+
+========================================================
+2. object-position
+==================
+
+The object-position property controls the position of an
+image or video inside its box.
+
+It is especially useful with object-fit: cover.
+
+Syntax:
+object-position: x y;
+
+Common values:
+
+```
+center
+top
+bottom
+left
+right
+```
+
+Examples:
+
+```
+object-position: center;
+object-position: top;
+object-position: left;
+object-position: 50% 20%;
+```
+
+Example:
+
+```
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+}
+```
+
+This keeps the top portion visible when the image is cropped.
+
+========================================================
+3. aspect-ratio
+===============
+
+The aspect-ratio property defines the proportional relationship
+between an element's width and height.
+
+Syntax:
+aspect-ratio: width / height;
+
+Examples:
+
+```
+aspect-ratio: 16 / 9;
+aspect-ratio: 4 / 3;
+aspect-ratio: 1 / 1;
+```
+
+Common ratios:
+
+```
+16 / 9  -> Videos and widescreen media
+4 / 3   -> Traditional images/videos
+1 / 1   -> Square images
+3 / 2   -> Photography
+```
+
+Example:
+
+```
+img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+The browser maintains the specified proportion.
+
+========================================================
+4. RESPONSIVE IMAGES
+====================
+
+Responsive images automatically adapt to the size of the
+screen or their container.
+
+The most common CSS technique is:
+
+```
+max-width: 100%;
+height: auto;
+```
+
+max-width: 100% prevents the image from becoming wider than
+its parent container.
+
+height: auto maintains the original aspect ratio.
+
+Example:
+
+```
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+========================================================
+Responsive Image with Fixed Ratio
+=================================
+
+For a consistent image area:
+
+```
+img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+This is useful for:
+
+```
+Product cards
+Blog thumbnails
+News cards
+Gallery images
+Video thumbnails
+```
+
+========================================================
+5. IMAGE CROPPING
+=================
+
+CSS image cropping means displaying only a portion of an image.
+
+The most common method is:
+
+```
+width + height
+object-fit: cover
+object-position
+```
+
+Example:
+
+```
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+```
+
+The image fills the 300 × 200 box while maintaining its
+original aspect ratio. Excess portions are cropped.
+
+========================================================
+Image Cropping Positions
+========================
+
+Crop from the top:
+
+```
+object-position: top;
+```
+
+Crop from the bottom:
+
+```
+object-position: bottom;
+```
+
+Focus on the left:
+
+```
+object-position: left;
+```
+
+Focus on the right:
+
+```
+object-position: right;
+```
+
+Focus on a specific area:
+
+```
+object-position: 30% 20%;
+```
+
+The first value controls horizontal position.
+The second value controls vertical position.
+
+========================================================
+6. VIDEO SIZING
+===============
+
+Videos can be made responsive using:
+
+```
+width: 100%;
+height: auto;
+```
+
+Example:
+
+```
+video {
+    width: 100%;
+    height: auto;
+}
+```
+
+For a fixed video container with a consistent ratio:
+
+```
+video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+========================================================
+Video object-fit Values
+=======================
+
+object-fit: contain;
+- Entire video remains visible.
+- Empty space may appear.
+
+object-fit: cover;
+- Video fills the container.
+- Some content may be cropped.
+
+object-fit: fill;
+- Video stretches to fit.
+- May distort the video.
+
+========================================================
+7. EMBEDDED CONTENT SIZING
+==========================
+
+Embedded content includes:
+
+```
+iframe
+YouTube videos
+Google Maps
+External webpages
+Other embedded media
+```
+
+A common responsive technique is to make the iframe
+fill its container.
+
+Example:
+
+```
+iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+}
+```
+
+========================================================
+Responsive Embedded Content
+===========================
+
+For a responsive 16:9 iframe:
+
+```
+.video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+```
+
+The iframe automatically follows the aspect ratio of
+its parent container.
+
+========================================================
+PRACTICAL EXAMPLE
+Product Card Image
+==================
+
+*/
+
+.product-image {
+width: 300px;
+height: 220px;
+object-fit: cover;
+object-position: center;
+aspect-ratio: 4 / 3;
+}
+
+# /*
+
+PRACTICAL EXAMPLE
+Responsive Image
+================
+
+*/
+
+.responsive-image {
+width: 100%;
+max-width: 800px;
+height: auto;
+display: block;
+}
+
+# /*
+
+PRACTICAL EXAMPLE
+Responsive Video
+================
+
+*/
+
+.responsive-video {
+width: 100%;
+aspect-ratio: 16 / 9;
+object-fit: cover;
+}
+
+# /*
+
+PRACTICAL EXAMPLE
+Responsive Embedded YouTube / iframe
+====================================
+
+*/
+
+.embed-container {
+width: 100%;
+max-width: 900px;
+aspect-ratio: 16 / 9;
+}
+
+.embed-container iframe {
+width: 100%;
+height: 100%;
+border: none;
+}
+
+# /*
+
+# COMPLETE EXAMPLE
+
+*/
+
+.media-card {
+width: 100%;
+max-width: 400px;
+overflow: hidden;
+}
+
+.media-card img {
+width: 100%;
+aspect-ratio: 4 / 3;
+object-fit: cover;
+object-position: center;
+display: block;
+}
+
+.media-card video {
+width: 100%;
+aspect-ratio: 16 / 9;
+object-fit: cover;
+display: block;
+}
+
+.media-card iframe {
+width: 100%;
+aspect-ratio: 16 / 9;
+height: auto;
+border: none;
+display: block;
+}
+
+# /*
+
+# IMPORTANT DIFFERENCES
+
+## object-fit
+
+Controls HOW an image/video fits inside its box.
+
+## object-position
+
+Controls WHERE the image/video is positioned inside its box.
+
+## aspect-ratio
+
+Controls the width-to-height proportion of an element.
+
+## max-width: 100%
+
+Prevents an image from becoming wider than its container.
+
+## height: auto
+
+Maintains the original image aspect ratio when width changes.
+
+========================================================
+object-fit vs aspect-ratio
+==========================
+
+aspect-ratio:
+Defines the shape/proportion of the box.
+
+object-fit:
+Defines how the media fits inside that box.
+
+Example:
+
+```
+img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+Here:
+
+```
+aspect-ratio -> creates a 16:9 media area
+object-fit   -> makes the image cover that area
+```
+
+========================================================
+object-fit vs object-position
+=============================
+
+object-fit:
+Decides how the media fits.
+
+object-position:
+Decides where the media is positioned.
+
+Memory Trick:
+
+```
+object-fit = HOW
+object-position = WHERE
+```
+
+========================================================
+QUICK REVISION
+==============
+
+object-fit:
+fill
+contain
+cover
+none
+scale-down
+
+object-position:
+center
+top
+bottom
+left
+right
+percentage values
+
+aspect-ratio:
+16 / 9
+4 / 3
+1 / 1
+3 / 2
+
+Responsive Image:
+max-width: 100%;
+height: auto;
+
+Common Image Cropping:
+width: 100%;
+aspect-ratio: 16 / 9;
+object-fit: cover;
+
+Responsive Video:
+width: 100%;
+height: auto;
+
+Responsive iframe:
+width: 100%;
+aspect-ratio: 16 / 9;
+
+========================================================
+QUESTIONS AND ANSWERS
+=====================
+
+Q1. What is object-fit?
+
+Answer:
+object-fit controls how an image or video fits inside
+its specified width and height.
+
+---
+
+Q2. What does object-fit: cover do?
+
+Answer:
+It fills the entire container while maintaining the
+original aspect ratio. Parts of the media may be cropped.
+
+---
+
+Q3. What does object-fit: contain do?
+
+Answer:
+It keeps the complete image or video visible while
+maintaining its aspect ratio. Empty space may appear.
+
+---
+
+Q4. What is object-position?
+
+Answer:
+object-position controls the position of an image or
+video inside its container.
+
+---
+
+Q5. What is aspect-ratio?
+
+Answer:
+aspect-ratio defines the proportional relationship
+between the width and height of an element.
+
+---
+
+Q6. How do you make an image responsive?
+
+Answer:
+
+```
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+---
+
+Q7. How do you crop an image using CSS?
+
+Answer:
+
+```
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+```
+
+---
+
+Q8. How do you create a responsive 16:9 video?
+
+Answer:
+
+```
+video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+---
+
+Q9. How can an iframe be made responsive?
+
+Answer:
+
+```
+iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+}
+```
+
+---
+
+Q10. What is the difference between object-fit and
+object-position?
+
+Answer:
+
+object-fit controls HOW media fits inside a container.
+
+object-position controls WHERE the media is positioned
+inside that container.
+
+========================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Create a square image that completely fills a 250px box
+without distortion.
+
+Solution:
+
+```
+img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+```
+
+---
+
+Q2. Create a responsive image.
+
+Solution:
+
+```
+img {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+---
+
+Q3. Create a 16:9 image that crops excess content.
+
+Solution:
+
+```
+img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+---
+
+Q4. Make an image focus on its top portion when cropped.
+
+Solution:
+
+```
+img {
+    object-fit: cover;
+    object-position: top;
+}
+```
+
+---
+
+Q5. Create a responsive 16:9 iframe.
+
+Solution:
+
+```
+iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+}
+```
+
+========================================================
+EXAM MEMORY TRICK
+=================
+
+FIT     = How media fits
+POSITION = Where media sits
+RATIO   = Shape of the box
+
+Responsive Image:
+
+```
+max-width: 100%;
+height: auto;
+```
+
+Crop:
+
+```
+object-fit: cover;
+```
+
+Show Everything:
+
+```
+object-fit: contain;
+```
+
+Video:
+
+```
+aspect-ratio: 16 / 9;
+```
+
+Iframe:
+
+```
+width: 100%;
+aspect-ratio: 16 / 9;
+```
+
+========================================================
+END OF CSS OBJECT AND MEDIA PROPERTIES
+======================================
+
+*/

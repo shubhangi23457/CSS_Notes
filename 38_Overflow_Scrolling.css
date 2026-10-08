@@ -1,0 +1,1108 @@
+# /*
+
+34. CSS OVERFLOW AND SCROLLING
+    ============================================================
+
+CSS Overflow controls what happens when content is larger
+than the space available inside an element.
+
+TOPICS:
+
+1. Overflow Management
+2. Horizontal Overflow
+3. Vertical Overflow
+4. Scrollbars
+5. Custom Scroll Behavior
+6. scroll-behavior
+7. scroll-snap-type
+8. scroll-snap-align
+9. Scroll Containers
+10. Smooth Scrolling
+
+---
+
+1. OVERFLOW MANAGEMENT
+
+---
+
+The overflow property controls what happens when content
+does not fit inside an element's box.
+
+Syntax:
+
+overflow: value;
+
+Common values:
+
+visible
+hidden
+scroll
+auto
+clip
+
+---
+
+## overflow: visible
+
+This is the default behavior.
+
+Content can extend outside the element's box.
+
+Example:
+
+.box {
+width: 200px;
+height: 100px;
+overflow: visible;
+}
+
+---
+
+## overflow: hidden
+
+Extra content is clipped and is not displayed outside
+the element.
+
+Example:
+
+.box {
+width: 200px;
+height: 100px;
+overflow: hidden;
+}
+
+Useful for:
+
+* Cropping content
+* Rounded image containers
+* Preventing visible overflow
+
+---
+
+## overflow: scroll
+
+Always provides scrolling mechanisms when applicable,
+even if the content does not currently overflow.
+
+Example:
+
+.box {
+width: 200px;
+height: 100px;
+overflow: scroll;
+}
+
+The browser may show horizontal and vertical scrolling
+mechanisms depending on the element and platform.
+
+---
+
+## overflow: auto
+
+The browser provides scrolling when content actually
+overflows.
+
+Example:
+
+.box {
+width: 200px;
+height: 100px;
+overflow: auto;
+}
+
+This is often the most practical choice for containers
+with unpredictable content.
+
+---
+
+## overflow: clip
+
+clip clips overflowing content without providing scrolling
+through the element.
+
+Example:
+
+.box {
+overflow: clip;
+}
+
+Difference:
+
+hidden
+→ Clips overflow and can establish a scroll container in
+relevant situations.
+
+clip
+→ Clips overflow without creating a scroll container.
+
+---
+
+2. HORIZONTAL OVERFLOW
+
+---
+
+Horizontal overflow happens when content is wider than
+the available width.
+
+Use:
+
+overflow-x
+
+Syntax:
+
+overflow-x: value;
+
+Example:
+
+.container {
+width: 300px;
+overflow-x: auto;
+}
+
+If content becomes wider than 300px, horizontal scrolling
+can be used.
+
+---
+
+## HORIZONTAL SCROLLING EXAMPLE
+
+.horizontal {
+width: 300px;
+overflow-x: auto;
+white-space: nowrap;
+}
+
+The content stays on one line and can scroll horizontally.
+
+---
+
+3. VERTICAL OVERFLOW
+
+---
+
+Vertical overflow happens when content is taller than
+the available height.
+
+Use:
+
+overflow-y
+
+Example:
+
+.container {
+height: 200px;
+overflow-y: auto;
+}
+
+If the content becomes taller than 200px, vertical
+scrolling becomes available.
+
+---
+
+## VERTICAL SCROLLING EXAMPLE
+
+.vertical {
+height: 200px;
+overflow-y: auto;
+}
+
+---
+
+## HORIZONTAL + VERTICAL
+
+Both directions can be controlled separately.
+
+Example:
+
+.container {
+width: 300px;
+height: 200px;
+
+```
+overflow-x: auto;
+overflow-y: auto;
+```
+
+}
+
+---
+
+4. SCROLLBARS
+
+---
+
+A scrollbar allows users to move through overflowing
+content.
+
+Common ways to control scrolling:
+
+overflow: auto;
+overflow: scroll;
+overflow-x: auto;
+overflow-y: auto;
+
+Example:
+
+.scroll-box {
+width: 300px;
+height: 150px;
+overflow: auto;
+}
+
+---
+
+## HIDING SCROLLBARS
+
+Scrollbars can sometimes be hidden while keeping the
+element scrollable.
+
+Example:
+
+.scroll-box {
+overflow: auto;
+scrollbar-width: none;
+}
+
+For WebKit-based browsers:
+
+.scroll-box::-webkit-scrollbar {
+display: none;
+}
+
+IMPORTANT:
+
+If you hide scrollbars, users may not realize that
+additional content is available.
+
+Use this carefully, especially for accessibility.
+
+---
+
+## CUSTOM SCROLLBAR STYLING
+
+Some browsers support styling scrollbar components.
+
+Example:
+
+.scroll-box::-webkit-scrollbar {
+width: 10px;
+}
+
+.scroll-box::-webkit-scrollbar-track {
+background: #eeeeee;
+}
+
+.scroll-box::-webkit-scrollbar-thumb {
+background: #888888;
+border-radius: 10px;
+}
+
+These pseudo-elements are mainly associated with
+WebKit/Blink browsers.
+
+Firefox provides:
+
+scrollbar-width
+scrollbar-color
+
+Example:
+
+.scroll-box {
+scrollbar-width: thin;
+scrollbar-color: #888888 #eeeeee;
+}
+
+---
+
+5. CUSTOM SCROLL BEHAVIOR
+
+---
+
+CSS provides properties that control how scrolling behaves.
+
+Important properties:
+
+scroll-behavior
+scroll-snap-type
+scroll-snap-align
+
+These can create:
+
+* Smooth scrolling
+* Carousels
+* Full-page sections
+* Horizontal product sliders
+* Slide-by-slide scrolling
+
+---
+
+6. scroll-behavior
+
+---
+
+scroll-behavior controls the scrolling behavior when
+scrolling is triggered by navigation or script.
+
+Values:
+
+auto
+smooth
+
+Example:
+
+html {
+scroll-behavior: smooth;
+}
+
+Now clicking an internal anchor link can scroll smoothly
+instead of jumping instantly.
+
+HTML example:
+
+<a href="#contact">Contact</a>
+
+<section id="contact">
+    Contact section
+</section>
+
+---
+
+## IMPORTANT
+
+scroll-behavior: smooth;
+
+does not automatically make every type of user scrolling
+smooth.
+
+It mainly affects scrolling behavior for navigation and
+programmatic scrolling.
+
+---
+
+7. scroll-snap-type
+
+---
+
+scroll-snap-type makes a scroll container "snap" to
+specific positions.
+
+Syntax:
+
+scroll-snap-type: axis strictness;
+
+Axis:
+
+x
+y
+both
+
+Strictness:
+
+mandatory
+proximity
+
+Example:
+
+.slider {
+display: flex;
+overflow-x: auto;
+scroll-snap-type: x mandatory;
+}
+
+Meaning:
+
+x
+→ Horizontal snapping.
+
+mandatory
+→ The container strongly snaps to snap positions.
+
+---
+
+## scroll-snap-type: y mandatory
+
+Useful for vertical sections.
+
+Example:
+
+.page {
+height: 100vh;
+overflow-y: auto;
+scroll-snap-type: y mandatory;
+}
+
+---
+
+## scroll-snap-type: both mandatory
+
+Allows snapping in both horizontal and vertical directions.
+
+Example:
+
+.gallery {
+overflow: auto;
+scroll-snap-type: both mandatory;
+}
+
+---
+
+## mandatory vs proximity
+
+mandatory:
+
+The browser strongly enforces snapping.
+
+proximity:
+
+The browser snaps when the scrolling position is close
+enough to a snap position.
+
+Example:
+
+scroll-snap-type: x mandatory;
+
+or:
+
+scroll-snap-type: x proximity;
+
+---
+
+8. scroll-snap-align
+
+---
+
+scroll-snap-align is applied to the children/items inside
+a scroll container.
+
+It specifies where an item should align when snapping.
+
+Values:
+
+start
+center
+end
+none
+
+Example:
+
+.slide {
+scroll-snap-align: start;
+}
+
+---
+
+## CENTER SNAP
+
+.slide {
+scroll-snap-align: center;
+}
+
+The slide snaps with its center aligned to the snap area.
+
+---
+
+## END SNAP
+
+.slide {
+scroll-snap-align: end;
+}
+
+The item snaps toward the end edge of the snap area.
+
+---
+
+## COMPLETE SCROLL SNAP EXAMPLE
+
+.slider {
+display: flex;
+gap: 20px;
+
+```
+overflow-x: auto;
+
+scroll-snap-type: x mandatory;
+```
+
+}
+
+.slide {
+flex: 0 0 300px;
+scroll-snap-align: center;
+}
+
+HOW IT WORKS:
+
+1. .slider becomes a horizontal scroll container.
+
+2. scroll-snap-type enables horizontal snapping.
+
+3. Each .slide defines its snap position.
+
+4. When the user scrolls, the browser snaps the slide
+   into position.
+
+---
+
+9. SCROLL CONTAINERS
+
+---
+
+A scroll container is an element whose content can be
+scrolled independently.
+
+Example:
+
+.container {
+height: 300px;
+overflow-y: auto;
+}
+
+If the content becomes taller than 300px, the element
+can scroll vertically.
+
+Horizontal scroll container:
+
+.container {
+width: 400px;
+overflow-x: auto;
+}
+
+Both directions:
+
+.container {
+width: 400px;
+height: 300px;
+overflow: auto;
+}
+
+---
+
+## SCROLL CONTAINER WITH FLEX ITEMS
+
+.products {
+display: flex;
+gap: 20px;
+
+```
+overflow-x: auto;
+```
+
+}
+
+.product {
+flex: 0 0 250px;
+}
+
+This creates a horizontal product row that can scroll.
+
+---
+
+10. SMOOTH SCROLLING
+
+---
+
+Smooth scrolling creates a gradual scrolling effect instead
+of an immediate jump.
+
+Example:
+
+html {
+scroll-behavior: smooth;
+}
+
+HTML:
+
+<a href="#about">About</a>
+
+<section id="about">
+    About Us
+</section>
+
+---
+
+## SMOOTH SCROLLING WITH JAVASCRIPT
+
+CSS:
+
+html {
+scroll-behavior: smooth;
+}
+
+JavaScript can also request smooth scrolling.
+
+Example:
+
+element.scrollIntoView({
+behavior: "smooth"
+});
+
+This is useful for:
+
+* Navigation menus
+* "Back to top" buttons
+* Section navigation
+* Single-page websites
+
+---
+
+## ACCESSIBILITY AND REDUCED MOTION
+
+Some users prefer reduced motion.
+
+A media query can respect this preference.
+
+Example:
+
+html {
+scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+html {
+scroll-behavior: auto;
+}
+}
+
+This avoids forcing smooth scrolling for users who
+prefer reduced motion.
+
+---
+
+## SCROLLBAR-GUTTER
+
+scrollbar-gutter can reserve space for a scrollbar.
+
+Example:
+
+.container {
+scrollbar-gutter: stable;
+}
+
+This can help reduce layout shifts when a scrollbar appears.
+
+---
+
+## OVERFLOW SHORTHAND
+
+One value:
+
+overflow: auto;
+
+Applies to both x and y.
+
+Two values:
+
+overflow: hidden auto;
+
+First value:
+
+overflow-x
+
+Second value:
+
+overflow-y
+
+Example:
+
+.container {
+overflow: hidden auto;
+}
+
+This means:
+
+Horizontal → hidden
+Vertical → auto
+
+---
+
+## OVERFLOW-X AND OVERFLOW-Y
+
+Example:
+
+.box {
+overflow-x: auto;
+overflow-y: hidden;
+}
+
+This creates horizontal scrolling while preventing
+visible vertical overflow.
+
+---
+
+## RESPONSIVE TABLE SCROLLING
+
+Wide tables can cause horizontal overflow on small screens.
+
+A common solution:
+
+.table-container {
+overflow-x: auto;
+}
+
+table {
+min-width: 600px;
+}
+
+The table can then scroll horizontally instead of
+breaking the page layout.
+
+---
+
+## RESPONSIVE IMAGE OVERFLOW
+
+A common responsive image rule:
+
+img {
+max-width: 100%;
+height: auto;
+}
+
+This prevents images from becoming wider than their
+containing element.
+
+---
+
+## IMPORTANT DIFFERENCES
+
+overflow: hidden
+
+→ Clips overflowing content.
+
+overflow: auto
+
+→ Scrolls only when necessary.
+
+overflow: scroll
+
+→ Provides scrolling mechanisms regardless of whether
+content currently overflows.
+
+overflow: clip
+
+→ Clips overflow without providing scrolling.
+
+---
+
+## HIDDEN vs CLIP
+
+hidden:
+
+* Clips overflow.
+* Can create a scroll container in relevant cases.
+* Programmatic scrolling can still be possible depending
+  on the scrolling mechanism.
+
+clip:
+
+* Clips overflow.
+* Does not create a scroll container.
+
+---
+
+## SCROLL-SNAP PROPERTIES
+
+scroll-snap-type
+
+→ Applied to the scroll container.
+
+scroll-snap-align
+
+→ Applied to the children/items.
+
+Example:
+
+.container {
+scroll-snap-type: x mandatory;
+}
+
+.item {
+scroll-snap-align: center;
+}
+
+---
+
+## QUICK REVISION
+
+overflow
+→ Controls overflowing content.
+
+overflow-x
+→ Controls horizontal overflow.
+
+overflow-y
+→ Controls vertical overflow.
+
+visible
+→ Overflow is visible.
+
+hidden
+→ Overflow is clipped.
+
+scroll
+→ Scrolling mechanisms are provided.
+
+auto
+→ Scroll when needed.
+
+clip
+→ Clip without scrolling.
+
+scroll-behavior
+→ Controls smooth/automatic scrolling behavior.
+
+scroll-snap-type
+→ Defines snapping for a scroll container.
+
+scroll-snap-align
+→ Defines where an item snaps.
+
+scrollbar-gutter
+→ Can reserve scrollbar space.
+
+---
+
+## QUESTIONS AND ANSWERS
+
+Q1. What is overflow?
+
+Answer:
+overflow controls what happens when content is larger
+than the element's available space.
+
+Q2. What is the difference between overflow-x and
+overflow-y?
+
+Answer:
+
+overflow-x
+→ Controls horizontal overflow.
+
+overflow-y
+→ Controls vertical overflow.
+
+Q3. What does overflow: hidden do?
+
+Answer:
+It clips content that extends outside the element's box.
+
+Q4. What does overflow: auto do?
+
+Answer:
+It provides scrolling when the content actually overflows.
+
+Q5. What does overflow: scroll do?
+
+Answer:
+It provides scrolling mechanisms even when scrolling may
+not currently be necessary.
+
+Q6. What is scroll-behavior?
+
+Answer:
+It controls the scrolling behavior for navigation and
+programmatic scrolling.
+
+Example:
+
+html {
+scroll-behavior: smooth;
+}
+
+Q7. What is scroll-snap-type?
+
+Answer:
+It defines snapping behavior for a scroll container.
+
+Q8. What is scroll-snap-align?
+
+Answer:
+It defines where an individual child/item should align
+when snapping.
+
+Q9. What is the difference between scroll-snap-type and
+scroll-snap-align?
+
+Answer:
+
+scroll-snap-type
+→ Parent/container.
+
+scroll-snap-align
+→ Child/item.
+
+Q10. What is a scroll container?
+
+Answer:
+An element whose overflowing content can be scrolled
+independently.
+
+Q11. What is smooth scrolling?
+
+Answer:
+Smooth scrolling gradually moves to a target position
+instead of jumping immediately.
+
+---
+
+## PRACTICE QUESTIONS
+
+Q1. Create a box with vertical scrolling.
+
+Q2. Create a box with horizontal scrolling.
+
+Q3. Create a container that scrolls in both directions.
+
+Q4. Create a horizontal product slider.
+
+Q5. Add smooth scrolling to a webpage.
+
+Q6. Create a horizontal scroll-snap slider.
+
+Q7. Make each slider item snap to the center.
+
+Q8. Create a vertical full-page scroll-snap layout.
+
+Q9. Hide a scrollbar while keeping a container scrollable.
+
+Q10. Create a responsive table that scrolls horizontally
+on smaller screens.
+
+---
+
+## EXAM MEMORY TRICK
+
+OVERFLOW:
+
+visible → Show
+hidden  → Hide
+scroll  → Scroll
+auto    → Scroll when needed
+clip    → Clip, no scroll container
+
+DIRECTION:
+
+overflow-x → Horizontal
+overflow-y → Vertical
+
+SCROLL:
+
+scroll-behavior
+→ How scrolling happens
+
+scroll-snap-type
+→ Container snapping
+
+scroll-snap-align
+→ Item snapping
+
+ONE-LINE MEMORY:
+
+"TYPE on the container,
+ALIGN on the item."
+
+============================================================
+END OF CSS OVERFLOW AND SCROLLING
+=================================
+
+*/
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+}
+
+/* Basic vertical scroll container */
+
+.vertical-scroll {
+width: 300px;
+height: 150px;
+margin: 20px;
+padding: 15px;
+overflow-y: auto;
+border: 2px solid #333;
+}
+
+/* Horizontal scroll container */
+
+.horizontal-scroll {
+display: flex;
+gap: 20px;
+width: 90%;
+margin: 20px auto;
+padding: 20px;
+overflow-x: auto;
+scroll-snap-type: x mandatory;
+}
+
+.slide {
+flex: 0 0 250px;
+height: 150px;
+display: grid;
+place-items: center;
+scroll-snap-align: center;
+border-radius: 10px;
+background: #dddddd;
+}
+
+/* Both horizontal and vertical scrolling */
+
+.both-scroll {
+width: 300px;
+height: 200px;
+overflow: auto;
+border: 2px solid #333;
+}
+
+/* Overflow clipping */
+
+.clip-example {
+width: 250px;
+height: 100px;
+overflow: hidden;
+border: 2px solid #333;
+}
+
+/* Responsive table */
+
+.table-container {
+max-width: 100%;
+overflow-x: auto;
+}
+
+/* Optional scrollbar styling */
+
+.custom-scroll {
+width: 300px;
+height: 150px;
+overflow: auto;
+scrollbar-width: thin;
+scrollbar-color: #888888 #eeeeee;
+}
+
+/* WebKit/Blink scrollbar styling */
+
+.custom-scroll::-webkit-scrollbar {
+width: 10px;
+height: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+background: #eeeeee;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+background: #888888;
+border-radius: 10px;
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+html {
+scroll-behavior: auto;
+}
+}

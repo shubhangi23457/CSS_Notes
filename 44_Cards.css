@@ -1,0 +1,1109 @@
+# /*
+
+```
+                CSS CARDS
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. Card Structure
+2. Card Borders
+3. Card Shadows
+4. Card Images
+5. Card Content
+6. Card Headers
+7. Card Footers
+8. Card Hover Effects
+9. Responsive Cards
+10. Card Grid Layout
+
+========================================================
+
+1. CARD STRUCTURE
+   ========================================================
+
+A card is a container used to display related information
+in a compact and visually organized format.
+
+Cards are commonly used for:
+
+```
+Products
+Blog posts
+User profiles
+Services
+News
+Courses
+Pricing plans
+```
+
+A common card structure is:
+
+```
+.card
+    |
+    |-- .card-image
+    |
+    |-- .card-header
+    |
+    |-- .card-content
+    |
+    |-- .card-footer
+```
+
+Example HTML structure:
+
+```
+<div class="card">
+
+    <img class="card-image" src="product.jpg" alt="Product">
+
+    <div class="card-content">
+        <h2>Product Name</h2>
+        <p>Product description.</p>
+    </div>
+
+    <div class="card-footer">
+        <button>Buy Now</button>
+    </div>
+
+</div>
+```
+
+========================================================
+2. CARD BORDERS
+===============
+
+The border property adds a visible boundary around a card.
+
+Example:
+
+```
+.card {
+    border: 1px solid #ddd;
+}
+```
+
+Individual properties:
+
+```
+border-width
+border-style
+border-color
+```
+
+Common border styles:
+
+```
+solid
+dashed
+dotted
+double
+```
+
+Rounded cards:
+
+```
+border-radius: 10px;
+```
+
+========================================================
+Basic Card Border
+=================
+
+*/
+
+.card {
+border: 1px solid #ddd;
+border-radius: 10px;
+overflow: hidden;
+}
+
+/*
+overflow: hidden is often useful when a card has rounded
+corners and its image should also follow those corners.
+
+========================================================
+3. CARD SHADOWS
+===============
+
+box-shadow creates depth around a card.
+
+Example:
+
+```
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+```
+
+Syntax:
+
+```
+box-shadow:
+    horizontal-offset
+    vertical-offset
+    blur
+    spread
+    color;
+```
+
+A subtle card shadow:
+
+```
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+```
+
+A stronger shadow:
+
+```
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+```
+
+========================================================
+Card Shadow Example
+===================
+
+*/
+
+.shadow-card {
+border: 1px solid #ddd;
+border-radius: 10px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+# /*
+
+4. CARD IMAGES
+   ========================================================
+
+Images are commonly placed at the top of a card.
+
+Basic responsive image:
+
+```
+width: 100%;
+height: auto;
+```
+
+For a consistent card image area:
+
+```
+width: 100%;
+aspect-ratio: 16 / 9;
+object-fit: cover;
+```
+
+object-fit: cover ensures the image fills the area while
+maintaining its aspect ratio.
+
+========================================================
+Card Image
+==========
+
+*/
+
+.card-image {
+width: 100%;
+aspect-ratio: 16 / 9;
+object-fit: cover;
+display: block;
+}
+
+/*
+For product cards, 4:3 or 1:1 can also be useful.
+
+Example:
+
+```
+aspect-ratio: 1 / 1;
+```
+
+========================================================
+5. CARD CONTENT
+===============
+
+Card content contains the main information.
+
+It may include:
+
+```
+Title
+Description
+Price
+Rating
+Category
+Date
+Tags
+Buttons
+```
+
+Padding is normally added to the content.
+
+========================================================
+*/
+
+.card-content {
+padding: 20px;
+}
+
+.card-content h2 {
+margin: 0 0 10px;
+font-size: 20px;
+}
+
+.card-content p {
+margin: 0;
+line-height: 1.6;
+}
+
+# /*
+
+6. CARD HEADERS
+   ========================================================
+
+A card header contains introductory information.
+
+Common content:
+
+```
+Title
+Subtitle
+Category
+User name
+Icon
+```
+
+Example structure:
+
+```
+<div class="card-header">
+    <h2>Product Name</h2>
+    <p>Electronics</p>
+</div>
+```
+
+========================================================
+*/
+
+.card-header {
+padding: 18px 20px;
+border-bottom: 1px solid #eee;
+}
+
+.card-header h2 {
+margin: 0;
+}
+
+.card-header p {
+margin: 5px 0 0;
+color: #666;
+}
+
+# /*
+
+7. CARD FOOTERS
+   ========================================================
+
+The card footer is normally used for:
+
+```
+Buttons
+Links
+Price
+Actions
+Metadata
+```
+
+Example:
+
+```
+<div class="card-footer">
+    <button>Buy Now</button>
+</div>
+```
+
+========================================================
+*/
+
+.card-footer {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 10px;
+padding: 15px 20px;
+border-top: 1px solid #eee;
+}
+
+# /*
+
+# Card Footer Button
+
+*/
+
+.card-footer button {
+padding: 10px 18px;
+border: none;
+border-radius: 6px;
+background-color: #2563eb;
+color: white;
+cursor: pointer;
+}
+
+# /*
+
+8. CARD HOVER EFFECTS
+   ========================================================
+
+Cards can respond to mouse hover.
+
+Common effects:
+
+```
+Shadow increases
+Card moves upward
+Image zooms
+Border changes
+Background changes
+```
+
+========================================================
+Card Lift Effect
+================
+
+*/
+
+.hover-card {
+border: 1px solid #ddd;
+border-radius: 10px;
+box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+
+```
+transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+```
+
+}
+
+.hover-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+}
+
+# /*
+
+# Image Zoom Effect
+
+*/
+
+.image-card {
+overflow: hidden;
+border-radius: 10px;
+}
+
+.image-card img {
+width: 100%;
+display: block;
+transition: transform 0.3s ease;
+}
+
+.image-card:hover img {
+transform: scale(1.05);
+}
+
+# /*
+
+9. RESPONSIVE CARDS
+   ========================================================
+
+Responsive cards adapt to different screen sizes.
+
+Useful techniques:
+
+```
+width: 100%;
+max-width
+flexible grid columns
+minmax()
+auto-fit
+media queries
+```
+
+Avoid fixed card widths that cause horizontal scrolling
+on small screens.
+
+========================================================
+Responsive Card
+===============
+
+*/
+
+.responsive-card {
+width: 100%;
+max-width: 350px;
+box-sizing: border-box;
+}
+
+# /*
+
+# Responsive Card Content
+
+*/
+
+.responsive-card img {
+width: 100%;
+height: auto;
+display: block;
+}
+
+# /*
+
+10. CARD GRID LAYOUT
+    ========================================================
+
+CSS Grid is commonly used to arrange cards.
+
+Basic example:
+
+```
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+```
+
+This creates three equal columns.
+
+========================================================
+Basic Card Grid
+===============
+
+*/
+
+.card-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
+
+# /*
+
+# Responsive Card Grid
+
+A better responsive approach:
+
+```
+repeat(auto-fit, minmax(250px, 1fr))
+```
+
+This allows the browser to automatically determine how
+many columns fit.
+
+========================================================
+*/
+
+.responsive-card-grid {
+display: grid;
+grid-template-columns:
+repeat(auto-fit, minmax(250px, 1fr));
+gap: 20px;
+}
+
+# /*
+
+# AUTO-FIT vs FIXED COLUMNS
+
+Fixed:
+
+```
+repeat(3, 1fr)
+```
+
+Always creates three grid tracks when space allows.
+
+Responsive:
+
+```
+repeat(auto-fit, minmax(250px, 1fr))
+```
+
+Allows the number of columns to change based on available
+space.
+
+========================================================
+COMPLETE PRODUCT CARD
+=====================
+
+*/
+
+.product-card {
+display: flex;
+flex-direction: column;
+overflow: hidden;
+
+```
+border: 1px solid #ddd;
+border-radius: 12px;
+background-color: white;
+
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+```
+
+}
+
+.product-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+}
+
+.product-card img {
+width: 100%;
+aspect-ratio: 1 / 1;
+object-fit: cover;
+display: block;
+}
+
+.product-card-content {
+padding: 18px;
+flex: 1;
+}
+
+.product-card-content h3 {
+margin: 0 0 8px;
+}
+
+.product-card-content p {
+margin: 0;
+line-height: 1.5;
+}
+
+.product-price {
+margin-top: 12px;
+font-size: 20px;
+font-weight: bold;
+}
+
+.product-card-footer {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 10px;
+padding: 15px 18px;
+border-top: 1px solid #eee;
+}
+
+.product-card-footer button {
+padding: 10px 16px;
+border: none;
+border-radius: 6px;
+background-color: #2563eb;
+color: white;
+cursor: pointer;
+}
+
+# /*
+
+# PRODUCT CARD GRID
+
+*/
+
+.product-grid {
+display: grid;
+grid-template-columns:
+repeat(auto-fit, minmax(220px, 1fr));
+gap: 20px;
+}
+
+# /*
+
+# EQUAL HEIGHT CARDS
+
+Grid items naturally stretch to the row's track size.
+
+For a card with internal sections, Flexbox can help keep
+the footer at the bottom.
+
+========================================================
+*/
+
+.equal-card {
+display: flex;
+flex-direction: column;
+height: 100%;
+}
+
+.equal-card-content {
+flex: 1;
+}
+
+/*
+This allows the content area to expand and pushes the
+footer toward the bottom.
+
+========================================================
+CARD WITH BADGE
+===============
+
+*/
+
+.badge-card {
+position: relative;
+}
+
+.card-badge {
+position: absolute;
+top: 12px;
+right: 12px;
+padding: 5px 10px;
+border-radius: 20px;
+background-color: #dc2626;
+color: white;
+font-size: 12px;
+font-weight: bold;
+}
+
+# /*
+
+# CARD ACCESSIBILITY
+
+Important practices:
+
+1. Use meaningful alt text for informative images.
+
+2. Use empty alt="" for purely decorative images.
+
+3. Maintain sufficient color contrast.
+
+4. Make buttons and links keyboard accessible.
+
+5. Provide visible focus indicators.
+
+6. Do not make an entire card clickable unless the
+   interaction is clear and accessible.
+
+7. Use semantic HTML where appropriate.
+
+Example:
+
+```
+<article class="card">
+    ...
+</article>
+```
+
+========================================================
+CARD RESPONSIVENESS WITH MEDIA QUERY
+====================================
+
+*/
+
+.card-layout {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
+
+@media (max-width: 900px) {
+.card-layout {
+grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media (max-width: 600px) {
+.card-layout {
+grid-template-columns: 1fr;
+}
+}
+
+# /*
+
+# CARD GRID: MEDIA QUERY vs AUTO-FIT
+
+Media query approach:
+
+```
+3 columns
+↓
+2 columns
+↓
+1 column
+```
+
+Useful when you want precise control.
+
+Auto-fit approach:
+
+```
+repeat(auto-fit, minmax(250px, 1fr))
+```
+
+Useful when you want the browser to automatically
+calculate the number of columns.
+
+========================================================
+CARD STRUCTURE SUMMARY
+======================
+
+.card
+|
++-- image
+|
++-- header
+|
++-- content
+|
++-- footer
+
+========================================================
+COMMON CARD PROPERTIES
+======================
+
+border:
+Defines card boundary.
+
+border-radius:
+Rounds card corners.
+
+box-shadow:
+Adds depth.
+
+padding:
+Creates internal spacing.
+
+overflow:
+Controls overflowing content.
+
+background:
+Controls card background.
+
+transition:
+Smooths hover changes.
+
+transform:
+Creates movement/scale effects.
+
+display: grid:
+Creates card layouts.
+
+display: flex:
+Controls card internal layout.
+
+========================================================
+QUICK REVISION
+==============
+
+Card Border:
+border
+
+Rounded Card:
+border-radius
+
+Card Shadow:
+box-shadow
+
+Card Image:
+width: 100%;
+object-fit: cover;
+
+Card Content:
+padding
+
+Card Header:
+border-bottom
+
+Card Footer:
+border-top
+
+Hover:
+:hover
+
+Smooth Hover:
+transition
+
+Card Movement:
+transform
+
+Responsive Grid:
+repeat(auto-fit, minmax(250px, 1fr))
+
+========================================================
+QUESTIONS AND ANSWERS
+=====================
+
+Q1. What is a CSS card?
+
+Answer:
+
+A card is a styled container used to organize related
+content such as products, profiles, articles, or services.
+
+---
+
+Q2. Which property creates rounded card corners?
+
+Answer:
+
+```
+border-radius
+```
+
+---
+
+Q3. Which property creates a card shadow?
+
+Answer:
+
+```
+box-shadow
+```
+
+---
+
+Q4. How do you make a card image fill its container
+without distortion?
+
+Answer:
+
+```
+img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+---
+
+Q5. How do you create a three-column card grid?
+
+Answer:
+
+```
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+```
+
+---
+
+Q6. How do you create an automatically responsive
+card grid?
+
+Answer:
+
+```
+.card-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+```
+
+---
+
+Q7. How do you create a card lift effect?
+
+Answer:
+
+```
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+```
+
+---
+
+Q8. Why is overflow: hidden useful on cards with images?
+
+Answer:
+
+It can prevent image content from extending outside the
+card, especially when the card has rounded corners or
+the image is being transformed.
+
+---
+
+Q9. How can Flexbox keep a card footer at the bottom?
+
+Answer:
+
+```
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content {
+    flex: 1;
+}
+```
+
+---
+
+Q10. Which CSS layout systems are commonly used for cards?
+
+Answer:
+
+```
+CSS Grid
+Flexbox
+```
+
+Grid is commonly used for arranging multiple cards,
+while Flexbox is useful for arranging content inside
+an individual card.
+
+========================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Create a card with a border and rounded corners.
+
+Solution:
+
+```
+.card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+```
+
+---
+
+Q2. Add a shadow to the card.
+
+Solution:
+
+```
+.card {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+```
+
+---
+
+Q3. Make a card image responsive.
+
+Solution:
+
+```
+.card img {
+    width: 100%;
+    height: auto;
+}
+```
+
+---
+
+Q4. Create a card image with a fixed 16:9 ratio.
+
+Solution:
+
+```
+.card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+```
+
+---
+
+Q5. Create a card hover effect.
+
+Solution:
+
+```
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+```
+
+---
+
+Q6. Create a responsive four-column-style card grid.
+
+Solution:
+
+```
+.card-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+```
+
+---
+
+Q7. Create a card footer with buttons aligned to the right.
+
+Solution:
+
+```
+.card-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+```
+
+========================================================
+EXAM MEMORY TRICK
+=================
+
+BORDER:
+border
+
+ROUND:
+border-radius
+
+DEPTH:
+box-shadow
+
+IMAGE:
+object-fit: cover
+
+SPACE:
+padding
+
+HOVER:
+:hover
+
+SMOOTH:
+transition
+
+MOVE:
+transform
+
+MULTIPLE CARDS:
+display: grid
+
+RESPONSIVE:
+auto-fit + minmax()
+
+INSIDE CARD:
+Flexbox
+
+========================================================
+END OF CSS CARDS
+================
+
+*/

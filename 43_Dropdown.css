@@ -1,0 +1,1150 @@
+# /*
+
+```
+                CSS DROPDOWNS
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. Dropdown Structure
+2. Hover Dropdowns
+3. Click-Based Dropdown Styling
+4. Dropdown Positioning
+5. Dropdown Content
+6. Dropdown Menus
+7. Nested Dropdowns
+8. Responsive Dropdowns
+
+========================================================
+
+1. DROPDOWN STRUCTURE
+   ========================================================
+
+A dropdown is a menu that displays additional options when
+the user interacts with a button, link, or menu item.
+
+A common structure is:
+
+```
+.dropdown
+    |
+    |-- .dropdown-button
+    |
+    |-- .dropdown-content
+            |
+            |-- link
+            |-- link
+            |-- link
+```
+
+Example HTML:
+
+```
+<div class="dropdown">
+    <button class="dropdown-button">Products</button>
+
+    <div class="dropdown-content">
+        <a href="#">Laptops</a>
+        <a href="#">Phones</a>
+        <a href="#">Tablets</a>
+    </div>
+</div>
+```
+
+The parent usually uses:
+
+```
+position: relative;
+```
+
+The dropdown content usually uses:
+
+```
+position: absolute;
+```
+
+========================================================
+2. HOVER DROPDOWNS
+==================
+
+A hover dropdown opens when the user moves the pointer over
+the dropdown area.
+
+Basic technique:
+
+```
+.dropdown-content {
+    display: none;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+```
+
+========================================================
+Basic Hover Dropdown
+====================
+
+*/
+
+.dropdown {
+position: relative;
+display: inline-block;
+}
+
+.dropdown-button {
+padding: 10px 18px;
+border: none;
+background-color: #2563eb;
+color: white;
+cursor: pointer;
+border-radius: 6px;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+min-width: 180px;
+background-color: white;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+border-radius: 6px;
+z-index: 1000;
+}
+
+.dropdown:hover .dropdown-content {
+display: block;
+}
+
+.dropdown-content a {
+display: block;
+padding: 10px 15px;
+color: #111827;
+text-decoration: none;
+}
+
+.dropdown-content a:hover {
+background-color: #f3f4f6;
+}
+
+# /*
+
+3. CLICK-BASED DROPDOWN STYLING
+   ========================================================
+
+CSS can style the appearance of a click-open dropdown,
+but CSS does not directly detect a normal button click
+and store an open/closed state.
+
+A common real-world approach is:
+
+```
+HTML button
+    +
+JavaScript
+    +
+CSS
+```
+
+JavaScript can add/remove a class such as:
+
+```
+.open
+```
+
+CSS then controls the appearance.
+
+Example:
+
+```
+.dropdown-content {
+    display: none;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+}
+```
+
+JavaScript would toggle the "open" class when the button
+is clicked.
+
+========================================================
+CLICK-BASED DROPDOWN CSS
+========================
+
+*/
+
+.click-dropdown {
+position: relative;
+display: inline-block;
+}
+
+.click-dropdown-content {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+min-width: 180px;
+padding: 5px 0;
+background-color: white;
+border-radius: 6px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+z-index: 1000;
+}
+
+/*
+JavaScript can add the .open class.
+*/
+
+.click-dropdown.open .click-dropdown-content {
+display: block;
+}
+
+# /*
+
+# ALTERNATIVE: DETAILS / SUMMARY
+
+For simple native disclosure behavior, HTML <details>
+and <summary> can sometimes be used instead of JavaScript.
+
+Example HTML:
+
+```
+<details class="details-dropdown">
+    <summary>Options</summary>
+
+    <div>
+        <a href="#">Option 1</a>
+        <a href="#">Option 2</a>
+    </div>
+</details>
+```
+
+CSS can style the open content.
+
+========================================================
+*/
+
+.details-dropdown {
+position: relative;
+display: inline-block;
+}
+
+.details-dropdown summary {
+cursor: pointer;
+padding: 10px 15px;
+background-color: #2563eb;
+color: white;
+border-radius: 6px;
+}
+
+.details-dropdown > div {
+min-width: 180px;
+margin-top: 5px;
+padding: 8px;
+background-color: white;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+border-radius: 6px;
+}
+
+# /*
+
+4. DROPDOWN POSITIONING
+   ========================================================
+
+Dropdown positioning is usually done using:
+
+```
+position: relative;
+position: absolute;
+```
+
+The parent establishes the positioning context.
+
+Example:
+
+```
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+```
+
+========================================================
+IMPORTANT POSITIONING VALUES
+============================
+
+top: 100%;
+Places the dropdown immediately below the parent.
+
+left: 0;
+Aligns the left edges.
+
+right: 0;
+Aligns the right edges.
+
+bottom: 100%;
+Places the dropdown above the parent.
+
+========================================================
+Dropdown Below
+==============
+
+*/
+
+.dropdown-below .dropdown-content {
+top: 100%;
+left: 0;
+}
+
+# /*
+
+# Dropdown Aligned to Right
+
+*/
+
+.dropdown-right .dropdown-content {
+top: 100%;
+right: 0;
+}
+
+# /*
+
+# Dropdown Above
+
+*/
+
+.dropdown-above .dropdown-content {
+bottom: 100%;
+left: 0;
+}
+
+# /*
+
+5. DROPDOWN CONTENT
+   ========================================================
+
+Dropdown content can contain:
+
+```
+Links
+Buttons
+Images
+Icons
+Text
+Categories
+Form controls
+Cards
+```
+
+The content can be styled using normal CSS.
+
+========================================================
+Dropdown Links
+==============
+
+*/
+
+.dropdown-content a {
+display: block;
+padding: 10px 15px;
+color: #111827;
+text-decoration: none;
+white-space: nowrap;
+}
+
+.dropdown-content a:hover {
+background-color: #f3f4f6;
+}
+
+# /*
+
+# Dropdown Heading
+
+*/
+
+.dropdown-heading {
+padding: 10px 15px;
+font-size: 14px;
+font-weight: bold;
+color: #6b7280;
+}
+
+# /*
+
+# Dropdown Divider
+
+*/
+
+.dropdown-divider {
+height: 1px;
+margin: 5px 0;
+background-color: #e5e7eb;
+}
+
+# /*
+
+6. DROPDOWN MENUS
+   ========================================================
+
+A dropdown menu is normally a collection of selectable
+items.
+
+A clean structure is:
+
+```
+.dropdown-menu
+    .dropdown-item
+    .dropdown-item
+    .dropdown-item
+```
+
+========================================================
+*/
+
+.dropdown-menu {
+min-width: 200px;
+padding: 6px 0;
+margin: 0;
+list-style: none;
+background-color: white;
+border: 1px solid #e5e7eb;
+border-radius: 8px;
+box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-menu .dropdown-item {
+display: block;
+width: 100%;
+padding: 10px 15px;
+box-sizing: border-box;
+color: #111827;
+text-decoration: none;
+}
+
+.dropdown-menu .dropdown-item:hover {
+background-color: #f3f4f6;
+}
+
+# /*
+
+# DROPDOWN WITH ICONS
+
+*/
+
+.dropdown-item {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+# /*
+
+7. NESTED DROPDOWNS
+   ========================================================
+
+A nested dropdown is a dropdown inside another dropdown.
+
+Example structure:
+
+```
+Products
+    Laptops
+        Gaming
+        Business
+```
+
+A nested dropdown can be positioned to the right of its
+parent item.
+
+========================================================
+Nested Dropdown Structure
+=========================
+
+*/
+
+.nested-dropdown {
+position: relative;
+}
+
+.nested-dropdown-content {
+display: none;
+position: absolute;
+top: 0;
+left: 100%;
+min-width: 180px;
+background-color: white;
+border-radius: 6px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/*
+Show nested dropdown when parent is hovered.
+*/
+
+.nested-dropdown:hover > .nested-dropdown-content {
+display: block;
+}
+
+# /*
+
+# Nested Dropdown Example
+
+*/
+
+.nested-dropdown-content a {
+display: block;
+padding: 10px 15px;
+color: #111827;
+text-decoration: none;
+}
+
+.nested-dropdown-content a:hover {
+background-color: #f3f4f6;
+}
+
+# /*
+
+# Nested Dropdown Positioning
+
+Parent:
+
+```
+position: relative;
+```
+
+Nested content:
+
+```
+position: absolute;
+top: 0;
+left: 100%;
+```
+
+This places the nested menu beside its parent.
+
+========================================================
+8. RESPONSIVE DROPDOWNS
+=======================
+
+Dropdowns should work on different screen sizes.
+
+Important consideration:
+
+Hover is not a reliable interaction method on touch devices.
+
+For mobile devices, dropdowns are commonly implemented
+using:
+
+```
+Click/tap interaction
+JavaScript
+<details>/<summary>
+Responsive navigation menus
+```
+
+========================================================
+Desktop Dropdown
+================
+
+*/
+
+.desktop-dropdown {
+position: relative;
+}
+
+.desktop-dropdown-content {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+min-width: 200px;
+background-color: white;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.desktop-dropdown:hover .desktop-dropdown-content {
+display: block;
+}
+
+# /*
+
+# Responsive Dropdown
+
+On smaller screens, the dropdown can become a normal-width
+block instead of a floating menu.
+
+========================================================
+*/
+
+@media (max-width: 600px) {
+
+```
+.desktop-dropdown-content {
+    position: static;
+    width: 100%;
+    min-width: 0;
+    box-shadow: none;
+    border-top: 1px solid #ddd;
+}
+
+.desktop-dropdown:hover .desktop-dropdown-content {
+    display: none;
+}
+
+/*
+For mobile, use a click-based class or
+details/summary pattern instead.
+*/
+
+.desktop-dropdown.open .desktop-dropdown-content {
+    display: block;
+}
+```
+
+}
+
+# /*
+
+# RESPONSIVE DROPDOWN WITH DETAILS
+
+This approach can provide native open/close behavior without
+requiring JavaScript.
+
+Example HTML:
+
+```
+<details>
+    <summary>Categories</summary>
+
+    <div class="mobile-dropdown">
+        <a href="#">Electronics</a>
+        <a href="#">Clothing</a>
+        <a href="#">Books</a>
+    </div>
+</details>
+```
+
+========================================================
+*/
+
+details {
+width: 100%;
+}
+
+details summary {
+cursor: pointer;
+padding: 12px;
+font-weight: bold;
+}
+
+.mobile-dropdown {
+display: flex;
+flex-direction: column;
+}
+
+.mobile-dropdown a {
+padding: 10px 15px;
+text-decoration: none;
+color: #111827;
+}
+
+# /*
+
+# DROPDOWN ARROW
+
+A small CSS arrow can indicate that a menu has a dropdown.
+
+========================================================
+*/
+
+.dropdown-arrow::after {
+content: "▼";
+margin-left: 8px;
+font-size: 10px;
+}
+
+# /*
+
+# ROTATING DROPDOWN ARROW
+
+*/
+
+.dropdown-arrow::after {
+display: inline-block;
+transition: transform 0.3s ease;
+}
+
+.dropdown.open .dropdown-arrow::after {
+transform: rotate(180deg);
+}
+
+# /*
+
+# DROPDOWN TRANSITION
+
+display: none/block cannot be smoothly transitioned.
+
+For animated dropdowns, opacity and visibility can be used.
+
+========================================================
+*/
+
+.animated-dropdown-content {
+position: absolute;
+top: 100%;
+left: 0;
+min-width: 180px;
+
+```
+opacity: 0;
+visibility: hidden;
+transform: translateY(-5px);
+
+transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease;
+```
+
+}
+
+.animated-dropdown:hover .animated-dropdown-content {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+}
+
+/*
+Note:
+
+When using this approach, make sure the hidden dropdown
+cannot be incorrectly reached by keyboard focus or otherwise
+interacted with while it is visually hidden.
+
+For complex accessible menus, manage keyboard/focus behavior
+with appropriate HTML/JavaScript rather than relying only
+on hover.
+
+========================================================
+DROPDOWN ACCESSIBILITY
+======================
+
+Important practices:
+
+1. Use buttons for actions that open/close menus.
+
+2. Use links for navigation.
+
+3. Provide visible keyboard focus.
+
+4. Do not rely only on hover.
+
+5. Make dropdowns usable with keyboard.
+
+6. On mobile, use click/tap-friendly interaction.
+
+7. Provide a clear indication that an item has a submenu.
+
+8. Ensure sufficient color contrast.
+
+9. Do not hide important navigation only behind hover.
+
+========================================================
+FOCUS STYLING
+=============
+
+*/
+
+.dropdown a:focus-visible,
+.dropdown button:focus-visible,
+.dropdown summary:focus-visible {
+outline: 3px solid #93c5fd;
+outline-offset: 2px;
+}
+
+# /*
+
+# HOVER vs CLICK DROPDOWN
+
+HOVER:
+
+```
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+```
+
+Advantages:
+Simple
+Easy to implement
+Useful for desktop menus
+
+Disadvantages:
+Not ideal for touch devices
+Can be difficult for keyboard users
+Accidental opening can occur
+
+---
+
+CLICK:
+
+```
+.dropdown.open .dropdown-content {
+    display: block;
+}
+```
+
+Usually requires:
+JavaScript or an appropriate HTML interaction pattern
+
+Advantages:
+Better for touch
+Explicit user action
+Better suited for mobile navigation
+
+========================================================
+DROPDOWN vs NESTED DROPDOWN
+===========================
+
+Dropdown:
+
+```
+Parent
+   |
+   +-- Item
+   +-- Item
+   +-- Item
+```
+
+Nested dropdown:
+
+```
+Parent
+   |
+   +-- Item
+   +-- Category
+          |
+          +-- Item
+          +-- Item
+```
+
+Nested positioning commonly uses:
+
+```
+top: 0;
+left: 100%;
+```
+
+========================================================
+QUICK REVISION
+==============
+
+Dropdown parent:
+position: relative;
+
+Dropdown content:
+position: absolute;
+
+Below:
+top: 100%;
+left: 0;
+
+Right aligned:
+top: 100%;
+right: 0;
+
+Above:
+bottom: 100%;
+left: 0;
+
+Hover:
+:hover
+
+Click-based class:
+.open
+
+Nested dropdown:
+left: 100%;
+top: 0;
+
+Responsive:
+@media
+
+Native disclosure: <details> <summary>
+
+Focus:
+:focus-visible
+
+========================================================
+QUESTIONS AND ANSWERS
+=====================
+
+Q1. What is a dropdown?
+
+Answer:
+
+A dropdown is a menu that displays additional options when
+the user interacts with a button, link, or menu item.
+
+---
+
+Q2. Which positioning is commonly used for dropdowns?
+
+Answer:
+
+The parent normally uses:
+
+```
+position: relative;
+```
+
+The dropdown normally uses:
+
+```
+position: absolute;
+```
+
+---
+
+Q3. How do you display a dropdown on hover?
+
+Answer:
+
+```
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+```
+
+---
+
+Q4. Can normal CSS detect a button click and remember the
+dropdown's open state?
+
+Answer:
+
+Not directly in the same way JavaScript can. A conventional
+click-based dropdown normally uses JavaScript to toggle a
+class, or can use an appropriate native HTML mechanism such
+as details/summary.
+
+---
+
+Q5. How do you position a dropdown below its parent?
+
+Answer:
+
+```
+position: absolute;
+top: 100%;
+left: 0;
+```
+
+---
+
+Q6. How do you create a nested dropdown to the right?
+
+Answer:
+
+```
+position: absolute;
+top: 0;
+left: 100%;
+```
+
+---
+
+Q7. Why are hover-only dropdowns not ideal on mobile?
+
+Answer:
+
+Touch devices do not have the same hover interaction as a
+mouse, so click/tap-based interaction is generally more
+appropriate.
+
+---
+
+Q8. How can dropdowns be made responsive?
+
+Answer:
+
+Using:
+
+```
+Media queries
+Flexible widths
+Click/tap interaction
+Details/summary
+Responsive navigation patterns
+```
+
+---
+
+Q9. Which HTML elements can provide a simple native
+disclosure interaction?
+
+Answer:
+
+```
+<details>
+<summary>
+```
+
+---
+
+Q10. How can dropdown keyboard focus be made visible?
+
+Answer:
+
+```
+.dropdown a:focus-visible {
+    outline: 3px solid blue;
+}
+```
+
+========================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Create a dropdown that appears below a button on hover.
+
+Solution:
+
+```
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+```
+
+---
+
+Q2. Align a dropdown to the right edge of its parent.
+
+Solution:
+
+```
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+}
+```
+
+---
+
+Q3. Create a nested dropdown.
+
+Solution:
+
+```
+.nested {
+    position: relative;
+}
+
+.nested-menu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+}
+```
+
+---
+
+Q4. Create a click-based dropdown using an open class.
+
+Solution:
+
+```
+.dropdown-content {
+    display: none;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+}
+```
+
+---
+
+Q5. Create a responsive dropdown that becomes full-width
+on small screens.
+
+Solution:
+
+```
+@media (max-width: 600px) {
+    .dropdown-content {
+        position: static;
+        width: 100%;
+    }
+}
+```
+
+========================================================
+EXAM MEMORY TRICK
+=================
+
+STRUCTURE:
+parent
++
+content
+
+POSITION:
+parent = relative
+content = absolute
+
+BELOW:
+top: 100%
+
+RIGHT:
+left: 100%
+
+HOVER:
+:hover
+
+CLICK:
+.open + JavaScript/native interaction
+
+NESTED:
+top: 0;
+left: 100%;
+
+MOBILE:
+click/tap is generally better than hover
+
+NATIVE:
+details + summary
+
+ACCESSIBILITY:
+focus-visible
+keyboard support
+clear labels
+sufficient contrast
+
+========================================================
+END OF CSS DROPDOWNS
+====================
+
+*/

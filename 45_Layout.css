@@ -1,0 +1,2681 @@
+# /*
+
+```
+            CSS LAYOUT TECHNIQUES
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. Normal Flow
+2. Block Layout
+3. Inline Layout
+4. Float Layout
+5. Positioning Layout
+6. Flexbox Layout
+7. Grid Layout
+8. Multi-Column Layout
+9. Centering Elements
+10. Horizontal Centering
+11. Vertical Centering
+12. Horizontal + Vertical Centering
+13. Page Layouts
+14. Header/Main/Footer Layout
+
+========================================================
+
+1. NORMAL FLOW
+   ========================================================
+
+Normal flow is the default way elements are laid out
+when no special positioning or layout system changes
+their placement.
+
+Elements generally appear in the order they occur in HTML.
+
+Example:
+
+```
+<h1>Heading</h1>
+<p>Paragraph</p>
+<div>Content</div>
+```
+
+Each element participates in the normal document flow.
+
+Block elements usually start on a new line.
+
+Inline elements usually remain within the same line.
+
+========================================================
+IMPORTANT
+=========
+
+Normal flow is the foundation of CSS layout.
+
+Layout techniques such as:
+
+```
+Flexbox
+Grid
+Float
+Positioning
+Multi-column
+```
+
+can change how elements participate in or are arranged
+within the normal flow.
+
+========================================================
+2. BLOCK LAYOUT
+===============
+
+Block-level elements normally:
+
+```
+Start on a new line.
+Occupy available horizontal space.
+Can have width and height.
+Can have margin and padding.
+```
+
+Common block elements:
+
+```
+div
+p
+h1-h6
+section
+article
+header
+footer
+main
+```
+
+Example:
+
+```
+div {
+    width: 300px;
+    height: 100px;
+    margin: 10px;
+    padding: 20px;
+}
+```
+
+========================================================
+Block Display
+=============
+
+*/
+
+.block-box {
+display: block;
+width: 300px;
+padding: 20px;
+margin: 10px;
+border: 1px solid #333;
+}
+
+# /*
+
+3. INLINE LAYOUT
+   ========================================================
+
+Inline elements normally:
+
+```
+Stay within the same line.
+Take only the required width.
+Do not normally accept width and height in the same
+way block-level elements do.
+```
+
+Common inline elements:
+
+```
+span
+a
+strong
+em
+```
+
+Example:
+
+```
+span {
+    color: blue;
+}
+```
+
+========================================================
+Inline-Block
+============
+
+inline-block combines characteristics of inline and block.
+
+It:
+
+```
+Can appear beside other inline-level elements.
+Can have width and height.
+```
+
+Example:
+
+```
+span {
+    display: inline-block;
+    width: 100px;
+    padding: 10px;
+}
+```
+
+========================================================
+*/
+
+.inline-box {
+display: inline-block;
+width: 120px;
+padding: 15px;
+margin: 5px;
+border: 1px solid #333;
+}
+
+# /*
+
+4. FLOAT LAYOUT
+   ========================================================
+
+The float property was traditionally used to move elements
+to the left or right and allow surrounding content to wrap
+around them.
+
+Syntax:
+
+```
+float: left;
+float: right;
+float: none;
+```
+
+Example:
+
+```
+img {
+    float: left;
+    margin-right: 15px;
+}
+```
+
+Text can flow around the floated image.
+
+========================================================
+Float Values
+============
+
+float: left;
+Moves element to the left.
+
+float: right;
+Moves element to the right.
+
+float: none;
+Default; element does not float.
+
+========================================================
+*/
+
+.float-image {
+float: left;
+width: 150px;
+margin: 0 15px 10px 0;
+}
+
+# /*
+
+# CLEAR
+
+The clear property controls whether an element can sit
+beside floated elements.
+
+Values:
+
+```
+clear: left;
+clear: right;
+clear: both;
+clear: none;
+```
+
+Example:
+
+```
+.footer {
+    clear: both;
+}
+```
+
+Modern layouts generally use Flexbox or Grid instead of
+float for major page layout.
+
+========================================================
+5. POSITIONING LAYOUT
+=====================
+
+CSS positioning allows elements to be placed at specific
+locations.
+
+Main position values:
+
+```
+static
+relative
+absolute
+fixed
+sticky
+```
+
+========================================================
+STATIC
+======
+
+Default positioning.
+
+```
+position: static;
+```
+
+top/right/bottom/left do not normally move a static element.
+
+========================================================
+RELATIVE
+========
+
+```
+position: relative;
+```
+
+The element remains in normal flow, but can be visually
+offset using:
+
+```
+top
+right
+bottom
+left
+```
+
+It also commonly establishes a positioning context for
+absolutely positioned descendants.
+
+Example:
+
+```
+.box {
+    position: relative;
+    top: 10px;
+}
+```
+
+========================================================
+ABSOLUTE
+========
+
+```
+position: absolute;
+```
+
+The element is removed from normal flow.
+
+It is positioned relative to an appropriate containing
+block, often a positioned ancestor.
+
+Example:
+
+```
+.parent {
+    position: relative;
+}
+
+.child {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+```
+
+========================================================
+FIXED
+=====
+
+```
+position: fixed;
+```
+
+The element is removed from normal flow and is commonly
+positioned relative to the viewport.
+
+Example:
+
+```
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+```
+
+========================================================
+STICKY
+======
+
+```
+position: sticky;
+```
+
+The element behaves like a relatively positioned element
+until it reaches a specified scroll threshold.
+
+Example:
+
+```
+.navbar {
+    position: sticky;
+    top: 0;
+}
+```
+
+========================================================
+6. FLEXBOX LAYOUT
+=================
+
+Flexbox is a one-dimensional layout system.
+
+It is useful for arranging elements in:
+
+```
+Rows
+Columns
+Navigation bars
+Card content
+Toolbars
+Buttons
+Centered elements
+```
+
+Basic example:
+
+```
+.container {
+    display: flex;
+}
+```
+
+========================================================
+Main Flexbox Properties
+=======================
+
+Container:
+
+```
+display: flex;
+flex-direction;
+flex-wrap;
+justify-content;
+align-items;
+align-content;
+gap;
+```
+
+Items:
+
+```
+flex-grow;
+flex-shrink;
+flex-basis;
+flex;
+align-self;
+order;
+```
+
+========================================================
+Flexbox Example
+===============
+
+*/
+
+.flex-container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 20px;
+}
+
+.flex-item {
+flex: 1;
+padding: 20px;
+border: 1px solid #ddd;
+}
+
+# /*
+
+7. GRID LAYOUT
+   ========================================================
+
+CSS Grid is a two-dimensional layout system.
+
+It is useful for:
+
+```
+Page layouts
+Card grids
+Dashboards
+Galleries
+Complex layouts
+```
+
+Basic:
+
+```
+display: grid;
+```
+
+Example:
+
+```
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+```
+
+========================================================
+Grid Example
+============
+
+*/
+
+.grid-container {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
+
+.grid-item {
+padding: 20px;
+border: 1px solid #ddd;
+}
+
+# /*
+
+# GRID LAYOUT WITH AREAS
+
+Grid areas can describe a complete page layout.
+
+Example:
+
+```
+grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+```
+
+========================================================
+*/
+
+.page-grid {
+display: grid;
+grid-template-columns: 200px 1fr;
+grid-template-rows: auto 1fr auto;
+
+```
+grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+
+min-height: 100vh;
+gap: 10px;
+```
+
+}
+
+.page-header {
+grid-area: header;
+}
+
+.page-sidebar {
+grid-area: sidebar;
+}
+
+.page-main {
+grid-area: main;
+}
+
+.page-footer {
+grid-area: footer;
+}
+
+# /*
+
+8. MULTI-COLUMN LAYOUT
+   ========================================================
+
+CSS Multi-column layout divides text into multiple columns.
+
+Useful for:
+
+```
+Articles
+Newspapers
+Long text
+Magazine layouts
+```
+
+Important properties:
+
+```
+column-count
+column-width
+column-gap
+column-rule
+column-span
+```
+
+========================================================
+column-count
+============
+
+Defines the number of columns.
+
+Example:
+
+```
+column-count: 3;
+```
+
+========================================================
+*/
+
+.article-columns {
+column-count: 3;
+column-gap: 30px;
+}
+
+# /*
+
+# column-width
+
+Suggests a preferred width for columns.
+
+Example:
+
+```
+column-width: 250px;
+```
+
+The browser determines how many columns can fit.
+
+========================================================
+*/
+
+.article-responsive {
+column-width: 250px;
+column-gap: 30px;
+}
+
+# /*
+
+# COLUMN RULE
+
+*/
+
+.article-with-rule {
+column-count: 3;
+column-gap: 30px;
+column-rule: 1px solid #ccc;
+}
+
+# /*
+
+# COLUMN SPAN
+
+An element can span across all columns.
+
+Example:
+
+```
+column-span: all;
+```
+
+========================================================
+*/
+
+.article-title {
+column-span: all;
+}
+
+# /*
+
+9. CENTERING ELEMENTS
+   ========================================================
+
+Centering is one of the most common CSS layout tasks.
+
+There are three major cases:
+
+```
+Horizontal centering
+Vertical centering
+Horizontal + vertical centering
+```
+
+The best method depends on the element and layout.
+
+========================================================
+10. HORIZONTAL CENTERING
+========================
+
+METHOD 1:
+margin-left/right auto
+
+For a block element with a defined or constrained width:
+
+```
+width: 300px;
+margin-left: auto;
+margin-right: auto;
+```
+
+Shorthand:
+
+```
+margin: 0 auto;
+```
+
+========================================================
+*/
+
+.horizontal-center {
+width: 300px;
+margin: 0 auto;
+}
+
+# /*
+
+METHOD 2:
+Flexbox
+=======
+
+```
+display: flex;
+justify-content: center;
+```
+
+========================================================
+*/
+
+.flex-horizontal-center {
+display: flex;
+justify-content: center;
+}
+
+# /*
+
+METHOD 3:
+Grid
+====
+
+```
+display: grid;
+justify-items: center;
+```
+
+========================================================
+*/
+
+.grid-horizontal-center {
+display: grid;
+justify-items: center;
+}
+
+# /*
+
+11. VERTICAL CENTERING
+    ========================================================
+
+Flexbox:
+
+```
+display: flex;
+align-items: center;
+```
+
+The container needs enough height for the vertical
+alignment to be visible.
+
+========================================================
+*/
+
+.flex-vertical-center {
+display: flex;
+align-items: center;
+min-height: 300px;
+}
+
+# /*
+
+Grid:
+
+```
+display: grid;
+align-items: center;
+```
+
+========================================================
+*/
+
+.grid-vertical-center {
+display: grid;
+align-items: center;
+min-height: 300px;
+}
+
+# /*
+
+12. HORIZONTAL + VERTICAL CENTERING
+    ========================================================
+
+The easiest modern method is Flexbox.
+
+```
+display: flex;
+justify-content: center;
+align-items: center;
+```
+
+========================================================
+*/
+
+.center-both-flex {
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 300px;
+}
+
+# /*
+
+# CENTERING WITH GRID
+
+Grid provides another simple method:
+
+```
+place-items: center;
+```
+
+This combines:
+
+```
+align-items: center;
+justify-items: center;
+```
+
+========================================================
+*/
+
+.center-both-grid {
+display: grid;
+place-items: center;
+min-height: 300px;
+}
+
+# /*
+
+# POSITIONING + TRANSFORM CENTERING
+
+A traditional technique for absolutely positioned elements:
+
+```
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+```
+
+The parent normally needs:
+
+```
+position: relative;
+```
+
+========================================================
+*/
+
+.position-center-parent {
+position: relative;
+min-height: 300px;
+}
+
+.position-center-child {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+# /*
+
+# CENTERING MEMORY
+
+Horizontal:
+margin: 0 auto;
+
+Flex horizontal:
+justify-content: center;
+
+Flex vertical:
+align-items: center;
+
+Both with Flexbox:
+justify-content: center;
+align-items: center;
+
+Both with Grid:
+place-items: center;
+
+Absolute:
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+
+========================================================
+13. PAGE LAYOUTS
+================
+
+A page layout determines how major website sections are
+arranged.
+
+Common sections:
+
+```
+Header
+Navigation
+Sidebar
+Main content
+Aside
+Footer
+```
+
+Modern CSS layouts commonly use:
+
+```
+Flexbox
+Grid
+```
+
+========================================================
+TWO-COLUMN PAGE
+===============
+
+*/
+
+.two-column-page {
+display: grid;
+grid-template-columns: 250px 1fr;
+gap: 20px;
+}
+
+# /*
+
+# THREE-COLUMN PAGE
+
+*/
+
+.three-column-page {
+display: grid;
+grid-template-columns: 200px 1fr 250px;
+gap: 20px;
+}
+
+# /*
+
+# RESPONSIVE TWO-COLUMN PAGE
+
+*/
+
+.responsive-page {
+display: grid;
+grid-template-columns: 250px 1fr;
+gap: 20px;
+}
+
+@media (max-width: 700px) {
+.responsive-page {
+grid-template-columns: 1fr;
+}
+}
+
+# /*
+
+14. HEADER / MAIN / FOOTER LAYOUT
+    ========================================================
+
+A common website structure is:
+
+```
+Header
+Main
+Footer
+```
+
+A simple Grid layout can be:
+
+```
+grid-template-rows:
+    auto
+    1fr
+    auto;
+```
+
+This allows the main section to take available space.
+
+========================================================
+COMPLETE PAGE LAYOUT
+====================
+
+*/
+
+.full-page {
+display: grid;
+grid-template-rows: auto 1fr auto;
+min-height: 100vh;
+}
+
+.header {
+padding: 20px;
+background-color: #111827;
+color: white;
+}
+
+.main {
+padding: 30px;
+}
+
+.footer {
+padding: 20px;
+background-color: #1f2937;
+color: white;
+}
+
+# /*
+
+# HEADER + SIDEBAR + MAIN + FOOTER
+
+Grid can create a complete website structure.
+
+Layout:
+
+```
++-------------------------+
+|         HEADER          |
++----------+--------------+
+| SIDEBAR  |     MAIN     |
+|          |              |
++----------+--------------+
+|         FOOTER          |
++-------------------------+
+```
+
+========================================================
+*/
+
+.website-layout {
+display: grid;
+
+```
+grid-template-columns: 220px 1fr;
+grid-template-rows: auto 1fr auto;
+
+grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+
+min-height: 100vh;
+```
+
+}
+
+.website-header {
+grid-area: header;
+padding: 20px;
+}
+
+.website-sidebar {
+grid-area: sidebar;
+padding: 20px;
+}
+
+.website-main {
+grid-area: main;
+padding: 20px;
+}
+
+.website-footer {
+grid-area: footer;
+padding: 20px;
+}
+
+# /*
+
+# RESPONSIVE PAGE LAYOUT
+
+*/
+
+@media (max-width: 700px) {
+
+```
+.website-layout {
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+        "header"
+        "main"
+        "sidebar"
+        "footer";
+}
+```
+
+}
+
+/*
+The order can be changed depending on the desired mobile
+layout.
+
+========================================================
+FLEXBOX PAGE LAYOUT
+===================
+
+A page can also be created using Flexbox.
+
+Example:
+
+```
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+```
+
+This pushes the footer toward the bottom when there is
+not enough content to fill the viewport.
+
+========================================================
+*/
+
+.flex-page {
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+}
+
+.flex-page-main {
+flex: 1;
+}
+
+# /*
+
+# GRID vs FLEXBOX
+
+FLEXBOX:
+
+```
+One-dimensional layout.
+```
+
+Best for:
+
+```
+Navigation
+Rows
+Columns
+Alignment
+Components
+```
+
+Important properties:
+
+```
+justify-content
+align-items
+flex-direction
+flex-wrap
+gap
+```
+
+---
+
+GRID:
+
+```
+Two-dimensional layout.
+```
+
+Best for:
+
+```
+Page layouts
+Card grids
+Dashboards
+Rows + columns simultaneously
+```
+
+Important properties:
+
+```
+grid-template-columns
+grid-template-rows
+grid-template-areas
+grid-column
+grid-row
+gap
+```
+
+========================================================
+FLOAT vs FLEXBOX vs GRID
+========================
+
+FLOAT:
+Originally designed for text wrapping around elements.
+Can be used for legacy layouts.
+Usually not the first choice for modern page layout.
+
+FLEXBOX:
+Best for one-dimensional layouts.
+
+GRID:
+Best for two-dimensional layouts.
+
+========================================================
+LAYOUT TECHNIQUE SELECTION
+==========================
+
+Normal Flow:
+Simple document content.
+
+Block:
+Vertical sections.
+
+Inline:
+Text-level content.
+
+Float:
+Text wrapping / legacy layouts.
+
+Positioning:
+Overlays and precise placement.
+
+Flexbox:
+One-dimensional alignment.
+
+Grid:
+Two-dimensional page/component layouts.
+
+Multi-column:
+Long text in newspaper-style columns.
+
+========================================================
+QUICK REVISION
+==============
+
+Normal Flow:
+Default document layout.
+
+Block:
+Starts on a new line.
+
+Inline:
+Flows within a line.
+
+Float:
+Moves left/right and allows text wrapping.
+
+Position:
+static
+relative
+absolute
+fixed
+sticky
+
+Flexbox:
+One-dimensional.
+
+Grid:
+Two-dimensional.
+
+Multi-column:
+column-count
+column-width
+column-gap
+column-rule
+
+Horizontal Center:
+margin: 0 auto;
+
+Flex Horizontal:
+justify-content: center;
+
+Flex Vertical:
+align-items: center;
+
+Both:
+justify-content: center;
+align-items: center;
+
+Grid Both:
+place-items: center;
+
+Absolute Center:
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+
+Page Layout:
+Grid / Flexbox
+
+========================================================
+QUESTIONS AND ANSWERS
+=====================
+
+Q1. What is normal flow?
+
+Answer:
+
+Normal flow is the default layout behavior where elements
+are arranged according to their order in the HTML document.
+
+---
+
+Q2. What is the difference between block and inline elements?
+
+Answer:
+
+Block elements normally start on a new line and can have
+width and height.
+
+Inline elements normally remain within the same line and
+their width and height behavior differs from block elements.
+
+---
+
+Q3. What was float traditionally used for?
+
+Answer:
+
+Float was originally designed to allow content, especially
+text, to wrap around an element such as an image.
+
+---
+
+Q4. What is Flexbox?
+
+Answer:
+
+Flexbox is a one-dimensional CSS layout system used to
+arrange and align items in a row or column.
+
+---
+
+Q5. What is CSS Grid?
+
+Answer:
+
+CSS Grid is a two-dimensional layout system that controls
+rows and columns.
+
+---
+
+Q6. How do you horizontally center a fixed-width block?
+
+Answer:
+
+```
+width: 300px;
+margin: 0 auto;
+```
+
+---
+
+Q7. How do you center an element horizontally and vertically
+using Flexbox?
+
+Answer:
+
+```
+display: flex;
+justify-content: center;
+align-items: center;
+```
+
+---
+
+Q8. How do you center an element using Grid?
+
+Answer:
+
+```
+display: grid;
+place-items: center;
+```
+
+---
+
+Q9. How do you create a sticky element?
+
+Answer:
+
+```
+position: sticky;
+top: 0;
+```
+
+---
+
+Q10. How do you create a fixed element?
+
+Answer:
+
+```
+position: fixed;
+```
+
+---
+
+Q11. What is the difference between Flexbox and Grid?
+
+Answer:
+
+Flexbox is primarily one-dimensional, while Grid is
+two-dimensional.
+
+Flexbox is commonly used for rows or columns.
+
+Grid is commonly used for complete page layouts and
+row-and-column arrangements.
+
+---
+
+Q12. Which CSS property creates multiple text columns?
+
+Answer:
+
+```
+column-count
+```
+
+or:
+
+```
+column-width
+```
+
+========================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Create a horizontally centered box.
+
+Solution:
+
+```
+.box {
+    width: 300px;
+    margin: 0 auto;
+}
+```
+
+---
+
+Q2. Center content horizontally using Flexbox.
+
+Solution:
+
+```
+.container {
+    display: flex;
+    justify-content: center;
+}
+```
+
+---
+
+Q3. Center content both horizontally and vertically.
+
+Solution:
+
+```
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+```
+
+---
+
+Q4. Create a three-column Grid layout.
+
+Solution:
+
+```
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+```
+
+---
+
+Q5. Create a responsive card layout.
+
+Solution:
+
+```
+.container {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+```
+
+---
+
+Q6. Create a two-column page with a sidebar.
+
+Solution:
+
+```
+.page {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 20px;
+}
+```
+
+---
+
+Q7. Create a header/main/footer layout where the main
+section takes the remaining vertical space.
+
+Solution:
+
+```
+.page {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+```
+
+---
+
+Q8. Create a three-column text layout.
+
+Solution:
+
+```
+.article {
+    column-count: 3;
+    column-gap: 30px;
+}
+```
+
+========================================================
+EXAM MEMORY TRICK
+=================
+
+NORMAL:
+Default flow
+
+BLOCK:
+New line
+
+INLINE:
+Same line
+
+FLOAT:
+Text wrapping
+
+POSITION:
+Precise placement
+
+FLEX:
+1D
+
+GRID:
+2D
+
+COLUMNS:
+Text columns
+
+HORIZONTAL CENTER:
+margin: 0 auto;
+
+VERTICAL CENTER:
+align-items: center;
+
+BOTH:
+justify-content + align-items
+
+GRID CENTER:
+place-items: center;
+
+PAGE:
+Grid / Flexbox
+
+========================================================
+END OF CSS LAYOUT TECHNIQUES
+============================
+
+*/
+
+
+# /*
+
+```
+          CSS MULTI-COLUMN LAYOUT
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. column-count
+2. column-width
+3. column-gap
+4. column-rule
+5. column-rule-width
+6. column-rule-style
+7. column-rule-color
+8. column-span
+9. column-fill
+10. Multi-Column Text Layout
+
+========================================================
+INTRODUCTION
+============
+
+CSS Multi-Column Layout allows long text to be divided
+into multiple vertical columns.
+
+It is useful for:
+
+```
+Newspapers
+Magazines
+Articles
+Blogs
+Documentation
+Long text content
+```
+
+Instead of displaying one very long paragraph vertically,
+CSS can divide the content into multiple columns.
+
+Basic syntax:
+
+```
+.container {
+    column-count: 3;
+}
+```
+
+========================================================
+
+1. COLUMN-COUNT
+   ========================================================
+
+The column-count property specifies the number of columns
+into which content should be divided.
+
+Syntax:
+
+```
+column-count: number;
+```
+
+Example:
+
+```
+column-count: 3;
+```
+
+This creates three columns.
+
+========================================================
+COMMON VALUES
+=============
+
+column-count: 1;
+column-count: 2;
+column-count: 3;
+column-count: 4;
+
+========================================================
+*/
+
+.column-count-example {
+column-count: 3;
+}
+
+# /*
+
+2. COLUMN-WIDTH
+   ========================================================
+
+The column-width property specifies the preferred width
+of each column.
+
+Syntax:
+
+```
+column-width: value;
+```
+
+Example:
+
+```
+column-width: 250px;
+```
+
+The browser determines how many columns can fit based
+on the available container width.
+
+========================================================
+IMPORTANT
+=========
+
+column-count specifies:
+
+```
+How many columns are preferred.
+```
+
+column-width specifies:
+
+```
+How wide the columns should preferably be.
+```
+
+When both are specified, the browser uses them together
+to determine the final column layout.
+
+========================================================
+*/
+
+.column-width-example {
+column-width: 250px;
+}
+
+# /*
+
+3. COLUMN-GAP
+   ========================================================
+
+column-gap controls the space between columns.
+
+Syntax:
+
+```
+column-gap: value;
+```
+
+Example:
+
+```
+column-gap: 30px;
+```
+
+========================================================
+*/
+
+.column-gap-example {
+column-count: 3;
+column-gap: 30px;
+}
+
+# /*
+
+# COLUMN-GAP WITH DIFFERENT UNITS
+
+*/
+
+.gap-px {
+column-gap: 20px;
+}
+
+.gap-rem {
+column-gap: 2rem;
+}
+
+.gap-percent {
+column-gap: 5%;
+}
+
+# /*
+
+4. COLUMN-RULE
+   ========================================================
+
+column-rule adds a line between columns.
+
+It is shorthand for:
+
+```
+column-rule-width
+column-rule-style
+column-rule-color
+```
+
+Syntax:
+
+```
+column-rule: width style color;
+```
+
+Example:
+
+```
+column-rule: 1px solid #999;
+```
+
+========================================================
+*/
+
+.column-rule-example {
+column-count: 3;
+column-gap: 30px;
+column-rule: 1px solid #999;
+}
+
+# /*
+
+# COLUMN-RULE DOES NOT CHANGE THE COLUMN GAP
+
+The rule is drawn between columns.
+
+The gap controls the space between columns.
+
+Example:
+
+```
+column-gap: 30px;
+column-rule: 2px solid black;
+```
+
+========================================================
+5. COLUMN-RULE-WIDTH
+====================
+
+column-rule-width specifies the thickness of the rule
+between columns.
+
+Syntax:
+
+```
+column-rule-width: value;
+```
+
+Examples:
+
+```
+thin
+medium
+thick
+1px
+2px
+5px
+```
+
+========================================================
+*/
+
+.column-rule-width-example {
+column-count: 3;
+column-rule-width: 2px;
+column-rule-style: solid;
+}
+
+# /*
+
+6. COLUMN-RULE-STYLE
+   ========================================================
+
+column-rule-style specifies the style of the line between
+columns.
+
+Common values:
+
+```
+none
+hidden
+dotted
+dashed
+solid
+double
+groove
+ridge
+inset
+outset
+```
+
+========================================================
+*/
+
+.rule-solid {
+column-count: 3;
+column-rule: 2px solid;
+}
+
+.rule-dashed {
+column-count: 3;
+column-rule: 2px dashed;
+}
+
+.rule-dotted {
+column-count: 3;
+column-rule: 2px dotted;
+}
+
+.rule-double {
+column-count: 3;
+column-rule: 4px double;
+}
+
+# /*
+
+7. COLUMN-RULE-COLOR
+   ========================================================
+
+column-rule-color specifies the color of the line between
+columns.
+
+Syntax:
+
+```
+column-rule-color: color;
+```
+
+========================================================
+*/
+
+.column-rule-color-example {
+column-count: 3;
+column-rule-width: 2px;
+column-rule-style: solid;
+column-rule-color: #555;
+}
+
+# /*
+
+# COMPLETE COLUMN RULE EXAMPLE
+
+*/
+
+.complete-column-rule {
+column-count: 3;
+column-gap: 30px;
+
+```
+column-rule-width: 2px;
+column-rule-style: solid;
+column-rule-color: #888;
+```
+
+}
+
+# /*
+
+8. COLUMN-SPAN
+   ========================================================
+
+column-span controls whether an element spans across
+multiple columns.
+
+Values:
+
+```
+none
+all
+```
+
+========================================================
+column-span: none
+=================
+
+The element remains inside a single column.
+
+This is the default behavior.
+
+========================================================
+column-span: all
+================
+
+The element spans across all columns.
+
+This is especially useful for article headings.
+
+========================================================
+*/
+
+.article {
+column-count: 3;
+column-gap: 30px;
+}
+
+.article h2 {
+column-span: all;
+}
+
+# /*
+
+# IMPORTANT
+
+Example layout:
+
+```
++--------------------------------+
+|        ARTICLE HEADING         |
++----------+----------+----------+
+| Column 1 | Column 2 | Column 3 |
+|          |          |          |
+| Text     | Text     | Text     |
+| Text     | Text     | Text     |
++----------+----------+----------+
+```
+
+The heading uses:
+
+```
+column-span: all;
+```
+
+========================================================
+9. COLUMN-FILL
+==============
+
+column-fill controls how content is distributed among
+columns when the container has a constrained height.
+
+Values:
+
+```
+balance
+auto
+```
+
+========================================================
+BALANCE
+=======
+
+```
+column-fill: balance;
+```
+
+Attempts to distribute content more evenly among columns.
+
+This is the default behavior in common unconstrained
+multi-column layouts.
+
+========================================================
+AUTO
+====
+
+```
+column-fill: auto;
+```
+
+Fills columns sequentially.
+
+This property is most meaningful when the multi-column
+container has a constrained height.
+
+========================================================
+*/
+
+.column-fill-balance {
+height: 400px;
+column-count: 3;
+column-fill: balance;
+}
+
+.column-fill-auto {
+height: 400px;
+column-count: 3;
+column-fill: auto;
+}
+
+# /*
+
+10. MULTI-COLUMN TEXT LAYOUT
+    ========================================================
+
+A complete multi-column text layout can combine:
+
+```
+column-count
+column-width
+column-gap
+column-rule
+column-span
+column-fill
+```
+
+========================================================
+BASIC ARTICLE
+=============
+
+*/
+
+.multi-column-article {
+column-count: 3;
+column-gap: 30px;
+column-rule: 1px solid #ccc;
+}
+
+# /*
+
+# ARTICLE WITH HEADING
+
+*/
+
+.article-layout {
+column-count: 3;
+column-gap: 30px;
+column-rule: 1px solid #ccc;
+}
+
+.article-layout h1 {
+column-span: all;
+}
+
+# /*
+
+# RESPONSIVE MULTI-COLUMN LAYOUT
+
+Using column-width is useful when the number of columns
+should adapt according to available space.
+
+========================================================
+*/
+
+.responsive-columns {
+column-width: 250px;
+column-gap: 30px;
+column-rule: 1px solid #ddd;
+}
+
+/*
+The browser creates as many columns as can reasonably fit
+based on the available width and preferred column width.
+
+========================================================
+COLUMN COUNT + WIDTH
+====================
+
+Both can be used together.
+
+========================================================
+*/
+
+.count-and-width {
+column-count: 3;
+column-width: 250px;
+column-gap: 25px;
+}
+
+# /*
+
+# PRACTICAL NEWSPAPER STYLE
+
+*/
+
+.newspaper {
+column-count: 3;
+column-gap: 25px;
+column-rule: 1px solid #aaa;
+line-height: 1.6;
+}
+
+.newspaper h1 {
+column-span: all;
+text-align: center;
+}
+
+# /*
+
+# PRACTICAL MAGAZINE STYLE
+
+*/
+
+.magazine {
+column-width: 220px;
+column-gap: 35px;
+column-rule: 1px solid #ddd;
+line-height: 1.7;
+}
+
+.magazine h2 {
+column-span: all;
+}
+
+# /*
+
+# COLUMN-BREAK RELATED PROPERTIES
+
+When working with multi-column layouts, content can also
+be controlled using break properties.
+
+Common properties:
+
+```
+break-before
+break-after
+break-inside
+```
+
+Example:
+
+```
+break-inside: avoid;
+```
+
+This can help prevent an element from being split across
+columns when appropriate.
+
+========================================================
+*/
+
+.column-card {
+break-inside: avoid;
+}
+
+# /*
+
+# COLUMN PROPERTY SUMMARY
+
+column-count:
+Number of columns.
+
+column-width:
+Preferred width of columns.
+
+column-gap:
+Space between columns.
+
+column-rule:
+Shorthand for the rule between columns.
+
+column-rule-width:
+Thickness of the rule.
+
+column-rule-style:
+Style of the rule.
+
+column-rule-color:
+Color of the rule.
+
+column-span:
+Allows an element to span all columns.
+
+column-fill:
+Controls how content is distributed in columns.
+
+========================================================
+IMPORTANT DIFFERENCE
+====================
+
+column-count:
+
+```
+"How many columns?"
+```
+
+column-width:
+
+```
+"How wide should columns preferably be?"
+```
+
+column-gap:
+
+```
+"How much space between columns?"
+```
+
+column-rule:
+
+```
+"What line appears between columns?"
+```
+
+column-span:
+
+```
+"Should this element span the columns?"
+```
+
+column-fill:
+
+```
+"How should content be distributed?"
+```
+
+========================================================
+QUICK REVISION
+==============
+
+Create 3 columns:
+
+```
+column-count: 3;
+```
+
+Preferred column width:
+
+```
+column-width: 250px;
+```
+
+Space between columns:
+
+```
+column-gap: 30px;
+```
+
+Rule:
+
+```
+column-rule: 1px solid gray;
+```
+
+Rule thickness:
+
+```
+column-rule-width: 2px;
+```
+
+Rule style:
+
+```
+column-rule-style: dashed;
+```
+
+Rule color:
+
+```
+column-rule-color: red;
+```
+
+Heading across all columns:
+
+```
+column-span: all;
+```
+
+Balanced columns:
+
+```
+column-fill: balance;
+```
+
+Sequential filling:
+
+```
+column-fill: auto;
+```
+
+========================================================
+QUESTIONS AND ANSWERS
+=====================
+
+Q1. What is CSS Multi-Column Layout?
+
+Answer:
+
+CSS Multi-Column Layout divides content into multiple
+vertical columns, making long text easier to read.
+
+---
+
+Q2. Which property specifies the number of columns?
+
+Answer:
+
+```
+column-count
+```
+
+Example:
+
+```
+column-count: 3;
+```
+
+---
+
+Q3. Which property specifies the preferred width of a
+column?
+
+Answer:
+
+```
+column-width
+```
+
+Example:
+
+```
+column-width: 250px;
+```
+
+---
+
+Q4. Which property controls the space between columns?
+
+Answer:
+
+```
+column-gap
+```
+
+Example:
+
+```
+column-gap: 30px;
+```
+
+---
+
+Q5. What is column-rule?
+
+Answer:
+
+column-rule adds a line between columns.
+
+It is shorthand for:
+
+```
+column-rule-width
+column-rule-style
+column-rule-color
+```
+
+Example:
+
+```
+column-rule: 1px solid gray;
+```
+
+---
+
+Q6. What does column-rule-width do?
+
+Answer:
+
+It controls the thickness of the line between columns.
+
+Example:
+
+```
+column-rule-width: 2px;
+```
+
+---
+
+Q7. What does column-rule-style do?
+
+Answer:
+
+It controls the style of the line between columns.
+
+Example:
+
+```
+column-rule-style: dashed;
+```
+
+---
+
+Q8. What does column-rule-color do?
+
+Answer:
+
+It controls the color of the rule between columns.
+
+Example:
+
+```
+column-rule-color: blue;
+```
+
+---
+
+Q9. What is column-span?
+
+Answer:
+
+column-span controls whether an element can span across
+multiple columns.
+
+Example:
+
+```
+h1 {
+    column-span: all;
+}
+```
+
+---
+
+Q10. What does column-fill do?
+
+Answer:
+
+column-fill controls how content is distributed among
+columns when the column container has a constrained height.
+
+Common values:
+
+```
+balance
+auto
+```
+
+---
+
+Q11. How can you create a newspaper-style layout?
+
+Answer:
+
+```
+.article {
+    column-count: 3;
+    column-gap: 30px;
+    column-rule: 1px solid gray;
+}
+```
+
+---
+
+Q12. How can you make the number of columns adapt to the
+available width?
+
+Answer:
+
+Use column-width.
+
+Example:
+
+```
+.article {
+    column-width: 250px;
+    column-gap: 30px;
+}
+```
+
+========================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Create a text layout with four columns.
+
+Solution:
+
+```
+.text {
+    column-count: 4;
+}
+```
+
+---
+
+Q2. Create three columns with 20px spacing.
+
+Solution:
+
+```
+.text {
+    column-count: 3;
+    column-gap: 20px;
+}
+```
+
+---
+
+Q3. Add a 2px dashed black rule between columns.
+
+Solution:
+
+```
+.text {
+    column-rule: 2px dashed black;
+}
+```
+
+---
+
+Q4. Make a heading span across all columns.
+
+Solution:
+
+```
+h1 {
+    column-span: all;
+}
+```
+
+---
+
+Q5. Create a responsive multi-column article.
+
+Solution:
+
+```
+.article {
+    column-width: 250px;
+    column-gap: 30px;
+}
+```
+
+---
+
+Q6. Create a newspaper-style article.
+
+Solution:
+
+```
+.article {
+    column-count: 3;
+    column-gap: 25px;
+    column-rule: 1px solid gray;
+}
+
+.article h1 {
+    column-span: all;
+}
+```
+
+========================================================
+EXAM MEMORY TRICK
+=================
+
+COUNT
+= Number of columns
+
+WIDTH
+= Width of columns
+
+GAP
+= Space between columns
+
+RULE
+= Line between columns
+
+RULE-WIDTH
+= Thickness
+
+RULE-STYLE
+= Line style
+
+RULE-COLOR
+= Line color
+
+SPAN
+= Element across columns
+
+FILL
+= Content distribution
+
+========================================================
+ONE COMPLETE EXAMPLE
+====================
+
+*/
+
+.final-article {
+column-width: 240px;
+column-gap: 30px;
+column-rule: 1px solid #bbb;
+line-height: 1.6;
+}
+
+.final-article h1 {
+column-span: all;
+text-align: center;
+}
+
+.final-article p {
+margin-top: 0;
+break-inside: avoid;
+}
+
+# /*
+
+# END OF CSS MULTI-COLUMN LAYOUT
+
+*/

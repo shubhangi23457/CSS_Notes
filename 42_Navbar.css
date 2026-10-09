@@ -1,0 +1,1175 @@
+# /*
+
+```
+             CSS NAVIGATION BARS
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. Horizontal Navigation
+2. Vertical Navigation
+3. Navigation Menus
+4. Dropdown Menus
+5. Responsive Navigation
+6. Sticky Navigation
+7. Fixed Navigation
+8. Navigation Hover Effects
+9. Hamburger Menu Styling
+
+========================================================
+
+1. NAVIGATION BARS
+   ========================================================
+
+A navigation bar provides links to different pages or
+sections of a website.
+
+Common HTML structure:
+
+```
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+```
+
+CSS is used to control:
+
+```
+Layout
+Colors
+Spacing
+Hover effects
+Dropdowns
+Positioning
+Responsiveness
+```
+
+========================================================
+2. HORIZONTAL NAVIGATION
+========================
+
+A horizontal navigation displays links from left to right.
+
+Flexbox is commonly used.
+
+Example:
+
+```
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+}
+```
+
+Using gap:
+
+```
+nav ul {
+    display: flex;
+    gap: 25px;
+}
+```
+
+gap is generally cleaner than adding margins to each item.
+
+========================================================
+Horizontal Navigation Example
+=============================
+
+*/
+
+.horizontal-nav {
+background-color: #1f2937;
+padding: 15px 20px;
+}
+
+.horizontal-nav ul {
+display: flex;
+gap: 25px;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.horizontal-nav a {
+color: white;
+text-decoration: none;
+padding: 8px 12px;
+}
+
+# /*
+
+3. VERTICAL NAVIGATION
+   ========================================================
+
+A vertical navigation displays links from top to bottom.
+
+It is commonly used for:
+
+```
+Sidebars
+Dashboards
+Admin panels
+Mobile menus
+```
+
+Example:
+
+```
+nav ul {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+========================================================
+Vertical Navigation Example
+===========================
+
+*/
+
+.vertical-nav {
+width: 220px;
+background-color: #1f2937;
+padding: 10px;
+}
+
+.vertical-nav ul {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.vertical-nav a {
+display: block;
+padding: 12px 15px;
+color: white;
+text-decoration: none;
+}
+
+# /*
+
+4. NAVIGATION MENUS
+   ========================================================
+
+A navigation menu normally consists of:
+
+```
+nav
+  |
+  ul
+  |
+  li
+  |
+  a
+```
+
+Common styling:
+
+```
+list-style: none;
+display: flex;
+gap
+text-decoration: none;
+padding
+background-color
+```
+
+========================================================
+Complete Navigation Menu
+========================
+
+*/
+
+.main-nav {
+background-color: #111827;
+}
+
+.main-nav ul {
+display: flex;
+align-items: center;
+gap: 10px;
+list-style: none;
+margin: 0;
+padding: 10px 20px;
+}
+
+.main-nav a {
+display: block;
+padding: 10px 15px;
+color: white;
+text-decoration: none;
+border-radius: 6px;
+}
+
+# /*
+
+5. DROPDOWN MENUS
+   ========================================================
+
+A dropdown menu displays additional links when the user
+interacts with a navigation item.
+
+A common CSS-only approach uses:
+
+```
+position: relative;
+position: absolute;
+:hover
+```
+
+Basic structure:
+
+```
+<li class="dropdown">
+    <a href="#">Products</a>
+
+    <ul class="dropdown-menu">
+        <li><a href="#">Laptops</a></li>
+        <li><a href="#">Phones</a></li>
+    </ul>
+</li>
+```
+
+========================================================
+Dropdown Container
+==================
+
+*/
+
+.dropdown {
+position: relative;
+}
+
+.dropdown-menu {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+min-width: 180px;
+padding: 8px 0;
+margin: 0;
+list-style: none;
+background-color: white;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+border-radius: 6px;
+}
+
+/*
+Show dropdown when parent is hovered.
+*/
+
+.dropdown:hover > .dropdown-menu {
+display: block;
+}
+
+.dropdown-menu a {
+display: block;
+color: #111827;
+padding: 10px 15px;
+}
+
+# /*
+
+# Dropdown Hover
+
+*/
+
+.dropdown-menu a:hover {
+background-color: #f3f4f6;
+}
+
+# /*
+
+6. RESPONSIVE NAVIGATION
+   ========================================================
+
+Responsive navigation changes according to screen size.
+
+Common techniques:
+
+```
+Flexbox
+Media queries
+Hamburger menu
+Wrapping
+Hide/show navigation
+```
+
+Example:
+
+```
+@media (max-width: 600px) {
+    .nav-list {
+        flex-direction: column;
+    }
+}
+```
+
+========================================================
+Responsive Navigation Example
+=============================
+
+*/
+
+.responsive-nav ul {
+display: flex;
+gap: 20px;
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.responsive-nav a {
+text-decoration: none;
+padding: 10px;
+}
+
+@media (max-width: 600px) {
+.responsive-nav ul {
+flex-direction: column;
+gap: 5px;
+}
+}
+
+/*
+For a real hamburger menu that opens/closes navigation,
+CSS alone usually needs to be combined with JavaScript
+or an accessible HTML interaction pattern.
+
+========================================================
+7. STICKY NAVIGATION
+====================
+
+A sticky navigation stays in its normal document position
+until the specified scroll threshold is reached.
+
+Then it sticks to the specified position.
+
+Example:
+
+```
+position: sticky;
+top: 0;
+```
+
+========================================================
+Sticky Navigation
+=================
+
+*/
+
+.sticky-nav {
+position: sticky;
+top: 0;
+z-index: 1000;
+background-color: #111827;
+padding: 15px;
+}
+
+.sticky-nav a {
+color: white;
+text-decoration: none;
+}
+
+/*
+IMPORTANT:
+
+position: sticky needs a threshold such as:
+
+```
+top: 0;
+```
+
+The behavior can also be affected by ancestor overflow
+and the relevant scrolling container.
+
+========================================================
+8. FIXED NAVIGATION
+===================
+
+A fixed navigation stays fixed relative to its containing
+block, commonly the viewport.
+
+Example:
+
+```
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+```
+
+It remains visible while the page is scrolled.
+
+========================================================
+Fixed Navigation
+================
+
+*/
+
+.fixed-nav {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+z-index: 1000;
+background-color: #111827;
+padding: 15px;
+}
+
+/*
+IMPORTANT:
+
+A fixed navigation can cover page content.
+
+Therefore, content may need top spacing.
+
+Example:
+
+```
+body {
+    padding-top: 60px;
+}
+```
+
+The exact value should match the actual navigation height.
+
+========================================================
+9. NAVIGATION HOVER EFFECTS
+===========================
+
+The :hover pseudo-class can be used to create interactive
+navigation effects.
+
+Common effects:
+
+```
+Change background
+Change text color
+Underline
+Add border
+Scale
+Add transition
+```
+
+========================================================
+Background Hover
+================
+
+*/
+
+.hover-nav a {
+color: white;
+text-decoration: none;
+padding: 10px 15px;
+transition: background-color 0.3s ease;
+}
+
+.hover-nav a:hover {
+background-color: #374151;
+}
+
+# /*
+
+# Underline Hover Effect
+
+*/
+
+.underline-nav a {
+position: relative;
+color: #111827;
+text-decoration: none;
+}
+
+.underline-nav a::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: -4px;
+width: 0;
+height: 2px;
+background-color: #2563eb;
+transition: width 0.3s ease;
+}
+
+.underline-nav a:hover::after {
+width: 100%;
+}
+
+# /*
+
+10. HAMBURGER MENU STYLING
+    ========================================================
+
+A hamburger menu is commonly represented by three horizontal
+lines.
+
+Example HTML:
+
+```
+<button class="hamburger" aria-label="Open menu">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+```
+
+CSS:
+
+```
+width
+height
+background
+border
+gap
+```
+
+========================================================
+Basic Hamburger
+===============
+
+*/
+
+.hamburger {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+width: 30px;
+height: 24px;
+padding: 0;
+border: none;
+background: transparent;
+cursor: pointer;
+}
+
+.hamburger span {
+display: block;
+width: 100%;
+height: 3px;
+background-color: #111827;
+border-radius: 2px;
+}
+
+# /*
+
+# RESPONSIVE HAMBURGER
+
+A common pattern:
+
+```
+Desktop:
+    Navigation links visible
+    Hamburger hidden
+
+Mobile:
+    Navigation links hidden
+    Hamburger visible
+```
+
+========================================================
+*/
+
+.mobile-menu-button {
+display: none;
+}
+
+@media (max-width: 600px) {
+
+```
+.desktop-menu {
+    display: none;
+}
+
+.mobile-menu-button {
+    display: flex;
+}
+```
+
+}
+
+/*
+IMPORTANT:
+
+The CSS above only controls visibility.
+
+To actually open and close the mobile menu when the button
+is clicked, JavaScript or another appropriate interactive
+HTML/CSS technique is generally needed.
+
+========================================================
+HAMBURGER ANIMATION
+===================
+
+A hamburger can transform into an X.
+
+One common approach is to add an .active class.
+
+Example:
+
+```
+.hamburger.active span:nth-child(1) { ... }
+```
+
+========================================================
+*/
+
+.hamburger.active span:nth-child(1) {
+transform: translateY(10.5px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+transform: translateY(-10.5px) rotate(-45deg);
+}
+
+.hamburger span {
+transition:
+transform 0.3s ease,
+opacity 0.3s ease;
+}
+
+# /*
+
+# COMPLETE NAVIGATION BAR
+
+*/
+
+.complete-nav {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 12px 20px;
+background-color: #111827;
+}
+
+.complete-nav .logo {
+color: white;
+font-size: 20px;
+font-weight: bold;
+text-decoration: none;
+}
+
+.complete-nav ul {
+display: flex;
+gap: 10px;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.complete-nav a {
+display: block;
+padding: 10px 14px;
+color: white;
+text-decoration: none;
+border-radius: 6px;
+transition:
+background-color 0.3s ease,
+color 0.3s ease;
+}
+
+.complete-nav a:hover {
+background-color: #374151;
+}
+
+# /*
+
+# ACTIVE NAVIGATION LINK
+
+A navigation link can have an active class to show the
+current page.
+
+Example HTML:
+
+```
+<a class="active" href="#">Home</a>
+```
+
+CSS:
+
+```
+.active {
+    background-color: blue;
+}
+```
+
+This is different from :active.
+
+.active
+A class usually added to represent the current page.
+
+:active
+Temporary state while an element is being activated.
+
+========================================================
+*/
+
+.complete-nav a.active {
+background-color: #2563eb;
+}
+
+# /*
+
+# RESPONSIVE COMPLETE NAVIGATION
+
+*/
+
+@media (max-width: 700px) {
+
+```
+.complete-nav {
+    flex-wrap: wrap;
+}
+
+.complete-nav ul {
+    width: 100%;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.complete-nav a {
+    width: 100%;
+}
+```
+
+}
+
+# /*
+
+# NAVIGATION ACCESSIBILITY
+
+Important practices:
+
+1. Use <nav> for primary navigation.
+
+2. Use meaningful link text.
+
+3. Maintain visible keyboard focus.
+
+Example:
+
+```
+nav a:focus-visible {
+    outline: 3px solid blue;
+    outline-offset: 3px;
+}
+```
+
+4. Do not rely only on hover.
+
+5. Make navigation usable with keyboard.
+
+6. For icon-only hamburger buttons, provide an accessible
+   name using visible text or aria-label.
+
+7. Maintain sufficient color contrast.
+
+8. Make clickable areas large enough to use comfortably.
+
+========================================================
+*/
+
+.accessible-nav a:focus-visible,
+.accessible-nav button:focus-visible {
+outline: 3px solid #93c5fd;
+outline-offset: 3px;
+}
+
+# /*
+
+# STICKY vs FIXED NAVIGATION
+
+STICKY:
+
+```
+position: sticky;
+```
+
+Behavior:
+Starts in normal document flow.
+Becomes stuck when the scroll threshold is reached.
+
+Common:
+
+```
+top: 0;
+```
+
+---
+
+FIXED:
+
+```
+position: fixed;
+```
+
+Behavior:
+Removed from normal document flow.
+Remains fixed relative to its containing block,
+commonly the viewport.
+
+Common:
+
+```
+top: 0;
+left: 0;
+width: 100%;
+```
+
+Memory:
+
+```
+sticky = sticks after reaching a position
+fixed  = stays fixed
+```
+
+========================================================
+HORIZONTAL vs VERTICAL NAVIGATION
+=================================
+
+Horizontal:
+
+```
+display: flex;
+flex-direction: row;
+```
+
+Vertical:
+
+```
+display: flex;
+flex-direction: column;
+```
+
+OR simply use normal block layout.
+
+========================================================
+QUICK REVISION
+==============
+
+Horizontal Navigation:
+display: flex;
+
+Vertical Navigation:
+flex-direction: column;
+
+Remove list bullets:
+list-style: none;
+
+Remove link underline:
+text-decoration: none;
+
+Dropdown:
+position: relative;
+position: absolute;
+
+Show dropdown:
+:hover
+
+Sticky:
+position: sticky;
+top: 0;
+
+Fixed:
+position: fixed;
+
+Hover:
+:hover
+
+Keyboard focus:
+:focus-visible
+
+Responsive:
+@media
+
+Hamburger:
+display: flex;
+flex-direction: column;
+
+========================================================
+QUESTIONS AND ANSWERS
+=====================
+
+Q1. How do you create a horizontal navigation menu?
+
+Answer:
+
+```
+ul {
+    display: flex;
+    gap: 20px;
+}
+```
+
+---
+
+Q2. How do you create a vertical navigation menu?
+
+Answer:
+
+```
+ul {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+---
+
+Q3. How do you remove bullets from a navigation list?
+
+Answer:
+
+```
+list-style: none;
+```
+
+---
+
+Q4. How do you remove the underline from navigation links?
+
+Answer:
+
+```
+text-decoration: none;
+```
+
+---
+
+Q5. Which positioning is commonly used for a dropdown menu?
+
+Answer:
+
+```
+The parent is usually position: relative;
+The dropdown is usually position: absolute;
+```
+
+---
+
+Q6. How do you create a sticky navigation bar?
+
+Answer:
+
+```
+nav {
+    position: sticky;
+    top: 0;
+}
+```
+
+---
+
+Q7. What is the difference between sticky and fixed?
+
+Answer:
+
+sticky:
+Initially participates in normal flow and sticks after
+reaching its threshold.
+
+fixed:
+Is removed from normal flow and stays fixed relative
+to its containing block, commonly the viewport.
+
+---
+
+Q8. Which pseudo-class is commonly used for navigation
+hover effects?
+
+Answer:
+
+```
+:hover
+```
+
+---
+
+Q9. How can a navigation become responsive?
+
+Answer:
+
+Using:
+
+```
+Media queries
+Flexbox/Grid
+Responsive sizing
+Hamburger menus
+```
+
+---
+
+Q10. Can CSS alone create a functional hamburger menu?
+
+Answer:
+
+CSS can style a hamburger and can participate in some
+CSS-only interaction patterns, but a conventional menu
+that opens/closes from a button is generally implemented
+with JavaScript or an appropriate interactive HTML pattern.
+
+========================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Create a horizontal navigation menu.
+
+Solution:
+
+```
+nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+```
+
+---
+
+Q2. Create a vertical navigation menu.
+
+Solution:
+
+```
+nav ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+```
+
+---
+
+Q3. Create a sticky navigation bar.
+
+Solution:
+
+```
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+```
+
+---
+
+Q4. Create a fixed navigation bar.
+
+Solution:
+
+```
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+```
+
+---
+
+Q5. Create a dropdown that appears on hover.
+
+Solution:
+
+```
+.dropdown-menu {
+    display: none;
+    position: absolute;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+```
+
+---
+
+Q6. Add a hover background effect.
+
+Solution:
+
+```
+nav a:hover {
+    background-color: #333;
+}
+```
+
+---
+
+Q7. Create a three-line hamburger icon.
+
+Solution:
+
+```
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 3px;
+}
+```
+
+========================================================
+EXAM MEMORY TRICK
+=================
+
+HORIZONTAL:
+flex-direction: row
+
+VERTICAL:
+flex-direction: column
+
+DROPDOWN:
+relative + absolute
+
+HOVER:
+:hover
+
+STICKY:
+sticky + top
+
+FIXED:
+fixed + top/left
+
+RESPONSIVE:
+@media
+
+HAMBURGER:
+3 spans + flex-column
+
+ACCESSIBILITY:
+focus-visible + keyboard support
+
+========================================================
+END OF CSS NAVIGATION BARS
+==========================
+
+*/

@@ -1,0 +1,1264 @@
+# /*
+
+```
+                CSS FILTERS
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. filter
+2. Blur
+3. Brightness
+4. Contrast
+5. Grayscale
+6. Sepia
+7. Saturate
+8. Hue Rotate
+9. Invert
+10. Opacity
+11. Drop Shadow
+12. Combining Filters
+
+========================================================
+INTRODUCTION
+============
+
+CSS filters allow visual effects to be applied to elements.
+
+They are commonly used with:
+
+```
+Images
+Videos
+Backgrounds
+Cards
+Buttons
+Icons
+```
+
+The main property is:
+
+```
+filter
+```
+
+Basic syntax:
+
+```
+selector {
+    filter: function(value);
+}
+```
+
+Example:
+
+```
+img {
+    filter: grayscale(100%);
+}
+```
+
+========================================================
+
+1. FILTER
+   ========================================================
+
+The filter property applies one or more visual effects
+to an element.
+
+Syntax:
+
+```
+filter: function(value);
+```
+
+Example:
+
+```
+.image {
+    filter: blur(5px);
+}
+```
+
+========================================================
+REMOVE FILTER
+=============
+
+To remove filters:
+
+```
+filter: none;
+```
+
+========================================================
+*/
+
+.filter-example {
+filter: none;
+}
+
+# /*
+
+2. BLUR
+   ========================================================
+
+The blur() function applies a blur effect.
+
+Syntax:
+
+```
+filter: blur(radius);
+```
+
+Example:
+
+```
+filter: blur(5px);
+```
+
+Larger values create stronger blur.
+
+========================================================
+*/
+
+.blur-small {
+filter: blur(2px);
+}
+
+.blur-large {
+filter: blur(8px);
+}
+
+# /*
+
+# PRACTICAL HOVER BLUR
+
+*/
+
+.blur-image {
+transition: filter 0.3s ease;
+}
+
+.blur-image:hover {
+filter: blur(4px);
+}
+
+# /*
+
+3. BRIGHTNESS
+   ========================================================
+
+The brightness() function changes the brightness.
+
+Syntax:
+
+```
+filter: brightness(value);
+```
+
+Typical interpretation:
+
+```
+1
+    Normal brightness.
+
+0
+    Completely black.
+
+Less than 1
+    Darker.
+
+Greater than 1
+    Brighter.
+```
+
+Examples:
+
+```
+brightness(0.5)
+brightness(1)
+brightness(1.5)
+```
+
+========================================================
+*/
+
+.dark-image {
+filter: brightness(0.5);
+}
+
+.bright-image {
+filter: brightness(1.5);
+}
+
+# /*
+
+4. CONTRAST
+   ========================================================
+
+The contrast() function changes the difference between
+light and dark areas.
+
+Syntax:
+
+```
+filter: contrast(value);
+```
+
+Examples:
+
+```
+contrast(0.5)
+contrast(1)
+contrast(1.5)
+```
+
+Typical interpretation:
+
+```
+1
+    Normal contrast.
+
+Less than 1
+    Lower contrast.
+
+Greater than 1
+    Higher contrast.
+```
+
+========================================================
+*/
+
+.low-contrast {
+filter: contrast(0.5);
+}
+
+.high-contrast {
+filter: contrast(1.5);
+}
+
+# /*
+
+5. GRAYSCALE
+   ========================================================
+
+The grayscale() function removes color from an element.
+
+Syntax:
+
+```
+filter: grayscale(amount);
+```
+
+Common values:
+
+```
+grayscale(0%)
+    Original colors.
+
+grayscale(100%)
+    Completely grayscale.
+```
+
+========================================================
+*/
+
+.grayscale-image {
+filter: grayscale(100%);
+}
+
+# /*
+
+# HOVER FROM GRAYSCALE TO COLOR
+
+*/
+
+.color-hover {
+filter: grayscale(100%);
+transition: filter 0.3s ease;
+}
+
+.color-hover:hover {
+filter: grayscale(0%);
+}
+
+# /*
+
+6. SEPIA
+   ========================================================
+
+The sepia() function gives an element a warm, brownish,
+old-photo appearance.
+
+Syntax:
+
+```
+filter: sepia(amount);
+```
+
+Common values:
+
+```
+sepia(0%)
+    No sepia effect.
+
+sepia(100%)
+    Maximum sepia effect.
+```
+
+========================================================
+*/
+
+.sepia-image {
+filter: sepia(100%);
+}
+
+# /*
+
+7. SATURATE
+   ========================================================
+
+The saturate() function controls color intensity.
+
+Syntax:
+
+```
+filter: saturate(amount);
+```
+
+Typical interpretation:
+
+```
+saturate(0)
+    No color saturation.
+
+saturate(1)
+    Normal saturation.
+
+saturate(2)
+    Double saturation.
+```
+
+========================================================
+*/
+
+.desaturated {
+filter: saturate(0);
+}
+
+.normal-saturation {
+filter: saturate(1);
+}
+
+.high-saturation {
+filter: saturate(2);
+}
+
+# /*
+
+8. HUE ROTATE
+   ========================================================
+
+The hue-rotate() function changes colors by rotating their
+hue around the color wheel.
+
+Syntax:
+
+```
+filter: hue-rotate(angle);
+```
+
+Examples:
+
+```
+hue-rotate(90deg)
+hue-rotate(180deg)
+hue-rotate(270deg)
+```
+
+The value is an angle.
+
+========================================================
+*/
+
+.hue-90 {
+filter: hue-rotate(90deg);
+}
+
+.hue-180 {
+filter: hue-rotate(180deg);
+}
+
+# /*
+
+9. INVERT
+   ========================================================
+
+The invert() function reverses the colors of an element.
+
+Syntax:
+
+```
+filter: invert(amount);
+```
+
+Common values:
+
+```
+invert(0%)
+    Original colors.
+
+invert(100%)
+    Completely inverted colors.
+```
+
+========================================================
+*/
+
+.inverted {
+filter: invert(100%);
+}
+
+# /*
+
+10. OPACITY
+    ========================================================
+
+The opacity() filter controls transparency.
+
+Syntax:
+
+```
+filter: opacity(amount);
+```
+
+Examples:
+
+```
+opacity(0)
+    Fully transparent.
+
+opacity(0.5)
+    50% opacity.
+
+opacity(1)
+    Fully opaque.
+```
+
+Percentages can also be used.
+
+========================================================
+*/
+
+.semi-transparent {
+filter: opacity(50%);
+}
+
+.transparent {
+filter: opacity(0);
+}
+
+# /*
+
+# FILTER OPACITY vs CSS OPACITY
+
+These can often produce similar visual results:
+
+```
+opacity: 0.5;
+```
+
+and:
+
+```
+filter: opacity(50%);
+```
+
+However, the CSS opacity property is generally preferred
+when simply controlling an element's opacity.
+
+========================================================
+11. DROP-SHADOW
+===============
+
+The drop-shadow() filter adds a shadow based on the visible
+shape of the element.
+
+Syntax:
+
+```
+filter: drop-shadow(offset-x offset-y blur color);
+```
+
+Example:
+
+```
+filter: drop-shadow(5px 5px 10px gray);
+```
+
+========================================================
+*/
+
+.drop-shadow {
+filter: drop-shadow(5px 5px 10px gray);
+}
+
+# /*
+
+# DROP-SHADOW vs BOX-SHADOW
+
+box-shadow:
+
+```
+Creates a shadow around the element's box.
+```
+
+drop-shadow():
+
+```
+Creates a shadow following the visible alpha shape.
+```
+
+This difference is especially useful for:
+
+```
+PNG images
+Transparent icons
+Logos
+Irregular shapes
+```
+
+========================================================
+*/
+
+.png-shadow {
+filter: drop-shadow(5px 5px 8px gray);
+}
+
+# /*
+
+12. COMBINING FILTERS
+    ========================================================
+
+Multiple filter functions can be used together.
+
+Syntax:
+
+```
+filter:
+    function1(value)
+    function2(value)
+    function3(value);
+```
+
+Example:
+
+```
+filter:
+    grayscale(100%)
+    brightness(1.2)
+    contrast(1.1);
+```
+
+========================================================
+*/
+
+.combined-filter {
+filter:
+grayscale(100%)
+brightness(1.2)
+contrast(1.1);
+}
+
+# /*
+
+# FILTER ORDER
+
+The order of filter functions can affect the final result.
+
+Example 1:
+
+```
+filter:
+    brightness(1.2)
+    contrast(1.2);
+```
+
+Example 2:
+
+```
+filter:
+    contrast(1.2)
+    brightness(1.2);
+```
+
+The browser applies the filter functions in the order
+specified.
+
+========================================================
+*/
+
+.filter-order-one {
+filter:
+brightness(1.2)
+contrast(1.2);
+}
+
+.filter-order-two {
+filter:
+contrast(1.2)
+brightness(1.2);
+}
+
+# /*
+
+13. PRACTICAL IMAGE EFFECTS
+    ========================================================
+
+# BLACK AND WHITE IMAGE
+
+*/
+
+.black-white {
+filter: grayscale(100%);
+}
+
+/*
+OLD PHOTO
+=========
+
+*/
+
+.old-photo {
+filter:
+sepia(80%)
+contrast(90%)
+brightness(90%);
+}
+
+/*
+DARK IMAGE
+==========
+
+*/
+
+.dark-effect {
+filter: brightness(60%);
+}
+
+/*
+BRIGHT IMAGE
+============
+
+*/
+
+.bright-effect {
+filter: brightness(130%);
+}
+
+/*
+STRONG COLORS
+=============
+
+*/
+
+.vivid-image {
+filter:
+saturate(180%)
+contrast(110%);
+}
+
+/*
+COOL COLOR SHIFT
+================
+
+*/
+
+.cool-effect {
+filter: hue-rotate(180deg);
+}
+
+/*
+DREAMY / SOFT EFFECT
+====================
+
+*/
+
+.soft-effect {
+filter:
+blur(1px)
+brightness(110%);
+}
+
+# /*
+
+14. HOVER FILTER EFFECT
+    ========================================================
+    */
+
+.filter-card img {
+filter: grayscale(100%);
+transition: filter 0.4s ease;
+}
+
+.filter-card:hover img {
+filter: grayscale(0%);
+}
+
+# /*
+
+15. MULTIPLE FILTERS ON HOVER
+    ========================================================
+    */
+
+.filter-hover {
+filter: grayscale(100%);
+transition: filter 0.4s ease;
+}
+
+.filter-hover:hover {
+filter:
+grayscale(0%)
+saturate(130%)
+brightness(110%);
+}
+
+# /*
+
+16. FILTER ON BACKGROUND-LIKE EFFECT
+    ========================================================
+
+The filter property affects the element and its rendered
+contents.
+
+If you want to blur only a background while keeping text
+sharp, a common technique is to use a separate pseudo-element
+or child element for the background.
+
+Example structure concept:
+
+```
+.hero {
+    position: relative;
+}
+
+.hero::before {
+    ...
+    filter: blur(...);
+}
+```
+
+The text remains in a separate layer.
+
+========================================================
+*/
+
+.hero {
+position: relative;
+}
+
+.hero::before {
+content: "";
+position: absolute;
+inset: 0;
+background: url("background.jpg") center / cover;
+filter: blur(5px);
+}
+
+# /*
+
+17. FILTER FUNCTIONS QUICK TABLE
+    ========================================================
+
+FUNCTION             PURPOSE
+
+blur()               Blurs element
+
+brightness()         Changes brightness
+
+contrast()           Changes contrast
+
+grayscale()          Removes color
+
+sepia()              Creates sepia effect
+
+saturate()            Controls color intensity
+
+hue-rotate()         Rotates colors
+
+invert()              Inverts colors
+
+opacity()             Controls transparency
+
+drop-shadow()         Creates shape-based shadow
+
+========================================================
+18. COMMON VALUE MEMORY
+=======================
+
+brightness(1)
+Normal brightness.
+
+brightness(0)
+Black.
+
+contrast(1)
+Normal contrast.
+
+grayscale(100%)
+Fully grayscale.
+
+sepia(100%)
+Maximum sepia.
+
+saturate(1)
+Normal saturation.
+
+saturate(0)
+No saturation.
+
+hue-rotate(180deg)
+Opposite hue rotation.
+
+invert(100%)
+Completely inverted.
+
+opacity(100%)
+Fully visible.
+
+opacity(0)
+Fully transparent.
+
+========================================================
+19. COMPLETE FILTER EXAMPLE
+===========================
+
+*/
+
+.complete-filter-example {
+filter:
+brightness(110%)
+contrast(120%)
+saturate(130%)
+hue-rotate(10deg)
+drop-shadow(5px 5px 8px gray);
+}
+
+# /*
+
+20. FILTER TRANSITIONS
+    ========================================================
+
+Filters can be animated smoothly using transitions.
+
+Example:
+
+```
+transition: filter 0.4s ease;
+```
+
+========================================================
+*/
+
+.filter-transition {
+filter: grayscale(100%);
+transition: filter 0.4s ease;
+}
+
+.filter-transition:hover {
+filter:
+grayscale(0%)
+brightness(110%)
+saturate(120%);
+}
+
+# /*
+
+# IMPORTANT NOTES
+
+1. filter can accept multiple functions.
+
+2. Filter functions are applied in the order written.
+
+3. blur() uses a length such as px.
+
+4. hue-rotate() uses an angle such as deg.
+
+5. grayscale(), sepia(), invert() and opacity() commonly
+   use percentages.
+
+6. brightness(), contrast() and saturate() commonly use
+   multipliers such as 1, 1.5, 2.
+
+7. drop-shadow() follows the visible alpha shape and is
+   useful for transparent images.
+
+8. Filters can be combined with transitions for hover
+   effects.
+
+========================================================
+QUESTIONS AND ANSWERS
+=====================
+
+Q1. What is the CSS filter property?
+
+Answer:
+
+The filter property applies visual effects such as blur,
+brightness, contrast, grayscale and color changes to an
+element.
+
+---
+
+Q2. Which function creates a blur effect?
+
+Answer:
+
+```
+blur()
+```
+
+Example:
+
+```
+filter: blur(5px);
+```
+
+---
+
+Q3. Which function changes brightness?
+
+Answer:
+
+```
+brightness()
+```
+
+Example:
+
+```
+filter: brightness(1.5);
+```
+
+---
+
+Q4. Which function changes contrast?
+
+Answer:
+
+```
+contrast()
+```
+
+Example:
+
+```
+filter: contrast(1.5);
+```
+
+---
+
+Q5. How do you make an image grayscale?
+
+Answer:
+
+```
+filter: grayscale(100%);
+```
+
+---
+
+Q6. How do you create a sepia effect?
+
+Answer:
+
+```
+filter: sepia(100%);
+```
+
+---
+
+Q7. Which function controls color intensity?
+
+Answer:
+
+```
+saturate()
+```
+
+Example:
+
+```
+filter: saturate(2);
+```
+
+---
+
+Q8. Which function changes the hue of colors?
+
+Answer:
+
+```
+hue-rotate()
+```
+
+Example:
+
+```
+filter: hue-rotate(90deg);
+```
+
+---
+
+Q9. How do you invert an image?
+
+Answer:
+
+```
+filter: invert(100%);
+```
+
+---
+
+Q10. How do you apply transparency using a filter?
+
+Answer:
+
+```
+filter: opacity(50%);
+```
+
+However, when simply controlling element opacity,
+the opacity property is usually more direct.
+
+---
+
+Q11. What is drop-shadow()?
+
+Answer:
+
+drop-shadow() creates a shadow based on the visible
+alpha shape of an element.
+
+Example:
+
+```
+filter: drop-shadow(5px 5px 10px gray);
+```
+
+---
+
+Q12. Can multiple filters be combined?
+
+Answer:
+
+Yes.
+
+Example:
+
+```
+filter:
+    grayscale(100%)
+    brightness(120%)
+    contrast(110%);
+```
+
+---
+
+Q13. Does filter order matter?
+
+Answer:
+
+Yes. Multiple filter functions are applied in the order
+in which they are written, so changing their order can
+change the result.
+
+========================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Make an image completely grayscale.
+
+Solution:
+
+```
+img {
+    filter: grayscale(100%);
+}
+```
+
+---
+
+Q2. Make an image 50% darker.
+
+Solution:
+
+```
+img {
+    filter: brightness(50%);
+}
+```
+
+---
+
+Q3. Increase brightness by approximately 50%.
+
+Solution:
+
+```
+img {
+    filter: brightness(1.5);
+}
+```
+
+---
+
+Q4. Create a sepia image.
+
+Solution:
+
+```
+img {
+    filter: sepia(100%);
+}
+```
+
+---
+
+Q5. Make an image highly saturated.
+
+Solution:
+
+```
+img {
+    filter: saturate(200%);
+}
+```
+
+---
+
+Q6. Rotate the hue by 180 degrees.
+
+Solution:
+
+```
+img {
+    filter: hue-rotate(180deg);
+}
+```
+
+---
+
+Q7. Completely invert an image.
+
+Solution:
+
+```
+img {
+    filter: invert(100%);
+}
+```
+
+---
+
+Q8. Add a drop shadow to a transparent logo.
+
+Solution:
+
+```
+img {
+    filter: drop-shadow(5px 5px 8px gray);
+}
+```
+
+---
+
+Q9. Combine grayscale and brightness.
+
+Solution:
+
+```
+img {
+    filter:
+        grayscale(100%)
+        brightness(120%);
+}
+```
+
+---
+
+Q10. Create a grayscale-to-color hover effect.
+
+Solution:
+
+```
+img {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+img:hover {
+    filter: grayscale(0%);
+}
+```
+
+========================================================
+EXAM MEMORY TRICK
+=================
+
+BLUR
+= Blur
+
+BRIGHTNESS
+= Light/Dark
+
+CONTRAST
+= Difference between light/dark
+
+GRAYSCALE
+= Black and white
+
+SEPIA
+= Old photo
+
+SATURATE
+= Color intensity
+
+HUE ROTATE
+= Change colors
+
+INVERT
+= Reverse colors
+
+OPACITY
+= Transparency
+
+DROP-SHADOW
+= Shape-based shadow
+
+COMBINE
+= Multiple filters in one filter property
+
+========================================================
+ONE-LINE EXAMPLE TO REMEMBER
+============================
+
+filter:
+blur(2px)
+brightness(110%)
+contrast(120%)
+grayscale(20%)
+sepia(10%)
+saturate(130%)
+hue-rotate(10deg)
+invert(0%)
+opacity(90%)
+drop-shadow(5px 5px 5px gray);
+
+========================================================
+END OF CSS FILTERS
+==================
+
+*/

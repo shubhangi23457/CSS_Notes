@@ -1,0 +1,1202 @@
+# /*
+
+```
+      CSS CONTENT AND GENERATED CONTENT
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. content
+2.
+3.
+4. Generated Text
+5. Generated Images
+6. Counters
+7. CSS Counters
+8. counter-reset
+9. counter-increment
+10. counter()
+
+========================================================
+
+1. CONTENT
+   ========================================================
+
+The content property is mainly used with pseudo-elements
+such as:
+
+```
+::before
+::after
+```
+
+It inserts generated content before or after an element's
+actual content.
+
+Basic syntax:
+
+```
+selector::before {
+    content: "Text";
+}
+
+selector::after {
+    content: "Text";
+}
+```
+
+========================================================
+IMPORTANT
+=========
+
+The content property is primarily useful with pseudo-elements.
+
+It is not a general replacement for HTML content.
+
+For example, this works:
+
+```
+p::before {
+    content: "Note: ";
+}
+```
+
+But using content directly on a normal element is generally
+not how visible page content is created.
+
+========================================================
+2. ::BEFORE
+===========
+
+The ::before pseudo-element creates a generated
+pseudo-element before the content of the selected element.
+
+Syntax:
+
+```
+selector::before {
+    content: "Generated content";
+}
+```
+
+========================================================
+Example
+=======
+
+*/
+
+.before-example::before {
+content: "★ ";
+}
+
+# /*
+
+# Example with Styling
+
+*/
+
+.before-icon::before {
+content: "✓";
+margin-right: 8px;
+font-weight: bold;
+}
+
+# /*
+
+# IMPORTANT
+
+For ::before to generate content, the content property
+normally needs to be specified.
+
+Example:
+
+```
+.box::before {
+    content: "";
+}
+```
+
+An empty string can be used when the pseudo-element is
+being used only for decoration.
+
+========================================================
+3. ::AFTER
+==========
+
+The ::after pseudo-element creates generated content after
+the content of the selected element.
+
+Syntax:
+
+```
+selector::after {
+    content: "Generated content";
+}
+```
+
+========================================================
+*/
+
+.after-example::after {
+content: " ✓";
+}
+
+# /*
+
+# BEFORE vs AFTER
+
+::before:
+
+```
+Inserts generated content at the beginning.
+```
+
+::after:
+
+```
+Inserts generated content at the end.
+```
+
+Example:
+
+```
+<p class="message">Hello</p>
+```
+
+Output conceptually:
+
+```
+::before + Hello + ::after
+```
+
+========================================================
+4. GENERATED TEXT
+=================
+
+CSS can generate text using the content property.
+
+Example:
+
+```
+.warning::before {
+    content: "Warning: ";
+}
+```
+
+========================================================
+*/
+
+.warning::before {
+content: "Warning: ";
+font-weight: bold;
+}
+
+# /*
+
+# QUOTATION MARKS
+
+Generated text can be used for decorative quotation marks.
+
+========================================================
+*/
+
+.quote::before {
+content: "“";
+font-size: 2em;
+}
+
+.quote::after {
+content: "”";
+font-size: 2em;
+}
+
+# /*
+
+# GENERATED TEXT WITH ATTR()
+
+The attr() function can read an HTML attribute and use
+its value as generated content.
+
+Example HTML:
+
+```
+<a class="external" href="https://example.com">
+    Example
+</a>
+```
+
+CSS:
+
+```
+.external::after {
+    content: " (" attr(href) ")";
+}
+```
+
+This can be useful for displaying additional information.
+
+========================================================
+*/
+
+.external-link::after {
+content: " (" attr(href) ")";
+}
+
+# /*
+
+5. GENERATED IMAGES
+   ========================================================
+
+The content property can generate replaced content such as
+images.
+
+Common syntax:
+
+```
+content: url("image.png");
+```
+
+Example:
+
+```
+.logo::before {
+    content: url("logo.png");
+}
+```
+
+========================================================
+*/
+
+.generated-image::before {
+content: url("icon.png");
+}
+
+# /*
+
+# IMPORTANT
+
+Generated images using content are mainly useful for
+decorative or supplementary content.
+
+Important information should normally be present in HTML
+rather than being generated only with CSS.
+
+For meaningful images, use an HTML <img> element with
+appropriate alt text.
+
+========================================================
+6. COUNTERS
+===========
+
+CSS counters are variables maintained by CSS that can be
+used to automatically number elements.
+
+They are useful for:
+
+```
+Chapters
+Sections
+Headings
+Lists
+Steps
+Numbered content
+```
+
+CSS counters use three important concepts:
+
+```
+counter-reset
+counter-increment
+counter()
+```
+
+========================================================
+7. CSS COUNTERS
+===============
+
+A CSS counter is created/reset using:
+
+```
+counter-reset
+```
+
+It is increased using:
+
+```
+counter-increment
+```
+
+Its current value can be displayed using:
+
+```
+counter()
+```
+
+========================================================
+8. COUNTER-RESET
+================
+
+counter-reset initializes or resets a counter.
+
+Syntax:
+
+```
+counter-reset: counter-name;
+```
+
+Example:
+
+```
+body {
+    counter-reset: section;
+}
+```
+
+This creates/resets a counter named "section" to 0.
+
+========================================================
+*/
+
+.counter-example {
+counter-reset: section;
+}
+
+# /*
+
+# RESETTING TO A CUSTOM VALUE
+
+You can specify an initial value.
+
+Example:
+
+```
+counter-reset: section 5;
+```
+
+The counter starts from 5.
+
+========================================================
+*/
+
+.custom-reset {
+counter-reset: section 5;
+}
+
+# /*
+
+9. COUNTER-INCREMENT
+   ========================================================
+
+counter-increment increases the value of a counter.
+
+Syntax:
+
+```
+counter-increment: counter-name;
+```
+
+Example:
+
+```
+h2 {
+    counter-increment: section;
+}
+```
+
+Every matching h2 increases the counter by 1.
+
+========================================================
+*/
+
+.counter-container {
+counter-reset: section;
+}
+
+.counter-container h2 {
+counter-increment: section;
+}
+
+# /*
+
+# CUSTOM INCREMENT
+
+You can specify how much the counter should increase.
+
+Example:
+
+```
+counter-increment: section 2;
+```
+
+This increases the counter by 2.
+
+========================================================
+*/
+
+.custom-increment {
+counter-increment: section 2;
+}
+
+# /*
+
+10. COUNTER()
+    ========================================================
+
+The counter() function retrieves the current value of a
+CSS counter.
+
+It is normally used with the content property.
+
+Syntax:
+
+```
+content: counter(counter-name);
+```
+
+========================================================
+BASIC EXAMPLE
+=============
+
+*/
+
+.chapter {
+counter-reset: section;
+}
+
+.chapter h2 {
+counter-increment: section;
+}
+
+.chapter h2::before {
+content: counter(section) ". ";
+}
+
+# /*
+
+# RESULT
+
+If the HTML is:
+
+```
+<div class="chapter">
+    <h2>Introduction</h2>
+    <h2>Basics</h2>
+    <h2>Advanced Topics</h2>
+</div>
+```
+
+The output becomes conceptually:
+
+```
+1. Introduction
+2. Basics
+3. Advanced Topics
+```
+
+========================================================
+COMPLETE CSS COUNTER EXAMPLE
+============================
+
+*/
+
+.numbered-sections {
+counter-reset: section;
+}
+
+.numbered-sections h2 {
+counter-increment: section;
+}
+
+.numbered-sections h2::before {
+content: counter(section) ". ";
+font-weight: bold;
+}
+
+# /*
+
+11. MULTIPLE COUNTERS
+    ========================================================
+
+Multiple counters can be created and used independently.
+
+Example:
+
+```
+counter-reset: chapter section;
+```
+
+========================================================
+*/
+
+.multi-counter {
+counter-reset: chapter section;
+}
+
+.multi-counter h1 {
+counter-increment: chapter;
+}
+
+.multi-counter h1::before {
+content: "Chapter " counter(chapter) ": ";
+}
+
+# /*
+
+12. NESTED COUNTERS
+    ========================================================
+
+Counters can also be nested.
+
+Useful for numbering:
+
+```
+1. Chapter
+   1.1 Section
+   1.2 Section
+
+2. Chapter
+   2.1 Section
+   2.2 Section
+```
+
+The counters() function can be used for nested counter
+representations.
+
+Syntax:
+
+```
+counters(name, string)
+```
+
+Example:
+
+```
+content: counters(section, ".") " ";
+```
+
+========================================================
+*/
+
+.nested-content {
+counter-reset: section;
+}
+
+.nested-content h2 {
+counter-reset: subsection;
+counter-increment: section;
+}
+
+.nested-content h2::before {
+content: counter(section) ". ";
+}
+
+.nested-content h3 {
+counter-increment: subsection;
+}
+
+.nested-content h3::before {
+content: counter(section) "." counter(subsection) " ";
+}
+
+# /*
+
+13. COUNTER STYLE
+    ========================================================
+
+counter() can accept a list-style type.
+
+Syntax:
+
+```
+counter(name, style)
+```
+
+Examples:
+
+```
+counter(section, decimal)
+counter(section, upper-roman)
+counter(section, lower-alpha)
+```
+
+========================================================
+*/
+
+.roman-counter {
+counter-reset: section;
+}
+
+.roman-counter h2 {
+counter-increment: section;
+}
+
+.roman-counter h2::before {
+content: counter(section, upper-roman) ". ";
+}
+
+# /*
+
+# COMMON COUNTER STYLES
+
+decimal:
+1, 2, 3
+
+decimal-leading-zero:
+01, 02, 03
+
+lower-alpha:
+a, b, c
+
+upper-alpha:
+A, B, C
+
+lower-roman:
+i, ii, iii
+
+upper-roman:
+I, II, III
+
+========================================================
+14. GENERATED CONTENT FOR DECORATION
+====================================
+
+Pseudo-elements are often used to create decorative
+elements without additional HTML.
+
+Example:
+
+```
+.heading::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+}
+```
+
+========================================================
+*/
+
+.decorative-heading::after {
+content: "";
+display: block;
+width: 50px;
+height: 3px;
+margin-top: 8px;
+background: black;
+}
+
+# /*
+
+15. BADGES USING GENERATED CONTENT
+    ========================================================
+    */
+
+.badge::after {
+content: "NEW";
+margin-left: 10px;
+padding: 3px 7px;
+border-radius: 10px;
+font-size: 0.7em;
+font-weight: bold;
+}
+
+# /*
+
+16. TOOLTIP USING GENERATED CONTENT
+    ========================================================
+
+A pseudo-element can display a tooltip when an element
+is hovered.
+
+========================================================
+*/
+
+.tooltip {
+position: relative;
+}
+
+.tooltip::after {
+content: attr(data-tooltip);
+position: absolute;
+bottom: 100%;
+left: 50%;
+transform: translateX(-50%);
+padding: 6px 10px;
+white-space: nowrap;
+opacity: 0;
+visibility: hidden;
+}
+
+.tooltip:hover::after {
+opacity: 1;
+visibility: visible;
+}
+
+/*
+HTML:
+
+```
+<span class="tooltip" data-tooltip="Helpful text">
+    Hover me
+</span>
+```
+
+========================================================
+17. AUTOMATIC NUMBERING WITH CSS COUNTERS
+=========================================
+
+Counters are useful when HTML contains many headings and
+you want numbering to update automatically.
+
+Example:
+
+```
+Section 1
+Section 2
+Section 3
+```
+
+No numbers need to be manually written in HTML.
+
+========================================================
+*/
+
+.document {
+counter-reset: heading;
+}
+
+.document h2 {
+counter-increment: heading;
+}
+
+.document h2::before {
+content: "Section " counter(heading) ": ";
+}
+
+# /*
+
+18. COUNTER RESET AT DIFFERENT LEVELS
+    ========================================================
+
+Counters follow the CSS scope and hierarchy.
+
+A counter can be reset at a parent level and incremented
+by child elements.
+
+Example:
+
+```
+.book {
+    counter-reset: chapter;
+}
+
+.chapter {
+    counter-increment: chapter;
+}
+```
+
+========================================================
+*/
+
+.book {
+counter-reset: chapter;
+}
+
+.chapter {
+counter-increment: chapter;
+}
+
+.chapter::before {
+content: "Chapter " counter(chapter);
+}
+
+# /*
+
+# COUNTER WORKFLOW
+
+STEP 1:
+Create/reset the counter.
+
+```
+counter-reset: section;
+```
+
+STEP 2:
+Increase it.
+
+```
+counter-increment: section;
+```
+
+STEP 3:
+Display it.
+
+```
+content: counter(section);
+```
+
+========================================================
+MEMORY TRICK
+============
+
+RESET
+= Start the counter
+
+INCREMENT
+= Increase the counter
+
+COUNTER()
+= Display the counter
+
+========================================================
+CONTENT MEMORY
+==============
+
+content:
+Generates content.
+
+::before:
+Generated content before the element's content.
+
+::after:
+Generated content after the element's content.
+
+attr():
+Gets an attribute value.
+
+counter():
+Gets a counter value.
+
+========================================================
+IMPORTANT DIFFERENCE
+====================
+
+HTML CONTENT:
+
+```
+Actual document content.
+```
+
+CSS GENERATED CONTENT:
+
+```
+Content created by CSS pseudo-elements.
+```
+
+Use CSS generated content mainly for:
+
+```
+Decoration
+Icons
+Labels
+Counters
+Supplementary information
+```
+
+Do not rely on CSS-generated content for important
+information that must be available to users or assistive
+technologies.
+
+========================================================
+QUESTIONS AND ANSWERS
+=====================
+
+Q1. What is the content property?
+
+Answer:
+
+The content property generates content, mainly through
+pseudo-elements such as ::before and ::after.
+
+---
+
+Q2. What does ::before do?
+
+Answer:
+
+It creates a pseudo-element before the selected element's
+content.
+
+Example:
+
+```
+p::before {
+    content: "Note: ";
+}
+```
+
+---
+
+Q3. What does ::after do?
+
+Answer:
+
+It creates a pseudo-element after the selected element's
+content.
+
+Example:
+
+```
+p::after {
+    content: " ✓";
+}
+```
+
+---
+
+Q4. How do you generate text using CSS?
+
+Answer:
+
+Use the content property with a pseudo-element.
+
+Example:
+
+```
+p::before {
+    content: "Hello ";
+}
+```
+
+---
+
+Q5. How can an HTML attribute be displayed using CSS?
+
+Answer:
+
+Use attr() inside content.
+
+Example:
+
+```
+a::after {
+    content: attr(href);
+}
+```
+
+---
+
+Q6. What are CSS counters?
+
+Answer:
+
+CSS counters are automatically maintained values used for
+numbering elements.
+
+They are useful for sections, chapters, steps, and lists.
+
+---
+
+Q7. What does counter-reset do?
+
+Answer:
+
+It creates or resets a CSS counter.
+
+Example:
+
+```
+counter-reset: section;
+```
+
+---
+
+Q8. What does counter-increment do?
+
+Answer:
+
+It increases the value of a CSS counter.
+
+Example:
+
+```
+counter-increment: section;
+```
+
+---
+
+Q9. What does counter() do?
+
+Answer:
+
+The counter() function retrieves the current value of a
+CSS counter and is commonly used with content.
+
+Example:
+
+```
+content: counter(section);
+```
+
+---
+
+Q10. How do you automatically number headings?
+
+Answer:
+
+```
+.document {
+    counter-reset: section;
+}
+
+h2 {
+    counter-increment: section;
+}
+
+h2::before {
+    content: counter(section) ". ";
+}
+```
+
+========================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Add "★" before every heading.
+
+Solution:
+
+```
+h2::before {
+    content: "★ ";
+}
+```
+
+---
+
+Q2. Add "✓" after every completed item.
+
+Solution:
+
+```
+.completed::after {
+    content: " ✓";
+}
+```
+
+---
+
+Q3. Create automatic numbering for h2 elements.
+
+Solution:
+
+```
+body {
+    counter-reset: section;
+}
+
+h2 {
+    counter-increment: section;
+}
+
+h2::before {
+    content: counter(section) ". ";
+}
+```
+
+---
+
+Q4. Create Roman numeral numbering.
+
+Solution:
+
+```
+body {
+    counter-reset: section;
+}
+
+h2 {
+    counter-increment: section;
+}
+
+h2::before {
+    content: counter(section, upper-roman) ". ";
+}
+```
+
+---
+
+Q5. Display the href of a link after the link text.
+
+Solution:
+
+```
+a::after {
+    content: " (" attr(href) ")";
+}
+```
+
+---
+
+Q6. Create a decorative line below a heading.
+
+Solution:
+
+```
+h2::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+}
+```
+
+========================================================
+QUICK REVISION
+==============
+
+content:
+Generates content.
+
+::before:
+Content before selected element.
+
+::after:
+Content after selected element.
+
+attr():
+Gets an HTML attribute.
+
+counter-reset:
+Creates/resets counter.
+
+counter-increment:
+Increases counter.
+
+counter():
+Displays counter value.
+
+column/span etc.:
+Unrelated to counters; counters are mainly for
+automatic numbering.
+
+========================================================
+EXAM MEMORY TRICK
+=================
+
+CONTENT
+= Generate
+
+BEFORE
+= Before content
+
+AFTER
+= After content
+
+RESET
+= Start
+
+INCREMENT
+= Increase
+
+COUNTER()
+= Show number
+
+========================================================
+END OF CSS CONTENT AND GENERATED CONTENT
+========================================
+
+*/

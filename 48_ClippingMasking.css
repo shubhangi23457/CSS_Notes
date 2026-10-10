@@ -1,0 +1,1398 @@
+# /*
+
+```
+         CSS CLIPPING AND MASKING
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. clip-path
+2. Circle
+3. Ellipse
+4. Polygon
+5. Inset
+6. CSS Masks
+7. mask-image
+8. mask-size
+9. mask-position
+10. Creative Shapes
+
+========================================================
+INTRODUCTION
+============
+
+CSS clipping and masking allow you to control which parts
+of an element are visible.
+
+They are useful for creating:
+
+```
+Circles
+Ellipses
+Triangles
+Polygons
+Diagonal sections
+Custom image shapes
+Decorative designs
+Creative cards
+Image effects
+```
+
+Two important techniques are:
+
+```
+CLIPPING
+    Uses clip-path.
+
+MASKING
+    Uses mask properties.
+```
+
+========================================================
+CLIPPING vs MASKING
+===================
+
+CLIPPING:
+
+```
+Defines a geometric region that remains visible.
+
+Main property:
+    clip-path
+```
+
+MASKING:
+
+```
+Uses an image, gradient, or mask to control visibility
+and transparency.
+
+Main property:
+    mask-image
+```
+
+Simple memory:
+
+```
+clip-path = Cut the shape
+
+mask-image = Control visibility/transparency
+```
+
+========================================================
+
+1. CLIP-PATH
+   ========================================================
+
+The clip-path property defines a clipping region.
+
+Anything outside the clipping region is not visible.
+
+Syntax:
+
+```
+clip-path: shape();
+```
+
+Common functions:
+
+```
+circle()
+ellipse()
+polygon()
+inset()
+```
+
+========================================================
+BASIC EXAMPLE
+=============
+
+*/
+
+.clip-example {
+clip-path: circle(50%);
+}
+
+# /*
+
+# IMPORTANT
+
+Clipping changes what is visible, but it does not change
+the actual layout box of the element.
+
+For example, an element clipped into a triangle still
+occupies its original layout space.
+
+========================================================
+2. CIRCLE
+=========
+
+The circle() function creates a circular clipping region.
+
+Syntax:
+
+```
+clip-path: circle(radius);
+```
+
+Example:
+
+```
+clip-path: circle(50%);
+```
+
+========================================================
+*/
+
+.circle {
+clip-path: circle(50%);
+}
+
+# /*
+
+# CIRCLE WITH CUSTOM RADIUS
+
+*/
+
+.small-circle {
+clip-path: circle(30%);
+}
+
+# /*
+
+# CIRCLE POSITION
+
+The circle can also be positioned.
+
+Syntax:
+
+```
+circle(radius at x y)
+```
+
+Example:
+
+```
+circle(40% at 50% 50%)
+```
+
+========================================================
+*/
+
+.positioned-circle {
+clip-path: circle(40% at 50% 50%);
+}
+
+# /*
+
+# CIRCLE IMAGE
+
+*/
+
+.circular-image {
+width: 200px;
+height: 200px;
+object-fit: cover;
+clip-path: circle(50%);
+}
+
+# /*
+
+3. ELLIPSE
+   ========================================================
+
+The ellipse() function creates an elliptical clipping region.
+
+Syntax:
+
+```
+clip-path: ellipse(rx ry);
+```
+
+Where:
+
+```
+rx = horizontal radius
+ry = vertical radius
+```
+
+========================================================
+*/
+
+.ellipse {
+clip-path: ellipse(50% 35%);
+}
+
+# /*
+
+# POSITIONED ELLIPSE
+
+Syntax:
+
+```
+ellipse(rx ry at x y)
+```
+
+========================================================
+*/
+
+.positioned-ellipse {
+clip-path: ellipse(45% 30% at 50% 50%);
+}
+
+# /*
+
+4. POLYGON
+   ========================================================
+
+polygon() creates custom shapes using points.
+
+Syntax:
+
+```
+clip-path: polygon(x y, x y, x y, ...);
+```
+
+Each point represents a coordinate.
+
+Percentages are commonly used.
+
+========================================================
+TRIANGLE
+========
+
+*/
+
+.triangle {
+clip-path: polygon(
+50% 0%,
+0% 100%,
+100% 100%
+);
+}
+
+# /*
+
+# DIAMOND
+
+*/
+
+.diamond {
+clip-path: polygon(
+50% 0%,
+100% 50%,
+50% 100%,
+0% 50%
+);
+}
+
+# /*
+
+# HEXAGON
+
+*/
+
+.hexagon {
+clip-path: polygon(
+25% 0%,
+75% 0%,
+100% 50%,
+75% 100%,
+25% 100%,
+0% 50%
+);
+}
+
+# /*
+
+# PENTAGON
+
+*/
+
+.pentagon {
+clip-path: polygon(
+50% 0%,
+100% 38%,
+82% 100%,
+18% 100%,
+0% 38%
+);
+}
+
+# /*
+
+# PARALLELOGRAM
+
+*/
+
+.parallelogram {
+clip-path: polygon(
+15% 0%,
+100% 0%,
+85% 100%,
+0% 100%
+);
+}
+
+# /*
+
+# DIAGONAL SECTION
+
+*/
+
+.diagonal {
+clip-path: polygon(
+0 0,
+100% 0,
+100% 75%,
+0 100%
+);
+}
+
+# /*
+
+5. INSET
+   ========================================================
+
+The inset() function creates a rectangular clipping region
+with optional rounded corners.
+
+Syntax:
+
+```
+clip-path: inset(top right bottom left);
+```
+
+Example:
+
+```
+clip-path: inset(10%);
+```
+
+This cuts the same amount from all four sides.
+
+========================================================
+*/
+
+.inset-basic {
+clip-path: inset(10%);
+}
+
+# /*
+
+# DIFFERENT INSET VALUES
+
+One value:
+
+```
+inset(10%)
+```
+
+Four values:
+
+```
+inset(10% 20% 10% 20%)
+```
+
+Order:
+
+```
+top
+right
+bottom
+left
+```
+
+========================================================
+*/
+
+.inset-custom {
+clip-path: inset(
+10%
+20%
+15%
+20%
+);
+}
+
+# /*
+
+# INSET WITH ROUNDED CORNERS
+
+Syntax:
+
+```
+inset(value round radius)
+```
+
+Example:
+
+```
+inset(10% round 20px)
+```
+
+========================================================
+*/
+
+.inset-rounded {
+clip-path: inset(10% round 20px);
+}
+
+# /*
+
+6. CSS MASKS
+   ========================================================
+
+CSS masking controls the visibility of an element using
+a mask image.
+
+A mask can be created using:
+
+```
+Image
+Gradient
+SVG
+Other mask sources
+```
+
+The mask determines which areas of an element are visible.
+
+========================================================
+BASIC MASK
+==========
+
+Main property:
+
+```
+mask-image
+```
+
+========================================================
+*/
+
+.mask-example {
+mask-image: linear-gradient(
+black,
+transparent
+);
+}
+
+# /*
+
+7. MASK-IMAGE
+   ========================================================
+
+mask-image specifies the image or gradient used as a mask.
+
+Syntax:
+
+```
+mask-image: url("mask.png");
+```
+
+or:
+
+```
+mask-image: linear-gradient(...);
+```
+
+========================================================
+IMAGE MASK
+==========
+
+*/
+
+.image-mask {
+mask-image: url("mask.png");
+}
+
+# /*
+
+# GRADIENT MASK
+
+*/
+
+.gradient-mask {
+mask-image: linear-gradient(
+to bottom,
+black 0%,
+transparent 100%
+);
+}
+
+# /*
+
+# IMPORTANT
+
+In a mask, the mask's alpha/transparency controls which
+parts of the element are visible.
+
+A fully opaque mask area generally keeps the underlying
+content visible.
+
+A transparent mask area hides the underlying content.
+
+========================================================
+8. MASK-SIZE
+============
+
+mask-size controls the size of the mask image.
+
+Common values:
+
+```
+auto
+cover
+contain
+custom length/percentage
+```
+
+Syntax:
+
+```
+mask-size: value;
+```
+
+========================================================
+*/
+
+.mask-size-example {
+mask-image: url("mask.png");
+mask-size: cover;
+}
+
+# /*
+
+# CONTAIN
+
+*/
+
+.mask-contain {
+mask-image: url("mask.png");
+mask-size: contain;
+}
+
+# /*
+
+# CUSTOM MASK SIZE
+
+*/
+
+.mask-custom-size {
+mask-image: url("mask.png");
+mask-size: 200px 200px;
+}
+
+# /*
+
+9. MASK-POSITION
+   ========================================================
+
+mask-position controls where the mask is positioned.
+
+Common values:
+
+```
+center
+top
+bottom
+left
+right
+```
+
+========================================================
+*/
+
+.mask-position-example {
+mask-image: url("mask.png");
+mask-size: cover;
+mask-position: center;
+}
+
+# /*
+
+# CUSTOM POSITION
+
+*/
+
+.mask-custom-position {
+mask-image: url("mask.png");
+mask-position: 50% 50%;
+}
+
+# /*
+
+10. MASK REPEAT
+    ========================================================
+
+Mask images can also be repeated.
+
+Common values:
+
+```
+repeat
+no-repeat
+repeat-x
+repeat-y
+```
+
+========================================================
+*/
+
+.mask-no-repeat {
+mask-image: url("mask.png");
+mask-repeat: no-repeat;
+}
+
+# /*
+
+11. MASK SHORTHAND
+    ========================================================
+
+The mask property can combine mask settings.
+
+Example:
+
+```
+mask:
+    url("mask.png")
+    center / cover
+    no-repeat;
+```
+
+========================================================
+*/
+
+.mask-shorthand {
+mask:
+url("mask.png")
+center / cover
+no-repeat;
+}
+
+# /*
+
+12. GRADIENT MASK EFFECT
+    ========================================================
+
+Gradients can create smooth fading masks.
+
+========================================================
+*/
+
+.fade-mask {
+mask-image: linear-gradient(
+to right,
+transparent,
+black 25%,
+black 75%,
+transparent
+);
+}
+
+# /*
+
+13. CIRCULAR MASK
+    ========================================================
+
+A radial gradient can create a circular mask.
+
+========================================================
+*/
+
+.circular-mask {
+mask-image: radial-gradient(
+circle,
+black 60%,
+transparent 61%
+);
+}
+
+# /*
+
+14. CREATIVE SHAPES
+    ========================================================
+
+clip-path is especially useful for creating creative
+shapes without extra HTML or image editing software.
+
+Common shapes:
+
+```
+Triangle
+Diamond
+Hexagon
+Pentagon
+Parallelogram
+Arrow
+Diagonal
+Custom polygon
+```
+
+========================================================
+ARROW SHAPE
+===========
+
+*/
+
+.arrow-shape {
+clip-path: polygon(
+0 25%,
+70% 25%,
+70% 0,
+100% 50%,
+70% 100%,
+70% 75%,
+0 75%
+);
+}
+
+# /*
+
+# STAR-LIKE SHAPE
+
+*/
+
+.star-shape {
+clip-path: polygon(
+50% 0%,
+61% 35%,
+98% 35%,
+68% 57%,
+79% 100%,
+50% 74%,
+21% 100%,
+32% 57%,
+2% 35%,
+39% 35%
+);
+}
+
+# /*
+
+15. CREATIVE IMAGE SHAPES
+    ========================================================
+    */
+
+.creative-image {
+width: 300px;
+height: 220px;
+object-fit: cover;
+
+```
+clip-path: polygon(
+    10% 0,
+    90% 0,
+    100% 50%,
+    90% 100%,
+    10% 100%,
+    0 50%
+);
+```
+
+}
+
+# /*
+
+16. HOVER CLIPPING EFFECT
+    ========================================================
+
+clip-path can be animated between compatible shapes.
+
+========================================================
+*/
+
+.shape-hover {
+clip-path: circle(40%);
+transition: clip-path 0.5s ease;
+}
+
+.shape-hover:hover {
+clip-path: circle(50%);
+}
+
+# /*
+
+17. IMAGE REVEAL USING CLIP-PATH
+    ========================================================
+    */
+
+.image-reveal {
+clip-path: inset(0 100% 0 0);
+transition: clip-path 0.7s ease;
+}
+
+.image-reveal:hover {
+clip-path: inset(0 0 0 0);
+}
+
+# /*
+
+18. CLIP-PATH WITH RESPONSIVE DESIGN
+    ========================================================
+
+Percentages make polygon shapes responsive because their
+coordinates are calculated relative to the element.
+
+Example:
+
+```
+polygon(0 0, 100% 0, 100% 80%, 0 100%)
+```
+
+========================================================
+*/
+
+.responsive-shape {
+width: 100%;
+min-height: 250px;
+
+```
+clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 80%,
+    0 100%
+);
+```
+
+}
+
+# /*
+
+19. CLIPPING VS MASKING
+    ========================================================
+
+CLIP-PATH:
+
+```
+Uses a geometric clipping region.
+
+Common functions:
+    circle()
+    ellipse()
+    polygon()
+    inset()
+
+Outside the region:
+    Not visible.
+```
+
+MASK:
+
+```
+Uses image/gradient/SVG mask information.
+
+Can create:
+    Fades
+    Transparency
+    Complex visibility patterns
+```
+
+========================================================
+20. CLIP-PATH EXAM SUMMARY
+==========================
+
+circle():
+
+```
+Creates a circle.
+```
+
+ellipse():
+
+```
+Creates an ellipse.
+```
+
+polygon():
+
+```
+Creates a custom polygon.
+```
+
+inset():
+
+```
+Creates an inset rectangular shape.
+```
+
+========================================================
+21. MASK EXAM SUMMARY
+=====================
+
+mask-image:
+
+```
+Defines the mask source.
+```
+
+mask-size:
+
+```
+Controls mask size.
+```
+
+mask-position:
+
+```
+Controls mask position.
+```
+
+mask-repeat:
+
+```
+Controls mask repetition.
+```
+
+mask:
+
+```
+Shorthand for mask properties.
+```
+
+========================================================
+22. PRACTICAL CREATIVE CARD
+===========================
+
+*/
+
+.shape-card {
+width: 300px;
+overflow: hidden;
+}
+
+.shape-card img {
+width: 100%;
+height: 200px;
+object-fit: cover;
+
+```
+clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 80%,
+    50% 100%,
+    0 80%
+);
+```
+
+}
+
+# /*
+
+23. CREATIVE HERO SECTION
+    ========================================================
+    */
+
+.hero-shape {
+min-height: 400px;
+
+```
+clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 80%,
+    50% 100%,
+    0 80%
+);
+```
+
+}
+
+# /*
+
+# IMPORTANT NOTES
+
+1. clip-path controls which part of an element is visible.
+
+2. clip-path does not change the element's layout box.
+
+3. circle() creates circular clipping.
+
+4. ellipse() creates elliptical clipping.
+
+5. polygon() creates custom shapes using points.
+
+6. inset() creates a rectangular clipping region.
+
+7. mask-image uses an image, gradient, or other mask source
+   to control visibility.
+
+8. mask-size controls the size of the mask.
+
+9. mask-position controls where the mask is placed.
+
+10. Gradients are very useful for creating smooth mask
+    fades.
+
+11. clip-path is generally easier for geometric shapes.
+
+12. Masks are useful when visibility needs to vary smoothly
+    or follow an image/gradient.
+
+========================================================
+QUESTIONS AND ANSWERS
+=====================
+
+Q1. What is CSS clipping?
+
+Answer:
+
+CSS clipping controls which portion of an element is
+visible using a clipping path.
+
+The main property is:
+
+```
+clip-path
+```
+
+---
+
+Q2. What is clip-path?
+
+Answer:
+
+clip-path defines a region of an element that remains
+visible.
+
+Example:
+
+```
+clip-path: circle(50%);
+```
+
+---
+
+Q3. Which function creates a circle?
+
+Answer:
+
+```
+circle()
+```
+
+Example:
+
+```
+clip-path: circle(50%);
+```
+
+---
+
+Q4. Which function creates an ellipse?
+
+Answer:
+
+```
+ellipse()
+```
+
+Example:
+
+```
+clip-path: ellipse(50% 30%);
+```
+
+---
+
+Q5. Which function creates custom shapes?
+
+Answer:
+
+```
+polygon()
+```
+
+Example:
+
+```
+clip-path: polygon(
+    50% 0,
+    0 100%,
+    100% 100%
+);
+```
+
+---
+
+Q6. What does inset() do?
+
+Answer:
+
+inset() creates a rectangular clipping region by cutting
+inward from the element's edges.
+
+Example:
+
+```
+clip-path: inset(10%);
+```
+
+---
+
+Q7. What is CSS masking?
+
+Answer:
+
+CSS masking controls the visibility of an element using
+a mask image, gradient, or another mask source.
+
+---
+
+Q8. What does mask-image do?
+
+Answer:
+
+It specifies the image or gradient used as the mask.
+
+Example:
+
+```
+mask-image: linear-gradient(
+    black,
+    transparent
+);
+```
+
+---
+
+Q9. What does mask-size do?
+
+Answer:
+
+It controls the size of the mask image.
+
+Example:
+
+```
+mask-size: cover;
+```
+
+---
+
+Q10. What does mask-position do?
+
+Answer:
+
+It controls the position of the mask.
+
+Example:
+
+```
+mask-position: center;
+```
+
+---
+
+Q11. What is the difference between clipping and masking?
+
+Answer:
+
+Clipping generally uses a geometric boundary to determine
+what is visible.
+
+Masking uses alpha/transparency information from a mask
+source to control visibility.
+
+---
+
+Q12. Can clip-path create a triangle?
+
+Answer:
+
+Yes.
+
+Example:
+
+```
+clip-path: polygon(
+    50% 0,
+    0 100%,
+    100% 100%
+);
+```
+
+========================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Create a circular image.
+
+Solution:
+
+```
+img {
+    clip-path: circle(50%);
+}
+```
+
+---
+
+Q2. Create an ellipse.
+
+Solution:
+
+```
+.box {
+    clip-path: ellipse(50% 30%);
+}
+```
+
+---
+
+Q3. Create a triangle.
+
+Solution:
+
+```
+.triangle {
+    clip-path: polygon(
+        50% 0,
+        0 100%,
+        100% 100%
+    );
+}
+```
+
+---
+
+Q4. Create a diamond.
+
+Solution:
+
+```
+.diamond {
+    clip-path: polygon(
+        50% 0,
+        100% 50%,
+        50% 100%,
+        0 50%
+    );
+}
+```
+
+---
+
+Q5. Create an inset shape.
+
+Solution:
+
+```
+.box {
+    clip-path: inset(10%);
+}
+```
+
+---
+
+Q6. Create a gradient mask.
+
+Solution:
+
+```
+.box {
+    mask-image: linear-gradient(
+        to right,
+        black,
+        transparent
+    );
+}
+```
+
+---
+
+Q7. Make a mask cover the complete element.
+
+Solution:
+
+```
+.box {
+    mask-size: cover;
+}
+```
+
+---
+
+Q8. Center a mask.
+
+Solution:
+
+```
+.box {
+    mask-position: center;
+}
+```
+
+========================================================
+EXAM MEMORY TRICK
+=================
+
+CLIP-PATH
+= Cut the visible shape
+
+CIRCLE
+= Round
+
+ELLIPSE
+= Oval
+
+POLYGON
+= Custom points
+
+INSET
+= Cut from edges
+
+MASK-IMAGE
+= Mask source
+
+MASK-SIZE
+= Mask size
+
+MASK-POSITION
+= Mask location
+
+CLIPPING
+= Geometric visibility
+
+MASKING
+= Transparency/visibility control
+
+========================================================
+ONE COMPLETE EXAMPLE
+====================
+
+*/
+
+.complete-shape {
+width: 300px;
+height: 200px;
+object-fit: cover;
+
+```
+clip-path: polygon(
+    10% 0,
+    90% 0,
+    100% 50%,
+    90% 100%,
+    10% 100%,
+    0 50%
+);
+
+transition: clip-path 0.5s ease;
+```
+
+}
+
+.complete-shape:hover {
+clip-path: circle(45%);
+}
+
+# /*
+
+# END OF CSS CLIPPING AND MASKING
+
+*/

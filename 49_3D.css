@@ -1,0 +1,1531 @@
+# /*
+
+```
+                   CSS 3D
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. 3D Transformations
+2. translateZ()
+3. rotateX()
+4. rotateY()
+5. rotateZ()
+6. perspective
+7. transform-style
+8. backface-visibility
+9. 3D Cards
+10. 3D Flip Effects
+
+========================================================
+INTRODUCTION
+============
+
+CSS 3D transformations allow elements to appear as if
+they are moving or rotating in three-dimensional space.
+
+CSS 3D uses three axes:
+
+```
+X-axis
+    Horizontal
+
+Y-axis
+    Vertical
+
+Z-axis
+    Depth
+```
+
+Simple memory:
+
+```
+X = Left / Right
+Y = Up / Down
+Z = Towards / Away from viewer
+```
+
+========================================================
+2D vs 3D
+========
+
+2D transformations:
+
+```
+translate()
+rotate()
+scale()
+skew()
+```
+
+3D transformations additionally use:
+
+```
+translateZ()
+rotateX()
+rotateY()
+rotateZ()
+perspective
+```
+
+========================================================
+
+1. 3D TRANSFORMATIONS
+   ========================================================
+
+The transform property applies transformations.
+
+Example:
+
+```
+transform: translateZ(50px);
+```
+
+Multiple transformations can be combined.
+
+Example:
+
+```
+transform:
+    translateZ(50px)
+    rotateY(30deg);
+```
+
+========================================================
+IMPORTANT
+=========
+
+The transform property does not affect the normal document
+flow in the same way that changing layout dimensions does.
+
+It visually transforms the element.
+
+========================================================
+*/
+
+.transform-3d {
+transform: translateZ(50px);
+}
+
+# /*
+
+2. translateZ()
+   ========================================================
+
+translateZ() moves an element along the Z-axis.
+
+Syntax:
+
+```
+transform: translateZ(value);
+```
+
+Example:
+
+```
+transform: translateZ(100px);
+```
+
+Positive values move the element toward the viewer
+within the 3D coordinate system.
+
+Negative values move it away.
+
+========================================================
+*/
+
+.translate-z {
+transform: translateZ(100px);
+}
+
+# /*
+
+# IMPORTANT
+
+translateZ() is normally most useful when a perspective
+is present.
+
+Without perspective, the depth effect may not appear as
+expected.
+
+========================================================
+*/
+
+.translate-z-container {
+perspective: 600px;
+}
+
+.translate-z-item {
+transform: translateZ(100px);
+}
+
+# /*
+
+3. rotateX()
+   ========================================================
+
+rotateX() rotates an element around the X-axis.
+
+Syntax:
+
+```
+transform: rotateX(angle);
+```
+
+Example:
+
+```
+transform: rotateX(45deg);
+```
+
+Think of it as rotating forward/backward around a
+horizontal axis.
+
+========================================================
+*/
+
+.rotate-x {
+transform: rotateX(45deg);
+}
+
+# /*
+
+# ROTATE X EXAMPLES
+
+*/
+
+.rotate-x-90 {
+transform: rotateX(90deg);
+}
+
+.rotate-x-180 {
+transform: rotateX(180deg);
+}
+
+# /*
+
+4. rotateY()
+   ========================================================
+
+rotateY() rotates an element around the Y-axis.
+
+Syntax:
+
+```
+transform: rotateY(angle);
+```
+
+Example:
+
+```
+transform: rotateY(45deg);
+```
+
+Think of it as rotating left/right around a vertical axis.
+
+========================================================
+*/
+
+.rotate-y {
+transform: rotateY(45deg);
+}
+
+# /*
+
+# ROTATE Y EXAMPLES
+
+*/
+
+.rotate-y-90 {
+transform: rotateY(90deg);
+}
+
+.rotate-y-180 {
+transform: rotateY(180deg);
+}
+
+# /*
+
+5. rotateZ()
+   ========================================================
+
+rotateZ() rotates an element around the Z-axis.
+
+This is essentially the familiar 2D rotation around the
+axis pointing toward the viewer.
+
+Syntax:
+
+```
+transform: rotateZ(angle);
+```
+
+Example:
+
+```
+transform: rotateZ(45deg);
+```
+
+========================================================
+*/
+
+.rotate-z {
+transform: rotateZ(45deg);
+}
+
+# /*
+
+# ROTATE Z
+
+*/
+
+.rotate-z-90 {
+transform: rotateZ(90deg);
+}
+
+# /*
+
+# AXIS MEMORY
+
+rotateX()
+= Forward / backward tilt
+
+rotateY()
+= Left / right rotation
+
+rotateZ()
+= Normal 2D-style rotation
+
+translateZ()
+= Move through depth
+
+========================================================
+6. PERSPECTIVE
+==============
+
+Perspective creates the appearance of depth.
+
+It determines how strongly 3D objects appear to shrink
+with distance.
+
+There are two common ways to use perspective:
+
+```
+perspective property
+perspective() transform function
+```
+
+========================================================
+PERSPECTIVE PROPERTY
+====================
+
+The perspective property is applied to a parent/container.
+
+Example:
+
+```
+.container {
+    perspective: 600px;
+}
+```
+
+========================================================
+*/
+
+.perspective-container {
+perspective: 600px;
+}
+
+.perspective-container .box {
+transform: rotateY(45deg);
+}
+
+# /*
+
+# PERSPECTIVE VALUES
+
+Smaller value:
+
+```
+Stronger perspective effect.
+```
+
+Larger value:
+
+```
+Weaker / flatter perspective effect.
+```
+
+Example:
+
+```
+perspective: 300px;
+perspective: 1000px;
+```
+
+========================================================
+*/
+
+.strong-perspective {
+perspective: 300px;
+}
+
+.weak-perspective {
+perspective: 1000px;
+}
+
+# /*
+
+# PERSPECTIVE() FUNCTION
+
+Perspective can also be used inside transform:
+
+```
+transform: perspective(600px) rotateY(45deg);
+```
+
+========================================================
+*/
+
+.perspective-function {
+transform:
+perspective(600px)
+rotateY(45deg);
+}
+
+# /*
+
+# PERSPECTIVE PROPERTY vs perspective()
+
+perspective property:
+
+```
+Usually applied to the parent/container.
+Gives its children a shared perspective.
+```
+
+perspective():
+
+```
+Used inside transform.
+Applies perspective as part of that element's
+transformation.
+```
+
+========================================================
+7. TRANSFORM-STYLE
+==================
+
+transform-style controls whether an element's children
+are positioned in 3D space or flattened into the plane
+of the element.
+
+Values:
+
+```
+flat
+preserve-3d
+```
+
+Default:
+
+```
+flat
+```
+
+========================================================
+FLAT
+====
+
+Children are flattened into the element's plane.
+
+========================================================
+PRESERVE-3D
+===========
+
+Children preserve their 3D positioning.
+
+This is very important when creating:
+
+```
+3D cards
+Flip cards
+Cubes
+3D interfaces
+```
+
+========================================================
+*/
+
+.card-3d {
+transform-style: preserve-3d;
+}
+
+# /*
+
+8. BACKFACE-VISIBILITY
+   ========================================================
+
+backface-visibility controls whether the back side of a
+3D-transformed element is visible.
+
+Values:
+
+```
+visible
+hidden
+```
+
+Default:
+
+```
+visible
+```
+
+========================================================
+VISIBLE
+=======
+
+The back side remains visible.
+
+========================================================
+HIDDEN
+======
+
+The back side is hidden when facing away from the viewer.
+
+This is extremely useful for flip cards.
+
+========================================================
+*/
+
+.card-front,
+.card-back {
+backface-visibility: hidden;
+}
+
+# /*
+
+9. 3D CARD
+   ========================================================
+
+A basic 3D card usually contains:
+
+```
+Card container
+    |
+    +-- Front
+    |
+    +-- Back
+```
+
+The container uses:
+
+```
+perspective
+```
+
+The inner element uses:
+
+```
+transform-style: preserve-3d
+```
+
+The front and back use:
+
+```
+backface-visibility: hidden
+```
+
+========================================================
+BASIC 3D CARD
+=============
+
+*/
+
+.card-container {
+width: 300px;
+height: 200px;
+perspective: 800px;
+}
+
+.card-inner {
+width: 100%;
+height: 100%;
+
+```
+position: relative;
+
+transform-style: preserve-3d;
+```
+
+}
+
+.card-front,
+.card-back {
+position: absolute;
+
+```
+width: 100%;
+height: 100%;
+
+backface-visibility: hidden;
+```
+
+}
+
+# /*
+
+10. 3D FLIP CARD
+    ========================================================
+
+A flip card rotates its inner content when hovered.
+
+The front initially faces the viewer.
+
+The back is rotated 180 degrees.
+
+On hover, the inner card rotates 180 degrees.
+
+========================================================
+*/
+
+.flip-card {
+width: 300px;
+height: 200px;
+perspective: 800px;
+}
+
+.flip-card-inner {
+position: relative;
+
+```
+width: 100%;
+height: 100%;
+
+transition: transform 0.7s;
+
+transform-style: preserve-3d;
+```
+
+}
+
+.flip-card:hover .flip-card-inner {
+transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+position: absolute;
+
+```
+width: 100%;
+height: 100%;
+
+backface-visibility: hidden;
+```
+
+}
+
+.flip-card-front {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.flip-card-back {
+display: flex;
+justify-content: center;
+align-items: center;
+
+```
+transform: rotateY(180deg);
+```
+
+}
+
+# /*
+
+# HTML STRUCTURE FOR FLIP CARD
+
+```
+<div class="flip-card">
+
+    <div class="flip-card-inner">
+
+        <div class="flip-card-front">
+            Front
+        </div>
+
+        <div class="flip-card-back">
+            Back
+        </div>
+
+    </div>
+
+</div>
+```
+
+========================================================
+11. FLIP CARD USING ROTATEX
+===========================
+
+A card can also flip vertically using rotateX().
+
+========================================================
+*/
+
+.flip-x {
+width: 300px;
+height: 200px;
+perspective: 800px;
+}
+
+.flip-x-inner {
+width: 100%;
+height: 100%;
+
+```
+position: relative;
+
+transform-style: preserve-3d;
+transition: transform 0.7s;
+```
+
+}
+
+.flip-x:hover .flip-x-inner {
+transform: rotateX(180deg);
+}
+
+.flip-x-front,
+.flip-x-back {
+position: absolute;
+
+```
+width: 100%;
+height: 100%;
+
+backface-visibility: hidden;
+```
+
+}
+
+.flip-x-back {
+transform: rotateX(180deg);
+}
+
+# /*
+
+12. 3D CARD WITH SHADOW
+    ========================================================
+    */
+
+.card-3d-effect {
+width: 300px;
+height: 200px;
+
+```
+perspective: 800px;
+```
+
+}
+
+.card-3d-effect .inner {
+width: 100%;
+height: 100%;
+
+```
+transform-style: preserve-3d;
+transition:
+    transform 0.5s,
+    box-shadow 0.5s;
+```
+
+}
+
+.card-3d-effect:hover .inner {
+transform:
+rotateY(15deg)
+rotateX(8deg)
+translateZ(20px);
+
+```
+box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.2);
+```
+
+}
+
+# /*
+
+13. 3D TILT EFFECT
+    ========================================================
+
+A card can visually tilt in 3D using rotateX() and
+rotateY().
+
+========================================================
+*/
+
+.tilt-card {
+transition: transform 0.4s ease;
+}
+
+.tilt-card:hover {
+transform:
+perspective(600px)
+rotateX(8deg)
+rotateY(-8deg)
+translateZ(10px);
+}
+
+# /*
+
+14. 3D CARD WITH IMAGE
+    ========================================================
+    */
+
+.product-3d-card {
+width: 300px;
+perspective: 800px;
+}
+
+.product-3d-card img {
+width: 100%;
+display: block;
+
+```
+transition: transform 0.5s ease;
+```
+
+}
+
+.product-3d-card:hover img {
+transform:
+rotateY(10deg)
+translateZ(20px);
+}
+
+# /*
+
+15. 3D FLIP EFFECT WITH CONTENT
+    ========================================================
+
+A common structure:
+
+```
+container
+    inner
+        front
+        back
+```
+
+Container:
+perspective
+
+Inner:
+preserve-3d
+
+Front/back:
+backface-visibility: hidden
+
+Back:
+rotateY(180deg)
+
+Hover:
+inner rotateY(180deg)
+
+========================================================
+*/
+
+.three-d-flip {
+width: 280px;
+height: 180px;
+perspective: 700px;
+}
+
+.three-d-flip-inner {
+position: relative;
+
+```
+width: 100%;
+height: 100%;
+
+transition: transform 0.8s ease;
+transform-style: preserve-3d;
+```
+
+}
+
+.three-d-flip:hover .three-d-flip-inner {
+transform: rotateY(180deg);
+}
+
+.three-d-flip-front,
+.three-d-flip-back {
+position: absolute;
+
+```
+inset: 0;
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+backface-visibility: hidden;
+```
+
+}
+
+.three-d-flip-back {
+transform: rotateY(180deg);
+}
+
+# /*
+
+16. 3D CUBE CONCEPT
+    ========================================================
+
+CSS 3D can also be used to create cubes.
+
+A cube requires six faces:
+
+```
+Front
+Back
+Right
+Left
+Top
+Bottom
+```
+
+Each face is positioned using:
+
+```
+translateZ()
+rotateX()
+rotateY()
+```
+
+========================================================
+*/
+
+.cube {
+width: 100px;
+height: 100px;
+
+```
+position: relative;
+
+transform-style: preserve-3d;
+```
+
+}
+
+.cube-face {
+position: absolute;
+
+```
+width: 100px;
+height: 100px;
+```
+
+}
+
+/*
+The exact placement of each face depends on the cube's
+dimensions and desired coordinate system.
+
+Example front face:
+
+```
+transform: translateZ(50px);
+```
+
+Example back face:
+
+```
+transform: rotateY(180deg) translateZ(50px);
+```
+
+========================================================
+17. TRANSFORM ORIGIN
+====================
+
+transform-origin controls the point around which an
+element transforms.
+
+Examples:
+
+```
+transform-origin: center;
+transform-origin: left center;
+transform-origin: top right;
+```
+
+It is useful for controlling the pivot point of
+3D rotations.
+
+========================================================
+*/
+
+.pivot-card {
+transform-origin: left center;
+transition: transform 0.5s;
+}
+
+.pivot-card:hover {
+transform: rotateY(30deg);
+}
+
+# /*
+
+18. MULTIPLE 3D TRANSFORMATIONS
+    ========================================================
+
+Multiple transforms can be combined.
+
+Example:
+
+```
+transform:
+    translateZ(30px)
+    rotateX(10deg)
+    rotateY(20deg);
+```
+
+========================================================
+*/
+
+.multiple-3d {
+transform:
+translateZ(30px)
+rotateX(10deg)
+rotateY(20deg);
+}
+
+# /*
+
+# IMPORTANT
+
+The order of transform functions can affect the final
+result.
+
+Therefore:
+
+```
+translateZ(50px) rotateY(30deg);
+```
+
+may produce a different result from:
+
+```
+rotateY(30deg) translateZ(50px);
+```
+
+========================================================
+19. 3D TRANSFORM PROPERTY SUMMARY
+=================================
+
+translateZ():
+
+```
+Moves along depth axis.
+```
+
+rotateX():
+
+```
+Rotates around X-axis.
+```
+
+rotateY():
+
+```
+Rotates around Y-axis.
+```
+
+rotateZ():
+
+```
+Rotates around Z-axis.
+```
+
+perspective:
+
+```
+Creates depth perception.
+```
+
+transform-style:
+
+```
+Controls whether children preserve 3D space.
+```
+
+backface-visibility:
+
+```
+Controls visibility of the back side.
+```
+
+========================================================
+20. 3D FLIP WORKFLOW
+====================
+
+STEP 1:
+Create a perspective container.
+
+```
+perspective: 800px;
+```
+
+STEP 2:
+Preserve 3D on the inner element.
+
+```
+transform-style: preserve-3d;
+```
+
+STEP 3:
+Hide the back faces.
+
+```
+backface-visibility: hidden;
+```
+
+STEP 4:
+Rotate the back face by 180 degrees.
+
+```
+transform: rotateY(180deg);
+```
+
+STEP 5:
+Rotate the inner element on hover.
+
+```
+transform: rotateY(180deg);
+```
+
+========================================================
+21. COMPLETE 3D FLIP CARD
+=========================
+
+*/
+
+.complete-flip {
+width: 320px;
+height: 220px;
+perspective: 900px;
+}
+
+.complete-flip-inner {
+position: relative;
+
+```
+width: 100%;
+height: 100%;
+
+transition: transform 0.8s ease;
+
+transform-style: preserve-3d;
+```
+
+}
+
+.complete-flip:hover .complete-flip-inner {
+transform: rotateY(180deg);
+}
+
+.complete-front,
+.complete-back {
+position: absolute;
+inset: 0;
+
+```
+display: flex;
+justify-content: center;
+align-items: center;
+
+backface-visibility: hidden;
+```
+
+}
+
+.complete-back {
+transform: rotateY(180deg);
+}
+
+# /*
+
+22. ACCESSIBILITY NOTE FOR 3D EFFECTS
+    ========================================================
+
+Do not make important information available only after a
+hover effect.
+
+Hover is not sufficient for keyboard and touch users.
+
+For interactive flip cards, consider providing an
+accessible button/control and a keyboard-accessible state.
+
+Also consider reducing non-essential motion for users who
+prefer reduced motion.
+
+========================================================
+*/
+
+@media (prefers-reduced-motion: reduce) {
+.complete-flip-inner,
+.flip-card-inner,
+.three-d-flip-inner {
+transition: none;
+}
+}
+
+# /*
+
+# QUESTIONS AND ANSWERS
+
+Q1. What is CSS 3D transformation?
+
+Answer:
+
+CSS 3D transformation allows elements to be transformed
+along the X, Y and Z axes, creating depth effects.
+
+---
+
+Q2. What are the three axes in CSS 3D?
+
+Answer:
+
+```
+X-axis = horizontal
+Y-axis = vertical
+Z-axis = depth
+```
+
+---
+
+Q3. What does translateZ() do?
+
+Answer:
+
+translateZ() moves an element along the Z-axis.
+
+Example:
+
+```
+transform: translateZ(100px);
+```
+
+---
+
+Q4. What does rotateX() do?
+
+Answer:
+
+rotateX() rotates an element around the X-axis.
+
+Example:
+
+```
+transform: rotateX(45deg);
+```
+
+---
+
+Q5. What does rotateY() do?
+
+Answer:
+
+rotateY() rotates an element around the Y-axis.
+
+Example:
+
+```
+transform: rotateY(45deg);
+```
+
+---
+
+Q6. What does rotateZ() do?
+
+Answer:
+
+rotateZ() rotates an element around the Z-axis.
+
+Example:
+
+```
+transform: rotateZ(45deg);
+```
+
+---
+
+Q7. What is perspective?
+
+Answer:
+
+Perspective creates the visual appearance of depth in
+3D transformations.
+
+Example:
+
+```
+perspective: 800px;
+```
+
+---
+
+Q8. What does transform-style: preserve-3d do?
+
+Answer:
+
+It allows child elements to preserve their 3D positioning
+instead of being flattened into the parent's plane.
+
+---
+
+Q9. What does backface-visibility do?
+
+Answer:
+
+It controls whether the back side of a 3D-transformed
+element is visible.
+
+Values:
+
+```
+visible
+hidden
+```
+
+---
+
+Q10. Which property is commonly used for 3D flip cards?
+
+Answer:
+
+```
+transform: rotateY(180deg);
+```
+
+combined with:
+
+```
+perspective
+transform-style: preserve-3d
+backface-visibility: hidden
+```
+
+---
+
+Q11. What is the difference between perspective and
+perspective()?
+
+Answer:
+
+The perspective property is commonly applied to a parent
+container to establish perspective for its children.
+
+The perspective() function is used inside transform as
+part of the transformation itself.
+
+---
+
+Q12. Why is backface-visibility: hidden used in flip cards?
+
+Answer:
+
+It prevents the reverse side of the front/back elements
+from being visible when they are facing away from the
+viewer.
+
+========================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Move an element 100px toward the viewer.
+
+Solution:
+
+```
+.box {
+    transform: translateZ(100px);
+}
+```
+
+---
+
+Q2. Rotate an element 45 degrees around the X-axis.
+
+Solution:
+
+```
+.box {
+    transform: rotateX(45deg);
+}
+```
+
+---
+
+Q3. Rotate an element 45 degrees around the Y-axis.
+
+Solution:
+
+```
+.box {
+    transform: rotateY(45deg);
+}
+```
+
+---
+
+Q4. Rotate an element around the Z-axis.
+
+Solution:
+
+```
+.box {
+    transform: rotateZ(45deg);
+}
+```
+
+---
+
+Q5. Add perspective to a container.
+
+Solution:
+
+```
+.container {
+    perspective: 800px;
+}
+```
+
+---
+
+Q6. Preserve 3D transformations for child elements.
+
+Solution:
+
+```
+.container {
+    transform-style: preserve-3d;
+}
+```
+
+---
+
+Q7. Hide the back side of a 3D element.
+
+Solution:
+
+```
+.card {
+    backface-visibility: hidden;
+}
+```
+
+---
+
+Q8. Create a basic Y-axis flip effect.
+
+Solution:
+
+```
+.card {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card:hover {
+    transform: rotateY(180deg);
+}
+```
+
+---
+
+Q9. Create the back side of a flip card.
+
+Solution:
+
+```
+.back {
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+}
+```
+
+========================================================
+EXAM MEMORY TRICK
+=================
+
+X
+= Tilt forward/backward
+
+Y
+= Turn left/right
+
+Z
+= Depth / normal rotation axis
+
+translateZ()
+= Move in depth
+
+rotateX()
+= X-axis rotation
+
+rotateY()
+= Y-axis rotation
+
+rotateZ()
+= Z-axis rotation
+
+perspective
+= Depth perception
+
+preserve-3d
+= Keep children in 3D
+
+backface-visibility
+= Show/hide back
+
+3D FLIP:
+perspective
++
+preserve-3d
++
+backface-hidden
++
+rotateY(180deg)
+
+========================================================
+ONE COMPLETE MEMORY EXAMPLE
+===========================
+
+*/
+
+.memory-3d-container {
+perspective: 800px;
+}
+
+.memory-3d-card {
+transform-style: preserve-3d;
+transition: transform 0.6s ease;
+}
+
+.memory-3d-container:hover .memory-3d-card {
+transform: rotateY(180deg) translateZ(20px);
+}
+
+# /*
+
+# END OF CSS 3D
+
+*/

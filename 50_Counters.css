@@ -1,0 +1,1337 @@
+# /*
+
+```
+                CSS COUNTERS
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. CSS Counters
+2. Counter Creation
+3. counter-reset
+4. counter-increment
+5. counter()
+6. Nested Counters
+7. Automatic Numbering
+8. Numbered Headings
+9. Ordered Content
+
+========================================================
+
+1. CSS COUNTERS
+   ========================================================
+
+CSS counters are variables maintained by CSS that can be
+automatically incremented and displayed.
+
+They are useful for automatically numbering:
+
+```
+Headings
+Sections
+Subsections
+Lists
+Steps
+Chapters
+Ordered content
+```
+
+CSS counters are mainly used with:
+
+```
+counter-reset
+counter-increment
+counter()
+```
+
+Basic workflow:
+
+```
+1. Create/reset the counter
+2. Increment the counter
+3. Display the counter
+```
+
+========================================================
+BASIC EXAMPLE
+=============
+
+*/
+
+body {
+counter-reset: section;
+}
+
+h2 {
+counter-increment: section;
+}
+
+h2::before {
+content: counter(section) ". ";
+}
+
+# /*
+
+2. COUNTER CREATION
+   ========================================================
+
+A counter is created using counter-reset.
+
+Syntax:
+
+```
+counter-reset: counter-name;
+```
+
+Example:
+
+```
+counter-reset: section;
+```
+
+This creates/resets a counter named "section" to 0.
+
+========================================================
+*/
+
+.counter-container {
+counter-reset: section;
+}
+
+# /*
+
+# COUNTER WITH STARTING VALUE
+
+You can specify an initial value.
+
+Syntax:
+
+```
+counter-reset: name value;
+```
+
+Example:
+
+```
+counter-reset: section 5;
+```
+
+The first increment will make it 6.
+
+========================================================
+*/
+
+.start-counter {
+counter-reset: section 5;
+}
+
+# /*
+
+3. counter-reset
+   ========================================================
+
+counter-reset initializes or resets a CSS counter.
+
+Syntax:
+
+```
+counter-reset: name;
+```
+
+or:
+
+```
+counter-reset: name value;
+```
+
+Examples:
+
+```
+counter-reset: section;
+counter-reset: section 10;
+```
+
+========================================================
+MULTIPLE COUNTERS
+=================
+
+*/
+
+.multiple-counters {
+counter-reset: section 0 subsection 0;
+}
+
+# /*
+
+4. counter-increment
+   ========================================================
+
+counter-increment increases the value of a counter.
+
+Syntax:
+
+```
+counter-increment: counter-name;
+```
+
+Example:
+
+```
+counter-increment: section;
+```
+
+By default, the counter increases by 1.
+
+========================================================
+*/
+
+h2 {
+counter-increment: section;
+}
+
+# /*
+
+# CUSTOM INCREMENT VALUE
+
+You can specify how much the counter should increase.
+
+Syntax:
+
+```
+counter-increment: name value;
+```
+
+Example:
+
+```
+counter-increment: section 2;
+```
+
+This increases the counter by 2.
+
+========================================================
+*/
+
+.increment-by-two {
+counter-increment: section 2;
+}
+
+# /*
+
+# DECREASING A COUNTER
+
+A negative increment can decrease the counter.
+
+Example:
+
+```
+counter-increment: section -1;
+```
+
+========================================================
+*/
+
+.decrease-counter {
+counter-increment: section -1;
+}
+
+# /*
+
+5. counter()
+   ========================================================
+
+counter() displays the current value of a CSS counter.
+
+Syntax:
+
+```
+counter(name)
+```
+
+Example:
+
+```
+content: counter(section);
+```
+
+Usually used with the content property and pseudo-elements.
+
+========================================================
+*/
+
+.numbered-heading::before {
+content: counter(section) ". ";
+}
+
+# /*
+
+# ADDING TEXT
+
+The counter can be combined with normal text.
+
+Example:
+
+```
+content: "Section " counter(section);
+```
+
+========================================================
+*/
+
+.section-title::before {
+content: "Section " counter(section) ": ";
+}
+
+# /*
+
+# COUNTER STYLE
+
+You can specify a numbering style.
+
+Syntax:
+
+```
+counter(name, style)
+```
+
+Examples:
+
+```
+counter(section, decimal)
+counter(section, upper-roman)
+counter(section, lower-alpha)
+```
+
+========================================================
+*/
+
+.roman-heading::before {
+content: counter(section, upper-roman) ". ";
+}
+
+# /*
+
+6. NESTED COUNTERS
+   ========================================================
+
+Nested counters are used when content has multiple levels.
+
+Example:
+
+```
+1. Introduction
+    1.1 Overview
+    1.2 History
+
+2. CSS
+    2.1 Selectors
+    2.2 Colors
+```
+
+Nested counters are commonly created using:
+
+```
+counter-reset
+counter-increment
+counters()
+```
+
+========================================================
+*/
+
+.nested-document {
+counter-reset: section;
+}
+
+.nested-document h2 {
+counter-increment: section;
+counter-reset: subsection;
+}
+
+.nested-document h2::before {
+content: counter(section) ". ";
+}
+
+.nested-document h3 {
+counter-increment: subsection;
+}
+
+.nested-document h3::before {
+content:
+counter(section) "."
+counter(subsection) " ";
+}
+
+# /*
+
+7. counters()
+   ========================================================
+
+For nested counters, the counters() function can combine
+multiple counter levels.
+
+Syntax:
+
+```
+counters(name, separator)
+```
+
+Example:
+
+```
+counters(section, ".")
+```
+
+If the counter hierarchy is:
+
+```
+1
+1.1
+1.2
+2
+2.1
+```
+
+the nested values can be displayed automatically.
+
+========================================================
+*/
+
+.nested-sections {
+counter-reset: section;
+}
+
+.nested-sections h2 {
+counter-increment: section;
+counter-reset: subsection;
+}
+
+.nested-sections h2::before {
+content: counters(section, ".") " ";
+}
+
+.nested-sections h3 {
+counter-increment: subsection;
+}
+
+.nested-sections h3::before {
+content: counters(section, ".") " ";
+}
+
+# /*
+
+# IMPORTANT
+
+counter()
+= Displays one counter value.
+
+counters()
+= Displays nested counter values.
+
+Example:
+
+```
+counter(section)
+```
+
+gives:
+
+```
+1
+```
+
+While:
+
+```
+counters(section, ".")
+```
+
+can produce:
+
+```
+1.1
+1.2
+2.1
+```
+
+========================================================
+8. AUTOMATIC NUMBERING
+======================
+
+CSS counters can automatically number repeated elements.
+
+Example:
+
+```
+Step 1
+Step 2
+Step 3
+Step 4
+```
+
+No numbers need to be manually typed into the HTML.
+
+========================================================
+*/
+
+.steps {
+counter-reset: step;
+}
+
+.steps p {
+counter-increment: step;
+}
+
+.steps p::before {
+content: "Step " counter(step) ": ";
+}
+
+# /*
+
+9. NUMBERED HEADINGS
+   ========================================================
+
+CSS counters are very useful for automatically numbering
+headings.
+
+Example:
+
+```
+1. Introduction
+2. HTML
+3. CSS
+4. JavaScript
+```
+
+========================================================
+*/
+
+.document {
+counter-reset: heading;
+}
+
+.document h2 {
+counter-increment: heading;
+}
+
+.document h2::before {
+content: counter(heading) ". ";
+}
+
+# /*
+
+# NUMBERED H1 + H2
+
+Example output:
+
+```
+1. Introduction
+2. HTML
+3. CSS
+```
+
+The same technique can be extended to subheadings.
+
+========================================================
+*/
+
+.numbered-document {
+counter-reset: main-heading;
+}
+
+.numbered-document h2 {
+counter-increment: main-heading;
+counter-reset: sub-heading;
+}
+
+.numbered-document h2::before {
+content: counter(main-heading) ". ";
+}
+
+.numbered-document h3 {
+counter-increment: sub-heading;
+}
+
+.numbered-document h3::before {
+content:
+counter(main-heading)
+"."
+counter(sub-heading)
+" ";
+}
+
+# /*
+
+10. ORDERED CONTENT
+    ========================================================
+
+CSS counters can create custom ordered content.
+
+Example:
+
+```
+1. Install software
+2. Create project
+3. Write code
+4. Run program
+```
+
+========================================================
+*/
+
+.ordered-content {
+counter-reset: item;
+}
+
+.ordered-content div {
+counter-increment: item;
+}
+
+.ordered-content div::before {
+content: counter(item) ". ";
+}
+
+# /*
+
+# CUSTOM ORDERED CONTENT
+
+CSS counters can also create labels such as:
+
+```
+Item 1
+Item 2
+Item 3
+```
+
+========================================================
+*/
+
+.items {
+counter-reset: item;
+}
+
+.items div {
+counter-increment: item;
+}
+
+.items div::before {
+content: "Item " counter(item) ": ";
+}
+
+# /*
+
+11. AUTOMATIC LETTER NUMBERING
+    ========================================================
+
+Counters can use different numbering styles.
+
+Examples:
+
+```
+decimal
+lower-alpha
+upper-alpha
+lower-roman
+upper-roman
+```
+
+========================================================
+*/
+
+.alphabet-list {
+counter-reset: item;
+}
+
+.alphabet-list p {
+counter-increment: item;
+}
+
+.alphabet-list p::before {
+content: counter(item, lower-alpha) ". ";
+}
+
+# /*
+
+# ROMAN NUMBERING
+
+*/
+
+.roman-list {
+counter-reset: item;
+}
+
+.roman-list p {
+counter-increment: item;
+}
+
+.roman-list p::before {
+content: counter(item, upper-roman) ". ";
+}
+
+# /*
+
+12. MULTIPLE COUNTERS
+    ========================================================
+
+Multiple counters can exist independently.
+
+Example:
+
+```
+Section 1
+Topic 1
+Section 2
+Topic 2
+```
+
+========================================================
+*/
+
+.multiple {
+counter-reset: section topic;
+}
+
+.multiple h2 {
+counter-increment: section;
+}
+
+.multiple h2::before {
+content: "Section " counter(section) ": ";
+}
+
+.multiple p {
+counter-increment: topic;
+}
+
+.multiple p::before {
+content: "Topic " counter(topic) ": ";
+}
+
+# /*
+
+13. RESETTING A SUBCOUNTER
+    ========================================================
+
+A subcounter can be reset whenever a new parent section
+starts.
+
+Example:
+
+```
+1. HTML
+    1.1 Basics
+    1.2 Forms
+
+2. CSS
+    2.1 Basics
+    2.2 Selectors
+```
+
+The subsection starts from 1 again for each new section.
+
+========================================================
+*/
+
+.course {
+counter-reset: section;
+}
+
+.course h2 {
+counter-increment: section;
+counter-reset: subsection;
+}
+
+.course h2::before {
+content: counter(section) ". ";
+}
+
+.course h3 {
+counter-increment: subsection;
+}
+
+.course h3::before {
+content:
+counter(section)
+"."
+counter(subsection)
+" ";
+}
+
+# /*
+
+14. CSS COUNTERS WITH LISTS
+    ========================================================
+
+Counters can also be used to create custom list numbering.
+
+========================================================
+*/
+
+.custom-list {
+counter-reset: list-item;
+}
+
+.custom-list li {
+counter-increment: list-item;
+}
+
+.custom-list li::before {
+content: counter(list-item) ". ";
+font-weight: bold;
+}
+
+# /*
+
+15. NESTED LIST COUNTERS
+    ========================================================
+
+Nested lists can display:
+
+```
+1. Main item
+    1.1 Sub item
+    1.2 Sub item
+
+2. Main item
+    2.1 Sub item
+```
+
+========================================================
+*/
+
+.custom-nested-list {
+counter-reset: main;
+}
+
+.custom-nested-list > li {
+counter-increment: main;
+counter-reset: sub;
+}
+
+.custom-nested-list > li::before {
+content: counter(main) ". ";
+}
+
+.custom-nested-list > li > ul > li {
+counter-increment: sub;
+}
+
+.custom-nested-list > li > ul > li::before {
+content:
+counter(main)
+"."
+counter(sub)
+" ";
+}
+
+# /*
+
+16. COMPLETE NUMBERED DOCUMENT
+    ========================================================
+
+This is a common practical use of CSS counters.
+
+Example structure:
+
+```
+1. Introduction
+    1.1 Overview
+    1.2 Purpose
+
+2. CSS
+    2.1 Selectors
+    2.2 Properties
+
+3. Conclusion
+```
+
+========================================================
+*/
+
+.numbered-content {
+counter-reset: section;
+}
+
+.numbered-content h2 {
+counter-increment: section;
+counter-reset: subsection;
+}
+
+.numbered-content h2::before {
+content: counter(section) ". ";
+}
+
+.numbered-content h3 {
+counter-increment: subsection;
+}
+
+.numbered-content h3::before {
+content:
+counter(section)
+"."
+counter(subsection)
+" ";
+}
+
+# /*
+
+17. IMPORTANT COUNTER PROPERTIES
+    ========================================================
+
+counter-reset
+
+```
+Creates or resets a counter.
+```
+
+Syntax:
+
+```
+counter-reset: name;
+```
+
+---
+
+counter-increment
+
+```
+Increases or decreases a counter.
+```
+
+Syntax:
+
+```
+counter-increment: name;
+```
+
+---
+
+counter()
+
+```
+Displays one counter.
+```
+
+Syntax:
+
+```
+counter(name);
+```
+
+---
+
+counters()
+
+```
+Displays nested counters.
+```
+
+Syntax:
+
+```
+counters(name, separator);
+```
+
+========================================================
+18. COUNTER WORKFLOW
+====================
+
+Remember:
+
+```
+RESET
+   ↓
+INCREMENT
+   ↓
+DISPLAY
+```
+
+Example:
+
+```
+counter-reset: item;
+
+counter-increment: item;
+
+content: counter(item);
+```
+
+========================================================
+19. COMMON MISTAKE
+==================
+
+Wrong:
+
+```
+.heading {
+    counter-increment: section;
+}
+
+.heading {
+    content: counter(section);
+}
+```
+
+The content property normally does not generate visible
+content on an ordinary element.
+
+Use a pseudo-element:
+
+```
+.heading::before {
+    content: counter(section);
+}
+```
+
+========================================================
+20. COMPLETE EXAMPLE
+====================
+
+*/
+
+.complete-document {
+counter-reset: section;
+}
+
+.complete-document h2 {
+counter-increment: section;
+counter-reset: subsection;
+}
+
+.complete-document h2::before {
+content:
+counter(section)
+". ";
+}
+
+.complete-document h3 {
+counter-increment: subsection;
+}
+
+.complete-document h3::before {
+content:
+counter(section)
+"."
+counter(subsection)
+" ";
+}
+
+/*
+HTML STRUCTURE:
+
+```
+<div class="complete-document">
+
+    <h2>Introduction</h2>
+
+    <h3>Overview</h3>
+    <h3>Purpose</h3>
+
+    <h2>CSS</h2>
+
+    <h3>Selectors</h3>
+    <h3>Colors</h3>
+
+</div>
+```
+
+OUTPUT:
+
+```
+1. Introduction
+1.1 Overview
+1.2 Purpose
+
+2. CSS
+2.1 Selectors
+2.2 Colors
+```
+
+========================================================
+QUESTIONS AND ANSWERS
+=====================
+
+Q1. What are CSS counters?
+
+Answer:
+
+CSS counters are variables maintained by CSS that can be
+automatically incremented and displayed for numbering
+content.
+
+---
+
+Q2. Which property creates or resets a counter?
+
+Answer:
+
+```
+counter-reset
+```
+
+Example:
+
+```
+counter-reset: section;
+```
+
+---
+
+Q3. Which property increases a counter?
+
+Answer:
+
+```
+counter-increment
+```
+
+Example:
+
+```
+counter-increment: section;
+```
+
+---
+
+Q4. How do you display a counter?
+
+Answer:
+
+Using the counter() function.
+
+Example:
+
+```
+content: counter(section);
+```
+
+---
+
+Q5. What is counters()?
+
+Answer:
+
+counters() is used to display nested counter values.
+
+Example:
+
+```
+content: counters(section, ".");
+```
+
+It can produce:
+
+```
+1.1
+1.2
+2.1
+```
+
+---
+
+Q6. What is the default increment value?
+
+Answer:
+
+The default increment value is 1.
+
+Example:
+
+```
+counter-increment: item;
+```
+
+increases the counter by 1.
+
+---
+
+Q7. Can a counter be increased by a custom value?
+
+Answer:
+
+Yes.
+
+Example:
+
+```
+counter-increment: item 2;
+```
+
+---
+
+Q8. Can CSS counters be used for headings?
+
+Answer:
+
+Yes. CSS counters are commonly used for automatically
+numbering headings and subheadings.
+
+---
+
+Q9. What is the difference between counter() and
+counters()?
+
+Answer:
+
+counter()
+Displays one counter level.
+
+counters()
+Displays nested counter levels using a separator.
+
+---
+
+Q10. Where is the content property commonly used with
+CSS counters?
+
+Answer:
+
+It is commonly used with pseudo-elements such as:
+
+```
+::before
+::after
+```
+
+========================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Create a counter named section.
+
+Solution:
+
+```
+.container {
+    counter-reset: section;
+}
+```
+
+---
+
+Q2. Increment the section counter.
+
+Solution:
+
+```
+h2 {
+    counter-increment: section;
+}
+```
+
+---
+
+Q3. Display the section counter before every h2.
+
+Solution:
+
+```
+h2::before {
+    content: counter(section) ". ";
+}
+```
+
+---
+
+Q4. Create automatic numbering for paragraphs.
+
+Solution:
+
+```
+.content {
+    counter-reset: item;
+}
+
+.content p {
+    counter-increment: item;
+}
+
+.content p::before {
+    content: counter(item) ". ";
+}
+```
+
+---
+
+Q5. Create numbered headings and subheadings.
+
+Solution:
+
+```
+.document {
+    counter-reset: section;
+}
+
+.document h2 {
+    counter-increment: section;
+    counter-reset: subsection;
+}
+
+.document h2::before {
+    content: counter(section) ". ";
+}
+
+.document h3 {
+    counter-increment: subsection;
+}
+
+.document h3::before {
+    content:
+        counter(section)
+        "."
+        counter(subsection)
+        " ";
+}
+```
+
+========================================================
+EXAM MEMORY TRICK
+=================
+
+RESET
+→ counter-reset
+
+INCREASE
+→ counter-increment
+
+SHOW
+→ counter()
+
+NESTED SHOW
+→ counters()
+
+Basic pattern:
+
+```
+counter-reset
+    ↓
+counter-increment
+    ↓
+counter()
+```
+
+For nested numbering:
+
+```
+1
+1.1
+1.2
+2
+2.1
+```
+
+use:
+
+```
+counter()
++
+counters()
+```
+
+========================================================
+END OF CSS COUNTERS
+===================
+
+*/

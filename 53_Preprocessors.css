@@ -1,0 +1,1694 @@
+# /*
+
+```
+              CSS PREPROCESSORS
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. Introduction to CSS Preprocessors
+2. Sass / SCSS
+3. Variables
+4. Nesting
+5. Mixins
+6. Functions
+7. Partials
+8. Imports
+9. Inheritance
+10. Sass Compilation
+
+========================================================
+
+1. INTRODUCTION TO CSS PREPROCESSORS
+   ========================================================
+
+A CSS preprocessor is a tool that allows developers to
+write CSS using additional features that are not available
+in traditional CSS syntax.
+
+The preprocessor code is then converted into normal CSS
+that browsers can understand.
+
+Popular CSS preprocessors include:
+
+```
+Sass
+Less
+Stylus
+```
+
+========================================================
+WHY USE A CSS PREPROCESSOR?
+===========================
+
+Preprocessors provide features such as:
+
+```
+Variables
+Nesting
+Mixins
+Functions
+Inheritance
+Partials
+Code organization
+Reusable styles
+```
+
+These features can make large CSS projects easier to
+manage.
+
+========================================================
+BASIC WORKFLOW
+==============
+
+SCSS/Sass code
+↓
+Sass compiler
+↓
+CSS file
+↓
+Browser
+
+Important:
+
+Browsers generally use the compiled CSS file, not the
+SCSS source file.
+
+========================================================
+2. SASS / SCSS
+==============
+
+Sass stands for:
+
+```
+Syntactically Awesome Style Sheets
+```
+
+Sass is a CSS preprocessor that adds programming-like
+features to CSS.
+
+Sass has two main syntaxes:
+
+```
+.sass
+.scss
+```
+
+========================================================
+SCSS
+====
+
+SCSS syntax looks very similar to normal CSS.
+
+Example:
+
+```
+$primary: blue;
+
+.button {
+    color: $primary;
+}
+```
+
+SCSS uses:
+
+```
+Braces { }
+Semicolons ;
+```
+
+========================================================
+SASS INDENTED SYNTAX
+====================
+
+The older/alternative Sass syntax does not use braces
+and semicolons.
+
+Example:
+
+```
+$primary: blue
+
+.button
+    color: $primary
+```
+
+========================================================
+SCSS vs SASS
+============
+
+SCSS:
+
+```
+.button {
+    color: blue;
+}
+```
+
+Sass:
+
+```
+.button
+    color: blue
+```
+
+SCSS is commonly preferred by developers who already know
+CSS because it closely resembles regular CSS.
+
+========================================================
+3. SASS VARIABLES
+=================
+
+Variables store reusable values.
+
+SCSS variables start with:
+
+```
+$
+```
+
+Syntax:
+
+```
+$variable-name: value;
+```
+
+Example:
+
+```
+$primary-color: blue;
+```
+
+The variable can then be reused.
+
+========================================================
+*/
+
+$primary-color: #2563eb;
+$text-color: #222;
+$background-color: #f5f5f5;
+
+body {
+color: $text-color;
+background: $background-color;
+}
+
+.button {
+background: $primary-color;
+}
+
+# /*
+
+# VARIABLE ADVANTAGES
+
+Instead of repeating:
+
+```
+#2563eb
+```
+
+many times, use:
+
+```
+$primary-color
+```
+
+If the color changes, update the variable once.
+
+========================================================
+MULTIPLE VARIABLES
+==================
+
+*/
+
+$primary: #2563eb;
+$secondary: #64748b;
+$success: #16a34a;
+$danger: #dc2626;
+
+.button-primary {
+background: $primary;
+}
+
+.button-secondary {
+background: $secondary;
+}
+
+.button-success {
+background: $success;
+}
+
+.button-danger {
+background: $danger;
+}
+
+# /*
+
+4. NESTING
+   ========================================================
+
+Sass allows CSS selectors to be nested inside other
+selectors.
+
+Normal CSS:
+
+```
+.navbar {
+    ...
+}
+
+.navbar a {
+    ...
+}
+```
+
+SCSS:
+
+```
+.navbar {
+    a {
+        ...
+    }
+}
+```
+
+========================================================
+*/
+
+.navbar {
+background: #222;
+
+```
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+```
+
+}
+
+# /*
+
+# NESTING WITH BEM
+
+*/
+
+.card {
+padding: 20px;
+
+```
+&__title {
+    font-size: 24px;
+}
+
+&__price {
+    font-weight: bold;
+}
+
+&--featured {
+    border: 2px solid blue;
+}
+```
+
+}
+
+/*
+The & refers to the parent selector.
+
+SCSS:
+
+```
+.card {
+    &__title {}
+}
+```
+
+Compiles to:
+
+```
+.card__title {}
+```
+
+---
+
+SCSS:
+
+```
+.card {
+    &--featured {}
+}
+```
+
+Compiles to:
+
+```
+.card--featured {}
+```
+
+========================================================
+NESTING WITH STATES
+===================
+
+*/
+
+.button {
+background: blue;
+color: white;
+
+```
+&:hover {
+    background: darkblue;
+}
+
+&:focus {
+    outline: 2px solid black;
+}
+```
+
+}
+
+# /*
+
+# IMPORTANT
+
+Do not overuse nesting.
+
+Deep nesting can create complicated selectors.
+
+Avoid:
+
+```
+.page {
+    .section {
+        .card {
+            .content {
+                .title {
+                    ...
+                }
+            }
+        }
+    }
+}
+```
+
+Keep nesting reasonably shallow.
+
+========================================================
+5. MIXINS
+=========
+
+A mixin is a reusable group of CSS declarations.
+
+Mixins are created using:
+
+```
+@mixin
+```
+
+They are included using:
+
+```
+@include
+```
+
+========================================================
+BASIC MIXIN
+===========
+
+*/
+
+@mixin center-content {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.center-box {
+@include center-content;
+}
+
+# /*
+
+# MIXIN WITH PARAMETERS
+
+Mixins can accept parameters.
+
+Syntax:
+
+```
+@mixin name($parameter) {
+    ...
+}
+```
+
+Example:
+
+```
+@mixin button-style($color) {
+    background: $color;
+}
+```
+
+========================================================
+*/
+
+@mixin button-style($color) {
+background: $color;
+color: white;
+padding: 10px 20px;
+border: none;
+border-radius: 6px;
+}
+
+.primary-button {
+@include button-style(blue);
+}
+
+.success-button {
+@include button-style(green);
+}
+
+# /*
+
+# MIXIN WITH MULTIPLE PARAMETERS
+
+*/
+
+@mixin box-size($width, $height) {
+width: $width;
+height: $height;
+}
+
+.box {
+@include box-size(200px, 100px);
+}
+
+# /*
+
+# MIXINS vs VARIABLES
+
+Variable:
+
+```
+Stores a value.
+```
+
+Example:
+
+```
+$primary: blue;
+```
+
+Mixin:
+
+```
+Stores a group of CSS declarations.
+```
+
+Example:
+
+```
+@mixin center {
+    display: flex;
+    justify-content: center;
+}
+```
+
+========================================================
+6. FUNCTIONS
+============
+
+Sass functions perform operations and can return values.
+
+Sass provides built-in functions and allows developers to
+create custom functions.
+
+Examples of built-in functions include color and numeric
+functions.
+
+========================================================
+BUILT-IN FUNCTION EXAMPLE
+=========================
+
+*/
+
+$base-color: #3498db;
+
+.light-button {
+background: lighten($base-color, 20%);
+}
+
+/*
+NOTE:
+
+Sass versions and APIs evolve. In modern Dart Sass,
+some older global color helpers such as lighten() may be
+deprecated in favor of module-based color functions.
+
+For modern Sass projects, prefer the current Sass module
+syntax where appropriate.
+
+========================================================
+CUSTOM FUNCTION
+===============
+
+Custom functions are created using:
+
+```
+@function
+```
+
+A value is returned using:
+
+```
+@return
+```
+
+========================================================
+*/
+
+@function double($number) {
+@return $number * 2;
+}
+
+.box {
+width: double(100px);
+}
+
+/*
+Compiled conceptually to:
+
+```
+.box {
+    width: 200px;
+}
+```
+
+========================================================
+FUNCTION WITH MULTIPLE OPERATIONS
+=================================
+
+*/
+
+@function spacing($size) {
+@return $size * 8px;
+}
+
+.small-space {
+margin: spacing(1);
+}
+
+.medium-space {
+margin: spacing(2);
+}
+
+.large-space {
+margin: spacing(3);
+}
+
+# /*
+
+# MIXIN vs FUNCTION
+
+MIXIN:
+
+```
+Usually outputs CSS declarations.
+
+@mixin center {
+    display: flex;
+}
+```
+
+FUNCTION:
+
+```
+Calculates/returns a value.
+
+@function double($x) {
+    @return $x * 2;
+}
+```
+
+Memory:
+
+```
+MIXIN = Reuse CSS
+
+FUNCTION = Calculate / Return value
+```
+
+========================================================
+7. PARTIALS
+===========
+
+Partials allow Sass code to be divided into smaller files.
+
+A partial filename starts with:
+
+```
+_
+```
+
+Example:
+
+```
+_variables.scss
+_buttons.scss
+_navbar.scss
+_mixins.scss
+```
+
+The underscore indicates that the file is intended to be
+included as part of a larger Sass project.
+
+========================================================
+EXAMPLE STRUCTURE
+=================
+
+scss/
+|
++-- _variables.scss
++-- _mixins.scss
++-- _buttons.scss
++-- _navbar.scss
++-- main.scss
+
+========================================================
+VARIABLE PARTIAL
+================
+
+_variables.scss
+
+```
+$primary: blue;
+$secondary: gray;
+```
+
+========================================================
+MIXIN PARTIAL
+=============
+
+_mixins.scss
+
+```
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+========================================================
+BUTTON PARTIAL
+==============
+
+_buttons.scss
+
+```
+.button {
+    padding: 10px;
+}
+```
+
+========================================================
+8. IMPORTS
+==========
+
+Sass can combine multiple Sass files into one main stylesheet.
+
+Traditionally this was done using:
+
+```
+@import
+```
+
+Example:
+
+```
+@import "variables";
+@import "mixins";
+@import "buttons";
+```
+
+========================================================
+IMPORTANT MODERN SASS NOTE
+==========================
+
+The old Sass @import rule is deprecated in modern Dart Sass.
+
+Modern Sass recommends the module system:
+
+```
+@use
+@forward
+```
+
+Therefore, for new projects, prefer @use and @forward.
+
+========================================================
+MODERN @use
+===========
+
+Example:
+
+```
+@use "variables";
+```
+
+Variables can be accessed through a namespace.
+
+Example:
+
+```
+variables.$primary
+```
+
+========================================================
+*/
+
+@use "variables";
+
+.modern-button {
+background: variables.$primary;
+}
+
+# /*
+
+# @use
+
+@use loads a Sass module.
+
+It also helps prevent naming conflicts by providing a
+namespace.
+
+Example:
+
+```
+@use "variables";
+
+.button {
+    color: variables.$primary;
+}
+```
+
+========================================================
+@forward
+========
+
+@forward exposes members from another Sass module.
+
+It is useful for creating a central entry point for a
+collection of Sass modules.
+
+Example:
+
+```
+@forward "variables";
+@forward "mixins";
+```
+
+========================================================
+9. INHERITANCE
+==============
+
+Sass supports inheritance using:
+
+```
+@extend
+```
+
+One selector can inherit styles from another selector.
+
+========================================================
+BASIC EXAMPLE
+=============
+
+*/
+
+.message {
+padding: 10px;
+border-radius: 5px;
+}
+
+.success-message {
+@extend .message;
+background: green;
+color: white;
+}
+
+.error-message {
+@extend .message;
+background: red;
+color: white;
+}
+
+/*
+The common properties can be shared through Sass
+inheritance.
+
+========================================================
+PLACEHOLDER SELECTOR
+====================
+
+A placeholder selector starts with:
+
+```
+%
+```
+
+It is not output by itself.
+
+Example:
+
+```
+%message-style {
+    padding: 10px;
+}
+```
+
+Then:
+
+```
+.success {
+    @extend %message-style;
+}
+```
+
+========================================================
+*/
+
+%message-style {
+padding: 10px;
+border-radius: 5px;
+}
+
+.success {
+@extend %message-style;
+background: green;
+}
+
+.error {
+@extend %message-style;
+background: red;
+}
+
+# /*
+
+# MIXIN vs @EXTEND
+
+Mixin:
+
+```
+Copies/includes declarations into the target rule.
+```
+
+@extend:
+
+```
+Shares selectors so they can use common styles.
+```
+
+Use mixins when you need:
+
+```
+Parameters
+Reusable patterns
+Flexible output
+```
+
+Use @extend carefully because complex selector relationships
+can become difficult to understand.
+
+========================================================
+10. SASS COMPILATION
+====================
+
+Sass code cannot normally be sent directly to the browser
+as CSS.
+
+It must be compiled into CSS.
+
+Example:
+
+```
+styles.scss
+      ↓
+  Sass compiler
+      ↓
+  styles.css
+      ↓
+    Browser
+```
+
+========================================================
+INSTALLING SASS
+===============
+
+Sass can be installed using npm.
+
+Command:
+
+```
+npm install -g sass
+```
+
+This installs the Sass command-line tool.
+
+========================================================
+COMPILE SCSS
+============
+
+Command:
+
+```
+sass input.scss output.css
+```
+
+Example:
+
+```
+sass styles.scss styles.css
+```
+
+This converts:
+
+```
+styles.scss
+```
+
+into:
+
+```
+styles.css
+```
+
+========================================================
+WATCH MODE
+==========
+
+During development, you can automatically compile Sass
+whenever the source file changes.
+
+Command:
+
+```
+sass --watch styles.scss styles.css
+```
+
+The compiler watches the SCSS file and updates the CSS
+file when changes are made.
+
+========================================================
+FOLDER COMPILATION
+==================
+
+You can compile an entire folder.
+
+Example:
+
+```
+sass scss:css
+```
+
+This means:
+
+```
+scss folder
+    ↓
+css folder
+```
+
+========================================================
+11. COMPLETE SASS PROJECT STRUCTURE
+===================================
+
+A scalable Sass project can be organized like:
+
+project/
+|
++-- index.html
+|
++-- scss/
+|   |
+|   +-- abstracts/
+|   |   +-- _variables.scss
+|   |   +-- _mixins.scss
+|   |   +-- _functions.scss
+|   |
+|   +-- base/
+|   |   +-- _reset.scss
+|   |   +-- _typography.scss
+|   |
+|   +-- components/
+|   |   +-- _buttons.scss
+|   |   +-- _cards.scss
+|   |   +-- _navbar.scss
+|   |
+|   +-- layout/
+|   |   +-- _header.scss
+|   |   +-- _footer.scss
+|   |   +-- _grid.scss
+|   |
+|   +-- pages/
+|   |   +-- _home.scss
+|   |   +-- _products.scss
+|   |
+|   +-- main.scss
+|
++-- css/
+|
++-- main.css
+
+========================================================
+12. MAIN SCSS FILE
+==================
+
+The main.scss file can act as the main entry point.
+
+With modern Sass:
+
+```
+@use "abstracts/variables";
+@use "abstracts/mixins";
+
+@use "base/reset";
+@use "base/typography";
+
+@use "layout/header";
+@use "layout/footer";
+
+@use "components/buttons";
+@use "components/cards";
+
+@use "pages/home";
+```
+
+The Sass compiler then generates the final CSS.
+
+========================================================
+13. COMPLETE SCSS EXAMPLE
+=========================
+
+*/
+
+/* VARIABLES */
+
+$primary-color: #2563eb;
+$secondary-color: #64748b;
+$radius: 8px;
+
+/* MIXIN */
+
+@mixin button-base {
+padding: 10px 20px;
+border: none;
+border-radius: $radius;
+cursor: pointer;
+}
+
+/* COMPONENT */
+
+.button {
+@include button-base;
+color: white;
+background: $primary-color;
+
+```
+&:hover {
+    background: $secondary-color;
+}
+```
+
+}
+
+# /*
+
+14. SASS OPERATORS
+    ========================================================
+
+Sass supports calculations.
+
+Examples:
+
+```
++
+-
+*
+/
+%
+```
+
+========================================================
+*/
+
+$base-size: 10px;
+
+.element {
+width: $base-size * 2;
+padding: $base-size + 5px;
+}
+
+# /*
+
+15. SASS VARIABLES WITH MAPS
+    ========================================================
+
+Sass maps store related key-value pairs.
+
+Example:
+
+```
+$colors: (
+    primary: blue,
+    secondary: gray
+);
+```
+
+Values can be retrieved using map.get() with the Sass
+module system.
+
+========================================================
+*/
+
+@use "sass:map";
+
+$colors: (
+primary: blue,
+secondary: gray,
+success: green
+);
+
+.primary {
+color: map.get($colors, primary);
+}
+
+.success {
+color: map.get($colors, success);
+}
+
+# /*
+
+16. SASS AND NORMAL CSS
+    ========================================================
+
+NORMAL CSS:
+
+```
+Repetition can increase in large projects.
+```
+
+SCSS:
+
+```
+Variables
+Nesting
+Mixins
+Functions
+Partials
+Modules
+Inheritance
+```
+
+These features help organize large stylesheets.
+
+========================================================
+17. ADVANTAGES OF SASS
+======================
+
+```
+Variables
+Reusable mixins
+Nesting
+Functions
+Code organization
+Partial files
+Modules
+Inheritance
+Calculations
+Better maintainability
+```
+
+========================================================
+18. DISADVANTAGES OF SASS
+=========================
+
+```
+Requires a build/compilation step
+Additional toolchain
+More syntax to learn
+Overusing nesting can create specificity issues
+Some older Sass features are deprecated
+CSS itself has gained many features that reduce the
+need for preprocessors in some projects
+```
+
+========================================================
+19. SASS vs CSS VARIABLES
+=========================
+
+Sass variable:
+
+```
+$primary: blue;
+```
+
+It is resolved during compilation.
+
+CSS custom property:
+
+```
+--primary: blue;
+```
+
+It exists at runtime in the browser.
+
+CSS custom properties can be changed using normal CSS
+cascade rules and media queries.
+
+Sass variables are mainly useful during preprocessing.
+
+========================================================
+20. WHEN TO USE SASS
+====================
+
+Sass can be useful when:
+
+```
+- The project has many stylesheets.
+- You want strong code organization.
+- You need reusable mixins/functions.
+- You want a structured preprocessor workflow.
+- The project already uses Sass.
+- You want compile-time calculations and modules.
+```
+
+For smaller projects, modern CSS may already provide enough
+features that Sass is unnecessary.
+
+========================================================
+QUESTIONS AND ANSWERS
+=====================
+
+Q1. What is a CSS preprocessor?
+
+Answer:
+
+A CSS preprocessor is a tool that extends CSS with features
+such as variables, nesting, mixins and functions, then
+compiles the code into normal CSS.
+
+---
+
+Q2. What is Sass?
+
+Answer:
+
+Sass is a CSS preprocessor that provides features such as
+variables, nesting, mixins, functions and inheritance.
+
+---
+
+Q3. What is SCSS?
+
+Answer:
+
+SCSS is a Sass syntax that uses CSS-like braces and
+semicolons.
+
+---
+
+Q4. How are Sass variables declared?
+
+Answer:
+
+Using the $ symbol.
+
+Example:
+
+```
+$primary: blue;
+```
+
+---
+
+Q5. What is nesting in Sass?
+
+Answer:
+
+Nesting allows selectors to be written inside other
+selectors.
+
+Example:
+
+```
+.card {
+    .title {
+        color: blue;
+    }
+}
+```
+
+---
+
+Q6. What is a mixin?
+
+Answer:
+
+A mixin is a reusable group of CSS declarations.
+
+Created using:
+
+```
+@mixin
+```
+
+Used using:
+
+```
+@include
+```
+
+---
+
+Q7. What is a Sass function?
+
+Answer:
+
+A function performs an operation and can return a value.
+
+Example:
+
+```
+@function double($x) {
+    @return $x * 2;
+}
+```
+
+---
+
+Q8. What are partials?
+
+Answer:
+
+Partials are smaller Sass files used to organize code.
+Traditionally, their filenames begin with an underscore.
+
+Example:
+
+```
+_variables.scss
+```
+
+---
+
+Q9. What is @use?
+
+Answer:
+
+@use loads a Sass module and normally makes its members
+available through a namespace.
+
+---
+
+Q10. What is @forward?
+
+Answer:
+
+@forward exposes members from one Sass module through
+another module.
+
+---
+
+Q11. What is @extend?
+
+Answer:
+
+@extend allows one selector to share the styles of another
+selector.
+
+---
+
+Q12. What is Sass compilation?
+
+Answer:
+
+Sass compilation converts Sass/SCSS source code into
+standard CSS that browsers can use.
+
+---
+
+Q13. What command compiles SCSS into CSS?
+
+Answer:
+
+```
+sass input.scss output.css
+```
+
+---
+
+Q14. What is Sass watch mode?
+
+Answer:
+
+Watch mode automatically recompiles Sass when the source
+file changes.
+
+Command:
+
+```
+sass --watch input.scss output.css
+```
+
+========================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Create a Sass variable for a primary color.
+
+Solution:
+
+```
+$primary-color: blue;
+```
+
+---
+
+Q2. Create a simple Sass mixin for centering content.
+
+Solution:
+
+```
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+---
+
+Q3. Use the mixin.
+
+Solution:
+
+```
+.container {
+    @include center;
+}
+```
+
+---
+
+Q4. Create a nested Sass selector.
+
+Solution:
+
+```
+.card {
+    .title {
+        color: blue;
+    }
+}
+```
+
+---
+
+Q5. Create a custom Sass function that doubles a number.
+
+Solution:
+
+```
+@function double($number) {
+    @return $number * 2;
+}
+```
+
+---
+
+Q6. Create a Sass partial for variables.
+
+Solution:
+
+Filename:
+
+```
+_variables.scss
+```
+
+Content:
+
+```
+$primary: blue;
+$secondary: gray;
+```
+
+---
+
+Q7. Compile styles.scss into styles.css.
+
+Solution:
+
+```
+sass styles.scss styles.css
+```
+
+---
+
+Q8. Enable automatic compilation.
+
+Solution:
+
+```
+sass --watch styles.scss styles.css
+```
+
+========================================================
+EXAM MEMORY TRICK
+=================
+
+VARIABLES
+
+```
+$primary: blue;
+```
+
+NESTING
+
+```
+.card {
+    .title {}
+}
+```
+
+MIXIN
+
+```
+@mixin
+    +
+@include
+```
+
+FUNCTION
+
+```
+@function
+    +
+@return
+```
+
+PARTIAL
+
+```
+_file.scss
+```
+
+MODERN MODULES
+
+```
+@use
+@forward
+```
+
+INHERITANCE
+
+```
+@extend
+```
+
+COMPILATION
+
+```
+SCSS
+  ↓
+Sass
+  ↓
+CSS
+  ↓
+Browser
+```
+
+========================================================
+MOST IMPORTANT DIFFERENCES
+==========================
+
+VARIABLE:
+
+```
+Stores a value.
+```
+
+MIXIN:
+
+```
+Reuses CSS declarations.
+```
+
+FUNCTION:
+
+```
+Calculates and returns a value.
+```
+
+PARTIAL:
+
+```
+Organizes code into smaller files.
+```
+
+@USE:
+
+```
+Loads a Sass module.
+```
+
+@FORWARD:
+
+```
+Exposes module members.
+```
+
+@EXTEND:
+
+```
+Shares selector styles.
+```
+
+COMPILER:
+
+```
+Converts SCSS into CSS.
+```
+
+========================================================
+END OF CSS PREPROCESSORS
+========================
+
+*/

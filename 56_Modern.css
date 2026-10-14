@@ -1,0 +1,2111 @@
+# /*
+
+```
+                MODERN CSS
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. CSS Custom Properties
+2. CSS Nesting
+3. Container Queries
+4. Cascade Layers
+5. @supports
+6. :has()
+7. :is()
+8. :where()
+9. clamp()
+10. min()
+11. max()
+12. Subgrid
+13. Logical Properties
+14. Aspect Ratio
+15. Modern Color Functions
+16. Scroll Snap
+17. CSS Houdini Basics
+
+========================================================
+
+1. WHAT IS MODERN CSS?
+   ========================================================
+
+Modern CSS refers to newer CSS features that make websites:
+
+```
+More responsive
+More maintainable
+More flexible
+More component-friendly
+Easier to customize
+Better suited for modern layouts
+```
+
+Important modern CSS features include:
+
+```
+Custom Properties
+Container Queries
+Cascade Layers
+CSS Nesting
+:has()
+:is()
+:where()
+clamp()
+min()
+max()
+Subgrid
+Logical Properties
+Modern Color Functions
+Scroll Snap
+```
+
+========================================================
+2. CSS CUSTOM PROPERTIES
+========================
+
+CSS Custom Properties are variables defined directly in CSS.
+
+They are also called:
+
+```
+CSS Variables
+```
+
+Syntax:
+
+```
+--variable-name: value;
+```
+
+Use the variable with:
+
+```
+var(--variable-name)
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+:root {
+--primary-color: #005fcc;
+--text-color: #222;
+--background-color: white;
+--spacing: 20px;
+--radius: 10px;
+}
+
+.card {
+color: var(--text-color);
+background: var(--background-color);
+padding: var(--spacing);
+border-radius: var(--radius);
+}
+
+.button {
+background: var(--primary-color);
+color: white;
+}
+
+# /*
+
+# SCOPING
+
+Custom properties participate in the CSS cascade and can be
+defined globally or locally.
+
+Global:
+
+```
+:root {
+    --color: blue;
+}
+```
+
+Local:
+
+```
+.card {
+    --color: red;
+}
+```
+
+========================================================
+FALLBACK VALUE
+==============
+
+Syntax:
+
+```
+var(--name, fallback)
+```
+
+Example:
+
+========================================================
+*/
+
+.title {
+color: var(--title-color, black);
+}
+
+/*
+If --title-color does not exist, black is used.
+
+========================================================
+ADVANTAGES
+==========
+
+```
+Reusable values
+Easy theming
+Runtime changes
+Responsive customization
+Less repetition
+```
+
+========================================================
+3. CSS NESTING
+==============
+
+Modern CSS supports nesting selectors inside other selectors.
+
+It makes related styles easier to organize.
+
+========================================================
+TRADITIONAL CSS
+===============
+
+*/
+
+.card {
+padding: 20px;
+}
+
+.card h2 {
+color: #222;
+}
+
+.card p {
+color: #666;
+}
+
+# /*
+
+# MODERN CSS NESTING
+
+*/
+
+.card {
+padding: 20px;
+
+```
+& h2 {
+    color: #222;
+}
+
+& p {
+    color: #666;
+}
+```
+
+}
+
+# /*
+
+# NESTING WITH HOVER
+
+*/
+
+.button {
+background: blue;
+color: white;
+
+```
+&:hover {
+    background: darkblue;
+}
+
+&:focus-visible {
+    outline: 3px solid black;
+}
+```
+
+}
+
+/*
+The & represents the current selector.
+
+========================================================
+IMPORTANT
+=========
+
+Do not create unnecessarily deep nesting.
+
+Good:
+
+```
+.card {
+    & h2 { ... }
+}
+```
+
+Avoid deeply nested structures because they can become hard
+to maintain.
+
+========================================================
+4. CONTAINER QUERIES
+====================
+
+Traditional media queries respond to the viewport.
+
+Container queries respond to the size of a containing element.
+
+This is extremely useful for reusable components.
+
+========================================================
+MEDIA QUERY
+===========
+
+```
+@media (min-width: 600px) {
+    ...
+}
+```
+
+This checks the viewport.
+
+========================================================
+CONTAINER QUERY
+===============
+
+First create a query container:
+
+========================================================
+*/
+
+.card-container {
+container-type: inline-size;
+}
+
+/*
+Then define styles based on the container's width.
+
+========================================================
+*/
+
+@container (min-width: 500px) {
+.card {
+display: grid;
+grid-template-columns: 150px 1fr;
+}
+}
+
+# /*
+
+# CONTAINER NAME
+
+A container can have a name.
+
+========================================================
+*/
+
+.sidebar {
+container-type: inline-size;
+container-name: sidebar;
+}
+
+@container sidebar (min-width: 400px) {
+.widget {
+display: grid;
+grid-template-columns: 1fr 1fr;
+}
+}
+
+# /*
+
+# MEDIA QUERY vs CONTAINER QUERY
+
+Media Query:
+
+```
+Responds to viewport/device size.
+```
+
+Container Query:
+
+```
+Responds to container size.
+```
+
+========================================================
+WHY CONTAINER QUERIES?
+======================
+
+A component can adapt based on where it is placed.
+
+Example:
+
+```
+Large page area → large card layout
+
+Small sidebar → compact card layout
+```
+
+This makes components more reusable.
+
+========================================================
+5. CASCADE LAYERS
+=================
+
+Cascade layers allow developers to explicitly organize
+CSS priority.
+
+Syntax:
+
+```
+@layer layer-name;
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+@layer reset, base, components, utilities;
+
+@layer base {
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+}
+}
+
+@layer components {
+.button {
+padding: 10px 20px;
+border-radius: 6px;
+}
+}
+
+@layer utilities {
+.hidden {
+display: none;
+}
+}
+
+# /*
+
+# WHY CASCADE LAYERS?
+
+They help manage:
+
+```
+Specificity
+CSS architecture
+Third-party CSS
+Component styles
+Utility classes
+```
+
+Instead of fighting with specificity, layers let you define
+the intended priority structure.
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+@layer base {
+button {
+color: black;
+}
+}
+
+@layer components {
+.primary {
+color: blue;
+}
+}
+
+/*
+The layer ordering is considered before specificity within
+the relevant cascade layer.
+
+========================================================
+IMPORTANT
+=========
+
+For normal declarations, later layers generally have higher
+priority than earlier layers within the same origin.
+
+Important declarations have reversed layer precedence.
+
+========================================================
+6. @SUPPORTS
+============
+
+@supports checks whether the browser supports a CSS feature.
+
+Syntax:
+
+```
+@supports (property: value) {
+    ...
+}
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+@supports (display: grid) {
+.container {
+display: grid;
+}
+}
+
+# /*
+
+# FALLBACK
+
+*/
+
+.container {
+display: flex;
+}
+
+@supports (display: grid) {
+.container {
+display: grid;
+}
+}
+
+/*
+Older browsers may use Flexbox.
+
+Browsers supporting Grid use Grid.
+
+========================================================
+MULTIPLE CONDITIONS
+===================
+
+*/
+
+@supports (display: grid) and (gap: 10px) {
+.container {
+display: grid;
+gap: 10px;
+}
+}
+
+/*
+OR condition:
+
+```
+@supports (display: grid) or (display: flex)
+```
+
+NOT condition:
+
+```
+@supports not (display: grid)
+```
+
+========================================================
+7. :HAS()
+=========
+
+:has() is a relational pseudo-class.
+
+It allows an element to be selected based on something
+inside or related to it.
+
+It is often informally called the:
+
+```
+"parent selector"
+```
+
+But technically, it is a relational pseudo-class.
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+.card:has(img) {
+border: 2px solid blue;
+}
+
+/*
+This selects .card elements that contain an img.
+
+========================================================
+FORM EXAMPLE
+============
+
+*/
+
+.form-group:has(input:invalid) {
+border: 2px solid red;
+}
+
+/*
+The .form-group is styled when it contains an invalid input.
+
+========================================================
+ADJACENT ELEMENT EXAMPLE
+========================
+
+*/
+
+h2:has(+ p) {
+margin-bottom: 5px;
+}
+
+/*
+Selects an h2 that has a p immediately following it.
+
+========================================================
+IMPORTANT
+=========
+
+:has() is powerful because it can select an element based
+on relationships with other elements.
+
+========================================================
+8. :IS()
+========
+
+:is() groups selectors.
+
+Instead of writing:
+
+```
+h1,
+h2,
+h3 {
+    color: blue;
+}
+```
+
+we can write:
+
+========================================================
+*/
+
+:is(h1, h2, h3) {
+color: blue;
+}
+
+# /*
+
+# NESTED EXAMPLE
+
+*/
+
+.card :is(h2, h3, p) {
+margin-bottom: 10px;
+}
+
+# /*
+
+# SPECIFICITY
+
+:is() takes the specificity of its most specific argument.
+
+This is important when resolving CSS conflicts.
+
+========================================================
+9. :WHERE()
+===========
+
+:where() also groups selectors.
+
+Example:
+
+========================================================
+*/
+
+:where(h1, h2, h3) {
+margin-top: 0;
+}
+
+# /*
+
+# IMPORTANT DIFFERENCE
+
+:is()
+
+```
+Specificity = specificity of the most specific selector
+inside it.
+```
+
+:where()
+
+```
+Specificity = zero.
+```
+
+This makes :where() especially useful for low-specificity
+default styles.
+
+========================================================
+MEMORY TRICK
+============
+
+:is()
+→ Group selectors normally.
+
+:where()
+→ Group selectors with ZERO specificity.
+
+:has()
+→ Select based on a relationship.
+
+========================================================
+10. CLAMP()
+===========
+
+clamp() provides a minimum, preferred and maximum value.
+
+Syntax:
+
+```
+clamp(minimum, preferred, maximum)
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+h1 {
+font-size: clamp(2rem, 5vw, 4rem);
+}
+
+/*
+Meaning:
+
+```
+Minimum = 2rem
+Preferred = 5vw
+Maximum = 4rem
+```
+
+The value grows and shrinks within the specified limits.
+
+========================================================
+RESPONSIVE SPACING
+==================
+
+*/
+
+.section {
+padding: clamp(20px, 5vw, 80px);
+}
+
+# /*
+
+# USE CASES
+
+```
+Responsive typography
+Responsive spacing
+Responsive widths
+Responsive margins
+Responsive padding
+```
+
+========================================================
+11. MIN()
+=========
+
+min() returns the smallest value from the provided values.
+
+Syntax:
+
+```
+min(value1, value2, ...)
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+.container {
+width: min(90%, 1200px);
+}
+
+/*
+The width will not exceed 1200px and will otherwise use 90%.
+
+========================================================
+ANOTHER EXAMPLE
+===============
+
+*/
+
+.box {
+width: min(80vw, 600px);
+}
+
+# /*
+
+12. MAX()
+    ========================================================
+
+max() returns the largest value from the provided values.
+
+========================================================
+*/
+
+.container {
+width: max(300px, 50%);
+}
+
+/*
+The browser chooses the larger value.
+
+========================================================
+MIN vs MAX
+==========
+
+min()
+
+```
+Selects the smallest value.
+```
+
+max()
+
+```
+Selects the largest value.
+```
+
+clamp()
+
+```
+Controls minimum + preferred + maximum.
+```
+
+========================================================
+13. SUBGRID
+===========
+
+Subgrid allows a nested grid to use the tracks of its parent
+grid.
+
+It is useful when multiple child components need to align
+with the same parent grid.
+
+========================================================
+NORMAL NESTED GRID
+==================
+
+*/
+
+.container {
+display: grid;
+grid-template-columns: 1fr 2fr;
+}
+
+/*
+A nested grid normally creates its own independent tracks.
+
+========================================================
+SUBGRID
+=======
+
+*/
+
+.container {
+display: grid;
+grid-template-columns: 1fr 2fr;
+}
+
+.card {
+display: grid;
+grid-template-columns: subgrid;
+}
+
+/*
+The child grid can use the parent's grid tracks.
+
+========================================================
+SUBGRID FOR ROWS
+================
+
+*/
+
+.cards {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+display: grid;
+grid-template-rows: subgrid;
+}
+
+# /*
+
+# WHY SUBGRID?
+
+Useful for:
+
+```
+Cards
+Forms
+Tables-like layouts
+Repeated components
+Consistent alignment
+```
+
+========================================================
+MEMORY
+======
+
+Grid:
+
+```
+Creates its own tracks.
+```
+
+Subgrid:
+
+```
+Reuses parent's tracks.
+```
+
+========================================================
+14. LOGICAL PROPERTIES
+======================
+
+Logical properties describe layout based on writing direction
+rather than physical directions such as left and right.
+
+Traditional:
+
+```
+margin-left
+margin-right
+padding-left
+padding-right
+```
+
+Logical:
+
+```
+margin-inline-start
+margin-inline-end
+padding-inline-start
+padding-inline-end
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+.card {
+margin-inline: auto;
+padding-inline: 20px;
+}
+
+# /*
+
+# BLOCK AND INLINE
+
+Inline direction:
+
+```
+Horizontal direction in many writing systems.
+```
+
+Block direction:
+
+```
+Vertical direction in many writing systems.
+```
+
+Examples:
+
+```
+margin-inline
+margin-block
+padding-inline
+padding-block
+border-inline
+border-block
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+.section {
+margin-block: 30px;
+padding-inline: 20px;
+}
+
+# /*
+
+# LOGICAL SIZE PROPERTIES
+
+Physical:
+
+```
+width
+height
+```
+
+Logical:
+
+```
+inline-size
+block-size
+```
+
+========================================================
+*/
+
+.box {
+inline-size: 300px;
+block-size: 200px;
+}
+
+# /*
+
+# ADVANTAGE
+
+Logical properties work better with:
+
+```
+RTL languages
+Vertical writing modes
+Internationalized websites
+```
+
+========================================================
+15. ASPECT-RATIO
+================
+
+aspect-ratio defines the preferred width-to-height ratio of
+an element.
+
+Syntax:
+
+```
+aspect-ratio: width / height;
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+.video {
+width: 100%;
+aspect-ratio: 16 / 9;
+background: #ddd;
+}
+
+# /*
+
+# IMAGE EXAMPLE
+
+*/
+
+.product-image {
+width: 100%;
+aspect-ratio: 4 / 3;
+object-fit: cover;
+}
+
+# /*
+
+# COMMON RATIOS
+
+```
+16 / 9
+    Widescreen video
+
+4 / 3
+    Traditional display/image ratio
+
+1 / 1
+    Square
+```
+
+========================================================
+ADVANTAGES
+==========
+
+```
+Prevents unexpected layout shifts
+Helps create consistent cards
+Useful for responsive images
+Useful for videos
+Makes layouts predictable
+```
+
+========================================================
+16. MODERN COLOR FUNCTIONS
+==========================
+
+Modern CSS supports several color functions.
+
+Common functions include:
+
+```
+rgb()
+hsl()
+hwb()
+lab()
+lch()
+oklab()
+oklch()
+```
+
+========================================================
+RGB
+===
+
+*/
+
+.box {
+color: rgb(20 80 200);
+}
+
+/*
+Modern RGB syntax can include alpha:
+
+========================================================
+*/
+
+.box {
+background: rgb(20 80 200 / 50%);
+}
+
+# /*
+
+# HSL
+
+*/
+
+.box {
+color: hsl(220 80% 50%);
+}
+
+/*
+Alpha:
+
+========================================================
+*/
+
+.box {
+background: hsl(220 80% 50% / 0.5);
+}
+
+# /*
+
+# HWB
+
+HWB means:
+
+```
+Hue
+Whiteness
+Blackness
+```
+
+========================================================
+*/
+
+.box {
+color: hwb(220 10% 20%);
+}
+
+# /*
+
+# LAB
+
+lab() represents colors using:
+
+```
+Lightness
+a axis
+b axis
+```
+
+========================================================
+*/
+
+.box {
+color: lab(60% 20 30);
+}
+
+# /*
+
+# OKLAB
+
+oklab() is a perceptual color space designed to provide
+more useful relationships between perceived colors.
+
+========================================================
+*/
+
+.box {
+color: oklab(60% 0.1 0.05);
+}
+
+# /*
+
+# LCH
+
+LCH means:
+
+```
+Lightness
+Chroma
+Hue
+```
+
+========================================================
+*/
+
+.box {
+color: lch(60% 50 40);
+}
+
+# /*
+
+# OKLCH
+
+OKLCH is another perceptual color space.
+
+It is useful for creating more predictable color scales.
+
+========================================================
+*/
+
+.box {
+color: oklch(65% 0.15 250);
+}
+
+# /*
+
+# COLOR COMPARISON
+
+rgb()
+→ Red, Green, Blue
+
+hsl()
+→ Hue, Saturation, Lightness
+
+hwb()
+→ Hue, Whiteness, Blackness
+
+lab()
+→ Perceptual color space
+
+lch()
+→ Lightness, Chroma, Hue
+
+oklab()
+→ Perceptual color space
+
+oklch()
+→ Lightness, Chroma, Hue
+
+========================================================
+17. SCROLL SNAP
+===============
+
+CSS Scroll Snap allows scrolling to snap to specific
+positions.
+
+It is useful for:
+
+```
+Image galleries
+Product sliders
+Carousels
+Horizontal cards
+Mobile interfaces
+```
+
+========================================================
+CONTAINER
+=========
+
+*/
+
+.slider {
+display: flex;
+gap: 20px;
+overflow-x: auto;
+scroll-snap-type: x mandatory;
+}
+
+# /*
+
+# CHILDREN
+
+*/
+
+.slide {
+flex: 0 0 250px;
+scroll-snap-align: center;
+}
+
+# /*
+
+# SCROLL SNAP TYPES
+
+```
+x mandatory
+y mandatory
+both mandatory
+x proximity
+y proximity
+```
+
+mandatory:
+
+```
+Strongly snaps to defined positions.
+```
+
+proximity:
+
+```
+Snaps when appropriate rather than enforcing a strong snap.
+```
+
+========================================================
+SCROLL BEHAVIOR
+===============
+
+*/
+
+html {
+scroll-behavior: smooth;
+}
+
+# /*
+
+# IMPORTANT
+
+Respect reduced-motion preferences when using smooth scrolling.
+
+========================================================
+*/
+
+@media (prefers-reduced-motion: reduce) {
+html {
+scroll-behavior: auto;
+}
+}
+
+# /*
+
+18. CSS HOUDINI BASICS
+    ========================================================
+
+CSS Houdini is a collection of browser APIs that allows
+developers to work closer to the CSS rendering engine.
+
+It provides ways to extend CSS and create more advanced
+custom behavior.
+
+========================================================
+IMPORTANT HOUDINI CONCEPTS
+==========================
+
+```
+CSS Properties and Values API
+CSS Painting API
+CSS Typed OM
+Worklets
+```
+
+========================================================
+19. @PROPERTY
+=============
+
+The @property rule allows a custom property to be registered
+with additional information such as:
+
+```
+Syntax
+Inheritance
+Initial value
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+@property --progress {
+syntax: "<percentage>";
+inherits: false;
+initial-value: 0%;
+}
+
+.progress {
+--progress: 50%;
+}
+
+# /*
+
+# WHY @PROPERTY?
+
+Normal custom properties are generally treated as untyped
+token streams.
+
+Registering a property gives the browser information about
+the property's type.
+
+This can enable smoother interpolation/animation for suitable
+custom properties.
+
+========================================================
+20. CSS PAINT API
+=================
+
+The CSS Paint API allows JavaScript worklets to generate
+images that can be used in CSS.
+
+Conceptually:
+
+```
+CSS
+  ↓
+Paint Worklet
+  ↓
+Generated visual
+  ↓
+CSS background/image
+```
+
+Example concept:
+
+```
+background-image: paint(myPainter);
+```
+
+The paint worklet itself is written in JavaScript.
+
+========================================================
+IMPORTANT
+=========
+
+CSS Houdini is more advanced than normal CSS.
+
+It is mainly useful for developers who need custom rendering
+or deeper control over CSS behavior.
+
+Browser support varies between individual Houdini APIs.
+
+========================================================
+21. MODERN CSS COMPLETE EXAMPLE
+===============================
+
+*/
+
+:root {
+--primary: oklch(55% 0.2 250);
+--space: clamp(16px, 3vw, 40px);
+}
+
+.page {
+padding-inline: var(--space);
+}
+
+.products {
+container-type: inline-size;
+
+```
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: var(--space);
+```
+
+}
+
+.product {
+aspect-ratio: 4 / 3;
+padding: 20px;
+border-radius: 12px;
+background: white;
+}
+
+.product:has(.sale) {
+border: 3px solid var(--primary);
+}
+
+.product :is(h2, h3) {
+margin-block: 10px;
+}
+
+.product :where(p) {
+margin-block: 5px;
+}
+
+@container (max-width: 700px) {
+.products {
+grid-template-columns: 1fr;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+* {
+scroll-behavior: auto;
+}
+}
+
+# /*
+
+22. MODERN CSS FEATURE COMPARISON
+    ========================================================
+
+Custom Properties
+
+```
+→ CSS variables.
+```
+
+Nesting
+
+```
+→ Write related selectors together.
+```
+
+Container Queries
+
+```
+→ Respond to component/container size.
+```
+
+Cascade Layers
+
+```
+→ Organize CSS priority.
+```
+
+@supports
+
+```
+→ Detect CSS feature support.
+```
+
+:has()
+
+```
+→ Select based on relationships.
+```
+
+:is()
+
+```
+→ Group selectors.
+```
+
+:where()
+
+```
+→ Group selectors with zero specificity.
+```
+
+clamp()
+
+```
+→ Minimum + preferred + maximum.
+```
+
+min()
+
+```
+→ Smallest value.
+```
+
+max()
+
+```
+→ Largest value.
+```
+
+Subgrid
+
+```
+→ Reuse parent grid tracks.
+```
+
+Logical Properties
+
+```
+→ Writing-direction-friendly layout.
+```
+
+aspect-ratio
+
+```
+→ Maintain width/height ratio.
+```
+
+Modern Color Functions
+
+```
+→ Advanced and perceptual color spaces.
+```
+
+Scroll Snap
+
+```
+→ Snap scrolling to defined positions.
+```
+
+CSS Houdini
+
+```
+→ Advanced APIs for extending/customizing CSS behavior.
+```
+
+========================================================
+23. QUESTIONS AND ANSWERS
+=========================
+
+Q1. What are CSS Custom Properties?
+
+Answer:
+
+CSS Custom Properties are variables defined using --name
+and accessed using var().
+
+Example:
+
+```
+:root {
+    --primary: blue;
+}
+
+button {
+    background: var(--primary);
+}
+```
+
+---
+
+Q2. What is CSS nesting?
+
+Answer:
+
+CSS nesting allows related selectors to be written inside
+another selector.
+
+Example:
+
+```
+.card {
+    & h2 {
+        color: blue;
+    }
+}
+```
+
+---
+
+Q3. What are container queries?
+
+Answer:
+
+Container queries apply styles based on the size of a
+containing element instead of the viewport.
+
+---
+
+Q4. What is the difference between a media query and a
+container query?
+
+Answer:
+
+Media query:
+
+```
+Responds to viewport size.
+```
+
+Container query:
+
+```
+Responds to container size.
+```
+
+---
+
+Q5. What is @supports?
+
+Answer:
+
+@supports checks whether a browser supports a CSS feature.
+
+Example:
+
+```
+@supports (display: grid) {
+    ...
+}
+```
+
+---
+
+Q6. What is :has()?
+
+Answer:
+
+:has() is a relational pseudo-class that selects an element
+based on a relationship with another element.
+
+Example:
+
+```
+.card:has(img) {
+    border: 1px solid blue;
+}
+```
+
+---
+
+Q7. What is the difference between :is() and :where()?
+
+Answer:
+
+:is():
+
+```
+Uses the specificity of its most specific argument.
+```
+
+:where():
+
+```
+Always has zero specificity.
+```
+
+---
+
+Q8. What does clamp() do?
+
+Answer:
+
+clamp() restricts a value between a minimum, preferred and
+maximum value.
+
+Example:
+
+```
+font-size: clamp(1rem, 3vw, 2rem);
+```
+
+---
+
+Q9. What is Subgrid?
+
+Answer:
+
+Subgrid allows a nested grid to use the tracks defined by
+its parent grid.
+
+---
+
+Q10. What are logical properties?
+
+Answer:
+
+Logical properties describe layout according to writing
+direction instead of fixed physical directions.
+
+Examples:
+
+```
+margin-inline
+padding-block
+inline-size
+block-size
+```
+
+---
+
+Q11. What is aspect-ratio?
+
+Answer:
+
+aspect-ratio defines the preferred width-to-height ratio of
+an element.
+
+Example:
+
+```
+aspect-ratio: 16 / 9;
+```
+
+---
+
+Q12. What is CSS Scroll Snap?
+
+Answer:
+
+Scroll Snap allows a scroll container to snap to specific
+positions during scrolling.
+
+---
+
+Q13. What is CSS Houdini?
+
+Answer:
+
+CSS Houdini is a collection of APIs that gives developers
+lower-level control over CSS processing and rendering.
+
+---
+
+24. PRACTICE QUESTIONS
+    ========================================================
+
+Q1. Create a reusable CSS variable for a primary color.
+
+Solution:
+
+```
+:root {
+    --primary-color: blue;
+}
+
+button {
+    background: var(--primary-color);
+}
+```
+
+---
+
+Q2. Create responsive text using clamp().
+
+Solution:
+
+```
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+---
+
+Q3. Create a container query.
+
+Solution:
+
+```
+.container {
+    container-type: inline-size;
+}
+
+@container (min-width: 500px) {
+    .card {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+    }
+}
+```
+
+---
+
+Q4. Select a card that contains an image.
+
+Solution:
+
+```
+.card:has(img) {
+    border: 2px solid blue;
+}
+```
+
+---
+
+Q5. Group headings using :is().
+
+Solution:
+
+```
+:is(h1, h2, h3) {
+    color: blue;
+}
+```
+
+---
+
+Q6. Group headings using :where().
+
+Solution:
+
+```
+:where(h1, h2, h3) {
+    margin-top: 0;
+}
+```
+
+---
+
+Q7. Create a 16:9 responsive box.
+
+Solution:
+
+```
+.video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+```
+
+---
+
+Q8. Create a horizontal scroll-snap container.
+
+Solution:
+
+```
+.slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+
+.slide {
+    flex: 0 0 250px;
+    scroll-snap-align: center;
+}
+```
+
+---
+
+Q9. Write a logical property example.
+
+Solution:
+
+```
+.box {
+    margin-inline: auto;
+    padding-block: 20px;
+    padding-inline: 30px;
+}
+```
+
+---
+
+Q10. Create a CSS cascade layer structure.
+
+Solution:
+
+```
+@layer reset, base, components, utilities;
+
+@layer base {
+    body {
+        margin: 0;
+    }
+}
+
+@layer components {
+    .card {
+        padding: 20px;
+    }
+}
+```
+
+========================================================
+25. EXAM MEMORY TRICKS
+======================
+
+VARIABLES
+
+```
+--name + var()
+```
+
+NESTING
+
+```
+Write related CSS together.
+```
+
+CONTAINER QUERY
+
+```
+Component size, not viewport size.
+```
+
+CASCADE LAYER
+
+```
+Control CSS priority.
+```
+
+@SUPPORTS
+
+```
+"Does browser support this?"
+```
+
+:HAS()
+
+```
+"Select this if it has/relates to that."
+```
+
+:IS()
+
+```
+Group selectors.
+```
+
+:WHERE()
+
+```
+Group selectors with ZERO specificity.
+```
+
+CLAMP
+
+```
+Minimum + Preferred + Maximum.
+```
+
+MIN
+
+```
+Smallest.
+```
+
+MAX
+
+```
+Largest.
+```
+
+SUBGRID
+
+```
+Child uses parent's grid tracks.
+```
+
+LOGICAL PROPERTIES
+
+```
+Inline + Block instead of Left + Right.
+```
+
+ASPECT-RATIO
+
+```
+Width : Height.
+```
+
+MODERN COLORS
+
+```
+rgb / hsl / hwb / lab / lch / oklab / oklch.
+```
+
+SCROLL SNAP
+
+```
+Scroll → Snap.
+```
+
+HOUDINI
+
+```
+Extend/customize CSS behavior using browser APIs.
+```
+
+========================================================
+26. ONE-LINE REVISION
+=====================
+
+CSS Custom Properties
+→ Reusable CSS variables.
+
+CSS Nesting
+→ Nest related selectors inside each other.
+
+Container Queries
+→ Style components according to container size.
+
+Cascade Layers
+→ Organize and control cascade priority.
+
+@supports
+→ Apply CSS only when a feature is supported.
+
+:has()
+→ Select based on relationships.
+
+:is()
+→ Group selectors with normal specificity behavior.
+
+:where()
+→ Group selectors with zero specificity.
+
+clamp()
+→ Minimum + preferred + maximum.
+
+min()
+→ Select the smallest value.
+
+max()
+→ Select the largest value.
+
+Subgrid
+→ Reuse parent grid tracks.
+
+Logical Properties
+→ Layout based on writing direction.
+
+Aspect Ratio
+→ Maintain proportional dimensions.
+
+Modern Color Functions
+→ Use advanced color spaces and syntax.
+
+Scroll Snap
+→ Snap scrolling to specific positions.
+
+CSS Houdini
+→ Provide lower-level CSS customization through APIs.
+
+========================================================
+END OF MODERN CSS
+=================
+
+*/

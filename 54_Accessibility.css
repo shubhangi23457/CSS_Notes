@@ -1,0 +1,1597 @@
+# /*
+
+```
+             CSS ACCESSIBILITY
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. Accessible Color Contrast
+2. Focus Indicators
+3. Keyboard Navigation
+4. Readable Font Sizes
+5. Accessible Forms
+6. :focus
+7. Reduced Motion
+8. prefers-reduced-motion
+9. Avoiding Color-Only Information
+10. Responsive Text
+11. Screen Reader Considerations
+
+========================================================
+
+1. WHAT IS CSS ACCESSIBILITY?
+   ========================================================
+
+Accessibility means designing websites so that people with
+different abilities can use and understand them.
+
+CSS can improve accessibility by providing:
+
+```
+Good color contrast
+Visible focus indicators
+Readable text
+Responsive layouts
+Reduced animations
+Clear form states
+Keyboard-friendly interfaces
+```
+
+IMPORTANT:
+
+CSS alone cannot make a website fully accessible.
+
+HTML structure, semantic elements, labels, keyboard behavior,
+ARIA when appropriate, and JavaScript interaction also matter.
+
+========================================================
+2. ACCESSIBLE COLOR CONTRAST
+============================
+
+Color contrast is the difference between foreground and
+background colors.
+
+Good contrast makes text easier to read.
+
+Example:
+
+```
+Dark text + light background
+Light text + dark background
+```
+
+Poor contrast:
+
+```
+Light gray text on white background
+```
+
+Better:
+
+```
+Dark gray text on white background
+```
+
+========================================================
+GOOD EXAMPLE
+============
+
+*/
+
+body {
+background: white;
+color: #222;
+}
+
+.button {
+background: #005fcc;
+color: white;
+}
+
+# /*
+
+# COLOR CONTRAST GUIDELINE
+
+WCAG commonly recommends:
+
+Normal text:
+
+```
+Minimum contrast ratio = 4.5 : 1
+```
+
+Large text:
+
+```
+Minimum contrast ratio = 3 : 1
+```
+
+These are commonly used WCAG AA thresholds.
+
+For enhanced AAA contrast, requirements can be stricter.
+
+========================================================
+IMPORTANT
+=========
+
+Do not judge contrast only by looking at colors.
+
+Use a contrast checker when designing a real website.
+
+Also check:
+
+```
+Text
+Buttons
+Links
+Form controls
+Placeholder text
+Focus indicators
+```
+
+========================================================
+3. FOCUS INDICATORS
+===================
+
+A focus indicator shows which element currently has keyboard
+focus.
+
+This is extremely important for keyboard users.
+
+Example:
+
+```
+User presses TAB
+      ↓
+Focus moves to a button
+      ↓
+Button should visibly show focus
+```
+
+========================================================
+BASIC FOCUS
+===========
+
+*/
+
+button:focus {
+outline: 3px solid #005fcc;
+outline-offset: 3px;
+}
+
+# /*
+
+# :focus-visible
+
+:focus-visible is often preferred for modern interfaces.
+
+It allows focus styles to be shown when the browser determines
+that a visible focus indicator is appropriate, especially
+during keyboard navigation.
+
+========================================================
+*/
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+outline: 3px solid #005fcc;
+outline-offset: 3px;
+}
+
+# /*
+
+# IMPORTANT
+
+Avoid:
+
+```
+outline: none;
+```
+
+unless you provide another clearly visible focus indicator.
+
+BAD:
+
+```
+button:focus {
+    outline: none;
+}
+```
+
+GOOD:
+
+```
+button:focus-visible {
+    outline: 3px solid blue;
+}
+```
+
+========================================================
+4. KEYBOARD NAVIGATION
+======================
+
+A website should be usable without a mouse.
+
+Common keyboard controls include:
+
+```
+TAB
+    Move forward through focusable elements.
+
+SHIFT + TAB
+    Move backward.
+
+ENTER
+    Activate links/buttons.
+
+SPACE
+    Activate many buttons and controls.
+
+ARROW KEYS
+    Used by some interactive widgets.
+
+ESC
+    Often used to close dialogs or menus.
+```
+
+========================================================
+CSS ROLE
+========
+
+CSS should make keyboard focus visible.
+
+Example:
+
+```
+a:focus-visible {
+    outline: 2px solid blue;
+}
+```
+
+========================================================
+IMPORTANT
+=========
+
+CSS does NOT create keyboard behavior by itself.
+
+Keyboard accessibility also depends on:
+
+```
+Semantic HTML
+Correct tabindex usage
+JavaScript interaction
+Proper focus management
+```
+
+Prefer native elements such as:
+
+```
+<button>
+<a>
+<input>
+<select>
+```
+
+instead of creating fake controls with:
+
+```
+<div>
+<span>
+```
+
+========================================================
+5. READABLE FONT SIZES
+======================
+
+Text should be large enough and easy to read.
+
+Avoid unnecessarily tiny text.
+
+Example:
+
+```
+body {
+    font-size: 16px;
+}
+```
+
+========================================================
+*/
+
+body {
+font-size: 16px;
+line-height: 1.5;
+}
+
+p {
+max-width: 70ch;
+}
+
+# /*
+
+# LINE HEIGHT
+
+Line-height controls the vertical spacing between lines.
+
+Example:
+
+```
+line-height: 1.5;
+```
+
+Adequate line spacing improves readability.
+
+========================================================
+FONT SIZE UNITS
+===============
+
+Common units:
+
+```
+px
+em
+rem
+%
+vw
+clamp()
+```
+
+For scalable typography, rem and clamp() are useful.
+
+Example:
+
+```
+font-size: 1rem;
+```
+
+========================================================
+RESPONSIVE FONT SIZE
+====================
+
+*/
+
+h1 {
+font-size: clamp(2rem, 5vw, 4rem);
+}
+
+p {
+font-size: 1rem;
+line-height: 1.6;
+}
+
+# /*
+
+# IMPORTANT
+
+Do not make text so small that users have difficulty reading
+it.
+
+Also avoid relying on tiny text for important information.
+
+========================================================
+6. ACCESSIBLE FORMS
+===================
+
+Forms must be understandable and usable.
+
+Important accessibility considerations:
+
+```
+Labels
+Clear input states
+Visible focus
+Error messages
+Required indicators
+Sufficient contrast
+Keyboard accessibility
+Large enough controls
+```
+
+========================================================
+HTML STRUCTURE
+==============
+
+Example:
+
+```
+<label for="email">Email</label>
+<input id="email" type="email">
+```
+
+The label should be associated with the input.
+
+========================================================
+CSS FORM EXAMPLE
+================
+
+*/
+
+label {
+display: block;
+margin-bottom: 6px;
+font-weight: 600;
+}
+
+input,
+textarea,
+select {
+width: 100%;
+padding: 10px;
+font-size: 1rem;
+border: 2px solid #777;
+border-radius: 6px;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+outline: 3px solid #005fcc;
+outline-offset: 2px;
+}
+
+# /*
+
+# REQUIRED FIELDS
+
+Required fields should not be communicated using color alone.
+
+You can use:
+
+```
+*
+"Required"
+aria-required="true"
+```
+
+The exact implementation should be supported by proper HTML.
+
+========================================================
+INVALID INPUT
+=============
+
+*/
+
+input:invalid {
+border-color: #b00020;
+}
+
+input:valid {
+border-color: #187a1f;
+}
+
+/*
+IMPORTANT:
+
+Do not rely only on red/green border colors.
+
+Provide text or other meaningful information for errors and
+success states.
+
+========================================================
+7. :FOCUS
+=========
+
+The :focus pseudo-class applies when an element receives focus.
+
+Example:
+
+```
+button:focus {
+    ...
+}
+```
+
+It can apply when focus comes from:
+
+```
+Keyboard navigation
+Mouse interaction
+Programmatic focus
+```
+
+========================================================
+*/
+
+button:focus {
+outline: 3px solid blue;
+outline-offset: 3px;
+}
+
+# /*
+
+# :FOCUS vs :FOCUS-VISIBLE
+
+:focus
+
+```
+Applies whenever the element is focused.
+```
+
+:focus-visible
+
+```
+Allows the browser to determine when a visible focus
+indication is especially appropriate.
+```
+
+For many modern interfaces:
+
+```
+:focus-visible
+```
+
+is a good choice for custom focus styling.
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+a:focus-visible {
+outline: 3px solid #005fcc;
+outline-offset: 4px;
+}
+
+# /*
+
+8. REDUCED MOTION
+   ========================================================
+
+Animations and transitions can cause discomfort for some
+users.
+
+Accessibility-friendly websites should provide a reduced
+motion experience.
+
+Examples of motion:
+
+```
+Animations
+Transitions
+Parallax effects
+Spinning loaders
+Large movement effects
+```
+
+========================================================
+NORMAL ANIMATION
+================
+
+*/
+
+.card {
+transition: transform 0.3s ease;
+}
+
+.card:hover {
+transform: translateY(-8px);
+}
+
+# /*
+
+# REDUCING MOTION
+
+Use the prefers-reduced-motion media feature.
+
+========================================================
+*/
+
+@media (prefers-reduced-motion: reduce) {
+.card {
+transition: none;
+}
+
+```
+.card:hover {
+    transform: none;
+}
+```
+
+}
+
+# /*
+
+9. PREFERS-REDUCED-MOTION
+   ========================================================
+
+The prefers-reduced-motion media feature detects whether the
+user has requested reduced motion at the operating-system or
+browser level.
+
+Syntax:
+
+```
+@media (prefers-reduced-motion: reduce) {
+    ...
+}
+```
+
+Possible values include:
+
+```
+reduce
+no-preference
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+@media (prefers-reduced-motion: reduce) {
+*,
+*::before,
+*::after {
+animation-duration: 0.01ms;
+animation-iteration-count: 1;
+transition-duration: 0.01ms;
+scroll-behavior: auto;
+}
+}
+
+/*
+NOTE:
+
+This is a commonly seen broad pattern, but real projects
+should preferably reduce non-essential motion thoughtfully
+instead of blindly disabling every animation.
+
+========================================================
+10. AVOIDING COLOR-ONLY INFORMATION
+===================================
+
+Never communicate important information using color alone.
+
+BAD:
+
+```
+Red = Error
+Green = Success
+```
+
+A color-blind user may have difficulty distinguishing them.
+
+========================================================
+BAD EXAMPLE
+===========
+
+*/
+
+.error {
+color: red;
+}
+
+.success {
+color: green;
+}
+
+/*
+The colors alone do not communicate the meaning reliably.
+
+========================================================
+BETTER APPROACH
+===============
+
+Use:
+
+```
+Color
+Text
+Icons
+Patterns
+Borders
+Symbols
+```
+
+Example:
+
+```
+Error: Invalid email
+Success: Payment completed
+```
+
+========================================================
+BETTER CSS EXAMPLE
+==================
+
+*/
+
+.error {
+color: #b00020;
+border-left: 4px solid #b00020;
+padding-left: 10px;
+}
+
+.success {
+color: #187a1f;
+border-left: 4px solid #187a1f;
+padding-left: 10px;
+}
+
+/*
+The HTML should also contain meaningful text such as:
+
+```
+Error: Invalid email address.
+
+Success: Payment completed.
+```
+
+========================================================
+11. RESPONSIVE TEXT
+===================
+
+Text should remain readable across different screen sizes.
+
+Avoid fixed text sizes that become difficult to read on
+small screens.
+
+========================================================
+BAD APPROACH
+============
+
+```
+font-size: 40px;
+```
+
+for every device.
+
+========================================================
+BETTER APPROACH
+===============
+
+Use responsive units and functions.
+
+Examples:
+
+```
+rem
+em
+%
+vw
+clamp()
+```
+
+========================================================
+*/
+
+h1 {
+font-size: clamp(2rem, 5vw, 4rem);
+}
+
+h2 {
+font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+p {
+font-size: 1rem;
+line-height: 1.6;
+}
+
+# /*
+
+# CLAMP()
+
+Syntax:
+
+```
+clamp(minimum, preferred, maximum)
+```
+
+Example:
+
+```
+clamp(1.5rem, 4vw, 3rem)
+```
+
+Meaning:
+
+```
+Minimum = 1.5rem
+Preferred = 4vw
+Maximum = 3rem
+```
+
+This allows text to scale while staying within limits.
+
+========================================================
+TEXT WIDTH
+==========
+
+Very long lines can reduce readability.
+
+A common approach is to limit text width using ch.
+
+Example:
+
+```
+max-width: 70ch;
+```
+
+========================================================
+*/
+
+.article {
+max-width: 70ch;
+line-height: 1.6;
+}
+
+# /*
+
+12. SCREEN READER CONSIDERATIONS
+    ========================================================
+
+Screen readers convert webpage content into speech or
+braille.
+
+CSS should not interfere with meaningful content.
+
+========================================================
+VISUAL HIDING vs ACCESSIBLE HIDING
+==================================
+
+display: none;
+
+```
+Removes the element from layout and normally makes it
+unavailable to assistive technology.
+```
+
+visibility: hidden;
+
+```
+Hides the element visually and generally makes it
+unavailable to assistive technology.
+```
+
+opacity: 0;
+
+```
+Makes an element transparent but it can still remain
+interactive and available to assistive technology.
+```
+
+Therefore:
+
+```
+opacity: 0
+```
+
+is NOT the same as:
+
+```
+display: none
+```
+
+========================================================
+IMPORTANT
+=========
+
+If content should be visually hidden but remain available
+to screen readers, use an established visually-hidden
+pattern rather than display:none.
+
+========================================================
+VISUALLY HIDDEN EXAMPLE
+=======================
+
+*/
+
+.visually-hidden {
+position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip: rect(0, 0, 0, 0);
+white-space: nowrap;
+border: 0;
+}
+
+/*
+Example use:
+
+```
+<span class="visually-hidden">
+    Search
+</span>
+```
+
+This can be useful when visible text is not required but
+an accessible name or explanation is needed.
+
+========================================================
+IMPORTANT SCREEN READER PRACTICES
+=================================
+
+Use semantic HTML:
+
+```
+<header>
+<nav>
+<main>
+<section>
+<article>
+<footer>
+<button>
+<form>
+<label>
+```
+
+Provide:
+
+```
+Meaningful link text
+Alt text for meaningful images
+Labels for form controls
+Clear headings
+Visible focus indicators
+```
+
+Do not use CSS to hide important information from users.
+
+========================================================
+13. ACCESSIBLE LINKS
+====================
+
+Links should be visually distinguishable.
+
+Do not depend only on color.
+
+========================================================
+*/
+
+a {
+color: #005fcc;
+text-decoration: underline;
+}
+
+a:hover {
+text-decoration-thickness: 2px;
+}
+
+a:focus-visible {
+outline: 3px solid #111;
+outline-offset: 3px;
+}
+
+# /*
+
+14. ACCESSIBLE BUTTONS
+    ========================================================
+    */
+
+button {
+padding: 10px 18px;
+border: 2px solid #005fcc;
+background: #005fcc;
+color: white;
+border-radius: 6px;
+cursor: pointer;
+}
+
+button:hover {
+background: #004799;
+}
+
+button:focus-visible {
+outline: 3px solid #111;
+outline-offset: 3px;
+}
+
+button:disabled {
+cursor: not-allowed;
+opacity: 0.6;
+}
+
+/*
+IMPORTANT:
+
+Disabled buttons should still have understandable states.
+
+Do not make the focus indicator disappear.
+
+========================================================
+15. ACCESSIBLE HOVER STATES
+===========================
+
+Do not make important information available only on hover.
+
+Why?
+
+Keyboard users may not hover.
+
+Touchscreen users may not have hover.
+
+Better:
+
+```
+Hover
+Focus
+Focus-visible
+Other appropriate states
+```
+
+========================================================
+*/
+
+.card:hover,
+.card:focus-within {
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+# /*
+
+16. :FOCUS-WITHIN
+    ========================================================
+
+:focus-within applies when an element or one of its
+descendants has focus.
+
+Useful for:
+
+```
+Forms
+Navigation
+Cards
+Dropdowns
+```
+
+========================================================
+*/
+
+.form-group:focus-within {
+border-color: #005fcc;
+}
+
+# /*
+
+17. ACCESSIBLE RESPONSIVE DESIGN
+    ========================================================
+
+Responsive design should preserve accessibility.
+
+Do not:
+
+```
+Hide important content on mobile without reason.
+Make buttons too small.
+Make text extremely small.
+Create horizontal scrolling unnecessarily.
+Remove focus indicators.
+```
+
+Make sure:
+
+```
+Text remains readable.
+Controls remain usable.
+Content reflows.
+Keyboard navigation still works.
+Focus remains visible.
+```
+
+========================================================
+18. TOUCH TARGETS
+=================
+
+Interactive controls should have enough space to be easily
+activated.
+
+Examples:
+
+```
+Buttons
+Links
+Navigation items
+Checkboxes
+Radio controls
+```
+
+Avoid tiny clickable elements.
+
+CSS example:
+
+========================================================
+*/
+
+.button {
+min-height: 44px;
+padding: 10px 16px;
+}
+
+/*
+NOTE:
+
+Exact target-size requirements depend on the accessibility
+guideline/version being followed and the control/context.
+
+The important principle is to provide sufficiently large,
+well-spaced interactive targets.
+
+========================================================
+19. ACCESSIBLE PLACEHOLDERS
+===========================
+
+Placeholder text should not replace a label.
+
+BAD IDEA:
+
+```
+<input placeholder="Enter email">
+```
+
+with no accessible label.
+
+BETTER:
+
+```
+<label for="email">Email</label>
+<input id="email" type="email" placeholder="name@example.com">
+```
+
+Placeholder text should be treated as a hint, not as the
+primary label.
+
+========================================================
+20. ACCESSIBILITY WITH COLOR SCHEMES
+====================================
+
+If supporting dark mode, maintain sufficient contrast.
+
+Example:
+
+========================================================
+*/
+
+:root {
+--background: white;
+--text: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+:root {
+--background: #111;
+--text: #f5f5f5;
+}
+}
+
+body {
+background: var(--background);
+color: var(--text);
+}
+
+/*
+Always check contrast in both modes.
+
+========================================================
+21. ACCESSIBILITY CHECKLIST
+===========================
+
+COLOR:
+
+```
+Good contrast
+Do not rely only on color
+```
+
+FOCUS:
+
+```
+Visible focus indicator
+Use :focus-visible when appropriate
+```
+
+KEYBOARD:
+
+```
+All important controls reachable
+Logical focus order
+Do not create keyboard traps
+```
+
+TEXT:
+
+```
+Readable font size
+Good line-height
+Reasonable line length
+Responsive typography
+```
+
+FORMS:
+
+```
+Proper labels
+Clear error messages
+Visible focus
+Required fields communicated clearly
+```
+
+MOTION:
+
+```
+Respect prefers-reduced-motion
+Avoid unnecessary animation
+```
+
+SCREEN READERS:
+
+```
+Semantic HTML
+Meaningful alt text
+Proper labels
+Accessible names
+Do not hide important content
+```
+
+RESPONSIVE:
+
+```
+Text remains readable
+Controls remain usable
+Content reflows correctly
+```
+
+========================================================
+QUESTIONS AND ANSWERS
+=====================
+
+Q1. What is CSS accessibility?
+
+Answer:
+
+CSS accessibility means using CSS techniques to make
+web content easier to perceive, navigate and use for people
+with different abilities.
+
+---
+
+Q2. Why is color contrast important?
+
+Answer:
+
+Good color contrast makes text and interface elements easier
+to see and read.
+
+---
+
+Q3. What is a focus indicator?
+
+Answer:
+
+A focus indicator visually shows which element currently
+has keyboard focus.
+
+---
+
+Q4. Why should outline:none be avoided?
+
+Answer:
+
+Removing the outline without providing another visible focus
+style makes keyboard navigation difficult.
+
+---
+
+Q5. What is :focus?
+
+Answer:
+
+:focus is a pseudo-class that applies when an element has
+keyboard or programmatic focus, and in some cases focus
+caused by other user interactions.
+
+---
+
+Q6. What is :focus-visible?
+
+Answer:
+
+:focus-visible allows a visible focus style when the browser
+determines that it is appropriate, commonly helping keyboard
+users.
+
+---
+
+Q7. What is keyboard accessibility?
+
+Answer:
+
+Keyboard accessibility means users can navigate and operate
+important website controls using a keyboard without requiring
+a mouse.
+
+---
+
+Q8. What is prefers-reduced-motion?
+
+Answer:
+
+It is a media feature that detects whether the user has
+requested reduced motion.
+
+Example:
+
+```
+@media (prefers-reduced-motion: reduce) {
+    ...
+}
+```
+
+---
+
+Q9. Why should information not be communicated by color alone?
+
+Answer:
+
+Some users may not be able to distinguish certain colors.
+Additional text, icons, patterns or other indicators should
+be used.
+
+---
+
+Q10. What is responsive text?
+
+Answer:
+
+Responsive text adjusts appropriately to different screen
+sizes while remaining readable.
+
+Techniques include:
+
+```
+rem
+em
+clamp()
+appropriate line-height
+max-width
+```
+
+---
+
+Q11. What is a screen reader?
+
+Answer:
+
+A screen reader is assistive technology that presents
+webpage content through speech or braille.
+
+---
+
+Q12. Is CSS alone enough to make a website accessible?
+
+Answer:
+
+No.
+
+Accessibility also depends on:
+
+```
+Semantic HTML
+Keyboard interaction
+Labels
+Alt text
+ARIA where appropriate
+JavaScript behavior
+Proper focus management
+```
+
+========================================================
+PRACTICE QUESTIONS
+==================
+
+Q1. Create a visible focus style for buttons.
+
+Solution:
+
+```
+button:focus-visible {
+    outline: 3px solid blue;
+    outline-offset: 3px;
+}
+```
+
+---
+
+Q2. Create a reduced-motion media query.
+
+Solution:
+
+```
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none;
+        transition: none;
+    }
+}
+```
+
+In real projects, prefer reducing non-essential motion
+thoughtfully rather than disabling everything blindly.
+
+---
+
+Q3. Create responsive heading text.
+
+Solution:
+
+```
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+---
+
+Q4. Create readable paragraph text.
+
+Solution:
+
+```
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 70ch;
+}
+```
+
+---
+
+Q5. Create a visually hidden class.
+
+Solution:
+
+```
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+```
+
+---
+
+Q6. Why is this bad?
+
+```
+button:focus {
+    outline: none;
+}
+```
+
+Answer:
+
+It removes the visible focus indicator and can make keyboard
+navigation difficult.
+
+---
+
+Q7. How can an error state be made accessible?
+
+Answer:
+
+Do not rely only on red color.
+
+Use:
+
+```
+Error text
+Appropriate semantic HTML
+Color
+Icons or other visual indicators where useful
+```
+
+========================================================
+EXAM MEMORY TRICK
+=================
+
+CONTRAST
+
+```
+Make text easy to see.
+```
+
+FOCUS
+
+```
+Always show where the keyboard is.
+```
+
+KEYBOARD
+
+```
+Website should work without a mouse.
+```
+
+TEXT
+
+```
+Readable size + line-height + width.
+```
+
+FORMS
+
+```
+Label + focus + clear states.
+```
+
+MOTION
+
+```
+Respect user motion preferences.
+```
+
+COLOR
+
+```
+Never use color alone.
+```
+
+RESPONSIVE TEXT
+
+```
+Use rem / clamp() / readable line length.
+```
+
+SCREEN READER
+
+```
+Semantic HTML + meaningful content.
+```
+
+========================================================
+ONE-LINE REVISION
+=================
+
+Accessible Contrast
+→ Make foreground/background easy to distinguish.
+
+Focus Indicator
+→ Show the currently focused element.
+
+Keyboard Navigation
+→ Ensure controls can be operated without a mouse.
+
+Readable Font Sizes
+→ Use readable sizes, spacing and line-height.
+
+Accessible Forms
+→ Use labels, clear states and visible focus.
+
+:focus
+→ Styles a focused element.
+
+Reduced Motion
+→ Minimize unnecessary animation and movement.
+
+prefers-reduced-motion
+→ Detects the user's reduced-motion preference.
+
+Avoid Color-Only Information
+→ Use text/icons/patterns in addition to color.
+
+Responsive Text
+→ Keep text readable across screen sizes.
+
+Screen Reader Considerations
+→ Preserve semantic, meaningful and accessible content.
+
+========================================================
+END OF CSS ACCESSIBILITY
+========================
+
+*/

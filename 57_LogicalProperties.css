@@ -1,0 +1,1786 @@
+# /*
+
+```
+          CSS LOGICAL PROPERTIES
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. CSS Logical Properties
+2. margin-inline
+3. margin-block
+4. padding-inline
+5. padding-block
+6. border-inline
+7. border-block
+8. inset-inline
+9. inset-block
+10. inline-size
+11. block-size
+12. Logical vs Physical Properties
+13. Right-to-Left Language Support
+
+========================================================
+
+1. WHAT ARE CSS LOGICAL PROPERTIES?
+   ========================================================
+
+CSS Logical Properties allow us to define layout according to
+the writing direction of the document.
+
+Traditional CSS uses physical directions:
+
+```
+top
+right
+bottom
+left
+```
+
+Logical CSS uses concepts such as:
+
+```
+inline-start
+inline-end
+block-start
+block-end
+```
+
+This makes CSS more adaptable to:
+
+```
+Left-to-right languages
+Right-to-left languages
+Vertical writing modes
+```
+
+========================================================
+2. PHYSICAL DIRECTIONS
+======================
+
+Physical properties refer directly to the screen.
+
+```
+top
+right
+bottom
+left
+```
+
+Example:
+
+========================================================
+*/
+
+.box {
+margin-left: 20px;
+padding-right: 10px;
+}
+
+/*
+These directions remain "left" and "right" regardless of the
+document's writing direction.
+
+========================================================
+3. LOGICAL DIRECTIONS
+=====================
+
+Logical properties use:
+
+```
+Inline direction
+Block direction
+```
+
+For a typical horizontal left-to-right document:
+
+```
+inline-start → left
+inline-end   → right
+
+block-start  → top
+block-end    → bottom
+```
+
+For a typical horizontal right-to-left document:
+
+```
+inline-start → right
+inline-end   → left
+
+block-start  → top
+block-end    → bottom
+```
+
+========================================================
+VISUAL IDEA
+===========
+
+LTR:
+
+```
+inline-start  → [ CONTENT ] → inline-end
+      LEFT                       RIGHT
+```
+
+RTL:
+
+```
+inline-start  → [ CONTENT ] → inline-end
+     RIGHT                       LEFT
+```
+
+The logical CSS stays the same.
+
+The browser changes the physical direction.
+
+========================================================
+4. margin-inline
+================
+
+margin-inline controls margins in the inline direction.
+
+It is a shorthand for:
+
+```
+margin-inline-start
+margin-inline-end
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+.box {
+margin-inline: 20px;
+}
+
+/*
+Equivalent concept:
+
+```
+margin-inline-start: 20px;
+margin-inline-end: 20px;
+```
+
+========================================================
+TWO VALUES
+==========
+
+*/
+
+.box {
+margin-inline: 10px 20px;
+}
+
+/*
+First value:
+
+```
+inline-start
+```
+
+Second value:
+
+```
+inline-end
+```
+
+========================================================
+5. margin-block
+===============
+
+margin-block controls margins in the block direction.
+
+It is a shorthand for:
+
+```
+margin-block-start
+margin-block-end
+```
+
+========================================================
+*/
+
+.section {
+margin-block: 20px;
+}
+
+/*
+Equivalent:
+
+```
+margin-block-start: 20px;
+margin-block-end: 20px;
+```
+
+========================================================
+TWO VALUES
+==========
+
+*/
+
+.section {
+margin-block: 10px 30px;
+}
+
+/*
+10px → block-start
+30px → block-end
+
+========================================================
+6. margin-inline AUTO
+=====================
+
+A common use is horizontally centering a block in a typical
+horizontal writing mode.
+
+========================================================
+*/
+
+.container {
+max-width: 1000px;
+margin-inline: auto;
+}
+
+/*
+This is the logical equivalent of:
+
+```
+margin-left: auto;
+margin-right: auto;
+```
+
+It is preferable for layouts that should adapt to writing
+direction.
+
+========================================================
+7. padding-inline
+=================
+
+padding-inline controls padding in the inline direction.
+
+========================================================
+*/
+
+.card {
+padding-inline: 20px;
+}
+
+/*
+Equivalent concept:
+
+```
+padding-inline-start: 20px;
+padding-inline-end: 20px;
+```
+
+========================================================
+TWO VALUES
+==========
+
+*/
+
+.card {
+padding-inline: 10px 20px;
+}
+
+/*
+10px → inline-start
+20px → inline-end
+
+========================================================
+8. padding-block
+================
+
+padding-block controls padding in the block direction.
+
+========================================================
+*/
+
+.card {
+padding-block: 20px;
+}
+
+/*
+Equivalent:
+
+```
+padding-block-start: 20px;
+padding-block-end: 20px;
+```
+
+========================================================
+TWO VALUES
+==========
+
+*/
+
+.card {
+padding-block: 10px 30px;
+}
+
+/*
+10px → block-start
+30px → block-end
+
+========================================================
+9. border-inline
+================
+
+border-inline controls the borders at the inline-start and
+inline-end sides.
+
+========================================================
+*/
+
+.box {
+border-inline: 2px solid blue;
+}
+
+/*
+This is conceptually equivalent to applying the same border
+style to:
+
+```
+border-inline-start
+border-inline-end
+```
+
+========================================================
+INDIVIDUAL SIDES
+================
+
+*/
+
+.box {
+border-inline-start: 4px solid blue;
+border-inline-end: 2px solid gray;
+}
+
+# /*
+
+10. border-block
+    ========================================================
+
+border-block controls borders at the block-start and
+block-end sides.
+
+========================================================
+*/
+
+.box {
+border-block: 2px solid black;
+}
+
+/*
+Conceptually:
+
+```
+border-block-start
+border-block-end
+```
+
+========================================================
+INDIVIDUAL SIDES
+================
+
+*/
+
+.box {
+border-block-start: 3px solid black;
+border-block-end: 1px solid gray;
+}
+
+# /*
+
+11. inset-inline
+    ========================================================
+
+inset-inline controls the logical inline position of a
+positioned element.
+
+It is a shorthand for:
+
+```
+inset-inline-start
+inset-inline-end
+```
+
+It is useful with:
+
+```
+position: absolute;
+position: fixed;
+position: sticky;
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+.badge {
+position: absolute;
+inset-inline-end: 10px;
+inset-block-start: 10px;
+}
+
+/*
+In a typical LTR layout:
+
+```
+inline-end = right
+```
+
+So the badge appears 10px from the right.
+
+In a typical RTL layout:
+
+```
+inline-end = left
+```
+
+The same CSS automatically adapts.
+
+========================================================
+TWO VALUES
+==========
+
+*/
+
+.element {
+inset-inline: 10px 20px;
+}
+
+/*
+10px → inline-start
+20px → inline-end
+
+========================================================
+12. inset-block
+===============
+
+inset-block controls the logical block position of a
+positioned element.
+
+It is a shorthand for:
+
+```
+inset-block-start
+inset-block-end
+```
+
+========================================================
+*/
+
+.element {
+position: absolute;
+inset-block: 10px 20px;
+}
+
+/*
+Typical horizontal writing mode:
+
+```
+10px → top
+20px → bottom
+```
+
+========================================================
+INDIVIDUAL PROPERTIES
+=====================
+
+*/
+
+.element {
+position: absolute;
+inset-block-start: 10px;
+inset-block-end: 20px;
+}
+
+# /*
+
+13. inline-size
+    ========================================================
+
+inline-size is the logical equivalent of width in a typical
+horizontal writing mode.
+
+========================================================
+*/
+
+.box {
+inline-size: 300px;
+}
+
+/*
+In a typical horizontal writing mode:
+
+```
+inline-size ≈ width
+```
+
+But in a vertical writing mode, inline-size can correspond
+to the vertical dimension.
+
+========================================================
+14. block-size
+==============
+
+block-size is the logical equivalent of height in a typical
+horizontal writing mode.
+
+========================================================
+*/
+
+.box {
+block-size: 200px;
+}
+
+/*
+In a typical horizontal writing mode:
+
+```
+block-size ≈ height
+```
+
+The actual physical dimension depends on writing-mode.
+
+========================================================
+15. MIN/MAX LOGICAL SIZES
+=========================
+
+Logical versions are also available for min/max dimensions.
+
+Examples:
+
+```
+min-inline-size
+max-inline-size
+min-block-size
+max-block-size
+```
+
+========================================================
+*/
+
+.container {
+inline-size: 100%;
+max-inline-size: 1200px;
+}
+
+/*
+This is useful for creating direction-independent layouts.
+
+========================================================
+16. LOGICAL vs PHYSICAL PROPERTIES
+==================================
+
+PHYSICAL:
+
+```
+margin-left
+margin-right
+margin-top
+margin-bottom
+```
+
+LOGICAL:
+
+```
+margin-inline-start
+margin-inline-end
+margin-block-start
+margin-block-end
+```
+
+---
+
+PHYSICAL:
+
+```
+padding-left
+padding-right
+padding-top
+padding-bottom
+```
+
+LOGICAL:
+
+```
+padding-inline-start
+padding-inline-end
+padding-block-start
+padding-block-end
+```
+
+---
+
+PHYSICAL:
+
+```
+border-left
+border-right
+border-top
+border-bottom
+```
+
+LOGICAL:
+
+```
+border-inline-start
+border-inline-end
+border-block-start
+border-block-end
+```
+
+---
+
+PHYSICAL:
+
+```
+left
+right
+top
+bottom
+```
+
+LOGICAL:
+
+```
+inset-inline-start
+inset-inline-end
+inset-block-start
+inset-block-end
+```
+
+---
+
+PHYSICAL:
+
+```
+width
+height
+```
+
+LOGICAL:
+
+```
+inline-size
+block-size
+```
+
+========================================================
+17. COMPARISON TABLE
+====================
+
+Physical Property          Logical Property
+
+margin-left                margin-inline-start
+margin-right               margin-inline-end
+margin-top                 margin-block-start
+margin-bottom              margin-block-end
+
+padding-left               padding-inline-start
+padding-right              padding-inline-end
+padding-top                padding-block-start
+padding-bottom             padding-block-end
+
+border-left                border-inline-start
+border-right               border-inline-end
+border-top                 border-block-start
+border-bottom              border-block-end
+
+left                       inset-inline-start
+right                      inset-inline-end
+top                        inset-block-start
+bottom                     inset-block-end
+
+width                      inline-size
+height                     block-size
+
+========================================================
+18. INLINE AXIS
+===============
+
+The inline axis is the direction in which text normally flows.
+
+For normal horizontal LTR text:
+
+```
+LEFT → RIGHT
+```
+
+For normal horizontal RTL text:
+
+```
+RIGHT → LEFT
+```
+
+Therefore:
+
+```
+inline-start
+inline-end
+```
+
+change depending on writing direction.
+
+========================================================
+19. BLOCK AXIS
+==============
+
+The block axis is the direction in which blocks are arranged.
+
+For normal horizontal writing:
+
+```
+TOP
+ ↓
+BOTTOM
+```
+
+Therefore:
+
+```
+block-start = top
+block-end = bottom
+```
+
+The exact physical direction can change with writing mode.
+
+========================================================
+20. WRITING-MODE
+================
+
+CSS provides the writing-mode property.
+
+Common values include:
+
+```
+horizontal-tb
+vertical-rl
+vertical-lr
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+.vertical-text {
+writing-mode: vertical-rl;
+}
+
+/*
+Now the meaning of inline and block dimensions changes.
+
+This demonstrates why logical properties are more flexible
+than hard-coded left/right/top/bottom properties.
+
+========================================================
+21. RIGHT-TO-LEFT LANGUAGE SUPPORT
+==================================
+
+Some languages are written from right to left.
+
+Examples include:
+
+```
+Arabic
+Hebrew
+Persian
+Urdu
+```
+
+For these languages, the inline direction is reversed.
+
+========================================================
+HTML DIRECTION
+==============
+
+The document can specify its direction using:
+
+```
+dir="rtl"
+```
+
+Example:
+
+```
+<html lang="ar" dir="rtl">
+```
+
+This tells the browser that the document is right-to-left.
+
+========================================================
+22. LOGICAL PROPERTIES WITH RTL
+===============================
+
+Consider:
+
+========================================================
+*/
+
+.card {
+padding-inline-start: 20px;
+margin-inline-end: 30px;
+}
+
+/*
+In LTR:
+
+```
+padding-inline-start → left
+margin-inline-end     → right
+```
+
+In RTL:
+
+```
+padding-inline-start → right
+margin-inline-end   → left
+```
+
+The CSS does not need to be rewritten.
+
+========================================================
+23. PHYSICAL PROPERTIES WITH RTL
+================================
+
+*/
+
+.card {
+padding-left: 20px;
+margin-right: 30px;
+}
+
+/*
+These properties continue to mean:
+
+```
+left
+right
+```
+
+They do not automatically become logical directions.
+
+This can make international layouts harder to maintain.
+
+========================================================
+24. RTL NAVIGATION EXAMPLE
+==========================
+
+*/
+
+.nav {
+display: flex;
+gap: 20px;
+padding-inline: 20px;
+}
+
+.nav-item {
+margin-inline-end: 10px;
+}
+
+/*
+The layout can adapt to RTL without creating separate
+left/right CSS rules.
+
+========================================================
+25. RTL BADGE EXAMPLE
+=====================
+
+*/
+
+.card {
+position: relative;
+}
+
+.badge {
+position: absolute;
+inset-block-start: 10px;
+inset-inline-end: 10px;
+}
+
+/*
+LTR:
+
+```
+top-right
+```
+
+RTL:
+
+```
+top-left
+```
+
+Same CSS.
+
+========================================================
+26. RTL BORDER EXAMPLE
+======================
+
+*/
+
+.message {
+border-inline-start: 4px solid blue;
+padding-inline-start: 15px;
+}
+
+/*
+LTR:
+
+```
+Border appears on the left.
+```
+
+RTL:
+
+```
+Border appears on the right.
+```
+
+This is very useful for:
+
+```
+Alerts
+Quotes
+Sidebars
+Messages
+Navigation indicators
+```
+
+========================================================
+27. CENTERING WITH LOGICAL PROPERTIES
+=====================================
+
+*/
+
+.container {
+max-inline-size: 1200px;
+margin-inline: auto;
+}
+
+/*
+This creates a direction-friendly centered container.
+
+========================================================
+28. RESPONSIVE CARD EXAMPLE
+===========================
+
+*/
+
+.card {
+inline-size: min(100%, 400px);
+padding-block: 20px;
+padding-inline: 24px;
+margin-inline: auto;
+border-block: 1px solid #ddd;
+border-radius: 10px;
+}
+
+/*
+This uses:
+
+```
+inline-size
+padding-block
+padding-inline
+margin-inline
+border-block
+```
+
+instead of relying entirely on physical directions.
+
+========================================================
+29. LOGICAL PROPERTIES WITH FLEXBOX
+===================================
+
+*/
+
+.navbar {
+display: flex;
+align-items: center;
+gap: 20px;
+padding-inline: 24px;
+min-block-size: 60px;
+}
+
+/*
+Logical properties work naturally with modern layout systems
+such as Flexbox and Grid.
+
+========================================================
+30. LOGICAL PROPERTIES WITH GRID
+================================
+
+*/
+
+.layout {
+display: grid;
+grid-template-columns: 250px 1fr;
+gap: 20px;
+padding-inline: 20px;
+}
+
+/*
+The layout itself can be combined with logical spacing to
+better support different writing directions.
+
+========================================================
+31. LOGICAL SHORTHANDS
+======================
+
+margin-inline:
+
+```
+margin-inline-start
+margin-inline-end
+```
+
+margin-block:
+
+```
+margin-block-start
+margin-block-end
+```
+
+padding-inline:
+
+```
+padding-inline-start
+padding-inline-end
+```
+
+padding-block:
+
+```
+padding-block-start
+padding-block-end
+```
+
+border-inline:
+
+```
+border-inline-start
+border-inline-end
+```
+
+border-block:
+
+```
+border-block-start
+border-block-end
+```
+
+inset-inline:
+
+```
+inset-inline-start
+inset-inline-end
+```
+
+inset-block:
+
+```
+inset-block-start
+inset-block-end
+```
+
+========================================================
+32. PHYSICAL vs LOGICAL EXAMPLE
+===============================
+
+Physical approach:
+
+========================================================
+*/
+
+.card {
+width: 300px;
+margin-left: auto;
+margin-right: auto;
+padding-left: 20px;
+padding-right: 20px;
+border-left: 2px solid blue;
+}
+
+/*
+Logical approach:
+
+========================================================
+*/
+
+.card {
+inline-size: 300px;
+margin-inline: auto;
+padding-inline: 20px;
+border-inline-start: 2px solid blue;
+}
+
+/*
+The logical version better communicates the intended
+relationship with the writing direction.
+
+========================================================
+33. WHEN TO USE LOGICAL PROPERTIES
+==================================
+
+Use logical properties when:
+
+```
+Building multilingual websites
+Supporting RTL languages
+Supporting different writing modes
+Creating reusable components
+Building international products
+Designing modern responsive layouts
+```
+
+They are also useful in ordinary LTR projects because they
+express layout intent clearly.
+
+========================================================
+34. WHEN PHYSICAL PROPERTIES ARE APPROPRIATE
+============================================
+
+Physical properties are still useful when the physical
+direction itself matters.
+
+For example:
+
+```
+A visual effect specifically intended to be on the
+physical left side of the screen.
+```
+
+The choice depends on design intent.
+
+========================================================
+35. ADVANTAGES OF LOGICAL PROPERTIES
+====================================
+
+1. Better RTL support
+
+2. Better internationalization
+
+3. Supports different writing modes
+
+4. More reusable components
+
+5. Less direction-specific CSS
+
+6. Easier maintenance
+
+7. Clearly expresses layout intent
+
+========================================================
+36. COMPLETE RTL EXAMPLE
+========================
+
+*/
+
+:root {
+--spacing: 20px;
+}
+
+.page {
+max-inline-size: 1200px;
+margin-inline: auto;
+padding-inline: var(--spacing);
+}
+
+.card {
+position: relative;
+padding-block: 20px;
+padding-inline: 24px;
+border: 1px solid #ddd;
+}
+
+.card-title {
+margin-block: 0 10px;
+}
+
+.card-badge {
+position: absolute;
+inset-block-start: 10px;
+inset-inline-end: 10px;
+}
+
+.card-message {
+border-inline-start: 4px solid blue;
+padding-inline-start: 12px;
+}
+
+/*
+HTML for RTL:
+
+```
+<html lang="ar" dir="rtl">
+```
+
+The same CSS can automatically adapt the logical directions.
+
+========================================================
+37. IMPORTANT DIFFERENCE
+========================
+
+Physical property:
+
+```
+margin-left
+```
+
+means:
+
+```
+LEFT
+```
+
+Logical property:
+
+```
+margin-inline-start
+```
+
+means:
+
+```
+START OF INLINE DIRECTION
+```
+
+Therefore:
+
+```
+LTR → usually LEFT
+RTL → usually RIGHT
+```
+
+========================================================
+38. QUICK REVISION
+==================
+
+margin-inline
+
+```
+→ Start/end margins in inline direction.
+```
+
+margin-block
+
+```
+→ Start/end margins in block direction.
+```
+
+padding-inline
+
+```
+→ Start/end padding in inline direction.
+```
+
+padding-block
+
+```
+→ Start/end padding in block direction.
+```
+
+border-inline
+
+```
+→ Start/end borders in inline direction.
+```
+
+border-block
+
+```
+→ Start/end borders in block direction.
+```
+
+inset-inline
+
+```
+→ Start/end positioning in inline direction.
+```
+
+inset-block
+
+```
+→ Start/end positioning in block direction.
+```
+
+inline-size
+
+```
+→ Logical width-like dimension.
+```
+
+block-size
+
+```
+→ Logical height-like dimension.
+```
+
+Logical Properties
+
+```
+→ Follow writing direction.
+```
+
+Physical Properties
+
+```
+→ Fixed top/right/bottom/left directions.
+```
+
+RTL
+
+```
+→ Inline direction is reversed.
+```
+
+========================================================
+39. QUESTIONS AND ANSWERS
+=========================
+
+Q1. What are CSS logical properties?
+
+Answer:
+
+CSS logical properties define layout according to the
+writing direction instead of fixed physical directions such
+as left, right, top and bottom.
+
+---
+
+Q2. What is margin-inline?
+
+Answer:
+
+margin-inline sets the margin at the inline-start and
+inline-end sides.
+
+Example:
+
+```
+margin-inline: 20px;
+```
+
+---
+
+Q3. What is margin-block?
+
+Answer:
+
+margin-block sets the margin at the block-start and
+block-end sides.
+
+---
+
+Q4. What is the difference between inline and block axes?
+
+Answer:
+
+Inline axis is the direction in which text flows.
+
+Block axis is the direction in which block-level content
+is arranged.
+
+---
+
+Q5. What is inline-size?
+
+Answer:
+
+inline-size defines the logical size along the inline axis.
+In a normal horizontal writing mode, it is generally similar
+to width.
+
+---
+
+Q6. What is block-size?
+
+Answer:
+
+block-size defines the logical size along the block axis.
+In a normal horizontal writing mode, it is generally similar
+to height.
+
+---
+
+Q7. What is the difference between margin-left and
+margin-inline-start?
+
+Answer:
+
+margin-left always refers to the physical left side.
+
+margin-inline-start refers to the beginning of the inline
+direction.
+
+In LTR this is usually left, while in RTL it is usually right.
+
+---
+
+Q8. What is border-inline?
+
+Answer:
+
+border-inline controls the borders at the inline-start and
+inline-end sides.
+
+---
+
+Q9. What is inset-inline?
+
+Answer:
+
+inset-inline controls the inline-start and inline-end
+positioning of positioned elements.
+
+---
+
+Q10. How does CSS support RTL languages?
+
+Answer:
+
+CSS can use logical properties that automatically adapt to
+the writing direction.
+
+The document direction can be specified using:
+
+```
+dir="rtl"
+```
+
+Example:
+
+```
+<html lang="ar" dir="rtl">
+```
+
+---
+
+Q11. Name some RTL languages.
+
+Answer:
+
+Examples include:
+
+```
+Arabic
+Hebrew
+Persian
+Urdu
+```
+
+---
+
+Q12. Why are logical properties useful?
+
+Answer:
+
+They reduce direction-specific CSS and make layouts easier
+to reuse for LTR, RTL and other writing modes.
+
+========================================================
+40. PRACTICE QUESTIONS
+======================
+
+Q1. Replace this with logical properties:
+
+```
+margin-left: 20px;
+margin-right: 20px;
+```
+
+Solution:
+
+```
+margin-inline: 20px;
+```
+
+---
+
+Q2. Replace:
+
+```
+padding-top: 20px;
+padding-bottom: 20px;
+```
+
+Solution:
+
+```
+padding-block: 20px;
+```
+
+---
+
+Q3. Replace:
+
+```
+padding-left: 20px;
+padding-right: 20px;
+```
+
+Solution:
+
+```
+padding-inline: 20px;
+```
+
+---
+
+Q4. Create a centered container using logical properties.
+
+Solution:
+
+```
+.container {
+    max-inline-size: 1200px;
+    margin-inline: auto;
+}
+```
+
+---
+
+Q5. Create a badge positioned at the logical top-end.
+
+Solution:
+
+```
+.badge {
+    position: absolute;
+    inset-block-start: 10px;
+    inset-inline-end: 10px;
+}
+```
+
+---
+
+Q6. Create a box with logical dimensions.
+
+Solution:
+
+```
+.box {
+    inline-size: 300px;
+    block-size: 200px;
+}
+```
+
+---
+
+Q7. Create a border on the logical start side.
+
+Solution:
+
+```
+.message {
+    border-inline-start: 4px solid blue;
+}
+```
+
+---
+
+Q8. What happens to this property in RTL?
+
+```
+margin-inline-start: 20px;
+```
+
+Answer:
+
+In a normal horizontal RTL writing mode, the margin is
+applied to the right/start side.
+
+---
+
+Q9. What is the logical equivalent of:
+
+```
+width: 300px;
+```
+
+Answer:
+
+```
+inline-size: 300px;
+```
+
+in a normal horizontal writing mode.
+
+---
+
+Q10. What is the logical equivalent of:
+
+```
+height: 200px;
+```
+
+Answer:
+
+```
+block-size: 200px;
+```
+
+in a normal horizontal writing mode.
+
+========================================================
+41. EXAM MEMORY TRICK
+=====================
+
+INLINE
+
+```
+→ Text-flow direction.
+```
+
+BLOCK
+
+```
+→ Block stacking direction.
+```
+
+START
+
+```
+→ Beginning of the direction.
+```
+
+END
+
+```
+→ End of the direction.
+```
+
+margin-inline
+
+```
+→ Left/right in typical horizontal writing.
+```
+
+margin-block
+
+```
+→ Top/bottom in typical horizontal writing.
+```
+
+padding-inline
+
+```
+→ Left/right padding.
+```
+
+padding-block
+
+```
+→ Top/bottom padding.
+```
+
+border-inline
+
+```
+→ Left/right borders.
+```
+
+border-block
+
+```
+→ Top/bottom borders.
+```
+
+inset-inline
+
+```
+→ Logical left/right positioning.
+```
+
+inset-block
+
+```
+→ Logical top/bottom positioning.
+```
+
+inline-size
+
+```
+→ Width-like dimension.
+```
+
+block-size
+
+```
+→ Height-like dimension.
+```
+
+LTR
+
+```
+→ Inline start is usually LEFT.
+```
+
+RTL
+
+```
+→ Inline start is usually RIGHT.
+```
+
+========================================================
+42. ONE-LINE REVISION
+=====================
+
+margin-inline
+→ Inline start/end margin.
+
+margin-block
+→ Block start/end margin.
+
+padding-inline
+→ Inline start/end padding.
+
+padding-block
+→ Block start/end padding.
+
+border-inline
+→ Inline start/end borders.
+
+border-block
+→ Block start/end borders.
+
+inset-inline
+→ Inline start/end positioning.
+
+inset-block
+→ Block start/end positioning.
+
+inline-size
+→ Logical width.
+
+block-size
+→ Logical height.
+
+Logical Properties
+→ Adapt to writing direction.
+
+Physical Properties
+→ Fixed top/right/bottom/left.
+
+RTL Support
+→ Logical properties automatically adapt to
+right-to-left writing direction.
+
+========================================================
+END OF CSS LOGICAL PROPERTIES
+=============================
+
+*/

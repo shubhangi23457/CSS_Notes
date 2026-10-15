@@ -1,0 +1,1695 @@
+# /*
+
+```
+                CSS THEMING
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. Introduction to CSS Theming
+2. Light Theme
+3. Dark Theme
+4. CSS Variables for Themes
+5. Theme Switching
+6. prefers-color-scheme
+7. Custom Themes
+8. Component-Based Themes
+9. Color Systems
+10. Complete Theme Example
+11. Questions and Answers
+12. Practice Questions
+13. Quick Revision
+
+========================================================
+
+1. INTRODUCTION TO CSS THEMING
+   ========================================================
+
+CSS Theming means creating different visual styles for the
+same website or application.
+
+A theme can control:
+
+```
+Background colors
+Text colors
+Border colors
+Button colors
+Card colors
+Shadows
+Accent colors
+```
+
+Common themes:
+
+```
+Light Theme
+Dark Theme
+Custom Theme
+```
+
+CSS Custom Properties (CSS Variables) are commonly used to
+create flexible themes.
+
+========================================================
+BASIC IDEA
+==========
+
+Instead of writing:
+
+```
+background: white;
+color: black;
+```
+
+throughout the stylesheet, define reusable variables:
+
+```
+--background-color
+--text-color
+--primary-color
+```
+
+Then use:
+
+```
+background: var(--background-color);
+color: var(--text-color);
+```
+
+Changing the variables changes the theme.
+
+========================================================
+2. LIGHT THEME
+==============
+
+A light theme normally uses:
+
+```
+Light backgrounds
+Dark text
+Light cards
+Dark borders
+```
+
+Example:
+
+========================================================
+*/
+
+:root {
+--background-color: #ffffff;
+--text-color: #222222;
+--card-color: #f5f5f5;
+--border-color: #dddddd;
+--primary-color: #2563eb;
+}
+
+body {
+background: var(--background-color);
+color: var(--text-color);
+}
+
+.card {
+background: var(--card-color);
+border: 1px solid var(--border-color);
+}
+
+.button {
+background: var(--primary-color);
+color: white;
+}
+
+# /*
+
+3. DARK THEME
+   ========================================================
+
+A dark theme normally uses:
+
+```
+Dark background
+Light text
+Dark cards
+Lighter borders
+Suitable accent colors
+```
+
+Example:
+
+========================================================
+*/
+
+.dark-theme {
+--background-color: #121212;
+--text-color: #f5f5f5;
+--card-color: #1e1e1e;
+--border-color: #444444;
+--primary-color: #60a5fa;
+}
+
+/*
+HTML example:
+
+```
+<body class="dark-theme">
+```
+
+The same components can now use the dark theme variables.
+
+========================================================
+4. CSS VARIABLES FOR THEMES
+===========================
+
+CSS Custom Properties are especially useful for themes.
+
+Syntax:
+
+```
+--variable-name: value;
+```
+
+Use the variable with:
+
+```
+var(--variable-name);
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+:root {
+--bg: white;
+--text: black;
+--primary: blue;
+}
+
+body {
+background: var(--bg);
+color: var(--text);
+}
+
+button {
+background: var(--primary);
+}
+
+# /*
+
+5. WHY USE CSS VARIABLES?
+   ========================================================
+
+Without variables:
+
+```
+Many individual declarations need to be changed.
+```
+
+With variables:
+
+```
+Change a few variables and the entire theme changes.
+```
+
+Advantages:
+
+```
+Reusable
+Maintainable
+Easy to switch
+Supports inheritance
+Works at runtime
+Useful for component-based designs
+```
+
+========================================================
+6. THEME VARIABLES
+==================
+
+A good theme can define variables for different purposes.
+
+Example:
+
+========================================================
+*/
+
+:root {
+--color-background: #ffffff;
+--color-surface: #f8fafc;
+--color-text: #111827;
+--color-text-muted: #6b7280;
+--color-primary: #2563eb;
+--color-secondary: #7c3aed;
+--color-border: #e5e7eb;
+--color-success: #16a34a;
+--color-danger: #dc2626;
+}
+
+# /*
+
+7. THEME SWITCHING
+   ========================================================
+
+Theme switching means changing from one theme to another.
+
+For example:
+
+```
+Light
+   ↓
+Dark
+```
+
+A common method is to add/remove a class on the root element.
+
+Example:
+
+```
+<html class="dark">
+```
+
+or:
+
+```
+<body class="dark-theme">
+```
+
+========================================================
+8. CLASS-BASED THEME SWITCHING
+==============================
+
+*/
+
+:root {
+--bg: #ffffff;
+--text: #222222;
+--surface: #f5f5f5;
+--primary: #2563eb;
+}
+
+.dark {
+--bg: #121212;
+--text: #ffffff;
+--surface: #1e1e1e;
+--primary: #60a5fa;
+}
+
+body {
+background: var(--bg);
+color: var(--text);
+}
+
+.card {
+background: var(--surface);
+}
+
+button {
+background: var(--primary);
+}
+
+/*
+JavaScript can add or remove the .dark class.
+
+Example concept:
+
+```
+document.documentElement.classList.toggle("dark");
+```
+
+CSS controls the theme.
+
+JavaScript controls when the theme changes.
+
+========================================================
+9. DATA-ATTRIBUTE THEME SWITCHING
+=================================
+
+Instead of classes, a data attribute can be used.
+
+Example:
+
+```
+<html data-theme="dark">
+```
+
+========================================================
+*/
+
+:root {
+--bg: #ffffff;
+--text: #222222;
+--surface: #f5f5f5;
+}
+
+[data-theme="dark"] {
+--bg: #121212;
+--text: #ffffff;
+--surface: #1e1e1e;
+}
+
+body {
+background: var(--bg);
+color: var(--text);
+}
+
+.card {
+background: var(--surface);
+}
+
+/*
+To switch themes:
+
+```
+data-theme="light"
+```
+
+or:
+
+```
+data-theme="dark"
+```
+
+This approach is useful when there are multiple themes.
+
+========================================================
+10. PREFERS-COLOR-SCHEME
+========================
+
+prefers-color-scheme is a media feature that detects the
+user's operating-system or browser color preference.
+
+Values:
+
+```
+light
+dark
+```
+
+========================================================
+DARK MODE
+=========
+
+*/
+
+@media (prefers-color-scheme: dark) {
+:root {
+--bg: #121212;
+--text: #ffffff;
+--surface: #1e1e1e;
+}
+}
+
+/*
+If the user prefers dark mode, these variables are applied.
+
+========================================================
+LIGHT MODE
+==========
+
+*/
+
+@media (prefers-color-scheme: light) {
+:root {
+--bg: #ffffff;
+--text: #222222;
+--surface: #f5f5f5;
+}
+}
+
+# /*
+
+11. AUTOMATIC DARK MODE
+    ========================================================
+
+A simple automatic theme can be created like this:
+
+========================================================
+*/
+
+:root {
+--bg: #ffffff;
+--text: #222222;
+--surface: #f5f5f5;
+--border: #dddddd;
+}
+
+@media (prefers-color-scheme: dark) {
+:root {
+--bg: #121212;
+--text: #f5f5f5;
+--surface: #1e1e1e;
+--border: #444444;
+}
+}
+
+body {
+background: var(--bg);
+color: var(--text);
+}
+
+.card {
+background: var(--surface);
+border: 1px solid var(--border);
+}
+
+/*
+No JavaScript is required for this automatic system.
+
+The browser uses the user's preferred color scheme.
+
+========================================================
+12. AUTO THEME + MANUAL THEME
+=============================
+
+A website can support both:
+
+```
+System preference
+Manual theme selection
+```
+
+For example:
+
+```
+Default → Follow system
+
+User chooses:
+    Light
+    Dark
+```
+
+A class or data attribute can be used for manual override.
+
+========================================================
+13. CUSTOM THEMES
+=================
+
+A website can have more than two themes.
+
+Examples:
+
+```
+Light
+Dark
+Blue
+Green
+Purple
+```
+
+========================================================
+BLUE THEME
+==========
+
+*/
+
+[data-theme="blue"] {
+--bg: #eff6ff;
+--text: #172554;
+--surface: #dbeafe;
+--primary: #2563eb;
+--border: #93c5fd;
+}
+
+# /*
+
+# GREEN THEME
+
+*/
+
+[data-theme="green"] {
+--bg: #f0fdf4;
+--text: #14532d;
+--surface: #dcfce7;
+--primary: #16a34a;
+--border: #86efac;
+}
+
+# /*
+
+# PURPLE THEME
+
+*/
+
+[data-theme="purple"] {
+--bg: #faf5ff;
+--text: #3b0764;
+--surface: #f3e8ff;
+--primary: #9333ea;
+--border: #d8b4fe;
+}
+
+/*
+The same components can use these variables regardless of
+which theme is active.
+
+========================================================
+14. COMPONENT-BASED THEMES
+==========================
+
+Component-based theming means that individual components
+can define or override their own theme variables.
+
+Examples:
+
+```
+Card
+Button
+Navbar
+Modal
+Sidebar
+```
+
+========================================================
+*/
+
+.card {
+--component-bg: #ffffff;
+--component-text: #222222;
+
+```
+background: var(--component-bg);
+color: var(--component-text);
+```
+
+}
+
+# /*
+
+15. COMPONENT THEME OVERRIDE
+    ========================================================
+    */
+
+.dark-card {
+--component-bg: #1e1e1e;
+--component-text: #ffffff;
+}
+
+/*
+HTML concept:
+
+```
+<div class="card dark-card">
+    ...
+</div>
+```
+
+The variables are scoped to that component.
+
+========================================================
+16. COMPONENT-LEVEL COLOR VARIABLES
+===================================
+
+*/
+
+.button {
+--button-bg: #2563eb;
+--button-text: #ffffff;
+
+```
+background: var(--button-bg);
+color: var(--button-text);
+```
+
+}
+
+.button.success {
+--button-bg: #16a34a;
+}
+
+.button.danger {
+--button-bg: #dc2626;
+}
+
+/*
+This allows one reusable button component to support
+different variants.
+
+========================================================
+17. COLOR SYSTEMS
+=================
+
+A color system is a structured set of colors used throughout
+a website or application.
+
+Instead of choosing random colors, define a consistent system.
+
+A color system can contain:
+
+```
+Primary
+Secondary
+Accent
+Background
+Surface
+Text
+Muted text
+Border
+Success
+Warning
+Error
+```
+
+========================================================
+18. PRIMARY COLOR
+=================
+
+Primary color is the main brand/action color.
+
+Example:
+
+========================================================
+*/
+
+:root {
+--color-primary: #2563eb;
+}
+
+/*
+Used for:
+
+```
+Buttons
+Links
+Important actions
+Active states
+```
+
+========================================================
+19. SECONDARY COLOR
+===================
+
+*/
+
+:root {
+--color-secondary: #7c3aed;
+}
+
+/*
+Used for supporting actions or visual elements.
+
+========================================================
+20. SURFACE COLORS
+==================
+
+Surface colors are used for elements placed on top of the
+main background.
+
+Examples:
+
+```
+Cards
+Panels
+Modals
+Dropdowns
+```
+
+========================================================
+*/
+
+:root {
+--color-background: #ffffff;
+--color-surface: #f8fafc;
+}
+
+# /*
+
+21. TEXT COLORS
+    ========================================================
+    */
+
+:root {
+--color-text: #111827;
+--color-text-muted: #6b7280;
+}
+
+/*
+Primary text:
+
+```
+Important readable content.
+```
+
+Muted text:
+
+```
+Secondary information.
+```
+
+========================================================
+22. SEMANTIC COLORS
+===================
+
+Semantic colors communicate meaning.
+
+Examples:
+
+```
+Success
+Warning
+Error
+Information
+```
+
+========================================================
+*/
+
+:root {
+--color-success: #16a34a;
+--color-warning: #d97706;
+--color-error: #dc2626;
+--color-info: #2563eb;
+}
+
+# /*
+
+23. COLOR TOKENS
+    ========================================================
+
+Design systems often use color tokens.
+
+Example:
+
+========================================================
+*/
+
+:root {
+--color-primary: #2563eb;
+--color-primary-hover: #1d4ed8;
+
+```
+--color-background: #ffffff;
+--color-surface: #f8fafc;
+
+--color-text: #111827;
+--color-text-muted: #6b7280;
+
+--color-border: #e5e7eb;
+
+--color-success: #16a34a;
+--color-warning: #d97706;
+--color-error: #dc2626;
+```
+
+}
+
+/*
+These tokens can be reused throughout the application.
+
+========================================================
+24. DARK COLOR SYSTEM
+=====================
+
+*/
+
+@media (prefers-color-scheme: dark) {
+:root {
+--color-background: #0f172a;
+--color-surface: #1e293b;
+
+```
+    --color-text: #f8fafc;
+    --color-text-muted: #94a3b8;
+
+    --color-border: #334155;
+
+    --color-primary: #60a5fa;
+    --color-primary-hover: #93c5fd;
+}
+```
+
+}
+
+/*
+The semantic meaning stays the same.
+
+Only the actual colors change.
+
+========================================================
+25. THEME TRANSITION
+====================
+
+A transition can make theme changes feel smoother.
+
+========================================================
+*/
+
+body {
+background: var(--color-background);
+color: var(--color-text);
+transition:
+background-color 0.2s ease,
+color 0.2s ease;
+}
+
+/*
+Be careful with large-scale animations during theme changes.
+
+Respect users who prefer reduced motion.
+
+========================================================
+26. REDUCED MOTION WITH THEMES
+==============================
+
+*/
+
+@media (prefers-reduced-motion: reduce) {
+*,
+*::before,
+*::after {
+transition-duration: 0.01ms;
+animation-duration: 0.01ms;
+animation-iteration-count: 1;
+}
+}
+
+# /*
+
+27. LIGHT AND DARK THEME COMPLETE EXAMPLE
+    ========================================================
+    */
+
+:root {
+--bg-color: #ffffff;
+--text-color: #111111;
+--surface-color: #f5f5f5;
+--border-color: #dddddd;
+--primary-color: #2563eb;
+}
+
+[data-theme="dark"] {
+--bg-color: #121212;
+--text-color: #f5f5f5;
+--surface-color: #1e1e1e;
+--border-color: #444444;
+--primary-color: #60a5fa;
+}
+
+body {
+margin: 0;
+background: var(--bg-color);
+color: var(--text-color);
+font-family: Arial, sans-serif;
+}
+
+.card {
+background: var(--surface-color);
+border: 1px solid var(--border-color);
+padding: 20px;
+}
+
+button {
+background: var(--primary-color);
+color: white;
+border: none;
+padding: 10px 16px;
+}
+
+/*
+HTML:
+
+```
+<html data-theme="dark">
+```
+
+or:
+
+```
+<html data-theme="light">
+```
+
+========================================================
+28. MULTIPLE THEME EXAMPLE
+==========================
+
+*/
+
+:root {
+--bg: #ffffff;
+--text: #222222;
+--primary: #2563eb;
+}
+
+[data-theme="dark"] {
+--bg: #121212;
+--text: #ffffff;
+--primary: #60a5fa;
+}
+
+[data-theme="green"] {
+--bg: #f0fdf4;
+--text: #14532d;
+--primary: #16a34a;
+}
+
+[data-theme="purple"] {
+--bg: #faf5ff;
+--text: #3b0764;
+--primary: #9333ea;
+}
+
+body {
+background: var(--bg);
+color: var(--text);
+}
+
+button {
+background: var(--primary);
+}
+
+# /*
+
+29. THEME SWITCHING CONCEPT
+    ========================================================
+
+A theme switcher usually works like this:
+
+```
+USER CLICKS BUTTON
+        ↓
+JavaScript changes theme attribute/class
+        ↓
+CSS variables change
+        ↓
+Components automatically update
+```
+
+Example HTML:
+
+```
+<button id="themeButton">
+    Toggle Theme
+</button>
+```
+
+JavaScript concept:
+
+```
+document.documentElement.dataset.theme = "dark";
+```
+
+CSS:
+
+```
+[data-theme="dark"] {
+    --bg: #121212;
+    --text: white;
+}
+```
+
+========================================================
+30. CSS DOES NOT NORMALLY HANDLE THE CLICK
+==========================================
+
+CSS defines the visual theme.
+
+JavaScript is commonly responsible for:
+
+```
+Detecting the click
+Changing the theme
+Saving the selected theme
+Restoring the selected theme
+```
+
+CSS handles:
+
+```
+Colors
+Backgrounds
+Borders
+Shadows
+Component appearance
+```
+
+========================================================
+31. PERSISTING A THEME
+======================
+
+JavaScript can store the user's choice using browser
+storage.
+
+Concept:
+
+```
+User chooses dark theme
+        ↓
+Store preference
+        ↓
+User returns
+        ↓
+Restore dark theme
+```
+
+The actual storage mechanism is handled by JavaScript,
+while CSS provides the visual theme.
+
+========================================================
+32. THEME VARIABLES AND FALLBACKS
+=================================
+
+CSS variables can have fallback values.
+
+Syntax:
+
+```
+var(--variable, fallback);
+```
+
+Example:
+
+========================================================
+*/
+
+.card {
+background: var(--card-background, white);
+color: var(--card-text, black);
+}
+
+/*
+If --card-background is not defined:
+
+```
+white
+```
+
+is used.
+
+========================================================
+33. NESTED THEME VARIABLES
+==========================
+
+CSS variables inherit like normal custom properties.
+
+========================================================
+*/
+
+:root {
+--primary: blue;
+}
+
+.card {
+--primary: purple;
+}
+
+.card button {
+background: var(--primary);
+}
+
+/*
+Inside .card:
+
+```
+--primary = purple
+```
+
+Outside .card:
+
+```
+--primary = blue
+```
+
+This makes scoped component themes possible.
+
+========================================================
+34. COMPONENT-BASED THEME SYSTEM
+================================
+
+*/
+
+:root {
+--color-primary: #2563eb;
+--color-background: #ffffff;
+--color-text: #111111;
+}
+
+.card {
+--card-background: var(--color-background);
+--card-text: var(--color-text);
+
+```
+background: var(--card-background);
+color: var(--card-text);
+```
+
+}
+
+.card-dark {
+--card-background: #1e1e1e;
+--card-text: #ffffff;
+}
+
+/*
+The global theme provides defaults.
+
+The component can override them when necessary.
+
+========================================================
+35. COLOR SYSTEM STRUCTURE
+==========================
+
+A useful theme structure can be:
+
+```
+BRAND COLORS
+    --color-primary
+    --color-secondary
+    --color-accent
+
+BACKGROUNDS
+    --color-background
+    --color-surface
+
+TEXT
+    --color-text
+    --color-text-muted
+
+BORDERS
+    --color-border
+
+SEMANTIC
+    --color-success
+    --color-warning
+    --color-error
+    --color-info
+```
+
+========================================================
+36. THEME DESIGN BEST PRACTICES
+===============================
+
+1. Use CSS variables.
+
+2. Use semantic variable names.
+
+Good:
+
+```
+--color-primary
+```
+
+Less useful:
+
+```
+--blue-500
+```
+
+3. Keep colors consistent.
+
+4. Check text/background contrast.
+
+5. Do not rely only on color to communicate meaning.
+
+6. Keep light and dark themes readable.
+
+7. Use semantic colors for states.
+
+8. Keep component styles reusable.
+
+9. Use prefers-color-scheme for system preference.
+
+10. Allow manual theme selection when appropriate.
+
+========================================================
+37. COMPLETE THEME SYSTEM
+=========================
+
+*/
+
+:root {
+--color-background: #ffffff;
+--color-surface: #f8fafc;
+
+```
+--color-text: #111827;
+--color-text-muted: #6b7280;
+
+--color-primary: #2563eb;
+--color-primary-hover: #1d4ed8;
+
+--color-border: #e5e7eb;
+
+--color-success: #16a34a;
+--color-warning: #d97706;
+--color-error: #dc2626;
+
+--radius: 10px;
+--spacing: 20px;
+```
+
+}
+
+[data-theme="dark"] {
+--color-background: #0f172a;
+--color-surface: #1e293b;
+
+```
+--color-text: #f8fafc;
+--color-text-muted: #94a3b8;
+
+--color-primary: #60a5fa;
+--color-primary-hover: #93c5fd;
+
+--color-border: #334155;
+
+--color-success: #4ade80;
+--color-warning: #fbbf24;
+--color-error: #f87171;
+```
+
+}
+
+body {
+margin: 0;
+padding: var(--spacing);
+background: var(--color-background);
+color: var(--color-text);
+}
+
+.card {
+background: var(--color-surface);
+border: 1px solid var(--color-border);
+border-radius: var(--radius);
+padding: var(--spacing);
+}
+
+.card p {
+color: var(--color-text-muted);
+}
+
+.button {
+background: var(--color-primary);
+color: white;
+border: none;
+border-radius: var(--radius);
+padding: 10px 16px;
+}
+
+.button:hover {
+background: var(--color-primary-hover);
+}
+
+.success {
+color: var(--color-success);
+}
+
+.warning {
+color: var(--color-warning);
+}
+
+.error {
+color: var(--color-error);
+}
+
+# /*
+
+38. QUESTIONS AND ANSWERS
+    ========================================================
+
+Q1. What is CSS theming?
+
+Answer:
+
+CSS theming is the process of creating different visual
+styles for the same website or application.
+
+---
+
+Q2. Why are CSS variables useful for themes?
+
+Answer:
+
+CSS variables allow colors and other design values to be
+defined once and reused throughout the stylesheet. Changing
+the variables can change the entire theme.
+
+---
+
+Q3. What is a light theme?
+
+Answer:
+
+A light theme generally uses light backgrounds and darker
+text and UI elements.
+
+---
+
+Q4. What is a dark theme?
+
+Answer:
+
+A dark theme generally uses dark backgrounds with light text
+and appropriately adjusted UI colors.
+
+---
+
+Q5. What is prefers-color-scheme?
+
+Answer:
+
+prefers-color-scheme is a CSS media feature that detects
+whether the user prefers a light or dark color scheme.
+
+Values:
+
+```
+light
+dark
+```
+
+---
+
+Q6. What is the syntax for a dark color scheme?
+
+Answer:
+
+```
+@media (prefers-color-scheme: dark) {
+    ...
+}
+```
+
+---
+
+Q7. How can themes be switched manually?
+
+Answer:
+
+A class or data attribute can be changed on an element such
+as <html>.
+
+Example:
+
+```
+<html data-theme="dark">
+```
+
+---
+
+Q8. What is a custom theme?
+
+Answer:
+
+A custom theme is a theme designed with a specific set of
+colors and styles beyond the default light/dark themes.
+
+Examples:
+
+```
+Blue
+Green
+Purple
+```
+
+---
+
+Q9. What is component-based theming?
+
+Answer:
+
+It allows individual components to define or override CSS
+variables for their own appearance.
+
+---
+
+Q10. What is a color system?
+
+Answer:
+
+A color system is a structured set of reusable colors used
+consistently throughout a website.
+
+It can include:
+
+```
+Primary
+Secondary
+Background
+Surface
+Text
+Border
+Success
+Warning
+Error
+```
+
+---
+
+Q11. What is a semantic color?
+
+Answer:
+
+A semantic color communicates meaning.
+
+Examples:
+
+```
+Green → success
+Yellow/orange → warning
+Red → error
+```
+
+---
+
+Q12. Can CSS automatically detect the user's dark-mode
+preference?
+
+Answer:
+
+Yes, using:
+
+```
+@media (prefers-color-scheme: dark)
+```
+
+========================================================
+39. PRACTICE QUESTIONS
+======================
+
+Q1. Create three basic theme variables.
+
+Solution:
+
+```
+:root {
+    --background: white;
+    --text: black;
+    --primary: blue;
+}
+```
+
+---
+
+Q2. Create a dark theme using a class.
+
+Solution:
+
+```
+.dark {
+    --background: #121212;
+    --text: white;
+    --primary: #60a5fa;
+}
+```
+
+---
+
+Q3. Create a dark theme using a data attribute.
+
+Solution:
+
+```
+[data-theme="dark"] {
+    --background: #121212;
+    --text: white;
+}
+```
+
+---
+
+Q4. Detect the user's dark-mode preference.
+
+Solution:
+
+```
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #121212;
+        --text: white;
+    }
+}
+```
+
+---
+
+Q5. Create a green custom theme.
+
+Solution:
+
+```
+[data-theme="green"] {
+    --background: #f0fdf4;
+    --text: #14532d;
+    --primary: #16a34a;
+}
+```
+
+---
+
+Q6. Create a reusable button using a theme variable.
+
+Solution:
+
+```
+.button {
+    background: var(--color-primary);
+    color: white;
+}
+```
+
+---
+
+Q7. Create a component-specific theme.
+
+Solution:
+
+```
+.card {
+    --card-bg: white;
+    background: var(--card-bg);
+}
+
+.dark-card {
+    --card-bg: #1e1e1e;
+}
+```
+
+---
+
+Q8. Create a fallback for a CSS variable.
+
+Solution:
+
+```
+.card {
+    background: var(--card-bg, white);
+}
+```
+
+---
+
+Q9. Name five common color-system tokens.
+
+Solution:
+
+```
+--color-primary
+--color-background
+--color-surface
+--color-text
+--color-border
+```
+
+========================================================
+40. EXAM MEMORY TRICK
+=====================
+
+THEME
+
+```
+→ Different visual appearance.
+```
+
+VARIABLE
+
+```
+→ Stores reusable design value.
+```
+
+var()
+
+```
+→ Uses the variable.
+```
+
+LIGHT
+
+```
+→ Light background + dark text.
+```
+
+DARK
+
+```
+→ Dark background + light text.
+```
+
+prefers-color-scheme
+
+```
+→ Detect user's system preference.
+```
+
+class/data-theme
+
+```
+→ Useful for manual theme switching.
+```
+
+COMPONENT THEME
+
+```
+→ Variables scoped to a component.
+```
+
+COLOR SYSTEM
+
+```
+→ Organized collection of semantic colors.
+```
+
+SEMANTIC COLORS
+
+```
+→ Success, warning, error, info.
+```
+
+========================================================
+41. ONE-LINE REVISION
+=====================
+
+CSS Theming
+→ Creating multiple visual styles.
+
+Light Theme
+→ Light background and dark content.
+
+Dark Theme
+→ Dark background and light content.
+
+CSS Variables
+→ Store reusable theme values.
+
+Theme Switching
+→ Change class/data attribute or variables.
+
+prefers-color-scheme
+→ Detects user's light/dark preference.
+
+Custom Themes
+→ Blue, green, purple, etc.
+
+Component-Based Themes
+→ Theme variables scoped to components.
+
+Color Systems
+→ Organized semantic color tokens.
+
+========================================================
+END OF CSS THEMING
+==================
+
+*/

@@ -1,0 +1,1594 @@
+# /*
+
+```
+            CSS CONTAINER QUERIES
+```
+
+========================================================
+
+TOPICS COVERED:
+
+1. Introduction to Container Queries
+2. Container Types
+3. container-type
+4. container-name
+5. @container
+6. Responsive Components
+7. Container-Based Breakpoints
+8. Container Queries vs Media Queries
+
+========================================================
+
+1. INTRODUCTION TO CONTAINER QUERIES
+   ========================================================
+
+A CSS Container Query allows an element to change its styles
+based on the size of its containing element.
+
+Traditional media queries respond to:
+
+```
+Viewport size
+```
+
+Container queries respond to:
+
+```
+Container size
+```
+
+========================================================
+MEDIA QUERY
+===========
+
+```
+@media (min-width: 768px) {
+    ...
+}
+```
+
+This checks the browser viewport.
+
+========================================================
+CONTAINER QUERY
+===============
+
+```
+@container (min-width: 500px) {
+    ...
+}
+```
+
+This checks the size of a query container.
+
+========================================================
+WHY CONTAINER QUERIES?
+======================
+
+Consider a reusable card component.
+
+The card may appear:
+
+```
+In a large main content area
+In a narrow sidebar
+Inside a grid
+Inside another component
+```
+
+The viewport may remain the same, but the card's available
+space can be different.
+
+Container queries allow the card to respond to its own
+available container space.
+
+========================================================
+BASIC IDEA
+==========
+
+```
+         PAGE
+           |
+    ----------------
+    |              |
+ MAIN AREA      SIDEBAR
+    |              |
+ LARGE CARD     SMALL CARD
+```
+
+Same card component.
+
+Different container sizes.
+
+Container queries allow each card to adapt independently.
+
+========================================================
+2. BASIC CONTAINER QUERY WORKFLOW
+=================================
+
+There are two main steps:
+
+STEP 1:
+
+```
+Define a container.
+```
+
+STEP 2:
+
+```
+Write an @container rule.
+```
+
+========================================================
+STEP 1: DEFINE CONTAINER
+========================
+
+*/
+
+.card-wrapper {
+container-type: inline-size;
+}
+
+# /*
+
+# STEP 2: QUERY CONTAINER
+
+*/
+
+@container (min-width: 500px) {
+.card {
+display: grid;
+grid-template-columns: 150px 1fr;
+}
+}
+
+/*
+Meaning:
+
+```
+If .card-wrapper is at least 500px wide,
+apply the styles to .card.
+```
+
+========================================================
+3. CONTAINER TYPES
+==================
+
+The container-type property defines what type of containment
+is established.
+
+Common values:
+
+```
+normal
+size
+inline-size
+```
+
+========================================================
+NORMAL
+======
+
+Default behavior.
+
+No size containment is established for container queries.
+
+========================================================
+*/
+
+.container {
+container-type: normal;
+}
+
+# /*
+
+# INLINE-SIZE
+
+This is commonly used for responsive components.
+
+========================================================
+*/
+
+.container {
+container-type: inline-size;
+}
+
+/*
+This allows container queries based on the container's
+inline size.
+
+For normal horizontal writing:
+
+```
+inline size ≈ width
+```
+
+========================================================
+SIZE
+====
+
+size establishes size containment in both dimensions.
+
+========================================================
+*/
+
+.container {
+container-type: size;
+}
+
+/*
+This allows queries based on both inline and block dimensions.
+
+It also introduces stronger containment behavior than
+inline-size.
+
+========================================================
+CONTAINER TYPE COMPARISON
+=========================
+
+normal
+
+```
+→ Default.
+→ Not a query container for size queries.
+```
+
+inline-size
+
+```
+→ Query based on inline size.
+→ Common choice for responsive components.
+```
+
+size
+
+```
+→ Query based on inline and block size.
+→ Stronger containment.
+```
+
+========================================================
+4. container-type
+=================
+
+Syntax:
+
+```
+container-type: value;
+```
+
+Examples:
+
+```
+container-type: inline-size;
+
+container-type: size;
+```
+
+========================================================
+MOST COMMON
+===========
+
+*/
+
+.component-container {
+container-type: inline-size;
+}
+
+/*
+This is often enough for cards, widgets and reusable
+components.
+
+========================================================
+5. container-name
+=================
+
+container-name gives a query container a name.
+
+Syntax:
+
+```
+container-name: name;
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+.sidebar {
+container-type: inline-size;
+container-name: sidebar;
+}
+
+/*
+Now the container can be referenced by name.
+
+========================================================
+6. NAMED @CONTAINER
+===================
+
+*/
+
+@container sidebar (min-width: 400px) {
+.widget {
+display: grid;
+grid-template-columns: 1fr 1fr;
+}
+}
+
+/*
+The query specifically checks the container named:
+
+```
+sidebar
+```
+
+========================================================
+7. CONTAINER SHORTHAND
+======================
+
+container can be used as a shorthand for:
+
+```
+container-name
+container-type
+```
+
+Example:
+
+========================================================
+*/
+
+.card-wrapper {
+container: cards / inline-size;
+}
+
+/*
+This means:
+
+```
+container-name: cards;
+container-type: inline-size;
+```
+
+========================================================
+8. @CONTAINER
+=============
+
+The @container at-rule applies styles based on the size of a
+query container.
+
+Syntax:
+
+```
+@container (condition) {
+    CSS rules
+}
+```
+
+========================================================
+EXAMPLE
+=======
+
+*/
+
+@container (min-width: 600px) {
+.card {
+padding: 30px;
+}
+}
+
+# /*
+
+# NAMED CONTAINER
+
+*/
+
+@container cards (min-width: 600px) {
+.card {
+grid-template-columns: 200px 1fr;
+}
+}
+
+# /*
+
+9. CONTAINER MIN-WIDTH
+   ========================================================
+   */
+
+.container {
+container-type: inline-size;
+}
+
+@container (min-width: 500px) {
+.card {
+display: flex;
+gap: 20px;
+}
+}
+
+/*
+Meaning:
+
+```
+If the container's inline size is at least 500px,
+.card becomes a flex layout.
+```
+
+========================================================
+10. CONTAINER MAX-WIDTH
+=======================
+
+*/
+
+@container (max-width: 499px) {
+.card {
+display: block;
+}
+}
+
+/*
+Meaning:
+
+```
+If the container is 499px or smaller,
+use the compact layout.
+```
+
+========================================================
+11. CONTAINER BREAKPOINTS
+=========================
+
+Container breakpoints are size thresholds based on the
+container rather than the viewport.
+
+Example:
+
+```
+Small:
+    < 400px
+
+Medium:
+    >= 400px
+
+Large:
+    >= 700px
+```
+
+========================================================
+*/
+
+@container (min-width: 400px) {
+.card {
+display: flex;
+}
+}
+
+@container (min-width: 700px) {
+.card {
+grid-template-columns: 200px 1fr;
+}
+}
+
+# /*
+
+# IMPORTANT
+
+These values are not device breakpoints.
+
+They describe the amount of space available to the component.
+
+========================================================
+12. RESPONSIVE COMPONENTS
+=========================
+
+Container queries are particularly useful for reusable
+components.
+
+Examples:
+
+```
+Product cards
+News cards
+User profile cards
+Sidebars
+Widgets
+Dashboards
+Pricing cards
+Navigation components
+```
+
+========================================================
+PRODUCT CARD EXAMPLE
+====================
+
+*/
+
+.product-container {
+container-type: inline-size;
+}
+
+.product-card {
+display: block;
+}
+
+@container (min-width: 500px) {
+.product-card {
+display: grid;
+grid-template-columns: 180px 1fr;
+gap: 20px;
+}
+}
+
+# /*
+
+13. RESPONSIVE CARD EXAMPLE
+    ========================================================
+    */
+
+.card-wrapper {
+container-type: inline-size;
+}
+
+.card {
+padding: 16px;
+border: 1px solid #ddd;
+border-radius: 10px;
+}
+
+.card-image {
+width: 100%;
+aspect-ratio: 16 / 9;
+object-fit: cover;
+}
+
+@container (min-width: 450px) {
+.card {
+display: grid;
+grid-template-columns: 160px 1fr;
+gap: 20px;
+}
+
+```
+.card-image {
+    aspect-ratio: 1;
+}
+```
+
+}
+
+/*
+The same card can work in:
+
+```
+Sidebar
+Main content
+Grid
+Modal
+Dashboard
+```
+
+without changing the component CSS.
+
+========================================================
+14. RESPONSIVE COMPONENT WITH MULTIPLE BREAKPOINTS
+==================================================
+
+*/
+
+.product-list {
+container-type: inline-size;
+}
+
+.product-card {
+display: block;
+}
+
+@container (min-width: 400px) {
+.product-card {
+display: flex;
+gap: 15px;
+}
+}
+
+@container (min-width: 700px) {
+.product-card {
+display: grid;
+grid-template-columns: 220px 1fr auto;
+gap: 25px;
+}
+}
+
+# /*
+
+15. CONTAINER QUERY UNITS
+    ========================================================
+
+Container queries also provide special length units.
+
+Important units:
+
+```
+cqw
+cqh
+cqi
+cqb
+cqmin
+cqmax
+```
+
+========================================================
+cqw
+===
+
+1% of the query container's width.
+
+========================================================
+*/
+
+.title {
+font-size: 5cqw;
+}
+
+# /*
+
+# cqh
+
+1% of the query container's height.
+
+========================================================
+*/
+
+.box {
+padding: 2cqh;
+}
+
+# /*
+
+# cqi
+
+1% of the container's inline size.
+
+========================================================
+*/
+
+.component {
+padding-inline: 3cqi;
+}
+
+# /*
+
+# cqb
+
+1% of the container's block size.
+
+========================================================
+cQMIN / cQMAX
+=============
+
+cqmin:
+
+```
+Smaller of the container's inline/block dimensions.
+```
+
+cqmax:
+
+```
+Larger of the container's inline/block dimensions.
+```
+
+========================================================
+IMPORTANT
+=========
+
+Container query units are useful when component sizing should
+scale with the container.
+
+========================================================
+16. CONTAINER QUERIES + CLAMP()
+===============================
+
+*/
+
+.card {
+font-size: clamp(1rem, 3cqi, 2rem);
+}
+
+/*
+This allows text to scale according to the container while
+remaining within minimum and maximum limits.
+
+========================================================
+17. CONTAINER QUERIES + CSS GRID
+================================
+
+*/
+
+.dashboard-card-container {
+container-type: inline-size;
+}
+
+.dashboard-card {
+display: grid;
+grid-template-columns: 1fr;
+}
+
+@container (min-width: 600px) {
+.dashboard-card {
+grid-template-columns: 1fr 1fr;
+}
+}
+
+# /*
+
+18. CONTAINER QUERIES + FLEXBOX
+    ========================================================
+    */
+
+.profile-container {
+container-type: inline-size;
+}
+
+.profile {
+display: flex;
+flex-direction: column;
+}
+
+@container (min-width: 500px) {
+.profile {
+flex-direction: row;
+align-items: center;
+}
+}
+
+# /*
+
+19. CONTAINER QUERIES + CSS VARIABLES
+    ========================================================
+    */
+
+.card-wrapper {
+container-type: inline-size;
+--card-padding: 16px;
+}
+
+.card {
+padding: var(--card-padding);
+}
+
+@container (min-width: 600px) {
+.card-wrapper {
+--card-padding: 30px;
+}
+}
+
+/*
+This allows the component's design variables to change based
+on its container size.
+
+========================================================
+20. NAMED CONTAINER EXAMPLE
+===========================
+
+*/
+
+.product-area {
+container: product-area / inline-size;
+}
+
+@container product-area (min-width: 600px) {
+.product-card {
+display: grid;
+grid-template-columns: 200px 1fr;
+}
+}
+
+# /*
+
+21. MULTIPLE CONTAINERS
+    ========================================================
+
+A page can have multiple query containers.
+
+Example:
+
+```
+page
+  |
+  |-- main-container
+  |
+  |-- sidebar-container
+```
+
+Each component can respond to the container that provides
+its available space.
+
+========================================================
+*/
+
+.main-container {
+container: main / inline-size;
+}
+
+.sidebar-container {
+container: sidebar / inline-size;
+}
+
+# /*
+
+22. CONTAINER QUERY SELECTION
+    ========================================================
+
+A container query evaluates against an appropriate ancestor
+that establishes the required query container.
+
+Named containers can make the intended container explicit.
+
+Example:
+
+```
+@container sidebar (min-width: 400px) {
+    ...
+}
+```
+
+========================================================
+23. CONTAINER QUERIES vs MEDIA QUERIES
+======================================
+
+MEDIA QUERY:
+
+```
+Checks viewport/device characteristics.
+```
+
+CONTAINER QUERY:
+
+```
+Checks a containing element's size.
+```
+
+========================================================
+EXAMPLE
+=======
+
+Media query:
+
+========================================================
+*/
+
+@media (min-width: 768px) {
+.card {
+display: grid;
+}
+}
+
+/*
+This is based on viewport width.
+
+========================================================
+Container query:
+================
+
+*/
+
+.card-container {
+container-type: inline-size;
+}
+
+@container (min-width: 500px) {
+.card {
+display: grid;
+}
+}
+
+/*
+This is based on the card's container width.
+
+========================================================
+24. COMPARISON
+==============
+
+MEDIA QUERIES
+
+```
+Based on viewport/device.
+
+Useful for:
+    Page layout
+    Navigation
+    Overall responsive structure
+    Viewport-level changes
+```
+
+CONTAINER QUERIES
+
+```
+Based on container size.
+
+Useful for:
+    Reusable components
+    Cards
+    Widgets
+    Sidebars
+    Dashboards
+    Component libraries
+```
+
+========================================================
+25. CAN BOTH BE USED TOGETHER?
+==============================
+
+YES.
+
+A modern website can use:
+
+```
+Media queries
+    +
+Container queries
+```
+
+Example:
+
+========================================================
+*/
+
+@media (max-width: 600px) {
+.page-header {
+padding: 10px;
+}
+}
+
+.card-container {
+container-type: inline-size;
+}
+
+@container (min-width: 500px) {
+.card {
+display: grid;
+}
+}
+
+/*
+Media query:
+
+```
+Controls the overall page based on viewport.
+```
+
+Container query:
+
+```
+Controls the component based on its container.
+```
+
+========================================================
+26. CONTAINER QUERIES AND COMPONENT DESIGN
+==========================================
+
+Container queries support component-based architecture.
+
+Example component:
+
+```
+ProductCard
+```
+
+It should not need to know:
+
+```
+"Am I on a desktop?"
+```
+
+Instead, it can ask:
+
+```
+"How much space do I have?"
+```
+
+This makes components more reusable.
+
+========================================================
+27. CONTAINER-BASED BREAKPOINT THINKING
+=======================================
+
+Traditional thinking:
+
+```
+768px = tablet
+1024px = desktop
+```
+
+Container query thinking:
+
+```
+300px = compact card
+500px = horizontal card
+700px = expanded card
+```
+
+The second approach focuses on the component's available
+space rather than a specific device.
+
+========================================================
+28. COMPLETE E-COMMERCE EXAMPLE
+===============================
+
+*/
+
+.products-container {
+container: products / inline-size;
+}
+
+.products {
+display: grid;
+grid-template-columns: 1fr;
+gap: 20px;
+}
+
+.product-card {
+display: block;
+border: 1px solid #ddd;
+border-radius: 10px;
+overflow: hidden;
+}
+
+.product-image {
+width: 100%;
+aspect-ratio: 4 / 3;
+object-fit: cover;
+}
+
+.product-content {
+padding: 16px;
+}
+
+@container products (min-width: 500px) {
+.products {
+grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@container products (min-width: 800px) {
+.products {
+grid-template-columns: repeat(3, 1fr);
+}
+}
+
+# /*
+
+29. COMPLETE RESPONSIVE COMPONENT EXAMPLE
+    ========================================================
+    */
+
+.card-area {
+container: cards / inline-size;
+}
+
+.card {
+display: flex;
+flex-direction: column;
+gap: 15px;
+padding: 16px;
+}
+
+.card img {
+width: 100%;
+aspect-ratio: 16 / 9;
+object-fit: cover;
+}
+
+@container cards (min-width: 450px) {
+.card {
+display: grid;
+grid-template-columns: 150px 1fr;
+align-items: center;
+}
+}
+
+@container cards (min-width: 700px) {
+.card {
+grid-template-columns: 200px 1fr auto;
+}
+}
+
+# /*
+
+30. ADVANTAGES OF CONTAINER QUERIES
+    ========================================================
+
+31. Reusable components
+
+32. Component-based responsiveness
+
+33. Better support for complex layouts
+
+34. Less dependence on viewport breakpoints
+
+35. Works well with Grid and Flexbox
+
+36. Useful for design systems
+
+37. Components can adapt to their actual available space
+
+========================================================
+31. LIMITATIONS / CONSIDERATIONS
+================================
+
+Container queries are not a replacement for every media query.
+
+Use media queries when you need to respond to:
+
+```
+Viewport size
+Orientation
+User preferences
+Device/browser features
+```
+
+Use container queries when the component should respond to:
+
+```
+Available container size
+```
+
+========================================================
+32. COMMON MISTAKES
+===================
+
+MISTAKE 1:
+
+Using @container without defining a suitable query container.
+
+WRONG:
+
+```
+@container (min-width: 500px) {
+    .card {
+        ...
+    }
+}
+```
+
+without an appropriate ancestor using container-type.
+
+---
+
+MISTAKE 2:
+
+Thinking @container checks the viewport.
+
+It does NOT.
+
+---
+
+MISTAKE 3:
+
+Using too many breakpoints.
+
+Use only the breakpoints needed for meaningful component
+layout changes.
+
+---
+
+MISTAKE 4:
+
+Using container queries for everything.
+
+Media queries are still useful for page-level responsiveness.
+
+========================================================
+33. QUICK REVISION
+==================
+
+Container Query
+
+```
+→ Styles based on container size.
+```
+
+container-type
+
+```
+→ Defines the type of query container.
+```
+
+normal
+
+```
+→ Default; no size containment for size queries.
+```
+
+inline-size
+
+```
+→ Query based on inline size.
+```
+
+size
+
+```
+→ Query based on inline and block size.
+```
+
+container-name
+
+```
+→ Gives a query container a name.
+```
+
+@container
+
+```
+→ Applies styles based on container conditions.
+```
+
+Container Breakpoint
+
+```
+→ Size threshold of a container.
+```
+
+Responsive Component
+
+```
+→ Component adapts to its available space.
+```
+
+Container Query Units
+
+```
+→ cqw, cqh, cqi, cqb, cqmin, cqmax.
+```
+
+Media Query
+
+```
+→ Responds to viewport/device conditions.
+```
+
+Container Query
+
+```
+→ Responds to component/container conditions.
+```
+
+========================================================
+34. QUESTIONS AND ANSWERS
+=========================
+
+Q1. What are CSS Container Queries?
+
+Answer:
+
+Container Queries allow CSS styles to change according to
+the size of a containing element instead of the viewport.
+
+---
+
+Q2. What is container-type?
+
+Answer:
+
+container-type defines what type of containment an element
+provides for container queries.
+
+Example:
+
+```
+container-type: inline-size;
+```
+
+---
+
+Q3. What is the difference between inline-size and size?
+
+Answer:
+
+inline-size allows querying the container's inline dimension.
+
+size establishes size containment for both inline and block
+dimensions.
+
+---
+
+Q4. What is container-name?
+
+Answer:
+
+container-name assigns a name to a query container so that
+it can be specifically referenced by an @container rule.
+
+Example:
+
+```
+container-name: sidebar;
+```
+
+---
+
+Q5. What is @container?
+
+Answer:
+
+@container is an at-rule used to apply CSS based on the size
+or characteristics of a query container.
+
+---
+
+Q6. What is a container-based breakpoint?
+
+Answer:
+
+It is a size threshold based on the width or size of a
+component's container rather than the viewport.
+
+---
+
+Q7. What is the difference between @media and @container?
+
+Answer:
+
+@media:
+
+```
+Responds mainly to viewport/device conditions.
+```
+
+@container:
+
+```
+Responds to a query container's size.
+```
+
+---
+
+Q8. Why are container queries useful for reusable components?
+
+Answer:
+
+A component can adapt to the space available to it without
+depending on the overall viewport size.
+
+---
+
+Q9. Name some container query units.
+
+Answer:
+
+```
+cqw
+cqh
+cqi
+cqb
+cqmin
+cqmax
+```
+
+---
+
+Q10. Can container queries and media queries be used together?
+
+Answer:
+
+Yes.
+
+Media queries can control page-level responsiveness while
+container queries control component-level responsiveness.
+
+========================================================
+35. PRACTICE QUESTIONS
+======================
+
+Q1. Create a query container.
+
+Solution:
+
+```
+.container {
+    container-type: inline-size;
+}
+```
+
+---
+
+Q2. Give the container a name.
+
+Solution:
+
+```
+.container {
+    container-name: cards;
+    container-type: inline-size;
+}
+```
+
+---
+
+Q3. Use the shorthand to create a named container.
+
+Solution:
+
+```
+.container {
+    container: cards / inline-size;
+}
+```
+
+---
+
+Q4. Create a container query for 500px.
+
+Solution:
+
+```
+@container (min-width: 500px) {
+    .card {
+        display: grid;
+    }
+}
+```
+
+---
+
+Q5. Create a named container query.
+
+Solution:
+
+```
+@container cards (min-width: 500px) {
+    .card {
+        display: grid;
+    }
+}
+```
+
+---
+
+Q6. Create a responsive card that changes to two columns
+when its container reaches 500px.
+
+Solution:
+
+```
+.card-container {
+    container-type: inline-size;
+}
+
+.card {
+    display: block;
+}
+
+@container (min-width: 500px) {
+    .card {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+    }
+}
+```
+
+---
+
+Q7. What should be used for page-level responsiveness?
+
+Answer:
+
+Media queries are generally appropriate for viewport-level
+changes.
+
+---
+
+Q8. What should be used for reusable component responsiveness?
+
+Answer:
+
+Container queries are generally appropriate.
+
+========================================================
+36. EXAM MEMORY TRICK
+=====================
+
+MEDIA
+
+```
+→ "How big is the SCREEN?"
+```
+
+CONTAINER
+
+```
+→ "How much SPACE does my COMPONENT have?"
+```
+
+container-type
+
+```
+→ "Make this element a query container."
+```
+
+container-name
+
+```
+→ "Give the container a name."
+```
+
+@container
+
+```
+→ "Style the component based on its container."
+```
+
+inline-size
+
+```
+→ Width-like container query.
+```
+
+size
+
+```
+→ Inline + block size containment.
+```
+
+cqw
+
+```
+→ Container width percentage.
+```
+
+cqh
+
+```
+→ Container height percentage.
+```
+
+cqi
+
+```
+→ Container inline-size percentage.
+```
+
+cqb
+
+```
+→ Container block-size percentage.
+```
+
+========================================================
+37. ONE-LINE REVISION
+=====================
+
+Introduction to Container Queries
+→ Responsive styling based on container size.
+
+Container Types
+→ normal, inline-size and size.
+
+container-type
+→ Defines query containment.
+
+container-name
+→ Names a query container.
+
+@container
+→ Applies styles based on container conditions.
+
+Responsive Components
+→ Components adapt to available space.
+
+Container-Based Breakpoints
+→ Breakpoints based on component/container size.
+
+Container Queries vs Media Queries
+→ Container = component space; Media = viewport/device.
+
+========================================================
+END OF CSS CONTAINER QUERIES
+============================
+
+*/

@@ -1,0 +1,530 @@
+/* =========================================================
+   CSS UI EFFECTS
+   ========================================================= */
+
+/* =========================================================
+   1. HOVER EFFECTS
+   ========================================================= */
+
+/*
+:hover
+Applies styles when the mouse pointer is placed over an element.
+*/
+
+button:hover {
+    background-color: black;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Smooth hover transition */
+button {
+    transition: 0.3s;
+}
+
+
+/* =========================================================
+   2. FOCUS EFFECTS
+   ========================================================= */
+
+/*
+:focus
+Applies styles when an element receives focus.
+
+Commonly used with:
+- input
+- textarea
+- button
+- select
+*/
+
+input:focus {
+    border: 2px solid blue;
+    outline: none;
+    box-shadow: 0 0 5px lightblue;
+}
+
+
+/* =========================================================
+   3. BUTTON EFFECTS
+   ========================================================= */
+
+/* Basic button */
+.btn {
+    padding: 12px 20px;
+    border: none;
+    background-color: royalblue;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px gray;
+}
+
+/* Click effect */
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Disabled button */
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   4. CARD EFFECTS
+   ========================================================= */
+
+/*
+Cards are commonly enhanced using:
+- box-shadow
+- border-radius
+- transform
+- transition
+*/
+
+.card {
+    width: 250px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px gray;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px gray;
+}
+
+
+/* =========================================================
+   5. IMAGE EFFECTS
+   ========================================================= */
+
+/* Zoom image on hover */
+
+.image {
+    width: 300px;
+    transition: 0.4s;
+}
+
+.image:hover {
+    transform: scale(1.1);
+}
+
+/* Grayscale */
+
+.image-gray {
+    filter: grayscale(100%);
+}
+
+.image-gray:hover {
+    filter: grayscale(0%);
+}
+
+/* Blur */
+
+.image-blur:hover {
+    filter: blur(3px);
+}
+
+/* Brightness */
+
+.image-bright:hover {
+    filter: brightness(1.3);
+}
+
+
+/* =========================================================
+   6. LOADING EFFECTS
+   ========================================================= */
+
+/*
+Loading effects indicate that some content is being processed.
+Usually created using:
+- animation
+- border
+- transform
+*/
+
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 5px solid lightgray;
+    border-top: 5px solid blue;
+    border-radius: 50%;
+
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   7. SKELETON LOADING
+   ========================================================= */
+
+/*
+Skeleton loading displays placeholder shapes
+while actual content is loading.
+*/
+
+.skeleton {
+    width: 300px;
+    height: 20px;
+    border-radius: 5px;
+
+    background: linear-gradient(
+        90deg,
+        #eeeeee,
+        #dddddd,
+        #eeeeee
+    );
+
+    background-size: 200% 100%;
+
+    animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+    from {
+        background-position: 200% 0;
+    }
+
+    to {
+        background-position: -200% 0;
+    }
+}
+
+
+/* =========================================================
+   8. TOOLTIPS
+   ========================================================= */
+
+/*
+Tooltip displays additional information when
+the user hovers over an element.
+*/
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text {
+    visibility: hidden;
+
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background-color: black;
+    color: white;
+
+    padding: 6px 10px;
+    border-radius: 5px;
+
+    white-space: nowrap;
+}
+
+/* Show tooltip */
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+}
+
+
+/* =========================================================
+   9. BADGES
+   ========================================================= */
+
+/*
+Badges are small labels used to show:
+- status
+- counts
+- categories
+- notifications
+*/
+
+.badge {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background-color: green;
+    color: white;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   10. NOTIFICATIONS
+   ========================================================= */
+
+/*
+Notifications inform users about:
+- messages
+- updates
+- warnings
+- alerts
+*/
+
+.notification {
+    position: fixed;
+
+    top: 20px;
+    right: 20px;
+
+    padding: 15px 20px;
+
+    background-color: white;
+
+    border-radius: 8px;
+
+    box-shadow: 0 5px 20px gray;
+
+    animation: notification-in 0.5s ease;
+}
+
+@keyframes notification-in {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   11. MODALS
+   ========================================================= */
+
+/*
+A modal is a popup window displayed above the
+main page content.
+*/
+
+.modal {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 400px;
+    padding: 25px;
+
+    background-color: white;
+
+    border-radius: 10px;
+
+    box-shadow: 0 10px 30px gray;
+}
+
+
+/* =========================================================
+   12. OVERLAYS
+   ========================================================= */
+
+/*
+An overlay covers part or all of the page,
+usually behind a modal.
+*/
+
+.overlay {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.6);
+
+    z-index: 10;
+}
+
+
+/* =========================================================
+   13. GLASSMORPHISM
+   ========================================================= */
+
+/*
+Glassmorphism creates a transparent,
+frosted-glass appearance.
+
+Common properties:
+- rgba()
+- backdrop-filter
+- border
+- box-shadow
+*/
+
+.glass {
+    background: rgba(255, 255, 255, 0.2);
+
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    border-radius: 15px;
+
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+    padding: 30px;
+}
+
+
+/* =========================================================
+   14. NEUMORPHISM
+   ========================================================= */
+
+/*
+Neumorphism creates a soft, raised or pressed
+interface appearance.
+
+It mainly uses multiple box-shadows.
+*/
+
+.neumorphic {
+    background: #e0e0e0;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    box-shadow:
+        8px 8px 15px #bebebe,
+        -8px -8px 15px #ffffff;
+}
+
+/* Pressed effect */
+
+.neumorphic:active {
+    box-shadow:
+        inset 5px 5px 10px #bebebe,
+        inset -5px -5px 10px #ffffff;
+}
+
+
+/* =========================================================
+   15. GRADIENT EFFECTS
+   ========================================================= */
+
+/*
+Gradients create smooth transitions between colors.
+
+Types:
+1. Linear Gradient
+2. Radial Gradient
+3. Conic Gradient
+*/
+
+
+/* Linear Gradient */
+
+.linear {
+    background: linear-gradient(
+        to right,
+        blue,
+        purple
+    );
+}
+
+
+/* Linear Gradient with angle */
+
+.linear-angle {
+    background: linear-gradient(
+        45deg,
+        red,
+        yellow,
+        green
+    );
+}
+
+
+/* Radial Gradient */
+
+.radial {
+    background: radial-gradient(
+        circle,
+        white,
+        blue
+    );
+}
+
+
+/* Conic Gradient */
+
+.conic {
+    background: conic-gradient(
+        red,
+        yellow,
+        green,
+        blue,
+        red
+    );
+}
+
+
+/* Gradient Text */
+
+.gradient-text {
+    background: linear-gradient(
+        90deg,
+        blue,
+        purple
+    );
+
+    color: transparent;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+
+/* Gradient Button */
+
+.gradient-button {
+    padding: 12px 25px;
+
+    border: none;
+    border-radius: 8px;
+
+    color: white;
+
+    background: linear-gradient(
+        90deg,
+        #ff512f,
+        #dd2476
+    );
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.gradient-button:hover {
+    transform: scale(1.05);
+}
